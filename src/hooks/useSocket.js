@@ -1,13 +1,9 @@
-import { useAllUsers, useGetClientUser } from './userInfo';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-export const useSocket = () => {
-  const { allUsers } = useAllUsers();
-  const { userName } = useGetClientUser();
+export const useSocket = (userName) => {
   const [socket, setSocket] = useState();
   const [onlineList, setOnlineList] = useState([]);
-  const BACK_URL = 'http://localhost:8000';
 
   useEffect(() => {
     const options = {
@@ -18,7 +14,7 @@ export const useSocket = () => {
 
     // console.log('socket: connect');
 
-    const socketIo = io.connect(`${BACK_URL}/online`, options);
+    const socketIo = io.connect(`/online`, options);
     setSocket(socketIo); // 소켓 연결되면 따로 socket에 다시 저장
 
     if (userName) {
@@ -51,15 +47,5 @@ export const useSocket = () => {
     };
   }, [socket]);
 
-  // 온라인 유저가 맨 위에 위치하도록 배열 순서 바꾸기
-  let sortedUsers = [];
-  allUsers.forEach((user, i) => {
-    if (onlineList.indexOf(user) !== -1) {
-      allUsers.splice(i, 1);
-      sortedUsers.push(user);
-    }
-  });
-  sortedUsers.push(...allUsers);
-
-  return { onlineList, sortedUsers };
+  return { onlineList };
 };

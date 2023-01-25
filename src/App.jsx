@@ -1,26 +1,25 @@
-import { useCrawling } from '@hooks/useCrawling';
-import { useGetWeather } from '@hooks/useGetWeather';
-import NavBar from '@layouts/NavBar';
-import RollingBanner from '@layouts/RollingBanner';
-import Diary from '@pages/Diary';
-import Home from '@pages/Home';
-import LogIn from '@pages/LogIn';
-import Request from '@pages/Request';
-import Setting from '@pages/Setting';
-import SignUp from '@pages/SignUp';
-import User from '@pages/User';
+import loadable from '@loadable/component';
 import React from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
+const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
+const Home = loadable(() => import('@pages/Home'));
+const LogIn = loadable(() => import('@pages/LogIn'));
+const SignUp = loadable(() => import('@pages/SignUp'));
+const Request = loadable(() => import('@pages/Request'));
+const NavBar = loadable(() => import('@layouts/NavBar'));
+const Diary = loadable(() => import('@pages/Diary'));
+const Setting = loadable(() => import('@pages/Setting'));
+const User = loadable(() => import('@pages/User'));
+
 const App = () => {
-  const { indexArray, sayingData } = useCrawling();
-  useGetWeather();
+  console.log('app 렌더링');
 
   function Layout() {
     return (
       <div>
         <NavBar />
-        <RollingBanner indexArray={indexArray} sayingData={sayingData} />
+        <RollingBanner />
         <Outlet />
       </div>
     );

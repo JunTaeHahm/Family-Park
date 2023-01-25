@@ -2,6 +2,7 @@ import App from './App';
 import GlobalStyle from '@styles/global';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Toaster } from 'react-hot-toast';
@@ -15,9 +16,14 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.BACK_URL;
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      {/* <BrowserRouter basename='/lis'> */}
       <BrowserRouter>
         <GlobalStyle />
         <App />

@@ -6,7 +6,7 @@ export const useGetAllPosts = () => {
     ['allPosts'],
     async () => {
       return await axios
-        .get('/api/allposts')
+        .get('api/allposts')
         .then((res) => {
           return res.data;
         })
@@ -15,6 +15,7 @@ export const useGetAllPosts = () => {
         });
     },
     {
+      skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,
     },
@@ -41,7 +42,7 @@ export const useGetRecentPosts = () => {
     ['recentPosts'],
     async () => {
       return await axios
-        .get('/api/posts/recent')
+        .get('api/posts/recent')
         .then((res) => {
           return res.data;
         })
@@ -50,6 +51,7 @@ export const useGetRecentPosts = () => {
         });
     },
     {
+      skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,
     },
@@ -76,7 +78,7 @@ export const useGetUserPosts = (userName) => {
     ['userPosts'],
     async () => {
       return await axios
-        .get(`/api/allposts/${userName}`)
+        .get(`api/allposts/${userName}`)
         .then((res) => {
           return res.data;
         })
@@ -85,6 +87,7 @@ export const useGetUserPosts = (userName) => {
         });
     },
     {
+      skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,
     },

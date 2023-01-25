@@ -79,9 +79,7 @@ export const LoginWrap = styled.div`
   color: var(--white);
   transition: all 0.3s;
   cursor: pointer;
-  a.user-wrap {
-    position: relative;
-  }
+
   a {
     height: 100%;
     display: flex;
@@ -98,14 +96,22 @@ export const LoginWrap = styled.div`
       display: inline-block;
       margin: 0 1.2rem;
     }
+    &.user-wrap {
+      position: relative;
+    }
   }
   &:hover {
     background-color: var(--gray);
     color: var(--black);
   }
   @media screen and (max-width: 768px) {
-    & img {
-      display: none;
+    & {
+      padding: 0 0.5rem;
+      img {
+        width: 1rem;
+        height: 1rem;
+        margin-left: 0.5rem;
+      }
     }
   }
 `;

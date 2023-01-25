@@ -1,17 +1,28 @@
-import { Container, List } from './styles';
+import { Container, List, Loading } from './styles';
 import BannerList from '@components/BannerList';
+import { useCrawling } from '@hooks/useCrawling';
+import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
 
-const RollingBanner = ({ indexArray, sayingData }) => {
+const RollingBanner = () => {
+  const { saying, writer, isLoading } = useCrawling();
+
+  if (isLoading) {
+    return (
+      <Container>
+        <Loading>
+          <CircularProgress color='inherit' />
+          <span>불러오는 중...</span>
+        </Loading>
+      </Container>
+    );
+  }
   return (
-    <Container>
+    <Container isLoading={isLoading}>
       <List>
-        {indexArray.map((list, i) =>
-          i < 20 ? <BannerList key={i} saying={sayingData[0][i]} writer={sayingData[1][i]} /> : '',
-        )}
-        {indexArray.map((list, i) =>
-          i < 20 ? <BannerList key={i} saying={sayingData[0][i]} writer={sayingData[1][i]} /> : '',
-        )}
+        {saying.map((list, i) => (
+          <BannerList key={i} saying={saying[i]} writer={writer[i]} />
+        ))}
       </List>
     </Container>
   );

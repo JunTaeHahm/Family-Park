@@ -1,8 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 export const useCrawling = () => {
-  const [sayingData, setSayingData] = useState([]);
   const sayingCategories = [
     'love',
     'life',
@@ -17,15 +16,31 @@ export const useCrawling = () => {
     'challenge',
     'confidence',
   ];
-  useEffect(() => {
-    axios
-      .post('/api/famous', { category: sayingCategories[Math.floor(Math.random() * 12)] })
-      .then((res) => setSayingData(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const { data, isLoading, error } = useQuery(
+    ['famousSaying'],
+    async () => {
+      return await axios
+        .post(`api/famous`, {
+          category: sayingCategories[Math.floor(Math.random() * 12)],
+        })
+        .then((res) => {
+          if (res.data) return res.data;
+        })
+        .catch((error) => console.log(error));
+    },
+    {
+      skip: true,
+      cacheTime: Infinity, // 캐싱 시간
+      refetchInterval: false, // 리패치시간
+    },
+  );
 
-  let indexArray = [];
-  if (sayingData) indexArray = sayingData.flatMap((arr) => arr);
+  let saying = [];
+  let writer = [];
+  if (data) {
+    saying = [...data][0];
+    writer = [...data][1];
+  }
 
-  return { indexArray, sayingData };
+  return { saying, writer, isLoading, error };
 };

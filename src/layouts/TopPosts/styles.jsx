@@ -8,11 +8,6 @@ export const Container = styled.div`
   width: 100%;
   min-height: 30%;
   flex-direction: column;
-  .loading-progress {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, 0);
-  }
 `;
 
 export const Title = styled.h2`
@@ -22,7 +17,15 @@ export const Title = styled.h2`
   line-height: 30px;
   margin: 1rem 0;
 `;
-
+export const Loading = styled.div`
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+`;
 export const PostWrap = styled.div`
   width: 100%;
   max-height: max-content;

@@ -9,16 +9,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .loading-progress {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, 0);
-    @media screen and (max-width: 375px) {
-      & {
-        display: none;
-      }
-    }
-  }
 `;
 
 export const Title = styled.h2`
@@ -56,7 +46,20 @@ export const PostWrap = styled.div`
     }
   }
 `;
-
+export const Loading = styled.div`
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  @media screen and (max-width: 375px) {
+    & {
+      display: none;
+    }
+  }
+`;
 export const DateSection = styled.section``;
 
 export const DateHeader = styled.div`

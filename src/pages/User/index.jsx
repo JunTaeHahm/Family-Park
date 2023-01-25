@@ -13,10 +13,12 @@ import {
   UserTitle,
   DateSection,
   DateHeader,
+  Loading,
 } from './style';
 import PostList from '@components/PostList';
 import { useGetAllPosts, useGetUserPosts } from '@hooks/usePost';
 import Footer from '@layouts/Footer';
+import { CircularProgress } from '@mui/material';
 import { makeSection } from '@utils/makeScetion';
 import axios from 'axios';
 import React, { useCallback, useRef, useState } from 'react';
@@ -30,7 +32,7 @@ const User = () => {
   const [loadUserImage, setLoadUserImage] = useState('');
   const [isPostMenu, setIsPostMenu] = useState(true);
 
-  const { allPosts } = useGetAllPosts();
+  const { allPosts, isLoading } = useGetAllPosts();
   const { userPosts: myPosts } = useGetUserPosts(params.user);
   const collectionPosts = allPosts
     ? [...allPosts].filter((post) => post.postLike.indexOf(params.user) !== -1)
@@ -58,7 +60,15 @@ const User = () => {
       setIsPostMenu(false);
     }
   }, []);
-
+  if (isLoading)
+    return (
+      <Container>
+        <Loading>
+          <div>불러오는 중...</div>
+          <CircularProgress color='inherit' />
+        </Loading>
+      </Container>
+    );
   if (!(loadUserName && loadUserImage)) {
     return <Container>해당하는 유저가 없습니다.</Container>;
   } else {

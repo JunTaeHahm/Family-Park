@@ -137,7 +137,7 @@ dist
 
 # Optional stylelint cache
 
-# SvelteKit build / generate output
+# SvelteKit ` / generate output
 .svelte-kit
 
 ### react ###
@@ -174,3 +174,6 @@ sketch
 
 # commit message
 .gitmessage.txt
+
+# gh-page
+build

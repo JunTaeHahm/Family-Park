@@ -19,19 +19,29 @@ export const Form = styled.form`
   width: 80%;
   height: 80%;
   background-color: var(--white);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.5);
-  border-radius: 50px;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5), 0 0 2rem rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 120px;
-  font-size: 14px;
+  gap: 8rem;
   svg {
     position: absolute;
-    left: 50px;
-    top: 50px;
+    left: 3rem;
+    top: 3rem;
     cursor: pointer;
+  }
+  @media screen and (max-width: 768px) {
+    & svg {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    & {
+      max-height: 200px;
+      gap: 1.5rem;
+    }
   }
 `;
 
@@ -40,18 +50,22 @@ export const FormHeader = styled.div`
   text-align: center;
   font-size: 40px;
   font-family: var(--Mont-Bd);
+  @media screen and (max-width: 375px) {
+    & {
+      font-size: 20px;
+    }
+  }
 `;
 
 export const Input = styled.input`
   transition: all 0.3s;
-  font-size: 16px;
   border: none;
   box-sizing: border-box;
-  width: 70%;
-  padding: 12px;
+  width: 80%;
   height: 10%;
   max-height: 70px;
-  text-indent: 12px;
+  padding: 0.8rem;
+  text-indent: 0.8rem;
   &:focus {
     outline: none;
     border-bottom: 1px solid var(--black);
@@ -61,8 +75,16 @@ export const Input = styled.input`
     text-align: center;
     color: var(gray);
     opacity: 0.5;
-    font-size: 16px;
     height: 100%;
+  }
+  @media screen and (max-width: 375px) {
+    & {
+      text-indent: 5px;
+      min-height: 20%;
+    }
+    &:focus {
+      border: none;
+    }
   }
 `;
 
@@ -73,4 +95,10 @@ export const Button = styled.button`
   border-radius: 25px;
   background-color: ${(props) => (props.buttonActive ? 'var(--black)' : 'var(--gray)')};
   color: var(--white);
+  @media screen and (max-width: 375px) {
+    & {
+      width: 40%;
+      height: 15%;
+    }
+  }
 `;

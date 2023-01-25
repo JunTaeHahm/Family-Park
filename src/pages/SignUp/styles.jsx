@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -14,11 +15,21 @@ export const Title = styled.h1`
   left: 30px;
   font-family: var(--Mont-Bd);
   font-size: 24px;
+  @media screen and (max-width: 768px) {
+    & {
+      display: none;
+    }
+  }
 `;
 export const Form = styled.form`
   margin: 0 auto;
   width: 400px;
   max-width: 400px;
+  @media screen and (max-width: 375px) {
+    & {
+      max-width: 280px;
+    }
+  }
 `;
 
 export const FormTitle = styled.h2`
@@ -115,8 +126,7 @@ export const LinkContainer = styled.p`
   font-size: 13px;
   color: var(--black);
   margin: 0 auto 8px;
-  width: 400px;
-  max-width: 400px;
+  width: 100%;
   a {
     margin-left: 10px;
     color: var(--black);

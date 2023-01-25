@@ -42,5 +42,4 @@ export const ModalList = styled.div`
   }
 `;
 
-export const Logout = styled.div`
-`;
+export const Logout = styled.div``;

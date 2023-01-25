@@ -1,4 +1,4 @@
-import { Container, PostWrap, Title, DateHeader, DateSection } from './styles';
+import { Container, PostWrap, Title, DateHeader, DateSection, Loading } from './styles';
 import PostList from '@components/PostList';
 import { useGetRecentPosts } from '@hooks/usePost';
 import { CircularProgress } from '@mui/material';
@@ -13,7 +13,10 @@ const RecentPosts = () => {
     <Container>
       <Title>최신 포스트</Title>
       {isLoading ? (
-        <CircularProgress className='loading-progress' />
+        <Loading>
+        <div>불러오는 중...</div>
+        <CircularProgress color='inherit' />
+      </Loading>
       ) : (
         <PostWrap>
           {Object.entries(postSections).map(([date, posts]) => {

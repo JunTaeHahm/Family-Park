@@ -6,7 +6,7 @@ export const useAllUsers = () => {
     ['allUsers'],
     async () => {
       return await axios
-        .get('/api/allusers')
+        .get('api/allusers')
         .then((res) => {
           return res.data;
         })
@@ -15,6 +15,7 @@ export const useAllUsers = () => {
         });
     },
     {
+      skip: true,
       cacheTime: Infinity, // 캐싱 시간
       refetchInterval: Infinity, // 5초 간격 리패치
     },
@@ -32,8 +33,11 @@ export const useGetClientUser = () => {
     ['clientUser'],
     async () => {
       return await axios
-        .get('/api/users')
+        .get(`api/users`, {
+          withCredentials: true,
+        })
         .then((res) => {
+          console.log(res.data);
           return res.data;
         })
         .catch((error) => {
@@ -41,6 +45,7 @@ export const useGetClientUser = () => {
         });
     },
     {
+      skip: true,
       cacheTime: Infinity, // 캐싱 시간
       refetchInterval: false, // 리패치시간
     },

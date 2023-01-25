@@ -5,9 +5,14 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   padding-top: 100px;
+  @media screen and (max-width: 768px) {
+    & {
+      flex-direction: column;
+      padding-top: 70px;
+    }
+  }
 `;
 export const CalendarWrap = styled.div`
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,29 +22,20 @@ export const CalendarWrap = styled.div`
 
   .react-calendar {
     width: 70%;
-    min-width: 350px;
     max-width: 70%;
     max-height: 70%;
     background-color: var(--white);
-    border-radius: 20px;
+    border-radius: 1rem;
     box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    gap: 30px;
-  }
-  .react-calendar--doubleView {
-    width: 700px;
-  }
-  .react-calendar--doubleView .react-calendar__viewContainer {
-    display: flex;
-    margin: -0.5em;
-  }
-  .react-calendar--doubleView .react-calendar__viewContainer > * {
-    width: 50%;
-    margin: 0.5em;
+    display: block;
+    padding: 2rem;
+    gap: 2rem;
+    @media screen and (max-width: 375px) {
+      & {
+        display: block;
+        padding: 0.8rem;
+      }
+    }
   }
   .react-calendar,
   .react-calendar *,
@@ -63,19 +59,24 @@ export const CalendarWrap = styled.div`
     align-items: center;
     justify-content: center;
     gap: 0;
-    height: 15%;
+    height: 5%;
+    max-height: 5%;
+    margin-bottom: 5%;
   }
   .react-calendar__navigation__label {
     font-family: var(--IMB-Rg);
     flex-grow: 0 !important;
-    width: 200px;
-    min-width: 200px;
+    width: 100%;
+    max-width: 200px;
+    pointer-events: none;
   }
   .react-calendar__navigation button {
-    font-size: 24px;
+    font-size: 1rem;
     background: none;
-    height: 30px !important;
-    max-height: min-content !important;
+    height: 2rem !important;
+  }
+  .react-calendar__navigation__label__labelText--from {
+    max-width: min-content;
   }
   .react-calendar__navigation button:disabled {
     background-color: none;
@@ -86,28 +87,30 @@ export const CalendarWrap = styled.div`
   }
   .react-calendar__navigation__next-button,
   .react-calendar__navigation__prev-button {
-    width: 30px;
+    width: 1.7rem;
+    height: 1.7rem;
+    max-width: 1.7rem !important;
+    max-height: 1.7rem !important;
+    background-color: transparent;
   }
   .react-calendar__navigation__next2-button,
   .react-calendar__navigation__prev2-button {
     display: none !important;
   }
-  .react-calendar__navigation__next-button:enabled:hover,
-  .react-calendar__navigation__next-button:enabled:hover,
-  .react-calendar__navigation__prev-button:enabled:hover,
-  .react-calendar__navigation__prev-button:enabled:hover {
-    border-radius: 50%;
-    background-color: var(--darkgray) !important;
-    color: var(--white) !important;
-  }
   .react-calendar__viewContainer {
     cursor: pointer;
     font-family: var(--IMB-Li);
+    height: 85%;
+    max-height: 85%;
+  }
+  .react-calendar__month-view {
+    height: 100%;
+    min-height: 100%;
   }
   .react-calendar__month-view__weekdays {
     text-align: center;
     text-transform: uppercase;
-    padding: 10px 0;
+    padding: 0.7rem 0;
   }
   .react-calendar__month-view__weekdays__weekday {
     * {
@@ -120,6 +123,9 @@ export const CalendarWrap = styled.div`
       color: var(--blue);
     }
   }
+  .react-calendar__month-view__days {
+    height: 100%;
+  }
   .react-calendar__month-view__weekNumbers .react-calendar__tile {
     display: flex;
     align-items: center;
@@ -128,12 +134,8 @@ export const CalendarWrap = styled.div`
   .react-calendar__month-view__days__day--neighboringMonth {
     color: var(--gray);
   }
-  .react-calendar__year-view .react-calendar__tile,
-  .react-calendar__decade-view .react-calendar__tile,
-  .react-calendar__century-view .react-calendar__tile {
-    padding: 2em 0.5em;
-  }
   .react-calendar__tile {
+    white-space: nowrap;
     max-width: 100%;
     padding: 20px 10px;
     background: none;
@@ -143,24 +145,37 @@ export const CalendarWrap = styled.div`
     align-items: center;
     abbr {
       display: inline-block;
-      width: 2.5em;
-      height: 2.5em;
-      min-width: 2.5em;
-      min-height: 2.5em;
-      line-height: 2.5em;
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      line-height: 2.5rem;
       border-radius: 50%;
+    }
+    @media screen and (max-width: 768px) {
+      & {
+        padding: 0;
+      }
+    }
+    @media screen and (max-width: 375px) {
+      & {
+        abbr {
+          width: 2rem;
+          height: 2rem;
+          min-width: 2rem;
+          min-height: 2rem;
+          line-height: 2rem;
+        }
+      }
     }
   }
   .react-calendar__tile:disabled abbr {
     background-color: #f0f0f0;
   }
-  .react-calendar__century-view__decades__decade:hover,
-  .react-calendar__decade-view__years__year:hover,
   .react-calendar__tile:enabled:hover abbr {
     background: #e6e6e6;
     color: var(--black);
   }
-
   .react-calendar__tile--now abbr {
     font-family: var(--IMB-Rg);
     color: var(--red);
@@ -173,12 +188,45 @@ export const CalendarWrap = styled.div`
     background: var(--darkgray) !important;
     color: var(--white) !important;
   }
-  .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: #e6e6e6;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      height: 45%;
+      .react-calendar {
+        width: 30rem;
+        height: 30rem;
+        max-width: none;
+        max-height: none;
+      }
+    }
+  }
+  @media screen and (max-width: 375px) {
+    & {
+      height: 50%;
+      .react-calendar {
+        width: 80vw;
+        height: 20rem;
+        max-height: 20rem;
+      }
+    }
   }
 `;
 export const DiaryWrap = styled.div`
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 50%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      height: 55%;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    & {
+      height: 50%;
+    }
+  }
 `;

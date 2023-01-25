@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
+import 'dayjs/locale/ko.js';
 
 dayjs.locale('ko');
 

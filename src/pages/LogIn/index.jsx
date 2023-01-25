@@ -34,15 +34,19 @@ const LogIn = () => {
       if (userName && password) {
         axios
           .post(
-            '/api/users/login',
+            `/api/users/login`,
             { userName, password },
             {
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Cache: 'no-cache',
+              },
               withCredentials: true,
             },
           )
           .then((res) => {
             navigate('/');
-            window.location.reload();
           })
           .catch((error) => {
             console.log(error.response);

@@ -1,6 +1,7 @@
 import ProfileMenu from '../../components/ProfileMenu';
 import { HeaderLogo, Header, NavWrap, LoginWrap } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
+// import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -9,6 +10,8 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const { userName, userImage } = useGetClientUser();
+  // const { userName, userImage } = useGetClientUser();
+  // import { useGetClientUser } from '@hooks/userInfo';
 
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -69,11 +72,6 @@ const NavBar = () => {
                 &nbsp;&nbsp;MENU
               </>
             )
-          ) : innerWidth > 768 ? (
-            <Link to={`/${userName}`}>
-              <img alt={userName} src={userImage ? userImage : './src/assets/images/default.png'} />
-              <span>{userName}</span>
-            </Link>
           ) : (
             <Link>
               <img alt={userName} src={userImage ? userImage : './src/assets/images/default.png'} />

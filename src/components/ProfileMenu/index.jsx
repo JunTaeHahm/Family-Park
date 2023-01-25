@@ -2,29 +2,25 @@ import { Container, ModalList, Logout } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
 import React, { useCallback } from 'react';
-import { toast } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ProfileMenu = ({ isOpenned }) => {
-  const navigate = useNavigate();
-
-  const { userName } = useGetClientUser();
+  const { userName, refetch } = useGetClientUser();
 
   const onClickLogout = useCallback(
     (e) => {
       e.preventDefault();
       axios
-        .get('/api/logout')
+        .get(`api/logout`)
         .then((res) => {
-          navigate('/');
           window.location.reload();
-          toast.success('로그아웃 완료');
+          refetch();
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    [navigate],
+    [refetch],
   );
 
   return userName ? (
@@ -33,7 +29,7 @@ const ProfileMenu = ({ isOpenned }) => {
         <Link to={`/${userName}`}>Profile</Link>
       </ModalList>
       <ModalList>
-        <Link to='/setting'>Notification</Link>
+        <Link to='/diary'>Diary</Link>
       </ModalList>
       <ModalList>
         <Link to='/setting'>Setting</Link>

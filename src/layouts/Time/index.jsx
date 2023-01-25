@@ -9,7 +9,12 @@ const Time = () => {
     setNowTime(dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss'));
   }, 1000);
 
-  return <Container>{nowTime}</Container>;
+  return (
+    <Container>
+      {nowTime}
+      <div>준비중입니다.</div>
+    </Container>
+  );
 };
 
 export default Time;
