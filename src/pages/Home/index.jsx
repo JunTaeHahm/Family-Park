@@ -1,10 +1,11 @@
-import { Container, Main, LeftWrap, CenterWrap, RightWrap } from './styles';
+import { Container, Catuion, Main, LeftWrap, CenterWrap, RightWrap } from './styles';
 import { WriteButton } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import loadable from '@loadable/component';
 import React, { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import { IoWarningOutline } from 'react-icons/io5';
 
 const Intro = loadable(() => import('@layouts/Intro'));
 const Footer = loadable(() => import('@layouts/Footer'));
@@ -38,6 +39,10 @@ const Home = () => {
 
   return (
     <Container>
+      <Catuion>
+        <IoWarningOutline />
+        &nbsp; 아직 개발 중인 서비스로 여러 문제가 발생할 수 있어요.
+      </Catuion>
       <Main>
         <LeftWrap>
           <Intro />

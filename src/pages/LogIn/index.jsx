@@ -1,13 +1,4 @@
-import {
-  LinkContainer,
-  Title,
-  Button,
-  Form,
-  Label,
-  Input,
-  FormTitle,
-  Container,
-} from '../SignUp/styles';
+import { LinkContainer, Button, Form, Label, Input, FormTitle, Container } from '../SignUp/styles';
 import useInput from '@hooks/useInput';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
@@ -59,14 +50,6 @@ const LogIn = () => {
 
   return (
     <Container>
-      <Title>
-        <Link to='/'>
-          <img
-            src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
-            alt='센텐스유 로고'
-          />
-        </Link>
-      </Title>
       <Form onSubmit={onSubmit}>
         <FormTitle>로그인</FormTitle>
         <Label htmlFor='userName-label'>

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   position: sticky;
   top: 5rem;
-  font-family: var(--IMB-Md);
+
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@ export const Title = styled.h2`
   font-size: 1.3rem;
   padding: 1.5rem 1rem 1rem;
   background-color: var(--background);
+  font-family: var(--IMB-Md);
   width: 100%;
 `;
 

@@ -14,6 +14,7 @@ const heartbeat = keyframes`
 `;
 
 export const Container = styled.div`
+  font-family: var(--IMB-Md);
   display: flex;
   flex-direction: column;
   align-items: center;

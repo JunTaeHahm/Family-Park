@@ -6,7 +6,18 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
 `;
-
+export const Catuion = styled.div`
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 5rem;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
 export const Main = styled.div`
   min-height: calc(100vh - 7rem);
   display: flex;

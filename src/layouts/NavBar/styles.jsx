@@ -19,10 +19,13 @@ export const HeaderLogo = styled.h1`
   justify-content: center;
   align-items: center;
   height: 100%;
-  font-family: var(--Mont-Bd);
-  text-align: center;
-  font-size: 1.5rem;
   padding: 0 1.5rem;
+  img {
+    width: 12rem;
+    height: 100%;
+    vertical-align: middle;
+    object-fit: scale-down;
+  }
 `;
 export const NavWrap = styled.div`
   position: absolute;

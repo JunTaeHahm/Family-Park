@@ -36,6 +36,20 @@ export const Image = styled.img`
   }
 `;
 
+export const Title = styled.h2`
+  img {
+    width: 12rem;
+    height: 100%;
+    vertical-align: middle;
+    object-fit: scale-down;
+  }
+  @media screen and (max-width: 768px) {
+    & {
+      display: none;
+    }
+  }
+`;
+
 export const Description = styled.div`
   width: 60%;
   font-family: var(--Mont-Rg);
@@ -43,7 +57,7 @@ export const Description = styled.div`
   flex-direction: column;
   p {
     line-height: 1.3;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
   }
   b {
     font-weight: normal;
@@ -53,21 +67,8 @@ export const Description = styled.div`
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
-      p {
-        margin-top: 0;
-      }
     }
   }
-`;
-
-export const Title = styled.h2`
-  font-size: 2rem;
-  font-family: var(--Mont-Bd);
-`;
-
-export const SubTitle = styled.span`
-  display: inline-block;
-  margin-bottom: 0.5rem;
 `;
 
 export const PS = styled.span`

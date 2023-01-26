@@ -9,18 +9,6 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1`
-  position: absolute;
-  top: 0.6rem;
-  left: 2rem;
-  font-family: var(--Mont-Bd);
-  font-size: 1.5rem;
-  @media screen and (max-width: 768px) {
-    & {
-      display: none;
-    }
-  }
-`;
 export const Form = styled.form`
   margin: 0 auto;
   width: 24rem;

@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   text-align: center;
+  font-family: var(--IMB-Md);
   font-size: 1.3rem;
   padding: 1rem;
   @media screen and (max-width: 768px) {
