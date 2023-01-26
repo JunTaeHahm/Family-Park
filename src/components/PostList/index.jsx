@@ -6,7 +6,7 @@ import {
   Third,
   Actions,
   CommentWrap,
-  Title,
+  Content,
   CommentButton,
   NoComment,
   Name,
@@ -36,10 +36,10 @@ import { Link } from 'react-router-dom';
 
 const PostList = ({
   postId,
-  postTitle,
+  postContent,
   postUser,
   postDate,
-  postUpdateDate,
+  postUpdate,
   postLike,
   comments,
 }) => {
@@ -51,17 +51,17 @@ const PostList = ({
   const commentWrapRef = useRef(null);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editTitle, setEditTitle] = useState(postTitle);
+  const [editContent, setEditContent] = useState(postContent);
   const [likeCount, setLikeCount] = useState(postLike.length);
   const [isLiked, setIsLiked] = useState(false);
   const [commentCount, setCommentCount] = useState(commentArr.length);
   const [commentList, setCommentList] = useState(commentArr);
   const [comment, setComment] = useState('');
 
-  const { userName } = useGetClientUser();
+  const { userName, role } = useGetClientUser();
 
-  const onChangeEditTitle = (e) => {
-    setEditTitle(e.target.value);
+  const onChangeEditContent = (e) => {
+    setEditContent(e.target.value);
   };
 
   const onPostClick = useCallback(
@@ -92,12 +92,12 @@ const PostList = ({
     (e) => {
       e.preventDefault();
       const regexp = /^[가-힣.,?;^_!%\s]+$/g;
-      const editCheck = postTitle !== editTitle;
+      const editCheck = postContent !== editContent;
       if (!editCheck) toast.error('수정 한 내용이 없습니다.');
       if (editCheck) {
-        if (editTitle.length > 30) {
+        if (editContent.length > 30) {
           toast.error('최대 글자 수를 초과했습니다.');
-        } else if (!regexp.test(editTitle)) {
+        } else if (!regexp.test(editContent)) {
           toast.error('한글로 된 문장으로만 작성이 가능합니다.');
         } else {
           axios
@@ -105,7 +105,7 @@ const PostList = ({
               `/api/posts/${postId}`,
               {
                 postId: postId,
-                postTitle: editTitle,
+                postContent: editContent,
               },
               { withCredentials: true },
             )
@@ -120,7 +120,7 @@ const PostList = ({
         }
       }
     },
-    [postId, editTitle, postTitle],
+    [postId, editContent, postContent],
   );
 
   const onDeletePost = useCallback(() => {
@@ -233,25 +233,25 @@ const PostList = ({
         <First>
           {isEditing ? (
             <EditForm onSubmit={onEditPostSubmit}>
-              <EditLabel htmlFor='editTitle-label'>
+              <EditLabel htmlFor='editContent-label'>
                 <EditInput
                   autoFocus
                   autoComplete='off'
-                  type='text'
-                  name='editTitle'
-                  id='editTitle-label'
-                  value={editTitle}
-                  onChange={onChangeEditTitle}
+                  // type='text'
+                  name='editContent'
+                  id='editContent-label'
+                  value={editContent}
+                  onChange={onChangeEditContent}
                 />
               </EditLabel>
               <EditButton id='Button' type='submit' />
             </EditForm>
           ) : (
-            <Title>{editTitle ? editTitle : postTitle}</Title>
+            <Content>{editContent ? editContent : postContent}</Content>
           )}
         </First>
         <Second>
-          <Date>{postUpdateDate ? `${postUpdateDate} 수정됨` : postDate}</Date>
+          <Date>{postUpdate ? `${postUpdate} 수정됨` : postDate}</Date>
         </Second>
         <Third>
           <Actions>
@@ -270,7 +270,7 @@ const PostList = ({
         </Third>
       </PostWrap>
       <CommentWrap ref={commentWrapRef}>
-        {postUser === userName ? (
+        {postUser === userName || role === 1 ? (
           <PostAction>
             <span onClick={onEditHandler}>{isEditing ? '취소' : '수정'}</span>
             <span onClick={onDeletePost}>삭제</span>
@@ -288,7 +288,6 @@ const PostList = ({
                   <span>{comment.commentUser}</span>
                   <span>{comment.comment}</span>
                   <span>
-                    {comment.commentDate}
                     {comment.commentUser === userName || postUser === userName ? (
                       <b id={comment.commentId} onClick={onDeleteComment}>
                         X
@@ -296,6 +295,7 @@ const PostList = ({
                     ) : (
                       ''
                     )}
+                    {comment.commentDate}
                   </span>
                 </Comment>
               ))

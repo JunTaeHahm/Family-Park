@@ -6,7 +6,7 @@ export const useAllUsers = () => {
     ['allUsers'],
     async () => {
       return await axios
-        .get('api/allusers')
+        .get('/api/allusers')
         .then((res) => {
           return res.data;
         })
@@ -33,11 +33,10 @@ export const useGetClientUser = () => {
     ['clientUser'],
     async () => {
       return await axios
-        .get(`api/users`, {
+        .get(`/api/users`, {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
           return res.data;
         })
         .catch((error) => {
@@ -57,9 +56,11 @@ export const useGetClientUser = () => {
   } else if (!Object(data).isAuth) {
     isAuth = false;
   }
+  const role = Object(data).role;
   const userId = Object(data)._id;
   const userName = Object(data).userName;
-  const userImage = Object(data).userImage;
+  const userTitle = Object(data).userTitle;
+  const userAvatar = Object(data).userAvatar;
 
-  return { isAuth, userId, userName, userImage, isLoading, error, refetch };
+  return { isAuth, userId, role, userName, userTitle, userAvatar, isLoading, error, refetch };
 };

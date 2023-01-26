@@ -23,7 +23,6 @@ axios.defaults.baseURL = process.env.BACK_URL;
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <BrowserRouter basename='/lis'> */}
       <BrowserRouter>
         <GlobalStyle />
         <App />

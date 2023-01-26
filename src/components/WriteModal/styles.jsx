@@ -19,7 +19,7 @@ export const Form = styled.form`
   width: 80%;
   height: 80%;
   background-color: var(--white);
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5), 0 0 2rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -32,29 +32,13 @@ export const Form = styled.form`
     top: 3rem;
     cursor: pointer;
   }
-  @media screen and (max-width: 768px) {
-    & svg {
-      display: none;
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      max-height: 200px;
-      gap: 1.5rem;
-    }
-  }
 `;
 
 export const FormHeader = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 40px;
+  font-size: 3rem;
   font-family: var(--Mont-Bd);
-  @media screen and (max-width: 375px) {
-    & {
-      font-size: 20px;
-    }
-  }
 `;
 
 export const Input = styled.input`
@@ -63,12 +47,12 @@ export const Input = styled.input`
   box-sizing: border-box;
   width: 80%;
   height: 10%;
-  max-height: 70px;
+  max-height: 5rem;
   padding: 0.8rem;
   text-indent: 0.8rem;
   &:focus {
     outline: none;
-    border-bottom: 1px solid var(--black);
+    border-bottom: 0.06rem solid var(--black);
     transition: all 0.3s;
   }
   &::placeholder {
@@ -77,28 +61,13 @@ export const Input = styled.input`
     opacity: 0.5;
     height: 100%;
   }
-  @media screen and (max-width: 375px) {
-    & {
-      text-indent: 5px;
-      min-height: 20%;
-    }
-    &:focus {
-      border: none;
-    }
-  }
 `;
 
 export const Button = styled.button`
-  width: 200px;
-  height: 50px;
+  width: 12rem;
+  height: 3rem;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 20.3rem;
   background-color: ${(props) => (props.buttonActive ? 'var(--black)' : 'var(--gray)')};
   color: var(--white);
-  @media screen and (max-width: 375px) {
-    & {
-      width: 40%;
-      height: 15%;
-    }
-  }
 `;

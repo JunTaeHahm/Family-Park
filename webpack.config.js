@@ -16,7 +16,7 @@ const __dirname = path.resolve(); // ES모듈에서 __dirname 사용법
 const { DefinePlugin } = pkg;
 
 const config = {
-  name: 'lis',
+  name: 'sentence-u',
   mode: isDevelopment ? 'development' : 'production',
   devtool: !isDevelopment ? 'hidden-source-map' : 'inline-source-map',
   resolve: {

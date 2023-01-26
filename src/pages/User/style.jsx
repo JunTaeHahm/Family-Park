@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 100px 0 40px;
+  padding: 5rem 0 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,16 +10,6 @@ export const Container = styled.div`
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;
-  }
-  @media screen and (max-width: 768px) {
-    & {
-      padding: 80px 0 0;
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      padding: 70px 0 0;
-    }
   }
 `;
 
@@ -32,11 +22,6 @@ export const ProfileWrap = styled.div`
   background-color: var(--background);
   z-index: 10;
   margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    & {
-      margin-top: 1rem;
-    }
-  }
 `;
 export const UserInfo = styled.div`
   width: 100%;
@@ -44,94 +29,65 @@ export const UserInfo = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
-  @media screen and (max-width: 768px) {
-    & {
-      margin-bottom: 1rem;
-    }
-  }
 `;
 export const ProfileImage = styled.img`
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   margin-right: 2rem;
-  @media screen and (max-width: 768px) {
-    & {
-      width: 4rem;
-      height: 4rem;
-    }
-  }
 `;
 
 export const ProfileName = styled.div`
-  height: 80px;
-  line-height: 80px;
-  font-size: 24px;
-  @media screen and (max-width: 375px) {
-    & {
-      height: 3rem;
-      line-height: 3rem;
-      font-size: 20px;
-    }
-  }
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.5rem;
 `;
 export const UserTitle = styled.div`
-  font-size: 20px;
+  font-size: 1.3rem;
   background-color: aquamarine;
   line-height: 1.3;
   padding: 0 0.3rem;
-  @media screen and (max-width: 375px) {
-    & {
-      font-size: 16px;
-    }
-  }
 `;
 
 export const MenuWrap = styled.div`
   position: relative;
-  font-size: 20px;
+  font-size: 1.3rem;
   font-family: var(--Mont-Rg);
   width: 100%;
   height: 4rem;
   margin: 1rem 0;
   span {
     cursor: pointer;
-    margin: 0 50px;
+    margin: 0 3rem;
     display: inline-block;
-    line-height: 40px;
-    width: 150px;
-    height: 40px;
+    line-height: 3rem;
+    width: 10rem;
+    height: 3rem;
     &:first-of-type::after {
       content: '';
       position: absolute;
       left: 50%;
-      transform: translate(-200px, 0);
+      transform: translate(-12rem, 0);
       transition: all 0.3s;
       display: block;
-      width: 150px;
-      height: 5px;
-      border-radius: 10px;
+      width: 10rem;
+      height: 0.3rem;
+      border-radius: 0.6rem;
       margin-bottom: 1.5rem;
       background-color: var(--darkgray);
     }
     &.collection:first-of-type::after {
-      transform: translate(50px, 0);
+      transform: translate(3rem, 0);
     }
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 768px) {
     & {
-      font-size: 16px;
       span {
-        margin: 0 20px;
-        line-height: 3rem;
-        width: 120px;
-        height: 3rem;
+        width: 50%;
+        margin: 0;
         &:first-of-type::after {
-          transform: translate(-140px, 0);
-          width: 120px;
-        }
-        &.collection:first-of-type::after {
-          transform: translate(20px, 0);
+          width: 30%;
+          content: '';
         }
       }
     }
@@ -156,17 +112,17 @@ export const PostWrap = styled.div`
   align-items: center;
   width: 100%;
   height: min-content;
-  padding-bottom: 50px;
+  padding-bottom: 3rem;
 `;
 
 export const List = styled.div`
+  width: 40%;
   max-width: 40%;
-  min-width: 40%;
   height: 100%;
   @media screen and (max-width: 768px) {
     & {
-      max-width: 90%;
-      min-width: 90%;
+      width: 100%;
+      max-width: 100%;
     }
   }
 `;
@@ -186,18 +142,18 @@ export const DateHeader = styled.div`
   align-items: center;
   width: 100%;
   position: sticky;
-  height: 50px;
+  height: 3rem;
   top: 0;
   z-index: 10;
   background-color: var(--background);
   button {
     font-family: var(--IMB-Li);
-    font-size: 14px;
-    height: 30px;
-    line-height: 27px;
-    padding: 0 16px;
+    font-size: 0.9rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    padding: 0 1rem;
     z-index: 2;
-    border-radius: 50px;
+    border-radius: 3rem;
     position: relative;
     background: var(--darkgray);
     color: var(--white);

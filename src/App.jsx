@@ -13,8 +13,6 @@ const Setting = loadable(() => import('@pages/Setting'));
 const User = loadable(() => import('@pages/User'));
 
 const App = () => {
-  console.log('app 렌더링');
-
   function Layout() {
     return (
       <div>

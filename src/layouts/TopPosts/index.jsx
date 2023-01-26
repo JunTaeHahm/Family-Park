@@ -12,8 +12,8 @@ const TopPosts = () => {
       <Title>인기 포스트</Title>
       {isLoading ? (
         <Loading>
-          <div>불러오는 중...</div>
           <CircularProgress color='inherit' />
+          <div>불러오는 중...</div>
         </Loading>
       ) : (
         <PostWrap>
@@ -26,11 +26,12 @@ const TopPosts = () => {
               <PostList
                 key={post.postId}
                 postId={post.postId}
-                postTitle={post.postTitle}
                 postUser={post.postUser}
+                postContent={post.postContent}
                 postDate={post.postDate}
-                postUpdateDate={post.postUpdateDate}
+                postUpdate={post.postUpdate}
                 postLike={post.postLike}
+                comments={post.comments}
               />
             ))}
         </PostWrap>

@@ -2,26 +2,16 @@ import styled from '@emotion/styled';
 
 export const Header = styled.nav`
   font-family: var(--Mont-Rg);
-  font-size: 14px;
+  font-size: 0.9rem;
   position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 60px;
-  border-bottom: 1px solid var(--black);
+  height: 3rem;
+  border-bottom: 0.06rem solid var(--black);
   z-index: 100;
   background-color: var(--background);
-  @media screen and (max-width: 768px) {
-    & {
-      height: 50px;
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      height: 40px;
-    }
-  }
 `;
 
 export const HeaderLogo = styled.h1`
@@ -31,13 +21,8 @@ export const HeaderLogo = styled.h1`
   height: 100%;
   font-family: var(--Mont-Bd);
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   padding: 0 1.5rem;
-  @media screen and (max-width: 375px) {
-    & {
-      font-size: 16px;
-    }
-  }
 `;
 export const NavWrap = styled.div`
   position: absolute;
@@ -60,17 +45,12 @@ export const NavWrap = styled.div`
       color: var(--black);
     }
   }
-  @media screen and (max-width: 768px) {
-    & {
-      display: none;
-    }
-  }
 `;
 
 export const LoginWrap = styled.div`
-  border-left: 1px solid var(--black);
+  border-left: 0.06rem solid var(--black);
   position: relative;
-  padding: 0 1rem;
+  width: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,19 +65,12 @@ export const LoginWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
     img {
-      border: 1px solid var(--white);
-      width: 2.5rem;
-      height: 2.5rem;
+      border: 0.06rem solid var(--white);
+      width: 2rem;
+      height: 2rem;
       border-radius: 50%;
-      margin-left: 1rem;
-    }
-    span {
-      display: inline-block;
-      margin: 0 1.2rem;
-    }
-    &.user-wrap {
-      position: relative;
     }
   }
   &:hover {
@@ -106,12 +79,8 @@ export const LoginWrap = styled.div`
   }
   @media screen and (max-width: 768px) {
     & {
-      padding: 0 0.5rem;
-      img {
-        width: 1rem;
-        height: 1rem;
-        margin-left: 0.5rem;
-      }
+      width: max-content;
+      padding: 0 1rem;
     }
   }
 `;

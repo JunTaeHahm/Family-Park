@@ -6,7 +6,7 @@ export const useGetAllPosts = () => {
     ['allPosts'],
     async () => {
       return await axios
-        .get('api/allposts')
+        .get('/api/allposts')
         .then((res) => {
           return res.data;
         })
@@ -24,11 +24,11 @@ export const useGetAllPosts = () => {
 
   for (let key in data) {
     allPosts.push({
-      postTitle: data[key].postTitle,
       postId: data[key].postId,
-      postDate: data[key].postDate,
-      postUpdateDate: data[key].postUpdateDate,
+      postContent: data[key].postContent,
       postUser: data[key].postUser,
+      postDate: data[key].postDate,
+      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
       createdAt: data[key].createdAt,
@@ -42,7 +42,7 @@ export const useGetRecentPosts = () => {
     ['recentPosts'],
     async () => {
       return await axios
-        .get('api/posts/recent')
+        .get('/api/posts/recent')
         .then((res) => {
           return res.data;
         })
@@ -60,11 +60,11 @@ export const useGetRecentPosts = () => {
 
   for (let key in data) {
     recentPosts.push({
-      postTitle: data[key].postTitle,
       postId: data[key].postId,
-      postDate: data[key].postDate,
-      postUpdateDate: data[key].postUpdateDate,
+      postContent: data[key].postContent,
       postUser: data[key].postUser,
+      postDate: data[key].postDate,
+      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
       createdAt: data[key].createdAt,
@@ -78,7 +78,7 @@ export const useGetUserPosts = (userName) => {
     ['userPosts'],
     async () => {
       return await axios
-        .get(`api/allposts/${userName}`)
+        .get(`/api/allposts/${userName}`)
         .then((res) => {
           return res.data;
         })
@@ -95,13 +95,14 @@ export const useGetUserPosts = (userName) => {
   let userPosts = [];
   for (let key in data) {
     userPosts.push({
-      postTitle: data[key].postTitle,
       postId: data[key].postId,
-      postDate: data[key].postDate,
-      postUpdateDate: data[key].postUpdateDate,
+      postContent: data[key].postContent,
       postUser: data[key].postUser,
+      postDate: data[key].postDate,
+      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
+      createdAt: data[key].createdAt,
     });
   }
   return { userPosts, isLoading, error };

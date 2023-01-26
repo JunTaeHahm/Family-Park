@@ -11,7 +11,7 @@ const ProfileMenu = ({ isOpenned }) => {
     (e) => {
       e.preventDefault();
       axios
-        .get(`api/logout`)
+        .get(`/api/logout`)
         .then((res) => {
           window.location.reload();
           refetch();

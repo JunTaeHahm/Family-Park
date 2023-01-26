@@ -8,7 +8,7 @@ const Footer = () => {
     <Container>
       <span>&copy;2023 JunTae Hahm All Rights Reserved.</span>
       <div>
-        <a href='https://github.com/JunTaeHahm/lis'>
+        <a href='https://github.com/JunTaeHahm/sentence-u'>
           <FaGithub />
           GITHUB
         </a>

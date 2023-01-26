@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.footer`
-  font-size: 12px;
+  font-size: 0.8rem;
   position: fixed;
   background-color: var(--background);
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px;
-  border-top: 1px solid black;
+  height: 2rem;
+  border-top: 0.06rem solid black;
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
@@ -25,7 +25,7 @@ export const Container = styled.footer`
       align-items: center;
       background-color: var(--black);
       color: var(--white);
-      border-radius: 30px;
+      border-radius: 2rem;
       padding: 0.3rem 1rem;
       gap: 0.8rem;
       transition: all 0.2s;

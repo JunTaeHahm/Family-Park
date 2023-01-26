@@ -20,7 +20,7 @@ export const useCrawling = () => {
     ['famousSaying'],
     async () => {
       return await axios
-        .post(`api/famous`, {
+        .post(`/api/famous`, {
           category: sayingCategories[Math.floor(Math.random() * 12)],
         })
         .then((res) => {

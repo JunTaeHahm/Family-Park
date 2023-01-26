@@ -2,24 +2,25 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 30%;
   flex-direction: column;
 `;
 
 export const Title = styled.h2`
   text-align: center;
-  font-size: 20px;
-  height: 30px;
-  line-height: 30px;
-  margin: 1rem 0;
+  font-size: 1.3rem;
+  padding: 1rem;
+  @media screen and (max-width: 768px) {
+    & {
+      padding: 0;
+    }
+  }
 `;
 export const Loading = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 15rem; //todo
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,5 +29,4 @@ export const Loading = styled.div`
 `;
 export const PostWrap = styled.div`
   width: 100%;
-  max-height: max-content;
 `;

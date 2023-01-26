@@ -5,12 +5,6 @@ const listAni = keyframes`
   from{
     transform: translate(0%,0%);
   }
-  /* 50%{
-    transform: translate(-80%,0%);
-  }
-  50.1%{
-    transform: translate(0%,0%);
-  } */
   to{
     transform: translate(-80%,0%);
   }
@@ -19,25 +13,13 @@ const listAni = keyframes`
 
 export const Container = styled.div`
   position: fixed;
-  top: 60px;
+  top: 3rem;
   left: 0;
   overflow: hidden;
-  height: 40px;
+  height: 2rem;
   z-index: 99;
-  border-bottom: 1px solid var(--black);
+  border-bottom: 0.06rem solid var(--black);
   background-color: ${(props) => (props.isLoading ? 'transparent' : 'var(--white)')};
-  @media screen and (max-width: 768px) {
-    & {
-      font-size: 12px;
-      top: 50px;
-      height: 30px;
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      top: 40px;
-    }
-  }
 `;
 
 export const Loading = styled.div`
@@ -53,14 +35,8 @@ export const Loading = styled.div`
 
 export const List = styled.div`
   width: max-content;
-  font-size: 12px;
   height: 100%;
   display: flex;
   gap: 2rem;
   animation: ${listAni} 300s linear infinite;
-  @media screen and (max-width: 768px) {
-    & {
-      animation-duration: 500s;
-    }
-  }
 `;

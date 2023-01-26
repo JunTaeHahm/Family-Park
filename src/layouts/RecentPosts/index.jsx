@@ -29,10 +29,10 @@ const RecentPosts = () => {
                   <PostList
                     key={post.postId}
                     postId={post.postId}
-                    postTitle={post.postTitle}
                     postUser={post.postUser}
+                    postContent={post.postContent}
                     postDate={post.postDate}
-                    postUpdateDate={post.postUpdateDate}
+                    postUpdate={post.postUpdate}
                     postLike={post.postLike}
                     comments={post.comments}
                   />

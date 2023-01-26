@@ -1,4 +1,4 @@
-import { Container } from './Styles';
+import { Container } from './styles';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 

@@ -6,15 +6,11 @@ export const useSocket = (userName) => {
   const [onlineList, setOnlineList] = useState([]);
 
   useEffect(() => {
-    const options = {
+    const socketIo = io.connect(`${process.env.BACK_URL}/online`, {
       path: '/socket.io',
       cors: { origin: '*', credentials: true },
       transports: ['websocket'],
-    };
-
-    // console.log('socket: connect');
-
-    const socketIo = io.connect(`/online`, options);
+    });
     setSocket(socketIo); // 소켓 연결되면 따로 socket에 다시 저장
 
     if (userName) {
@@ -24,7 +20,6 @@ export const useSocket = (userName) => {
     }
 
     return () => {
-      // console.log('socket: disconnet');
       socketIo?.disconnect(); // 이 코드 없으면 서버에 연결 많이 시도함
       socketIo?.off('userConnect');
     };

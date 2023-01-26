@@ -4,13 +4,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  padding-top: 100px;
-  @media screen and (max-width: 768px) {
-    & {
-      flex-direction: column;
-      padding-top: 70px;
-    }
-  }
+  padding-top: 5rem;
 `;
 export const CalendarWrap = styled.div`
   display: flex;
@@ -26,16 +20,10 @@ export const CalendarWrap = styled.div`
     max-height: 70%;
     background-color: var(--white);
     border-radius: 1rem;
-    box-shadow: 5px 5px 10px #c6c6c6, -5px -5px 10px #ffffff;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c6c6c6, -0.3rem -0.3rem 0.6rem #ffffff;
     display: block;
     padding: 2rem;
     gap: 2rem;
-    @media screen and (max-width: 375px) {
-      & {
-        display: block;
-        padding: 0.8rem;
-      }
-    }
   }
   .react-calendar,
   .react-calendar *,
@@ -67,7 +55,7 @@ export const CalendarWrap = styled.div`
     font-family: var(--IMB-Rg);
     flex-grow: 0 !important;
     width: 100%;
-    max-width: 200px;
+    max-width: 12rem;
     pointer-events: none;
   }
   .react-calendar__navigation button {
@@ -137,7 +125,7 @@ export const CalendarWrap = styled.div`
   .react-calendar__tile {
     white-space: nowrap;
     max-width: 100%;
-    padding: 20px 10px;
+    padding: 1.3rem 0.6rem;
     background: none;
     text-align: center;
     display: flex;
@@ -151,22 +139,6 @@ export const CalendarWrap = styled.div`
       min-height: 2.5rem;
       line-height: 2.5rem;
       border-radius: 50%;
-    }
-    @media screen and (max-width: 768px) {
-      & {
-        padding: 0;
-      }
-    }
-    @media screen and (max-width: 375px) {
-      & {
-        abbr {
-          width: 2rem;
-          height: 2rem;
-          min-width: 2rem;
-          min-height: 2rem;
-          line-height: 2rem;
-        }
-      }
     }
   }
   .react-calendar__tile:disabled abbr {
@@ -188,28 +160,6 @@ export const CalendarWrap = styled.div`
     background: var(--darkgray) !important;
     color: var(--white) !important;
   }
-  @media screen and (max-width: 768px) {
-    & {
-      width: 100%;
-      height: 45%;
-      .react-calendar {
-        width: 30rem;
-        height: 30rem;
-        max-width: none;
-        max-height: none;
-      }
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      height: 50%;
-      .react-calendar {
-        width: 80vw;
-        height: 20rem;
-        max-height: 20rem;
-      }
-    }
-  }
 `;
 export const DiaryWrap = styled.div`
   display: flex;
@@ -218,15 +168,4 @@ export const DiaryWrap = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-  @media screen and (max-width: 768px) {
-    & {
-      width: 100%;
-      height: 55%;
-    }
-  }
-  @media screen and (max-width: 375px) {
-    & {
-      height: 50%;
-    }
-  }
 `;

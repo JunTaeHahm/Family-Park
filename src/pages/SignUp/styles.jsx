@@ -11,10 +11,10 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   position: absolute;
-  top: 10px;
-  left: 30px;
+  top: 0.6rem;
+  left: 2rem;
   font-family: var(--Mont-Bd);
-  font-size: 24px;
+  font-size: 1.5rem;
   @media screen and (max-width: 768px) {
     & {
       display: none;
@@ -23,30 +23,25 @@ export const Title = styled.h1`
 `;
 export const Form = styled.form`
   margin: 0 auto;
-  width: 400px;
-  max-width: 400px;
-  @media screen and (max-width: 375px) {
-    & {
-      max-width: 280px;
-    }
-  }
+  width: 24rem;
+  max-width: 24rem;
 `;
 
 export const FormTitle = styled.h2`
   font-weight: normal;
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 `;
 
 export const Label = styled.label`
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 1.3rem;
   color: var(--gray);
-  font-size: 14px;
+  font-size: 0.9rem;
   & span {
+    font-family: var(--IMB-Rg);
     color: var(--blue);
-    margin-top: 15px;
   }
   &.password-wrap {
     position: relative;
@@ -64,34 +59,35 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  font-family: var(--IMB-Li);
   background-color: var(--white);
   transition: all 0.3s;
-  font-size: 14px;
+  font-size: 0.9rem;
   border: none;
   box-sizing: border-box;
-  margin: 5px 0 0px;
+  margin-top: 0.3rem;
   width: 100%;
-  padding: 12px;
-  height: 44px;
+  padding: 0.8rem;
+  height: 3rem;
   &:focus {
     outline: none;
-    border-bottom: 0.5px solid black;
+    border-bottom: 0.06rem solid black;
   }
   &::placeholder {
     color: var(--gray);
     opacity: 0.5;
-    font-size: 14px;
+    font-size: 0.9rem;
     height: 100%;
   }
 `;
 
 export const FormRequest = styled.p`
   font-family: var(--IMB-Li);
-  font-size: 12px;
+  font-size: 0.8rem;
   display: block;
   width: 100%;
   text-align: center;
-  padding-top: 5px;
+  padding: 0.5rem 0;
 `;
 
 export const Mismatch = styled.span`
@@ -102,19 +98,18 @@ export const Mismatch = styled.span`
 `;
 
 export const Button = styled.button`
-  margin: 10px 0 20px;
+  margin: 0.6rem 0 1.3rem;
   width: 100%;
   color: #fff;
   background-color: ${(props) => (props.buttonActive ? 'var(--blue)' : 'var(--gray)')};
   border: none;
-  font-size: 18px;
-  height: 60px;
+  height: 4rem;
   transition: all 0.1s;
   user-select: none;
   outline: none;
   cursor: pointer;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
   &:hover {
     transform: scale(1.02);
   }
@@ -123,12 +118,12 @@ export const Button = styled.button`
 export const LinkContainer = styled.p`
   display: flex;
   justify-content: flex-end;
-  font-size: 13px;
+  font-size: 0.8rem;
   color: var(--black);
-  margin: 0 auto 8px;
+  margin: 0 auto 0.5rem;
   width: 100%;
   a {
-    margin-left: 10px;
+    margin-left: 0.6rem;
     color: var(--black);
     text-decoration: none;
     &:hover {

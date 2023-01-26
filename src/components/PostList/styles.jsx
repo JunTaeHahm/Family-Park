@@ -21,12 +21,12 @@ export const Container = styled.div`
   position: relative;
   left: 50%;
   transform: translate(-50%, 0) scaleY(1);
-  margin: 1rem 0 2rem;
+  margin: 2rem 0;
   padding: 1.5rem;
   border-radius: 1rem;
   width: 85%;
   background-color: var(--white);
-  box-shadow: 5px 5px 5px #c6c6c6, -5px -5px 5px #ffffff;
+  box-shadow: 0.3rem 0.3rem 0.3rem #c6c6c6, -0.3rem -0.3rem 0.3rem #ffffff;
   transition: all 0.5s;
   &.open {
     height: max-content;
@@ -66,13 +66,8 @@ export const Third = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.div`
-  font-size: 20px;
-  @media screen and (max-width: 1366px) {
-    & {
-      font-size: 16px;
-    }
-  }
+export const Content = styled.div`
+  font-size: 1.1rem;
 `;
 export const EditForm = styled.form`
   height: max-content;
@@ -84,36 +79,40 @@ export const EditLabel = styled.label`
   border-color: transparent;
   border-style: none;
 `;
-export const EditInput = styled.textarea`
-  resize: none;
+export const EditInput = styled.input`
+  font-size: 1.1rem;
   border: none;
   outline: none;
   width: 100%;
   background-color: var(--white);
-  box-sizing: border-box;
-  font-size: 20px;
-  border-color: transparent;
-  border-style: none;
-  padding: 0;
+  border-bottom: 0.06rem solid var(--gray);
+  padding-bottom: 0.5rem;
   &::placeholder {
     color: var(--black);
-    font-size: 20px;
+    font-size: 1.3rem;
     height: 100%;
-  }
-  ::-webkit-scrollbar {
-    display: none;
   }
 `;
 export const EditButton = styled.button`
   display: none;
 `;
 export const Date = styled.div`
-  margin-top: 10px;
-  font-size: 12px;
+  margin-top: 0.8rem;
+  font-size: 0.7rem;
 `;
 
-export const Name = styled.div`
+export const Name = styled.span`
+  font-size: 0.9rem;
+  display: inline-block;
   font-family: var(--IMB-Rg);
+  background-color: var(--darkgray);
+  color: var(--white);
+  transition: all 0.3;
+  padding: 0.1rem 0.3rem;
+  &:hover {
+    background-color: var(--gray);
+    color: var(--black);
+  }
 `;
 
 export const Actions = styled.div`
@@ -121,20 +120,20 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 1.3rem;
+    height: 1.3rem;
   }
 `;
 
 export const LikeButton = styled.div`
-  width: 50px;
-  height: 30px;
+  width: 3rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  gap: 5px;
-  padding: 5px;
+  gap: 0.3rem;
+  padding: 0.3rem;
   .heart {
     color: #ee6a55;
   }
@@ -152,30 +151,19 @@ export const CommentWrap = styled.div`
   &.open {
     visibility: visible;
     opacity: 1;
-    height: 300px;
+    height: 15rem;
     transition: all 0.3s;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
-      border-radius: 5px;
-      height: 0.5px;
-      background-color: var(--gray);
-    }
   }
 `;
-
 export const PostAction = styled.div`
   font-family: var(--IMB-Li);
   position: absolute;
-  right: 0;
-  top: 20px;
-  font-size: 14px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 0.8rem;
+  top: -1rem;
   & span {
-    margin-left: 10px;
+    margin-left: 0.5rem;
     cursor: pointer;
     &:first-of-type {
       color: var(--gray);
@@ -192,32 +180,28 @@ export const PostAction = styled.div`
     }
   }
 `;
-
 export const Form = styled.form`
-  font-size: 12px;
   position: absolute;
   display: flex;
   align-items: center;
   bottom: 0;
-  width: 95%;
-  height: 35px;
+  width: 100%;
 `;
 export const Label = styled.label`
   width: 92%;
   height: 100%;
 `;
 export const Input = styled.input`
+  font-size: 0.8rem;
   width: 100%;
-  height: 100%;
+  height: 2rem;
   background-color: var(--white);
-  border: none;
-  box-sizing: border-box;
-  padding: 5px;
-  text-indent: 5px;
-  border: 0.5px solid black;
+  padding: 0.3rem;
+  text-indent: 0.3rem;
   outline: none;
+  border: 0.06rem solid black;
   &:focus {
-    border: 1px solid black;
+    border: 0.06rem solid black;
   }
   &::placeholder {
     color: var(--gray);
@@ -228,8 +212,8 @@ export const Input = styled.input`
 export const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
-  padding-top: 5px;
-  font-size: 24px;
+  padding-top: 0.3rem;
+  font-size: 1.5rem;
   width: 8%;
   height: 100%;
   transition: all 0.3s;
@@ -241,63 +225,65 @@ export const Button = styled.button`
 
 export const CommentButton = styled.div`
   z-index: -1;
-  width: 50px;
-  height: 30px;
+  width: 3rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  gap: 5px;
-  padding: 5px;
+  gap: 0.3rem;
+  padding: 0.3rem;
 `;
 
 export const CommentList = styled.div`
-  font-size: 14px;
-  width: 98%;
+  width: 100%;
+  height: 10rem;
   position: absolute;
   overflow: hidden;
-  height: 155px;
-  top: 45px;
-  overflow-y: hidden;
+  top: 1rem;
+  .scroll-bar > div:last-of-type {
+    display: none !important;
+  }
 `;
 
 export const NoComment = styled.div`
   font-family: var(--IMB-Li);
+  font-size: 0.8rem;
   text-align: center;
-  padding-top: 60px;
 `;
 export const Comment = styled.div`
+  font-size: 0.9rem;
+  line-height: 1.2;
   font-family: var(--IMB-Li);
   position: relative;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 0.7rem;
   display: flex;
   align-items: center;
   span {
     display: inline-block;
     &:nth-of-type(1) {
-      border-radius: 50px;
+      border-radius: 3rem;
       background-color: var(--darkgray);
       color: var(--white);
-      width: 80px;
-      min-width: 80px;
+      width: 5rem;
+      min-width: 5rem;
       text-align: center;
     }
     &:nth-of-type(2) {
       font-family: var(--IMB-Rg);
-      width: 65%;
       text-align: left;
-      margin-left: 10px;
+      margin-left: 0.6rem;
     }
     &:nth-of-type(3) {
       position: absolute;
       right: 0;
-      width: 90px;
-      max-width: 90px;
-      text-align: left;
+      width: 6rem;
+      max-width: 6rem;
+      text-align: right;
       b {
         opacity: 0.5;
-        margin-left: 10px;
+        margin-right: 0.6rem;
         cursor: pointer;
         &:hover {
           opacity: 1;

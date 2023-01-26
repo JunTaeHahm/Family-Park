@@ -60,7 +60,7 @@ const LogIn = () => {
   return (
     <Container>
       <Title>
-        <Link to='/'>LIFE IS A SENTENCE</Link>
+        <Link to='/'>SENTENCE U</Link>
       </Title>
       <Form onSubmit={onSubmit}>
         <FormTitle>로그인</FormTitle>

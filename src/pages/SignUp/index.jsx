@@ -57,7 +57,7 @@ const SignUp = () => {
       e.preventDefault();
       if (!mismatchError && userName && password) {
         axios
-          .post(`api/users`, {
+          .post(`/api/users`, {
             userName,
             password,
           })
@@ -78,7 +78,7 @@ const SignUp = () => {
   return (
     <Container>
       <Title>
-        <Link to='/'>LIFE IS A SENTENCE</Link>
+        <Link to='/'>SENTENCE U</Link>
       </Title>
       <Form onSubmit={onSubmit}>
         <FormTitle>회원가입</FormTitle>
@@ -96,9 +96,6 @@ const SignUp = () => {
             />
           </div>
           <FormRequest>유저명은 2자 이상, 5자 이하의 한글만 허용됩니다.</FormRequest>
-          <FormRequest style={{ color: 'red' }}>
-            주의! 유저명은 가입 후 변경할 수 없습니다.
-          </FormRequest>
         </Label>
         <Label className='password-wrap' htmlFor='password-label'>
           <span>비밀번호</span>

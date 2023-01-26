@@ -28,8 +28,9 @@ const User = () => {
   const menuRef = useRef(null);
   const params = useParams();
 
-  const [loadUserName, setLoadUserName] = useState('');
-  const [loadUserImage, setLoadUserImage] = useState('');
+  const [loadUserName, setLoadUserName] = useState();
+  const [loadUserTitle, setLoadUserTitle] = useState('');
+  const [loadUserAvatar, setLoadUserAvatar] = useState('');
   const [isPostMenu, setIsPostMenu] = useState(true);
 
   const { allPosts, isLoading } = useGetAllPosts();
@@ -42,9 +43,11 @@ const User = () => {
   axios
     .get(`/api/users/${encodeURI(params.user)}`)
     .then((res) => {
-      if (res.data.userName && res.data.userImage) {
+      if (res.data.userName && res.data.userTitle && res.data.userAvatar) {
         setLoadUserName(res.data.userName);
-        setLoadUserImage(res.data.userImage);
+        setLoadUserTitle(res.data.userTitle);
+        setLoadUserAvatar(res.data.userAvatar);
+        console.log(res.data);
       }
     })
     .catch((error) => {
@@ -69,7 +72,9 @@ const User = () => {
         </Loading>
       </Container>
     );
-  if (!(loadUserName && loadUserImage)) {
+  console.log(params.user);
+  console.log(loadUserName, loadUserAvatar);
+  if (!(loadUserName && loadUserAvatar)) {
     return <Container>해당하는 유저가 없습니다.</Container>;
   } else {
     return (
@@ -77,10 +82,10 @@ const User = () => {
         <Container>
           <ProfileWrap>
             <UserInfo>
-              <ProfileImage alt={loadUserName} src={loadUserImage} />
+              <ProfileImage alt={loadUserName} src={loadUserAvatar} />
               <ProfileName>{loadUserName}</ProfileName>
             </UserInfo>
-            <UserTitle>유저 타이틀</UserTitle>
+            <UserTitle>{loadUserTitle}</UserTitle>
           </ProfileWrap>
           <MenuWrap>
             <MyPost ref={menuRef} onClick={onMenuClick}>
@@ -104,10 +109,10 @@ const User = () => {
                           <PostList
                             key={post.postId}
                             postId={post.postId}
-                            postTitle={post.postTitle}
+                            postContent={post.postContent}
                             postUser={post.postUser}
                             postDate={post.postDate}
-                            postUpdateDate={post.postUpdateDate}
+                            postUpdate={post.postUpdate}
                             postLike={post.postLike}
                             comments={post.comments}
                           />
@@ -123,10 +128,10 @@ const User = () => {
                   <PostList
                     key={post.postId}
                     postId={post.postId}
-                    postTitle={post.postTitle}
+                    postContent={post.postContent}
                     postUser={post.postUser}
                     postDate={post.postDate}
-                    postUpdateDate={post.postUpdateDate}
+                    postUpdate={post.postUpdate}
                     postLike={post.postLike}
                   />
                 ))

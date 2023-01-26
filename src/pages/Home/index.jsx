@@ -6,7 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
-const About = loadable(() => import('@layouts/About'));
+const Intro = loadable(() => import('@layouts/Intro'));
 const Footer = loadable(() => import('@layouts/Footer'));
 const RecentPosts = loadable(() => import('@layouts/RecentPosts'));
 const Time = loadable(() => import('@layouts/Time'));
@@ -18,7 +18,7 @@ const Home = () => {
   const [wirteModalOpen, setWirteModalOpen] = useState(false);
   const [isBtnActive, setIsBtnActive] = useState(false);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  const { userId, userName, userImage } = useGetClientUser();
+  const { userId, userName, userAvatar } = useGetClientUser();
 
   useEffect(() => {
     const resizeListener = () => {
@@ -40,7 +40,7 @@ const Home = () => {
     <Container>
       <Main>
         <LeftWrap>
-          <About />
+          <Intro />
           <TopPosts />
         </LeftWrap>
         <CenterWrap>
@@ -50,7 +50,6 @@ const Home = () => {
           <RightWrap>
             <Time />
             <UserLists />
-            {/* <UserLists allUsers={allUsers} /> */}
           </RightWrap>
         ) : (
           ''
@@ -64,7 +63,7 @@ const Home = () => {
         <WriteModal
           userId={userId}
           userName={userName}
-          userImage={userImage}
+          userAvatar={userAvatar}
           setIsBtnActive={setIsBtnActive}
           wirteModalOpen={wirteModalOpen}
           setWirteModalOpen={setWirteModalOpen}

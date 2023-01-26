@@ -16,12 +16,13 @@ const GlobalStyle = () => (
       html,
       body,
       #root {
+        color: var(--black);
         background-color: var(--background);
         height: 100%;
         font-family: var(--IMB-Md), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
-        @media screen and (max-width: 375px) {
+        @media screen and (max-width: 768px) {
           & {
             overflow: scroll;
             ::-webkit-scrollbar {
@@ -30,7 +31,6 @@ const GlobalStyle = () => (
           }
         }
       }
-
       #app {
         height: 100%;
         min-height: 100%;
@@ -79,19 +79,19 @@ const GlobalStyle = () => (
         src: url(./src/assets/fonts/Montserrat-Light.ttf);
       }
 
-      @media screen and (max-width: 1366px) {
+      @media screen and (min-width: 1020.3rem) {
         :root {
-          font-size: 14px;
+          font-size: 16px;
+        }
+      }
+      @media screen and (max-width: 1024px) {
+        :root {
+          font-size: 0.9rem;
         }
       }
       @media screen and (max-width: 768px) {
         :root {
-          font-size: 14px;
-        }
-      }
-      @media screen and (max-width: 375px) {
-        :root {
-          font-size: 12px;
+          font-size: 0.8rem;
         }
       }
 

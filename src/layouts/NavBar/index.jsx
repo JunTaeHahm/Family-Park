@@ -1,7 +1,6 @@
 import ProfileMenu from '../../components/ProfileMenu';
 import { HeaderLogo, Header, NavWrap, LoginWrap } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
-// import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -9,9 +8,7 @@ import { TfiHome, TfiAgenda, TfiBookmarkAlt, TfiAnnouncement } from 'react-icons
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-  const { userName, userImage } = useGetClientUser();
-  // const { userName, userImage } = useGetClientUser();
-  // import { useGetClientUser } from '@hooks/userInfo';
+  const { userName, userAvatar } = useGetClientUser();
 
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
@@ -39,32 +36,36 @@ const NavBar = () => {
     <>
       <Header>
         <HeaderLogo>
-          {innerWidth > 375 ? <Link to='/'>LIFE IS A SENTENCE</Link> : <Link to='/'>LIS</Link>}
+          <Link to='/'>SENTENCE U</Link>
         </HeaderLogo>
-        <NavWrap>
-          <Link to='/'>
-            HOME
-            <TfiHome />
-          </Link>
-          <Link to={`/${userName}`}>
-            COLLECTION
-            <TfiBookmarkAlt />
-          </Link>
-          <Link to='/diary'>
-            DIARY
-            <TfiAgenda />
-          </Link>
-          <Link to='/request'>
-            REQUEST
-            <TfiAnnouncement />
-          </Link>
-        </NavWrap>
+        {innerWidth > 768 ? (
+          <NavWrap>
+            <Link to='/'>
+              HOME
+              <TfiHome />
+            </Link>
+            <Link to={`/${userName}`}>
+              COLLECTION
+              <TfiBookmarkAlt />
+            </Link>
+            <Link to='/diary'>
+              DIARY
+              <TfiAgenda />
+            </Link>
+            <Link to='/request'>
+              REQUEST
+              <TfiAnnouncement />
+            </Link>
+          </NavWrap>
+        ) : (
+          ''
+        )}
         <LoginWrap
           onTouchStart={onTouchStartProfile}
           onMouseOver={onMouseOverProfile}
           onMouseOut={onMouseOutProfile}>
           {!userName ? (
-            innerWidth > 375 ? (
+            innerWidth > 360 ? (
               <>Let&apos;s get started.</>
             ) : (
               <>
@@ -73,12 +74,15 @@ const NavBar = () => {
               </>
             )
           ) : (
-            <Link>
-              <img alt={userName} src={userImage ? userImage : './src/assets/images/default.png'} />
+            <Link to={`/${userName}`}>
+              <img
+                alt={userName}
+                src={userAvatar ? userAvatar : './src/assets/images/default.png'}
+              />
               <span>{userName}</span>
             </Link>
           )}
-          {userName && userImage ? (
+          {userName && userAvatar ? (
             <ProfileMenu
               isOpenned={profileMenuOpen}
               onMouseOver={onMouseOverProfile}

@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 
 const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirteModalOpen }) => {
   const ref = useRef();
-  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [buttonActive, setButtonActive] = useState(false);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const { refetch } = useGetRecentPosts();
@@ -21,11 +21,11 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
   }, []);
 
   useEffect(() => {
-    title ? setButtonActive(true) : setButtonActive(false);
-  }, [title]);
+    content ? setButtonActive(true) : setButtonActive(false);
+  }, [content]);
 
-  const onChangeTitle = (e) => {
-    setTitle(e.target.value);
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
   };
 
   const closeModalHandler = () => {
@@ -43,19 +43,19 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
       e.preventDefault();
       const regexp = /^[가-힣.,?;^_!%\s]+$/g;
       if (!userName) toast.error('로그인 후 이용하실 수 있습니다.');
-      if (!title) toast.error('문장을 적어주세요.');
-      if (title && userName && userId) {
-        if (title.length > 30) {
-          toast.error('최대 글자 수를 초과했습니다.(최대 30자)');
-        } else if (!regexp.test(title)) {
+      if (!content) toast.error('문장을 적어주세요.');
+      if (content && userName && userId) {
+        if (content.length > 100) {
+          toast.error('최대 글자 수를 초과했습니다.(최대 100자)');
+        } else if (!regexp.test(content)) {
           toast.error('한글로 된 문장으로만 작성이 가능합니다.');
         } else {
           axios
-            .post('/api/posts', { userId, userName, title })
+            .post('/api/posts', { userId, userName, content })
             .then((res) => {
               refetch();
               toast.success('작성 성공!');
-              setTitle('');
+              setContent('');
               closeModalHandler();
             })
             .catch((error) => {
@@ -65,7 +65,7 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
         }
       }
     },
-    [title, userId, userName],
+    [content, userId, userName],
   );
 
   return (
@@ -73,7 +73,7 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
       {wirteModalOpen && (
         <Form onSubmit={onSubmit} ref={ref}>
           <ArrowBackIosNewIcon onClick={closeModalHandler} />
-          <FormHeader>LIFE IS A SENTENCE</FormHeader>
+          <FormHeader>SENTENCE U</FormHeader>
           <Input
             autoFocus={innerWidth > 375 ? true : false}
             autoComplete='off'
@@ -81,8 +81,8 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
             name='post-writeModal'
             id='post-write-label'
             placeholder='들려주고 싶은 한 마디를 적어보세요.'
-            value={title}
-            onChange={onChangeTitle}
+            value={content}
+            onChange={onChangeContent}
           />
           <Button buttonActive={buttonActive} id='Button' type='submit'>
             작성 완료
