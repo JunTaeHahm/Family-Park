@@ -6,7 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
-const Intro = loadable(() => import('@layouts/Intro'));
+const Intro = loadable(() => import('@layouts/Intro'));
 const Footer = loadable(() => import('@layouts/Footer'));
 const RecentPosts = loadable(() => import('@layouts/RecentPosts'));
 const Time = loadable(() => import('@layouts/Time'));

@@ -19,7 +19,7 @@ const GlobalStyle = () => (
         color: var(--black);
         background-color: var(--background);
         height: 100%;
-        font-family: var(--IMB-Md), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        font-family: var(--SD-O), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
         @media screen and (max-width: 768px) {
@@ -79,6 +79,16 @@ const GlobalStyle = () => (
         src: url(./src/assets/fonts/Montserrat-Light.ttf);
       }
 
+      /* SD Samlip */
+      @font-face {
+        font-family: SDSamlipBasic;
+        src: url(./src/assets/fonts/SDSamlipBasic.ttf);
+      }
+      @font-face {
+        font-family: SDSamlipOutline;
+        src: url(./src/assets/fonts/SDSamlipOutline.ttf);
+      }
+
       @media screen and (min-width: 1020.3rem) {
         :root {
           font-size: 16px;
@@ -97,6 +107,9 @@ const GlobalStyle = () => (
 
       :root {
         // 폰트
+        --SD-B: SDSamlipBasic;
+        --SD-O: SDSamlipOutline;
+
         --IMB-Bd: IBM-Bold;
         --IMB-Rg: IBM-Regular;
         --IMB-Md: IBM-Medium;

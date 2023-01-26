@@ -14,7 +14,7 @@ import {
   DateSection,
   DateHeader,
   Loading,
-} from './style';
+} from './styles';
 import PostList from '@components/PostList';
 import { useGetAllPosts, useGetUserPosts } from '@hooks/usePost';
 import Footer from '@layouts/Footer';
