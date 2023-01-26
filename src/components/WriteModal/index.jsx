@@ -73,7 +73,12 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
       {wirteModalOpen && (
         <Form onSubmit={onSubmit} ref={ref}>
           <ArrowBackIosNewIcon onClick={closeModalHandler} />
-          <FormHeader>SENTENCE U</FormHeader>
+          <FormHeader>
+            <img
+              src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
+              alt='센텐스유 로고'
+            />
+          </FormHeader>
           <Input
             autoFocus={innerWidth > 375 ? true : false}
             autoComplete='off'

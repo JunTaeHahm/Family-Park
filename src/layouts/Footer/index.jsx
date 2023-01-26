@@ -6,7 +6,7 @@ import { ImBlog } from 'react-icons/im';
 const Footer = () => {
   return (
     <Container>
-      <span>&copy;2023 JunTae Hahm All Rights Reserved.</span>
+      <span>&copy;2023. JunTae Hahm All Rights Reserved.</span>
       <div>
         <a href='https://github.com/JunTaeHahm/sentence-u'>
           <FaGithub />

@@ -19,7 +19,7 @@ const GlobalStyle = () => (
         color: var(--black);
         background-color: var(--background);
         height: 100%;
-        font-family: var(--SD-O), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        font-family: var(--IMB-Rg), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
         @media screen and (max-width: 768px) {

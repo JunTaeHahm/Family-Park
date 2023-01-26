@@ -36,7 +36,12 @@ const NavBar = () => {
     <>
       <Header>
         <HeaderLogo>
-          <Link to='/'>SENTENCE U</Link>
+          <Link to='/'>
+            <img
+              src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
+              alt='센텐스유 로고'
+            />
+          </Link>
         </HeaderLogo>
         {innerWidth > 768 ? (
           <NavWrap>
