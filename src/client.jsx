@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 });
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = process.env.BACK_URL;
+axios.defaults.baseURL = process.env.API_SERVER;
 
 root.render(
   <React.StrictMode>

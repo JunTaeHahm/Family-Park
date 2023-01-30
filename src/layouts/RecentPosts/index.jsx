@@ -14,9 +14,9 @@ const RecentPosts = () => {
       <Title>최신 포스트</Title>
       {isLoading ? (
         <Loading>
-        <div>불러오는 중...</div>
-        <CircularProgress color='inherit' />
-      </Loading>
+          <div>불러오는 중...</div>
+          <CircularProgress color='inherit' />
+        </Loading>
       ) : (
         <PostWrap>
           {Object.entries(postSections).map(([date, posts]) => {
@@ -31,10 +31,10 @@ const RecentPosts = () => {
                     postId={post.postId}
                     postUser={post.postUser}
                     postContent={post.postContent}
-                    postDate={post.postDate}
-                    postUpdate={post.postUpdate}
                     postLike={post.postLike}
                     comments={post.comments}
+                    createdAt={post.createdAt}
+                    updatedAt={post.updatedAt}
                   />
                 ))}
               </DateSection>

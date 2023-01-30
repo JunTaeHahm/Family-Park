@@ -22,6 +22,7 @@ const GlobalStyle = () => (
         font-family: var(--IMB-Rg), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
+        touch-action: manipulation;
         @media screen and (max-width: 768px) {
           & {
             overflow: scroll;

@@ -2,9 +2,10 @@ import { Container, ModalList, Logout } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
 import React, { useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileMenu = ({ isOpenned }) => {
+  const navigate = useNavigate();
   const { userName, refetch } = useGetClientUser();
 
   const onClickLogout = useCallback(
@@ -13,6 +14,7 @@ const ProfileMenu = ({ isOpenned }) => {
       axios
         .get(`/api/logout`)
         .then((res) => {
+          navigate('/');
           window.location.reload();
           refetch();
         })
@@ -20,7 +22,7 @@ const ProfileMenu = ({ isOpenned }) => {
           console.log(error);
         });
     },
-    [refetch],
+    [refetch, navigate],
   );
 
   return userName ? (

@@ -36,9 +36,13 @@ export const Form = styled.form`
 
 export const FormHeader = styled.div`
   width: 100%;
-  text-align: center;
-  font-size: 3rem;
-  font-family: var(--Mont-Bd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 30vw;
+    object-fit: cover;
+  }
 `;
 
 export const Input = styled.input`

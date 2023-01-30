@@ -4,7 +4,7 @@ import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { TfiHome, TfiAgenda, TfiBookmarkAlt, TfiAnnouncement } from 'react-icons/tfi';
+import { TfiAgenda, TfiBookmarkAlt, TfiAnnouncement } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -45,10 +45,6 @@ const NavBar = () => {
         </HeaderLogo>
         {innerWidth > 768 ? (
           <NavWrap>
-            <Link to='/'>
-              HOME
-              <TfiHome />
-            </Link>
             <Link to={`/${userName}`}>
               COLLECTION
               <TfiBookmarkAlt />
@@ -82,7 +78,7 @@ const NavBar = () => {
             <Link to={`/${userName}`}>
               <img
                 alt={userName}
-                src={userAvatar ? userAvatar : './src/assets/images/default.png'}
+                src={userAvatar}
               />
               <span>{userName}</span>
             </Link>

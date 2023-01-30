@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding-top: 5rem;
 `;
 
-export const SettingForm = styled.div`
+export const SettingWrap = styled.div`
   width: 50vw;
   height: 50vw;
   display: flex;
@@ -21,36 +21,41 @@ export const SettingForm = styled.div`
 export const ProfileWrap = styled.div`
   display: flex;
   width: 100%;
-  height: 40%;
+  height: auto;
 `;
 
-export const AvatarWrap = styled.div`
+export const AvatarForm = styled.form`
   width: 30%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-top: 2rem;
   gap: 1rem;
 `;
 
 export const Avatar = styled.img`
   border-radius: 50%;
+  object-fit: cover;
   width: 10rem;
   height: 10rem;
 `;
-export const Upload = styled.button`
+export const Upload = styled.label`
   display: inline-block;
   padding: 0.6rem 1.8rem;
   cursor: pointer;
   border-radius: 0.5rem;
   background-color: var(--darkgray);
   color: var(--white);
+  input {
+    display: none;
+  }
   &:hover {
     background-color: var(--gray);
     color: var(--darkgray);
   }
 `;
+
 export const Remove = styled.button`
   display: inline-block;
   cursor: pointer;
@@ -59,7 +64,7 @@ export const Remove = styled.button`
   }
 `;
 
-export const UserWrap = styled.div`
+export const UserForm = styled.div`
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -85,7 +90,7 @@ export const Edit = styled.button`
     color: var(--darkgray);
   }
 `;
-export const SettingWrap = styled.div`
+export const SettingForm = styled.div`
   width: 100%;
   height: 45%;
   display: flex;
@@ -94,9 +99,9 @@ export const SettingWrap = styled.div`
   background-color: white;
 `;
 
-export const WithdrawalWrap = styled.div`
+export const WithdrawalForm = styled.div`
   width: 100%;
-  height: 15%;
+  height: auto;
   padding: 1rem;
 `;
 export const Menu = styled.span`
@@ -106,6 +111,7 @@ export const Menu = styled.span`
   padding: 1rem 0;
 `;
 export const Withdrawal = styled.button`
+  cursor: pointer;
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;

@@ -9,11 +9,13 @@ import webpack from 'webpack';
 import pkg from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-dotenv.config();
-
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const __dirname = path.resolve(); // ES모듈에서 __dirname 사용법
 const { DefinePlugin } = pkg;
+
+isDevelopment ? dotenv.config({ path: './dev.env' }) : dotenv.config({ path: './.env' });
+
+console.log(isDevelopment, process.env.API_SERVER);
 
 const config = {
   name: 'sentence-u',
@@ -151,7 +153,11 @@ const config = {
         },
       ],
     }),
-    new DefinePlugin({ 'process.env': JSON.stringify(process.env) }),
+    new DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+      DEVELOPMENT: isDevelopment ? 'true' : 'false',
+      API_SERVER: isDevelopment ? JSON.stringify(process.env.API_SERVER) : '',
+    }),
     new webpack.LoaderOptionsPlugin({ debug: true }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new MiniCssExtractPlugin({ filename: './common.css' }),

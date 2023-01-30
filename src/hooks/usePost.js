@@ -27,11 +27,10 @@ export const useGetAllPosts = () => {
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,
-      postDate: data[key].postDate,
-      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
       createdAt: data[key].createdAt,
+      updatedAt: data[key].updatedAt,
     });
   }
   return { allPosts, isLoading, error, refetch };
@@ -63,18 +62,17 @@ export const useGetRecentPosts = () => {
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,
-      postDate: data[key].postDate,
-      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
       createdAt: data[key].createdAt,
+      updatedAt: data[key].updatedAt,
     });
   }
   return { recentPosts, isLoading, error, refetch };
 };
 
 export const useGetUserPosts = (userName) => {
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, error, refetch } = useQuery(
     ['userPosts'],
     async () => {
       return await axios
@@ -98,12 +96,11 @@ export const useGetUserPosts = (userName) => {
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,
-      postDate: data[key].postDate,
-      postUpdate: data[key].postUpdate,
       postLike: data[key].postLike,
       comments: data[key].comments,
       createdAt: data[key].createdAt,
+      updatedAt: data[key].updatedAt,
     });
   }
-  return { userPosts, isLoading, error };
+  return { userPosts, isLoading, error, refetch };
 };

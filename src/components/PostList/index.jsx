@@ -27,6 +27,7 @@ import {
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
+import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { toast } from 'react-hot-toast';
@@ -34,15 +35,7 @@ import { BsArrowReturnLeft } from 'react-icons/bs';
 import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const PostList = ({
-  postId,
-  postContent,
-  postUser,
-  postDate,
-  postUpdate,
-  postLike,
-  comments,
-}) => {
+const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
   let commentArr = [];
   if (comments) commentArr = Object.entries(comments).map(([, comment]) => comment);
 
@@ -251,7 +244,11 @@ const PostList = ({
           )}
         </First>
         <Second>
-          <Date>{postUpdate ? `${postUpdate} 수정됨` : postDate}</Date>
+          <Date>
+            {updatedAt
+              ? `${dayjs(updatedAt).format('MM월 DD일')} 수정됨`
+              : dayjs(createdAt).format('MM월 DD일')}
+          </Date>
         </Second>
         <Third>
           <Actions>

@@ -12,7 +12,7 @@ const Footer = () => {
           <FaGithub />
           GITHUB
         </a>
-        <a href='https://velog.io/@ahuuae/series/LIS-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80'>
+        <a href='https://velog.io/@ahuuae/series/SENTENCE-U-Log'>
           <ImBlog />
           VELOG
         </a>

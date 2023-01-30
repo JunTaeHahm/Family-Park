@@ -9,8 +9,7 @@
   "type": "module",
   "scripts": {
     "dev": "webpack serve --env development",
-    "build": "cross-env NODE_ENV=production webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.13",

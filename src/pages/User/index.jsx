@@ -63,6 +63,7 @@ const User = () => {
       setIsPostMenu(false);
     }
   }, []);
+  
   if (isLoading)
     return (
       <Container>
@@ -72,8 +73,7 @@ const User = () => {
         </Loading>
       </Container>
     );
-  console.log(params.user);
-  console.log(loadUserName, loadUserAvatar);
+
   if (!(loadUserName && loadUserAvatar)) {
     return <Container>해당하는 유저가 없습니다.</Container>;
   } else {
@@ -107,14 +107,14 @@ const User = () => {
                         </DateHeader>
                         {posts.map((post) => (
                           <PostList
-                            key={post.postId}
-                            postId={post.postId}
-                            postContent={post.postContent}
-                            postUser={post.postUser}
-                            postDate={post.postDate}
-                            postUpdate={post.postUpdate}
-                            postLike={post.postLike}
-                            comments={post.comments}
+                          key={post.postId}
+                          postId={post.postId}
+                          postUser={post.postUser}
+                          postContent={post.postContent}
+                          postLike={post.postLike}
+                          comments={post.comments}
+                          createdAt={post.createdAt}
+                          updatedAt={post.updatedAt}
                           />
                         ))}
                       </DateSection>
@@ -126,13 +126,14 @@ const User = () => {
               ) : (
                 collectionPosts.map((post) => (
                   <PostList
-                    key={post.postId}
-                    postId={post.postId}
-                    postContent={post.postContent}
-                    postUser={post.postUser}
-                    postDate={post.postDate}
-                    postUpdate={post.postUpdate}
-                    postLike={post.postLike}
+                  key={post.postId}
+                  postId={post.postId}
+                  postUser={post.postUser}
+                  postContent={post.postContent}
+                  postLike={post.postLike}
+                  comments={post.comments}
+                  createdAt={post.createdAt}
+                  updatedAt={post.updatedAt}
                   />
                 ))
               )}

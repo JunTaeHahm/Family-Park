@@ -6,7 +6,7 @@ export const useSocket = (userName) => {
   const [onlineList, setOnlineList] = useState([]);
 
   useEffect(() => {
-    const socketIo = io.connect(`${process.env.BACK_URL}/online`, {
+    const socketIo = io.connect(`${process.env.API_SERVER}/online`, {
       path: '/socket.io',
       cors: { origin: '*', credentials: true },
       transports: ['websocket'],
