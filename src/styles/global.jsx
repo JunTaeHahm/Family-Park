@@ -16,8 +16,8 @@ const GlobalStyle = () => (
       html,
       body,
       #root {
-        color: var(--black);
-        background-color: var(--background);
+        color: var(--primary1);
+        background-color: var(--secondary2);
         height: 100%;
         font-family: var(--IMB-Rg), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -114,13 +114,21 @@ const GlobalStyle = () => (
         --Mont-Li: Montserrat-Light;
 
         // 색상
-        --background: #eee;
-        --white: #f8f8f8;
-        --black: #222222;
-        --red: #e74c3c;
-        --blue: #2225fe;
-        --darkgray: #393939;
-        --gray: #a7a7a7;
+        --card-shadow: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+
+        --primary1: #222;
+        --primary2: #83a2a1;
+        --secondary1: #f8f9fa;
+        --secondary2: #fbfdfc;
+        --prism-code-1: #7c858d;
+        --prism-code-2: #abb2bf;
+        --prism-code-3: #e06c75;
+        --prism-code-4: #d19a66;
+        --prism-code-5: #98c379;
+        --prism-code-6: #56b6c2;
+        --prism-code-7: #c678dd;
+        --prism-code-8: #61afef;
+        --prism-code-9: #c678dd;
       }
     `}
   />

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.footer`
   font-size: 0.8rem;
   position: fixed;
-  background-color: var(--background);
+  background-color: var(--secondary2);
   bottom: 0;
   left: 0;
   width: 100%;
@@ -23,15 +23,15 @@ export const Container = styled.footer`
       font-family: var(--IMB-Li);
       display: flex;
       align-items: center;
-      background-color: var(--black);
-      color: var(--white);
+      background-color: var(--primary1);
+      color: var(--secondary1);
       border-radius: 2rem;
       padding: 0.3rem 1rem;
       gap: 0.8rem;
       transition: all 0.2s;
       &:hover {
-        background-color: var(--gray);
-        color: var(--black);
+        background-color: var(--primary2);
+        color: var(--primary1);
       }
     }
   }

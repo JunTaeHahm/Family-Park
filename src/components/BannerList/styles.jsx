@@ -11,6 +11,6 @@ export const Saying = styled.div`
   font-size: 1rem;
 `;
 export const Writer = styled.div`
-  color: var(--darkgray);
+  color: var(--primary1);
   font-size: 0.9rem;
 `;

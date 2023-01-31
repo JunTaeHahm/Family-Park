@@ -17,15 +17,7 @@ const WriteModal = ({
   const ref = useRef();
   const [content, setContent] = useState('');
   const [buttonActive, setButtonActive] = useState(false);
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const { refetch } = useGetRecentPosts();
-
-  useEffect(() => {
-    const resizeListener = () => {
-      setInnerWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', resizeListener);
-  }, []);
 
   useEffect(() => {
     content ? setButtonActive(true) : setButtonActive(false);
@@ -84,7 +76,7 @@ const WriteModal = ({
             />
           </FormHeader>
           <Input
-            autoFocus={innerWidth > 375 ? true : false}
+            autoFocus
             autoComplete='off'
             type='text'
             name='post-writeModal'

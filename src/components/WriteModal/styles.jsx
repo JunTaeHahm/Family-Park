@@ -18,9 +18,8 @@ export const Form = styled.form`
   z-index: 10;
   width: 80%;
   height: 80%;
-  background-color: var(--white);
-  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
-  border-radius: 1rem;
+  background-color: var(--secondary1);
+  box-shadow: var(--card-shadow);  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +64,7 @@ export const Input = styled.input`
   text-indent: 0.8rem;
   &:focus {
     outline: none;
-    border-bottom: 0.06rem solid var(--black);
+    border-bottom: 0.06rem solid var(--primary1);
     transition: all 0.3s;
   }
   &::placeholder {
@@ -89,8 +88,8 @@ export const Button = styled.button`
   height: 3rem;
   cursor: pointer;
   border-radius: 0.5rem;
-  background-color: ${(props) => (props.buttonActive ? 'var(--black)' : 'var(--gray)')};
-  color: var(--white);
+  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--primary2)')};
+  color: var(--secondary1);
   @media screen and (max-width: 768px) {
     & {
       font-size: 0.8rem;

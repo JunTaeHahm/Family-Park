@@ -1,9 +1,10 @@
 import ProfileMenu from '../../components/ProfileMenu';
-import { HeaderLogo, Header, NavWrap, LoginWrap } from './styles';
+import { HeaderLogo, Header, ThemeButton, NavWrap, LoginWrap } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { BsFillSunFill } from 'react-icons/bs';
 import { TfiAgenda, TfiBookmarkAlt, TfiAnnouncement } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 
@@ -43,6 +44,9 @@ const NavBar = () => {
             />
           </Link>
         </HeaderLogo>
+        <ThemeButton>
+          <BsFillSunFill />
+        </ThemeButton>
         {innerWidth > 768 ? (
           <NavWrap>
             <Link to={`/${userName}`}>

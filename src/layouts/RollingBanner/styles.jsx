@@ -18,9 +18,9 @@ export const Container = styled.div`
   overflow: hidden;
   height: 2rem;
   z-index: 99;
-  border-top: 0.06rem solid var(--black);
-  border-bottom: 0.06rem solid var(--black);
-  background-color: ${(props) => (props.isLoading ? 'transparent' : 'var(--white)')};
+  border-top: 0.06rem solid var(--primary1);
+  border-bottom: 0.06rem solid var(--primary1);
+  background-color: ${(props) => (props.isLoading ? 'transparent' : 'var(--secondary1)')};
 `;
 
 export const Loading = styled.div`

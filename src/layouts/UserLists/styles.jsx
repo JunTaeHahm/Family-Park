@@ -10,8 +10,8 @@ export const Container = styled.div`
 export const ListWrap = styled.div`
   position: relative;
   border-radius: 1.3rem;
-  background-color: var(--white);
-  box-shadow: 0.3rem 0.3rem 0.3rem #c6c6c6, -0.3rem -0.3rem 0.3rem #ffffff;
+  background-color: var(--secondary1);
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -26,7 +26,7 @@ export const ListWrap = styled.div`
     width: 0.6rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--darkgray);
+    background-color: var(--primary1);
     border-radius: 2rem;
   }
   &::-webkit-scrollbar-button:start:decrement,
@@ -40,8 +40,8 @@ export const Title = styled.div`
   font-family: var(--IMB-Li);
   margin: 0.3rem 0 1.3rem;
   text-align: center;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   border-radius: 2rem;
   padding: 0.19rem 0.9rem;
 `;
@@ -53,10 +53,6 @@ export const List = styled.div`
   text-indent: 1.3rem;
   margin: 0 0.6rem;
   padding: 0.5rem 0;
-  transition: all 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
   &:before {
     content: '';
     display: block;
@@ -67,10 +63,10 @@ export const List = styled.div`
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 50%;
-    border: 0.06rem solid var(--gray);
+    border: 0.06rem solid var(--primary2);
   }
   &.online:before {
-    background-color: var(--blue);
+    background-color: var(--primary2);
     border: none;
   }
 `;
@@ -88,6 +84,6 @@ export const Online = styled.span`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: var(--blue);
+    background-color: var(--primary2);
   }
 `;

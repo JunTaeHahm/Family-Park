@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 export const Catuion = styled.div`
   width: 100%;
+  color: var(--prism-code-3);
   position: absolute;
   display: flex;
   align-items: center;
@@ -16,7 +17,6 @@ export const Catuion = styled.div`
   transform: translate(-50%, 0);
   top: 5rem;
   z-index: 99;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 export const Main = styled.div`
   min-height: calc(100vh - 7rem);
@@ -60,21 +60,20 @@ export const WriteButton = styled.div`
   height: 4rem;
   font-size: 2.5rem;
   border-radius: 50%;
-  background-color: var(--black);
+  background-color: var(--primary1);
   position: fixed;
   right: 2rem;
   bottom: 4rem;
-  color: var(--white);
+  color: var(--secondary1);
   opacity: ${(props) => (props.isBtnActive ? 0 : 1)};
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
-  transition: all 0.3s;
+  box-shadow: var(--card-shadow);  transition: all 0.3s;
   cursor: pointer;
   &:hover {
-    background-color: var(--gray);
-    color: var(--black);
+    background-color: var(--primary2);
+    color: var(--primary1);
     transform: scale(1.05);
   }
   @media screen and (max-width: 768px) {

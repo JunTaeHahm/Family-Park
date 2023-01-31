@@ -12,7 +12,7 @@ export const Header = styled.nav`
   max-width: 1920px;
   height: 3rem;
   z-index: 100;
-  background-color: var(--background);
+  background-color: var(--secondary2);
 `;
 
 export const HeaderLogo = styled.h1`
@@ -42,28 +42,44 @@ export const NavWrap = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 0.3rem;
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--primary1);
+    color: var(--secondary1);
     padding: 0.3rem 0.6rem;
     transition: all 0.2s;
     &:hover {
-      background-color: var(--gray);
-      color: var(--black);
+      background-color: var(--primary2);
+      color: var(--primary1);
     }
   }
 `;
 
+export const ThemeButton = styled.button`
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 0.8rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: var(--primary2);
+    border-radius: 50%;
+  }
+`;
+
 export const LoginWrap = styled.div`
-  border-left: 0.06rem solid var(--black);
-  border-right: 0.06rem solid var(--black);
+  border-left: 0.06rem solid var(--primary1);
+  border-right: 0.06rem solid var(--primary1);
   position: relative;
   width: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   transition: all 0.3s;
   cursor: pointer;
   a {
@@ -73,7 +89,7 @@ export const LoginWrap = styled.div`
     justify-content: center;
     gap: 1rem;
     img {
-      border: 0.06rem solid var(--white);
+      border: 0.06rem solid var(--secondary1);
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
@@ -81,8 +97,8 @@ export const LoginWrap = styled.div`
     }
   }
   &:hover {
-    background-color: var(--gray);
-    color: var(--black);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
   @media screen and (max-width: 768px) {
     & {

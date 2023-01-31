@@ -21,7 +21,7 @@ export const ProfileWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--background);
+  background-color: var(--secondary2);
   z-index: 10;
   margin-top: 2rem;
 `;
@@ -59,7 +59,7 @@ export const ProfileName = styled.div`
 `;
 export const UserTitle = styled.div`
   font-size: 1.3rem;
-  background-color: aquamarine;
+  background-color: var(--primary1);
   line-height: 1.3;
   padding: 0 0.3rem;
 `;
@@ -89,7 +89,7 @@ export const MenuWrap = styled.div`
       height: 0.3rem;
       border-radius: 0.6rem;
       margin-bottom: 1.5rem;
-      background-color: var(--darkgray);
+      background-color: var(--primary1);
     }
     &.collection:first-of-type::after {
       transform: translate(3rem, 0);
@@ -161,7 +161,7 @@ export const DateHeader = styled.div`
   height: 3rem;
   top: 0;
   z-index: 10;
-  background-color: var(--background);
+  background-color: var(--secondary2);
   button {
     font-family: var(--IMB-Li);
     font-size: 0.9rem;
@@ -171,8 +171,8 @@ export const DateHeader = styled.div`
     z-index: 2;
     border-radius: 3rem;
     position: relative;
-    background: var(--darkgray);
-    color: var(--white);
+    background: var(--primary1);
+    color: var(--secondary1);
     outline: none;
   }
 `;

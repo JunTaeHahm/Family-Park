@@ -25,11 +25,11 @@ export const FormTitle = styled.h2`
 export const Label = styled.label`
   display: block;
   margin-bottom: 1.3rem;
-  color: var(--gray);
+  color: var(--primary2);
   font-size: 0.9rem;
   & span {
     font-family: var(--IMB-Rg);
-    color: var(--blue);
+    color: var(--primary1);
   }
   &.password-wrap {
     position: relative;
@@ -48,7 +48,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   font-family: var(--IMB-Li);
-  background-color: var(--white);
+  background-color: var(--secondary1);
   transition: all 0.3s;
   font-size: 0.9rem;
   border: none;
@@ -62,7 +62,7 @@ export const Input = styled.input`
     border-bottom: 0.06rem solid black;
   }
   &::placeholder {
-    color: var(--gray);
+    color: var(--primary2);
     opacity: 0.5;
     font-size: 0.9rem;
     height: 100%;
@@ -81,7 +81,7 @@ export const FormRequest = styled.p`
 export const Mismatch = styled.span`
   position: absolute;
   top: 0;
-  color: red !important;
+  color: var(--prism-code-3) !important;
   text-align: right;
 `;
 
@@ -89,33 +89,28 @@ export const Button = styled.button`
   margin: 0.6rem 0 1.3rem;
   width: 100%;
   color: #fff;
-  background-color: ${(props) => (props.buttonActive ? 'var(--blue)' : 'var(--gray)')};
+  background-color: var(--primary1);
   border: none;
   height: 4rem;
-  transition: all 0.1s;
   user-select: none;
   outline: none;
   cursor: pointer;
   border-radius: 0.5rem;
-  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
-  &:hover {
-    transform: scale(1.02);
-  }
+  box-shadow: var(--card-shadow);
 `;
 
 export const LinkContainer = styled.p`
   display: flex;
   justify-content: flex-end;
   font-size: 0.8rem;
-  color: var(--black);
+  color: var(--primary1);
   margin: 0 auto 0.5rem;
   width: 100%;
   a {
     margin-left: 0.6rem;
-    color: var(--black);
+    color: var(--primary1);
     text-decoration: none;
     &:hover {
-      color: var(--blue);
       text-decoration: underline;
     }
   }

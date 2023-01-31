@@ -44,7 +44,7 @@ export const AvatarForm = styled.form`
       height: min-content;
       padding-top: 1rem;
       padding-bottom: 1rem;
-      border-bottom: 0.06rem solid var(--gray);
+      border-bottom: 0.06rem solid var(--primary2);
     }
   }
 `;
@@ -66,19 +66,20 @@ export const Upload = styled.label`
   padding: 0.6rem 1.8rem;
   cursor: pointer;
   border-radius: 0.5rem;
-  background-color: var(--darkgray);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   input {
     display: none;
   }
   &:hover {
-    background-color: var(--gray);
-    color: var(--darkgray);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
 `;
 
 export const Remove = styled.button`
   display: inline-block;
+  background-color: transparent;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -119,13 +120,13 @@ export const NameInput = styled.input`
   outline: none;
   width: 100%;
   padding: 0.5rem;
-  border: 0.06rem solid var(--gray);
+  border: 0.06rem solid var(--primary2);
   border-radius: 0.3rem;
   &:focus {
-    border: 0.1rem solid var(--darkgray);
+    border: 0.1rem solid var(--primary1);
   }
   &::placeholder {
-    color: var(--black);
+    color: var(--primary1);
     font-size: 1.3rem;
     height: 100%;
   }
@@ -140,13 +141,13 @@ export const TitleInput = styled.input`
   outline: none;
   width: 100%;
   padding: 0.5rem;
-  border: 0.06rem solid var(--gray);
+  border: 0.06rem solid var(--primary2);
   border-radius: 0.3rem;
   &:focus {
-    border: 0.1rem solid var(--darkgray);
+    border: 0.1rem solid var(--primary1);
   }
   &::placeholder {
-    color: var(--black);
+    color: var(--primary1);
     font-size: 1.3rem;
     height: 100%;
   }
@@ -158,11 +159,11 @@ export const Edit = styled.button`
   padding: 0.5rem 1.5rem;
   align-self: flex-end;
   border-radius: 0.5rem;
-  background-color: var(--darkgray);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   &:hover {
-    background-color: var(--gray);
-    color: var(--darkgray);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
 `;
 export const SettingForm = styled.div`
@@ -171,7 +172,7 @@ export const SettingForm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: transparent;
   margin: 2rem 0;
 `;
 
@@ -197,11 +198,11 @@ export const Withdrawal = styled.button`
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: var(--darkgray);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   &:hover {
-    background-color: var(--gray);
-    color: var(--darkgray);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
 `;
 export const Caution = styled.div`

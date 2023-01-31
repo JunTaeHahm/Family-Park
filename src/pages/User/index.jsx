@@ -88,9 +88,9 @@ const User = () => {
           </ProfileWrap>
           <MenuWrap>
             <MyPost ref={menuRef} onClick={onMyPostClick}>
-              POST
+              포스트
             </MyPost>
-            <Collection onClick={onCollectionClick}>COLLECTION</Collection>
+            <Collection onClick={onCollectionClick}>컬렉션</Collection>
           </MenuWrap>
           <PostWrap>
             <List>

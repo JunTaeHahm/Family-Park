@@ -6,17 +6,16 @@ export const Container = styled.div`
   left: 50%;
   transform: ${(props) => (props.isOpenned ? 'translate(-50%, 0)' : 'translate(-50%, -200%)')};
   width: calc(100% + 0.13rem);
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   z-index: -1;
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
   border-radius: 0 0 0.6rem 0.6rem;
-  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
-  justify-content: center;
+  box-shadow: var(--card-shadow);  justify-content: center;
   gap: 0.6rem;
-  transition: transform 0.3s;
+  transition: all 0.3s;
   cursor: pointer;
 `;
 
@@ -37,7 +36,8 @@ export const ModalList = styled.div`
     margin-bottom: 0.9rem;
   }
   &:hover {
-    background-color: var(--darkgray);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
 `;
 

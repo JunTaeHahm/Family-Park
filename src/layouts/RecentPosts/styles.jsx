@@ -17,7 +17,7 @@ export const Title = styled.h2`
   text-align: center;
   font-size: 1.3rem;
   padding: 1.5rem 1rem 1rem;
-  background-color: var(--background);
+  background-color: var(--secondary2);
   font-family: var(--IMB-Md);
   width: 100%;
   @media screen and (max-width: 768px) {
@@ -62,7 +62,7 @@ export const DateHeader = styled.div`
   height: 3rem;
   top: 0;
   z-index: 10;
-  background-color: var(--background);
+  background-color: var(--secondary2);
   button {
     font-family: var(--IMB-Li);
     font-size: 0.9rem;
@@ -72,8 +72,8 @@ export const DateHeader = styled.div`
     z-index: 2;
     border-radius: 3rem;
     position: relative;
-    background: var(--darkgray);
-    color: var(--white);
+    background: var(--primary1);
+    color: var(--secondary1);
     outline: none;
   }
 `;

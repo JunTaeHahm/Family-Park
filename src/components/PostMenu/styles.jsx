@@ -29,7 +29,7 @@ export const TopPostTitle = styled.div`
     width: 7rem;
     height: 0.3rem;
     border-radius: 0.6rem;
-    background-color: var(--darkgray);
+    background-color: var(--primary1);
     transition: all 0.3s;
   }
   &.recent::after {

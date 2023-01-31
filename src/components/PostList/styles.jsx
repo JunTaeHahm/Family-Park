@@ -25,8 +25,8 @@ export const Container = styled.div`
   padding: 1.5rem 1.5rem 1rem;
   border-radius: 1rem;
   width: 85%;
-  background-color: var(--white);
-  box-shadow: 0.3rem 0.3rem 0.3rem #c6c6c6, -0.3rem -0.3rem 0.3rem #ffffff;
+  background-color: var(--secondary1);
+  box-shadow: var(--card-shadow);
   transition: all 0.5s;
   &.open {
     height: max-content;
@@ -88,12 +88,12 @@ export const EditInput = styled.input`
   font-size: 1.1rem;
   outline: none;
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--secondary1);
   padding: 0.5rem;
-  border: 0.06rem solid var(--gray);
+  border: 0.06rem solid var(--primary2);
   border-radius: 0.3rem;
   &::placeholder {
-    color: var(--black);
+    color: var(--primary1);
     font-size: 1.3rem;
     height: 100%;
   }
@@ -117,13 +117,13 @@ export const Name = styled.span`
   font-size: 0.9rem;
   display: inline-block;
   font-family: var(--IMB-Rg);
-  background-color: var(--darkgray);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   padding: 0.1rem 0.3rem;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--gray);
-    color: var(--black);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
 `;
 
@@ -178,17 +178,14 @@ export const PostAction = styled.div`
     margin-left: 0.5rem;
     cursor: pointer;
     &:first-of-type {
-      color: var(--gray);
+      color: var(--primary1);
     }
     &:last-of-type {
-      color: red;
-      opacity: 0.5;
+      color: var(--prism-code-3);
     }
-    &:hover:first-of-type {
-      color: var(--black);
-    }
+    &:hover:first-of-type,
     &:hover:last-of-type {
-      opacity: 1;
+      text-decoration: underline;
     }
   }
 `;
@@ -213,16 +210,16 @@ export const Input = styled.input`
   font-size: 0.8rem;
   width: 100%;
   height: 100%;
-  background-color: var(--white);
+  background-color: var(--secondary1);
   padding: 0.3rem;
   text-indent: 0.3rem;
   outline: none;
-  border: 0.06rem solid var(--gray);
+  border: 0.06rem solid var(--primary2);
   &:focus {
-    border: 0.06rem solid var(--darkgray);
+    border: 0.06rem solid var(--primary1);
   }
   &::placeholder {
-    color: var(--gray);
+    color: var(--primary2);
     opacity: 0.5;
     height: 100%;
   }
@@ -230,15 +227,15 @@ export const Input = styled.input`
 export const Button = styled.button`
   font-family: var(--IMB-Li);
   font-size: 0.9rem;
-  background-color: var(--darkgray);
-  color: var(--white);
+  background-color: var(--primary1);
+  color: var(--secondary1);
   cursor: pointer;
   width: 8%;
   height: 100%;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--gray);
-    color: var(--black);
+    background-color: var(--primary2);
+    color: var(--primary1);
   }
   @media screen and (max-width: 768px) {
     & {
@@ -289,8 +286,8 @@ export const Comment = styled.div`
   span {
     display: inline-block;
     &:nth-of-type(1) {
-      background-color: var(--darkgray);
-      color: var(--white);
+      background-color: var(--primary1);
+      color: var(--secondary1);
       text-align: center;
       width: 15%;
       max-width: 15%;
@@ -301,8 +298,8 @@ export const Comment = styled.div`
       padding: 0 0.3rem;
       transition: all 0.2s;
       &:hover {
-        background-color: var(--gray);
-        color: var(--black);
+        background-color: var(--primary2);
+        color: var(--primary1);
       }
       @media screen and (max-width: 768px) {
         & {

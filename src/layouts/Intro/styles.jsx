@@ -30,8 +30,7 @@ export const Info = styled.div`
 `;
 
 export const Image = styled.img`
-  box-shadow: 0.13rem 0.13rem 0.6rem rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
+  box-shadow: var(--card-shadow);  border-radius: 50%;
   width: 10rem;
   height: 10rem;
   object-fit: cover;
@@ -66,7 +65,7 @@ export const Description = styled.div`
   }
   b {
     font-weight: normal;
-    background-color: aquamarine;
+    background-color: var(--primary2);
     padding: 0 0.2rem;
   }
   @media screen and (max-width: 768px) {
@@ -83,7 +82,7 @@ export const PS = styled.span`
   font-size: 1.1rem;
   line-height: 1.5;
   padding: 0 0.3rem;
-  background-color: aquamarine;
+  background-color: var(--primary2);
   text-align: center;
   white-space: nowrap;
 `;
