@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   padding: 5rem 0 2rem;
   width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -32,15 +34,28 @@ export const UserInfo = styled.div`
 `;
 export const ProfileImage = styled.img`
   border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
-  margin-right: 2rem;
+  width: 7rem;
+  height: 7rem;
+  margin-right: 3rem;
+  object-fit: cover;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 5rem;
+      height: 5rem;
+      margin-right: 1rem;
+    }
+  }
 `;
 
 export const ProfileName = styled.div`
   height: 5rem;
   line-height: 5rem;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 1.8rem;
+    }
+  }
 `;
 export const UserTitle = styled.div`
   font-size: 1.3rem;
@@ -55,7 +70,7 @@ export const MenuWrap = styled.div`
   font-family: var(--Mont-Rg);
   width: 100%;
   height: 4rem;
-  margin: 1rem 0;
+  margin: 2rem 0;
   span {
     cursor: pointer;
     margin: 0 3rem;
@@ -67,7 +82,7 @@ export const MenuWrap = styled.div`
       content: '';
       position: absolute;
       left: 50%;
-      transform: translate(-12rem, 0);
+      transform: translate(-13rem, 0);
       transition: all 0.3s;
       display: block;
       width: 10rem;
@@ -82,12 +97,14 @@ export const MenuWrap = styled.div`
   }
   @media screen and (max-width: 768px) {
     & {
+      margin: 1rem 0;
       span {
-        width: 50%;
-        margin: 0;
+        margin: 0 1rem;
         &:first-of-type::after {
-          width: 30%;
-          content: '';
+          transform: translate(-11rem, 0);
+        }
+        &.collection:first-of-type::after {
+          transform: translate(1rem, 0);
         }
       }
     }
@@ -116,8 +133,7 @@ export const PostWrap = styled.div`
 `;
 
 export const List = styled.div`
-  width: 40%;
-  max-width: 40%;
+  width: 90%;
   height: 100%;
   @media screen and (max-width: 768px) {
     & {

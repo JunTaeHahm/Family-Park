@@ -10,18 +10,24 @@ export const Container = styled.div`
 `;
 
 export const SettingWrap = styled.div`
-  width: 50vw;
-  height: 50vw;
+  width: 100%;
+  height: 100%;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  padding: 1rem;
 `;
 
 export const ProfileWrap = styled.div`
   display: flex;
   width: 100%;
-  height: auto;
+  @media screen and (max-width: 768px) {
+    & {
+      flex-wrap: wrap;
+    }
+  }
 `;
 
 export const AvatarForm = styled.form`
@@ -32,6 +38,15 @@ export const AvatarForm = styled.form`
   align-items: center;
   padding-top: 2rem;
   gap: 1rem;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      height: min-content;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.06rem solid var(--gray);
+    }
+  }
 `;
 
 export const Avatar = styled.img`
@@ -39,6 +54,12 @@ export const Avatar = styled.img`
   object-fit: cover;
   width: 10rem;
   height: 10rem;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
 `;
 export const Upload = styled.label`
   display: inline-block;
@@ -71,12 +92,66 @@ export const UserForm = styled.div`
   gap: 1.5rem;
   width: 70%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      gap: 1rem;
+      width: 100%;
+    }
+  }
 `;
 export const Name = styled.span`
   display: inline-block;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 1.8rem;
+    }
+  }
 `;
+
 export const Title = styled.span``;
+
+export const Label = styled.label``;
+
+export const NameInput = styled.input`
+  font-size: 2.2rem;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  padding: 0.5rem;
+  border: 0.06rem solid var(--gray);
+  border-radius: 0.3rem;
+  &:focus {
+    border: 0.1rem solid var(--darkgray);
+  }
+  &::placeholder {
+    color: var(--black);
+    font-size: 1.3rem;
+    height: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 1.8rem;
+    }
+  }
+`;
+export const TitleInput = styled.input`
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  padding: 0.5rem;
+  border: 0.06rem solid var(--gray);
+  border-radius: 0.3rem;
+  &:focus {
+    border: 0.1rem solid var(--darkgray);
+  }
+  &::placeholder {
+    color: var(--black);
+    font-size: 1.3rem;
+    height: 100%;
+  }
+`;
+
 export const Edit = styled.button`
   cursor: pointer;
   display: inline-block;
@@ -92,16 +167,16 @@ export const Edit = styled.button`
 `;
 export const SettingForm = styled.div`
   width: 100%;
-  height: 45%;
+  height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
+  margin: 2rem 0;
 `;
 
 export const WithdrawalForm = styled.div`
   width: 100%;
-  height: auto;
   padding: 1rem;
 `;
 export const Menu = styled.span`
@@ -109,6 +184,13 @@ export const Menu = styled.span`
   width: 30%;
   font-size: 1.3rem;
   padding: 1rem 0;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      font-size: 1.2rem;
+      padding: 0.5rem 0;
+    }
+  }
 `;
 export const Withdrawal = styled.button`
   cursor: pointer;
@@ -125,4 +207,9 @@ export const Withdrawal = styled.button`
 export const Caution = styled.div`
   margin-top: 0.5rem;
   font-family: var(--IMB-Li);
+  @media screen and (max-width: 768px) {
+    & {
+      margin-top: 1rem;
+    }
+  }
 `;

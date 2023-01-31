@@ -47,23 +47,22 @@ const User = () => {
         setLoadUserName(res.data.userName);
         setLoadUserTitle(res.data.userTitle);
         setLoadUserAvatar(res.data.userAvatar);
-        console.log(res.data);
       }
     })
     .catch((error) => {
       console.log(error.response);
     });
 
-  const onMenuClick = useCallback(() => {
-    if (menuRef.current.classList.contains('collection')) {
-      menuRef.current.classList.remove('collection');
-      setIsPostMenu(true);
-    } else {
-      menuRef.current.classList.add('collection');
-      setIsPostMenu(false);
-    }
+  const onMyPostClick = useCallback(() => {
+    menuRef.current.classList.remove('collection');
+    setIsPostMenu(true);
   }, []);
-  
+
+  const onCollectionClick = useCallback(() => {
+    menuRef.current.classList.add('collection');
+    setIsPostMenu(false);
+  }, []);
+
   if (isLoading)
     return (
       <Container>
@@ -88,10 +87,10 @@ const User = () => {
             <UserTitle>{loadUserTitle}</UserTitle>
           </ProfileWrap>
           <MenuWrap>
-            <MyPost ref={menuRef} onClick={onMenuClick}>
+            <MyPost ref={menuRef} onClick={onMyPostClick}>
               POST
             </MyPost>
-            <Collection onClick={onMenuClick}>COLLECTION</Collection>
+            <Collection onClick={onCollectionClick}>COLLECTION</Collection>
           </MenuWrap>
           <PostWrap>
             <List>
@@ -107,14 +106,14 @@ const User = () => {
                         </DateHeader>
                         {posts.map((post) => (
                           <PostList
-                          key={post.postId}
-                          postId={post.postId}
-                          postUser={post.postUser}
-                          postContent={post.postContent}
-                          postLike={post.postLike}
-                          comments={post.comments}
-                          createdAt={post.createdAt}
-                          updatedAt={post.updatedAt}
+                            key={post.postId}
+                            postId={post.postId}
+                            postUser={post.postUser}
+                            postContent={post.postContent}
+                            postLike={post.postLike}
+                            comments={post.comments}
+                            createdAt={post.createdAt}
+                            updatedAt={post.updatedAt}
                           />
                         ))}
                       </DateSection>
@@ -126,14 +125,14 @@ const User = () => {
               ) : (
                 collectionPosts.map((post) => (
                   <PostList
-                  key={post.postId}
-                  postId={post.postId}
-                  postUser={post.postUser}
-                  postContent={post.postContent}
-                  postLike={post.postLike}
-                  comments={post.comments}
-                  createdAt={post.createdAt}
-                  updatedAt={post.updatedAt}
+                    key={post.postId}
+                    postId={post.postId}
+                    postUser={post.postUser}
+                    postContent={post.postContent}
+                    postLike={post.postLike}
+                    comments={post.comments}
+                    createdAt={post.createdAt}
+                    updatedAt={post.updatedAt}
                   />
                 ))
               )}

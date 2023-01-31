@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,13 +10,13 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  text-align: center;
   font-family: var(--IMB-Md);
   font-size: 1.3rem;
-  padding: 1rem;
+  width: 100%;
+  text-align: center;
   @media screen and (max-width: 768px) {
     & {
-      padding: 0;
+      display: none;
     }
   }
 `;

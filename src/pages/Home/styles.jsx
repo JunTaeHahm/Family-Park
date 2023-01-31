@@ -32,7 +32,7 @@ export const LeftWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 40%;
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
@@ -41,7 +41,7 @@ export const LeftWrap = styled.div`
 `;
 
 export const CenterWrap = styled.div`
-  width: 35%;
+  width: 40%;
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
@@ -50,10 +50,11 @@ export const CenterWrap = styled.div`
 `;
 
 export const RightWrap = styled.div`
-  width: 30%;
+  width: 20%;
 `;
 
 export const WriteButton = styled.div`
+  font-family: var(--Mont-Li);
   z-index: 1000;
   width: 4rem;
   height: 4rem;
@@ -63,7 +64,6 @@ export const WriteButton = styled.div`
   position: fixed;
   right: 2rem;
   bottom: 4rem;
-  font-family: var(--Mont-Li);
   color: var(--white);
   opacity: ${(props) => (props.isBtnActive ? 0 : 1)};
   display: flex;
@@ -76,5 +76,12 @@ export const WriteButton = styled.div`
     background-color: var(--gray);
     color: var(--black);
     transform: scale(1.05);
+  }
+  @media screen and (max-width: 768px) {
+    & {
+      width: 3.5rem;
+      height: 3.5rem;
+      bottom: 2rem;
+    }
   }
 `;

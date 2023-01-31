@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileMenu = ({ isOpenned }) => {
   const navigate = useNavigate();
+
   const { userName, refetch } = useGetClientUser();
 
   const onClickLogout = useCallback(
@@ -13,7 +14,7 @@ const ProfileMenu = ({ isOpenned }) => {
       e.preventDefault();
       axios
         .get(`/api/logout`)
-        .then((res) => {
+        .then(() => {
           navigate('/');
           window.location.reload();
           refetch();
@@ -28,25 +29,25 @@ const ProfileMenu = ({ isOpenned }) => {
   return userName ? (
     <Container isOpenned={isOpenned}>
       <ModalList>
-        <Link to={`/${userName}`}>Profile</Link>
+        <Link to={`/${userName}`}>내 프로필</Link>
       </ModalList>
       <ModalList>
-        <Link to='/diary'>Diary</Link>
+        <Link to='/diary'>다이어리</Link>
       </ModalList>
       <ModalList>
-        <Link to='/setting'>Setting</Link>
+        <Link to='/setting'>설정</Link>
       </ModalList>
       <ModalList>
-        <Logout onClick={onClickLogout}>Logout</Logout>
+        <Logout onClick={onClickLogout}>로그아웃</Logout>
       </ModalList>
     </Container>
   ) : (
     <Container isOpenned={isOpenned}>
       <ModalList>
-        <Link to={'/login'}>Login</Link>
+        <Link to={'/login'}>로그인</Link>
       </ModalList>
       <ModalList>
-        <Link to={'/signup'}>Sign up</Link>
+        <Link to={'/signup'}>회원가입</Link>
       </ModalList>
     </Container>
   );

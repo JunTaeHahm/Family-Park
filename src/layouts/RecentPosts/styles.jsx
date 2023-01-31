@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   position: sticky;
   top: 5rem;
-
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,6 +20,11 @@ export const Title = styled.h2`
   background-color: var(--background);
   font-family: var(--IMB-Md);
   width: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      display: none;
+    }
+  }
 `;
 
 export const PostWrap = styled.div`
@@ -30,6 +34,12 @@ export const PostWrap = styled.div`
   overflow-x: scroll;
   ::-webkit-scrollbar {
     display: none;
+  }
+  @media screen and (max-width: 768px) {
+    & {
+      padding-top: 0;
+      overflow: visible;
+    }
   }
 `;
 export const Loading = styled.div`

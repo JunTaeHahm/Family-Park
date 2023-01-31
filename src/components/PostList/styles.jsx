@@ -14,7 +14,6 @@ const heartbeat = keyframes`
 `;
 
 export const Container = styled.div`
-  font-family: var(--IMB-Md);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +22,7 @@ export const Container = styled.div`
   left: 50%;
   transform: translate(-50%, 0) scaleY(1);
   margin: 2rem 0;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 1rem;
   border-radius: 1rem;
   width: 85%;
   background-color: var(--white);
@@ -54,21 +53,26 @@ export const PostWrap = styled.div`
   cursor: pointer;
 `;
 
-export const First = styled.div`
+export const ContentWrap = styled.div`
   text-align: left;
 `;
-export const Second = styled.div`
+export const DateWrap = styled.div`
   font-family: var(--IMB-Li);
   text-align: right;
 `;
-export const Third = styled.div`
+export const ActionWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  a {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Content = styled.div`
   font-size: 1.1rem;
+  line-height: 1.4;
 `;
 export const EditForm = styled.form`
   height: max-content;
@@ -82,12 +86,12 @@ export const EditLabel = styled.label`
 `;
 export const EditInput = styled.input`
   font-size: 1.1rem;
-  border: none;
   outline: none;
   width: 100%;
   background-color: var(--white);
-  border-bottom: 0.06rem solid var(--gray);
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 0.06rem solid var(--gray);
+  border-radius: 0.3rem;
   &::placeholder {
     color: var(--black);
     font-size: 1.3rem;
@@ -98,18 +102,25 @@ export const EditButton = styled.button`
   display: none;
 `;
 export const Date = styled.div`
-  margin-top: 0.8rem;
+  margin: 1.5rem 0 0.3rem;
   font-size: 0.7rem;
 `;
 
+export const Avatar = styled.img`
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+`;
 export const Name = styled.span`
   font-size: 0.9rem;
   display: inline-block;
   font-family: var(--IMB-Rg);
   background-color: var(--darkgray);
   color: var(--white);
-  transition: all 0.3;
   padding: 0.1rem 0.3rem;
+  transition: all 0.2s;
   &:hover {
     background-color: var(--gray);
     color: var(--black);
@@ -186,23 +197,29 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   bottom: 0;
+  height: 2rem;
   width: 100%;
 `;
 export const Label = styled.label`
   width: 92%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 85%;
+    }
+  }
 `;
 export const Input = styled.input`
   font-size: 0.8rem;
   width: 100%;
-  height: 2rem;
+  height: 100%;
   background-color: var(--white);
   padding: 0.3rem;
   text-indent: 0.3rem;
   outline: none;
-  border: 0.06rem solid black;
+  border: 0.06rem solid var(--gray);
   &:focus {
-    border: 0.06rem solid black;
+    border: 0.06rem solid var(--darkgray);
   }
   &::placeholder {
     color: var(--gray);
@@ -211,16 +228,23 @@ export const Input = styled.input`
   }
 `;
 export const Button = styled.button`
-  background-color: transparent;
+  font-family: var(--IMB-Li);
+  font-size: 0.9rem;
+  background-color: var(--darkgray);
+  color: var(--white);
   cursor: pointer;
-  padding-top: 0.3rem;
-  font-size: 1.5rem;
   width: 8%;
   height: 100%;
-  transition: all 0.3s;
-  &.active,
+  transition: all 0.2s;
   &:hover {
-    animation: ${heartbeat} 0.5s infinite;
+    background-color: var(--gray);
+    color: var(--black);
+  }
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 0.7rem;
+      width: 15%;
+    }
   }
 `;
 
@@ -238,7 +262,7 @@ export const CommentButton = styled.div`
 
 export const CommentList = styled.div`
   width: 100%;
-  height: 10rem;
+  height: 11rem;
   position: absolute;
   overflow: hidden;
   top: 1rem;
@@ -248,47 +272,56 @@ export const CommentList = styled.div`
 `;
 
 export const NoComment = styled.div`
+  position: relative;
+  top: 50%;
   font-family: var(--IMB-Li);
   font-size: 0.8rem;
   text-align: center;
 `;
 export const Comment = styled.div`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.2;
   font-family: var(--IMB-Li);
   position: relative;
   width: 100%;
   margin-bottom: 0.7rem;
   display: flex;
-  align-items: center;
   span {
     display: inline-block;
     &:nth-of-type(1) {
-      border-radius: 3rem;
       background-color: var(--darkgray);
       color: var(--white);
-      width: 5rem;
-      min-width: 5rem;
       text-align: center;
+      width: 15%;
+      max-width: 15%;
+      height: 1.2rem;
+      line-height: 1.2rem;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      padding: 0 0.3rem;
+      transition: all 0.2s;
+      &:hover {
+        background-color: var(--gray);
+        color: var(--black);
+      }
+      @media screen and (max-width: 768px) {
+        & {
+          width: 23%;
+          max-width: 23%;
+        }
+      }
     }
     &:nth-of-type(2) {
-      font-family: var(--IMB-Rg);
-      text-align: left;
-      margin-left: 0.6rem;
-    }
-    &:nth-of-type(3) {
-      position: absolute;
-      right: 0;
-      width: 6rem;
-      max-width: 6rem;
-      text-align: right;
-      b {
-        opacity: 0.5;
-        margin-right: 0.6rem;
-        cursor: pointer;
-        &:hover {
-          opacity: 1;
-          color: red;
+      text-align: justify;
+      width: 85%;
+      max-width: 85%;
+      line-height: 1.2rem;
+      cursor: pointer;
+      @media screen and (max-width: 768px) {
+        & {
+          width: 77%;
+          max-width: 77%;
+          padding-right: 0.8rem;
         }
       }
     }

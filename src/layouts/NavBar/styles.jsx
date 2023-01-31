@@ -1,20 +1,23 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.nav`
-  font-family: var(--Mont-Rg);
   font-size: 0.9rem;
   position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
   width: 100%;
+  max-width: 1920px;
   height: 3rem;
-  border-bottom: 0.06rem solid var(--black);
   z-index: 100;
   background-color: var(--background);
 `;
 
 export const HeaderLogo = styled.h1`
+  position: absolute;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,17 +55,17 @@ export const NavWrap = styled.div`
 
 export const LoginWrap = styled.div`
   border-left: 0.06rem solid var(--black);
+  border-right: 0.06rem solid var(--black);
   position: relative;
   width: 10rem;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100%;
   background-color: var(--black);
   color: var(--white);
   transition: all 0.3s;
   cursor: pointer;
-
   a {
     height: 100%;
     display: flex;

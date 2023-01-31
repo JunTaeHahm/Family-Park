@@ -1,5 +1,6 @@
 import { Container, Catuion, Main, LeftWrap, CenterWrap, RightWrap } from './styles';
 import { WriteButton } from './styles';
+import PostMenu from '@components/PostMenu';
 import { useGetClientUser } from '@hooks/userInfo';
 import loadable from '@loadable/component';
 import React, { useCallback, useState } from 'react';
@@ -46,16 +47,18 @@ const Home = () => {
       <Main>
         <LeftWrap>
           <Intro />
-          <TopPosts />
+          {innerWidth > 768 ? <TopPosts /> : <PostMenu />}
         </LeftWrap>
-        <CenterWrap>
-          <RecentPosts />
-        </CenterWrap>
         {innerWidth > 768 ? (
-          <RightWrap>
-            <Time />
-            <UserLists />
-          </RightWrap>
+          <>
+            <CenterWrap>
+              <RecentPosts />
+            </CenterWrap>
+            <RightWrap>
+              <Time />
+              <UserLists />
+            </RightWrap>
+          </>
         ) : (
           ''
         )}

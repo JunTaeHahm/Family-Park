@@ -10,7 +10,8 @@ export const Container = styled.div`
   display: flex;
   @media screen and (max-width: 768px) {
     & {
-      padding: 1.5rem;
+      width: 100%;
+      padding: 1.5rem 1.8rem 0;
     }
   }
 `;
@@ -21,6 +22,11 @@ export const Info = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
+  @media screen and (max-width: 768px) {
+    & {
+      gap: 1rem;
+    }
+  }
 `;
 
 export const Image = styled.img`
@@ -52,7 +58,6 @@ export const Title = styled.h2`
 
 export const Description = styled.div`
   width: 60%;
-  font-family: var(--Mont-Rg);
   display: flex;
   flex-direction: column;
   p {
@@ -67,6 +72,9 @@ export const Description = styled.div`
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
+      p {
+        line-height: 1.5;
+      }
     }
   }
 `;

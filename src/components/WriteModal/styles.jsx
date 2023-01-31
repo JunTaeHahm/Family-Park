@@ -7,8 +7,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 `;
@@ -32,6 +32,15 @@ export const Form = styled.form`
     top: 3rem;
     cursor: pointer;
   }
+  @media screen and (max-width: 768px) {
+    & {
+      height: 25%;
+      gap: 0;
+      svg {
+        display: none;
+      }
+    }
+  }
 `;
 
 export const FormHeader = styled.div`
@@ -50,9 +59,9 @@ export const Input = styled.input`
   border: none;
   box-sizing: border-box;
   width: 80%;
-  height: 10%;
   max-height: 5rem;
   padding: 0.8rem;
+  height: 15%;
   text-indent: 0.8rem;
   &:focus {
     outline: none;
@@ -65,13 +74,30 @@ export const Input = styled.input`
     opacity: 0.5;
     height: 100%;
   }
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 0.9rem;
+      width: 80%;
+      padding: 0;
+      margin: 1.5rem 0rem 1rem;
+    }
+  }
 `;
 
 export const Button = styled.button`
   width: 12rem;
   height: 3rem;
   cursor: pointer;
-  border-radius: 20.3rem;
+  border-radius: 0.5rem;
   background-color: ${(props) => (props.buttonActive ? 'var(--black)' : 'var(--gray)')};
   color: var(--white);
+  @media screen and (max-width: 768px) {
+    & {
+      font-size: 0.8rem;
+      align-self: flex-end;
+      margin-right: 10%;
+      width: 4.5rem;
+      height: 1.8rem;
+    }
+  }
 `;

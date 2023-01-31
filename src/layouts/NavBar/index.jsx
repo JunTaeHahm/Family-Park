@@ -46,15 +46,15 @@ const NavBar = () => {
         {innerWidth > 768 ? (
           <NavWrap>
             <Link to={`/${userName}`}>
-              COLLECTION
+              내 컬렉션
               <TfiBookmarkAlt />
             </Link>
             <Link to='/diary'>
-              DIARY
+              다이어리
               <TfiAgenda />
             </Link>
             <Link to='/request'>
-              REQUEST
+              문의
               <TfiAnnouncement />
             </Link>
           </NavWrap>
@@ -75,11 +75,8 @@ const NavBar = () => {
               </>
             )
           ) : (
-            <Link to={`/${userName}`}>
-              <img
-                alt={userName}
-                src={userAvatar}
-              />
+            <Link>
+              <img alt={userName} src={userAvatar} />
               <span>{userName}</span>
             </Link>
           )}

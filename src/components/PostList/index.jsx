@@ -1,9 +1,9 @@
 import {
   LikeButton,
   Container,
-  First,
-  Second,
-  Third,
+  ContentWrap,
+  DateWrap,
+  ActionWrap,
   Actions,
   CommentWrap,
   Content,
@@ -13,6 +13,7 @@ import {
   Form,
   Label,
   Input,
+  Avatar,
   EditForm,
   CommentList,
   Comment,
@@ -31,7 +32,6 @@ import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { toast } from 'react-hot-toast';
-import { BsArrowReturnLeft } from 'react-icons/bs';
 import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -44,6 +44,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const commentWrapRef = useRef(null);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [postAvatar, setPostAvatar] = useState('');
   const [editContent, setEditContent] = useState(postContent);
   const [likeCount, setLikeCount] = useState(postLike.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -56,6 +57,19 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onChangeEditContent = (e) => {
     setEditContent(e.target.value);
   };
+
+  useEffect(() => {
+    axios
+      .get(`/api/users/${postUser}`)
+      .then((res) => {
+        if (res.data.userAvatar) {
+          setPostAvatar(res.data.userAvatar);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }, [postUser]);
 
   const onPostClick = useCallback(
     (e) => {
@@ -84,33 +98,26 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onEditPostSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      const regexp = /^[가-힣.,?;^_!%\s]+$/g;
       const editCheck = postContent !== editContent;
       if (!editCheck) toast.error('수정 한 내용이 없습니다.');
-      if (editCheck) {
-        if (editContent.length > 30) {
-          toast.error('최대 글자 수를 초과했습니다.');
-        } else if (!regexp.test(editContent)) {
-          toast.error('한글로 된 문장으로만 작성이 가능합니다.');
-        } else {
-          axios
-            .put(
-              `/api/posts/${postId}`,
-              {
-                postId: postId,
-                postContent: editContent,
-              },
-              { withCredentials: true },
-            )
-            .then((res) => {
-              toast.success('수정 성공');
-              setIsEditing(false);
-            })
-            .catch((error) => {
-              console.log(error);
-              toast.error('오류가 발생했습니다.');
-            });
-        }
+      else {
+        axios
+          .put(
+            `/api/posts/${postId}`,
+            {
+              postId: postId,
+              postContent: editContent,
+            },
+            { withCredentials: true },
+          )
+          .then((res) => {
+            toast.success('수정 성공');
+            setIsEditing(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error('오류가 발생했습니다.');
+          });
       }
     },
     [postId, editContent, postContent],
@@ -120,7 +127,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     if (window.confirm('포스트를 삭제하시겠습니까?')) {
       axios
         .delete(`/api/posts/${postId}`, { withCredentials: true })
-        .then((res) => {
+        .then(() => {
           toast.success('삭제 성공');
           containerRef.current.classList.add('removed');
           containerRef.current.classList.remove('open');
@@ -179,16 +186,36 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       if (!userName) toast.error('로그인 후 이용하실 수 있습니다.');
       if (!comment) toast.error('댓글을 적어주세요.');
       if (comment && userName) {
-        if (comment.length > 30) {
-          toast.error('최대 글자 수를 초과했습니다.');
-        } else {
+        axios
+          .post(`/api/posts/${postId}/comments`, { postId, userName, comment })
+          .then((res) => {
+            toast.success('작성 성공!');
+            setCommentList(res.data.comments);
+            setCommentCount(res.data.comments.length);
+            setComment('');
+            setIsEditing(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error('오류가 발생했습니다.');
+          });
+      }
+    },
+    [comment, postId, userName],
+  );
+
+  const onDeleteComment = useCallback(
+    (e) => {
+      if (e.target.parentElement.children[0].innerHTML === userName) {
+        if (window.confirm('댓글을 삭제하시겠습니까?')) {
           axios
-            .post(`/api/posts/${postId}/comments`, { postId, userName, comment })
+            .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
+              withCredentials: true,
+            })
             .then((res) => {
-              toast.success('작성 성공!');
               setCommentList(res.data.comments);
               setCommentCount(res.data.comments.length);
-              setComment('');
+              toast.success('삭제 성공');
               setIsEditing(false);
             })
             .catch((error) => {
@@ -198,39 +225,20 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         }
       }
     },
-    [comment, postId, userName],
+    [userName],
   );
-
-  const onDeleteComment = useCallback((e) => {
-    if (window.confirm('댓글을 삭제하시겠습니까?')) {
-      axios
-        .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setCommentList(res.data.comments);
-          setCommentCount(res.data.comments.length);
-          toast.success('삭제 성공');
-          setIsEditing(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error('오류가 발생했습니다.');
-        });
-    }
-  }, []);
 
   return (
     <Container id={postId} ref={containerRef}>
       <PostWrap onClick={onPostClick}>
-        <First>
+        <ContentWrap>
           {isEditing ? (
             <EditForm onSubmit={onEditPostSubmit}>
               <EditLabel htmlFor='editContent-label'>
                 <EditInput
                   autoFocus
                   autoComplete='off'
-                  // type='text'
+                  type='text'
                   name='editContent'
                   id='editContent-label'
                   value={editContent}
@@ -242,15 +250,15 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           ) : (
             <Content>{editContent ? editContent : postContent}</Content>
           )}
-        </First>
-        <Second>
+        </ContentWrap>
+        <DateWrap>
           <Date>
             {updatedAt
-              ? `${dayjs(updatedAt).format('MM월 DD일')} 수정됨`
+              ? `${dayjs(updatedAt).format('MM월 DD일')} 수정`
               : dayjs(createdAt).format('MM월 DD일')}
           </Date>
-        </Second>
-        <Third>
+        </DateWrap>
+        <ActionWrap>
           <Actions>
             <LikeButton onClick={onLikeClick}>
               {isLiked ? <FaHeart className='heart' /> : <FaRegHeart className='likeBtn' />}
@@ -262,14 +270,15 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             </CommentButton>
           </Actions>
           <Link to={`/${postUser}`}>
+            <Avatar src={postAvatar} />
             <Name>{postUser}</Name>
           </Link>
-        </Third>
+        </ActionWrap>
       </PostWrap>
       <CommentWrap ref={commentWrapRef}>
         {postUser === userName || role === 1 ? (
           <PostAction>
-            <span onClick={onEditHandler}>{isEditing ? '취소' : '수정'}</span>
+            <span onClick={onEditHandler}>{isEditing ? '확인' : '수정'}</span>
             <span onClick={onDeletePost}>삭제</span>
           </PostAction>
         ) : (
@@ -283,16 +292,8 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               commentList.map((comment, i) => (
                 <Comment key={i}>
                   <span>{comment.commentUser}</span>
-                  <span>{comment.comment}</span>
-                  <span>
-                    {comment.commentUser === userName || postUser === userName ? (
-                      <b id={comment.commentId} onClick={onDeleteComment}>
-                        X
-                      </b>
-                    ) : (
-                      ''
-                    )}
-                    {comment.commentDate}
+                  <span id={comment.commentId} onClick={onDeleteComment}>
+                    {comment.comment}
                   </span>
                 </Comment>
               ))
@@ -313,7 +314,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             />
           </Label>
           <Button ref={sendBtnRef} id='Button' type='submit'>
-            <BsArrowReturnLeft />
+            등록
           </Button>
         </Form>
       </CommentWrap>

@@ -6,7 +6,14 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirteModalOpen }) => {
+const WriteModal = ({
+  userId,
+  userAvatar,
+  userName,
+  setIsBtnActive,
+  wirteModalOpen,
+  setWirteModalOpen,
+}) => {
   const ref = useRef();
   const [content, setContent] = useState('');
   const [buttonActive, setButtonActive] = useState(false);
@@ -41,17 +48,14 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      const regexp = /^[가-힣.,?;^_!%\s]+$/g;
       if (!userName) toast.error('로그인 후 이용하실 수 있습니다.');
       if (!content) toast.error('문장을 적어주세요.');
       if (content && userName && userId) {
-        if (content.length > 100) {
-          toast.error('최대 글자 수를 초과했습니다.(최대 100자)');
-        } else if (!regexp.test(content)) {
-          toast.error('한글로 된 문장으로만 작성이 가능합니다.');
+        if (content.length > 300) {
+          toast.error('최대 글자 수를 초과했습니다.(최대 300자)');
         } else {
           axios
-            .post('/api/posts', { userId, userName, content })
+            .post('/api/posts', { userId, userAvatar, userName, content })
             .then((res) => {
               refetch();
               toast.success('작성 성공!');
@@ -65,7 +69,7 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
         }
       }
     },
-    [content, userId, userName],
+    [content, userId, refetch, userName, userAvatar],
   );
 
   return (
@@ -90,7 +94,7 @@ const WriteModal = ({ userId, userName, setIsBtnActive, wirteModalOpen, setWirte
             onChange={onChangeContent}
           />
           <Button buttonActive={buttonActive} id='Button' type='submit'>
-            작성 완료
+            작성
           </Button>
         </Form>
       )}

@@ -35,6 +35,8 @@ const GlobalStyle = () => (
       #app {
         height: 100%;
         min-height: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
       }
 
       li {
@@ -64,16 +66,8 @@ const GlobalStyle = () => (
 
       /* Montserrat */
       @font-face {
-        font-family: Montserrat-Bold;
-        src: url(./src/assets/fonts/Montserrat-Bold.ttf);
-      }
-      @font-face {
         font-family: Montserrat-Regular;
         src: url(./src/assets/fonts/Montserrat-Regular.ttf);
-      }
-      @font-face {
-        font-family: Montserrat-Medium;
-        src: url(./src/assets/fonts/Montserrat-Medium.ttf);
       }
       @font-face {
         font-family: Montserrat-Light;
@@ -116,9 +110,7 @@ const GlobalStyle = () => (
         --IMB-Md: IBM-Medium;
         --IMB-Li: IBM-Light;
 
-        --Mont-Bd: Montserrat-Bold;
         --Mont-Rg: Montserrat-Regular;
-        --Mont-Md: Montserrat-Medium;
         --Mont-Li: Montserrat-Light;
 
         // 색상

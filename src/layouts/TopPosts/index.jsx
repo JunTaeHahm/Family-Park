@@ -24,14 +24,14 @@ const TopPosts = () => {
             .slice(0, 3)
             .map((post) => (
               <PostList
-              key={post.postId}
-              postId={post.postId}
-              postUser={post.postUser}
-              postContent={post.postContent}
-              postLike={post.postLike}
-              comments={post.comments}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
+                key={post.postId}
+                postId={post.postId}
+                postUser={post.postUser}
+                postContent={post.postContent}
+                postLike={post.postLike}
+                comments={post.comments}
+                createdAt={post.createdAt}
+                updatedAt={post.updatedAt}
               />
             ))}
         </PostWrap>

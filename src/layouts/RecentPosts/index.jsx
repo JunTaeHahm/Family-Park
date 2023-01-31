@@ -10,7 +10,7 @@ const RecentPosts = () => {
   const postSections = makeSection(recentPosts ? [...recentPosts] : []);
 
   return (
-    <Container>
+    <Container >
       <Title>최신 포스트</Title>
       {isLoading ? (
         <Loading>
@@ -18,7 +18,7 @@ const RecentPosts = () => {
           <CircularProgress color='inherit' />
         </Loading>
       ) : (
-        <PostWrap>
+        <PostWrap className='post-wrap'>
           {Object.entries(postSections).map(([date, posts]) => {
             return (
               <DateSection key={date}>
