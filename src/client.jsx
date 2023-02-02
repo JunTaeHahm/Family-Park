@@ -27,7 +27,7 @@ root.render(
         <GlobalStyle />
         <App />
         <Toaster
-          position='bottom-center'
+          position='top-center'
           reverseOrder={false}
           gutter={8}
           toastOptions={{

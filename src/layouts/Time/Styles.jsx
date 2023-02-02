@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  font-family: var(--SD-O);
   display: flex;
   width: 100%;
   height: 20%;

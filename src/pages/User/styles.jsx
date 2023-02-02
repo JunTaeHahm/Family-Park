@@ -13,6 +13,11 @@ export const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+  @media screen and (max-width: 768px) {
+    & {
+      overflow: visible;
+    }
+  }
 `;
 
 export const ProfileWrap = styled.div`
@@ -59,7 +64,7 @@ export const ProfileName = styled.div`
 `;
 export const UserTitle = styled.div`
   font-size: 1.3rem;
-  background-color: var(--primary1);
+  background-color: var(--primary2);
   line-height: 1.3;
   padding: 0 0.3rem;
 `;

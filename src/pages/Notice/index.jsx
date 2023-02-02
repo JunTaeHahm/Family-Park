@@ -1,8 +1,8 @@
 import { Container } from './styles';
 import React from 'react';
 
-const Request = () => {
+const Notice = () => {
   return <Container>준비중입니다.</Container>;
 };
 
-export default Request;
+export default Notice;

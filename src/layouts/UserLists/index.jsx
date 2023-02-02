@@ -20,7 +20,7 @@ const UserLists = () => {
       offlineUsers.push(user);
     }
   });
-  const sortedUsers = [...onlineUsers, ...offlineUsers];
+  const sortedUsers = [...onlineUsers, ...offlineUsers.sort()];
 
   return (
     <Container>

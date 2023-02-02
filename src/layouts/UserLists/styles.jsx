@@ -26,7 +26,7 @@ export const ListWrap = styled.div`
     width: 0.6rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: var(--primary1);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 2rem;
   }
   &::-webkit-scrollbar-button:start:decrement,

@@ -1,11 +1,11 @@
 import ProfileMenu from '../../components/ProfileMenu';
-import { HeaderLogo, Header, ThemeButton, NavWrap, LoginWrap } from './styles';
+import { HeaderLogo, Header, ActionButton, LoginWrap } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { BsBell } from 'react-icons/bs';
 import { BsFillSunFill } from 'react-icons/bs';
-import { TfiAgenda, TfiBookmarkAlt, TfiAnnouncement } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -44,27 +44,12 @@ const NavBar = () => {
             />
           </Link>
         </HeaderLogo>
-        <ThemeButton>
+        <ActionButton>
+          <BsBell />
+        </ActionButton>
+        <ActionButton>
           <BsFillSunFill />
-        </ThemeButton>
-        {innerWidth > 768 ? (
-          <NavWrap>
-            <Link to={`/${userName}`}>
-              내 컬렉션
-              <TfiBookmarkAlt />
-            </Link>
-            <Link to='/diary'>
-              다이어리
-              <TfiAgenda />
-            </Link>
-            <Link to='/request'>
-              문의
-              <TfiAnnouncement />
-            </Link>
-          </NavWrap>
-        ) : (
-          ''
-        )}
+        </ActionButton>
         <LoginWrap
           onTouchStart={onTouchStartProfile}
           onMouseOver={onMouseOverProfile}

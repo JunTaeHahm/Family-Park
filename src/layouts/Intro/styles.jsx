@@ -30,7 +30,8 @@ export const Info = styled.div`
 `;
 
 export const Image = styled.img`
-  box-shadow: var(--card-shadow);  border-radius: 50%;
+  box-shadow: var(--card-shadow);
+  border-radius: 50%;
   width: 10rem;
   height: 10rem;
   object-fit: cover;
@@ -72,6 +73,7 @@ export const Description = styled.div`
     & {
       width: 100%;
       p {
+        margin-top: 0;
         line-height: 1.5;
       }
     }

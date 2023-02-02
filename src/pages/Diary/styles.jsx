@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 100vh;
   padding-top: 5rem;
@@ -13,6 +14,12 @@ export const CalendarWrap = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      height: 50%;
+    }
+  }
 
   .react-calendar {
     width: 70%;
@@ -20,7 +27,8 @@ export const CalendarWrap = styled.div`
     max-height: 70%;
     background-color: var(--secondary1);
     border-radius: 1rem;
-    box-shadow: var(--card-shadow);    display: block;
+    box-shadow: var(--card-shadow);
+    display: block;
     padding: 2rem;
     gap: 2rem;
   }
@@ -167,4 +175,10 @@ export const DiaryWrap = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    & {
+      width: 100%;
+      height: 50%;
+    }
+  }
 `;

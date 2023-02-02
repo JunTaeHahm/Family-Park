@@ -42,6 +42,11 @@ export const Container = styled.div`
   }
   &:hover .likeBtn {
     animation: ${heartbeat} 0.3s infinite;
+    @media screen and (max-width: 768px) {
+      & {
+        animation: none;
+      }
+    }
   }
 `;
 

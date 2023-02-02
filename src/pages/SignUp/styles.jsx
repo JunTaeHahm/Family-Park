@@ -8,11 +8,24 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export const Form = styled.form`
   margin: 0 auto;
   width: 24rem;
   max-width: 24rem;
+`;
+
+export const HeaderLogo = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  margin-bottom: 2rem;
+  img {
+    width: 15rem;
+    height: 100%;
+    vertical-align: middle;
+    object-fit: scale-down;
+  }
 `;
 
 export const FormTitle = styled.h2`
@@ -25,7 +38,7 @@ export const FormTitle = styled.h2`
 export const Label = styled.label`
   display: block;
   margin-bottom: 1.3rem;
-  color: var(--primary2);
+  color: var(--primary3);
   font-size: 0.9rem;
   & span {
     font-family: var(--IMB-Rg);
@@ -62,7 +75,7 @@ export const Input = styled.input`
     border-bottom: 0.06rem solid black;
   }
   &::placeholder {
-    color: var(--primary2);
+    color: var(--primary3);
     opacity: 0.5;
     font-size: 0.9rem;
     height: 100%;
@@ -89,7 +102,7 @@ export const Button = styled.button`
   margin: 0.6rem 0 1.3rem;
   width: 100%;
   color: #fff;
-  background-color: var(--primary1);
+  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
   border: none;
   height: 4rem;
   user-select: none;

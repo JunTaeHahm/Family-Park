@@ -12,7 +12,16 @@ const GlobalStyle = () => (
         margin: 0;
         border: 0;
       }
-
+      input,
+      textarea,
+      button {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+      }
       html,
       body,
       #root {
@@ -115,9 +124,10 @@ const GlobalStyle = () => (
 
         // 색상
         --card-shadow: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
-
+        --deactive: #c9c9c9;
         --primary1: #222;
-        --primary2: #83a2a1;
+        --primary2: #a0c3d2;
+        --primary3: #83a2a1;
         --secondary1: #f8f9fa;
         --secondary2: #fbfdfc;
         --prism-code-1: #7c858d;

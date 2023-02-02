@@ -32,7 +32,7 @@ export const LeftWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40%;
+  width: 42.5%;
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
@@ -41,7 +41,7 @@ export const LeftWrap = styled.div`
 `;
 
 export const CenterWrap = styled.div`
-  width: 40%;
+  width: 42.5%;
   @media screen and (max-width: 768px) {
     & {
       width: 100%;
@@ -50,7 +50,7 @@ export const CenterWrap = styled.div`
 `;
 
 export const RightWrap = styled.div`
-  width: 20%;
+  width: 15%;
 `;
 
 export const WriteButton = styled.div`
@@ -69,7 +69,8 @@ export const WriteButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--card-shadow);  transition: all 0.3s;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s;
   cursor: pointer;
   &:hover {
     background-color: var(--primary2);

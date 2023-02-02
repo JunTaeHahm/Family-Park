@@ -6,7 +6,7 @@ const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
 const Home = loadable(() => import('@pages/Home'));
 const LogIn = loadable(() => import('@pages/LogIn'));
 const SignUp = loadable(() => import('@pages/SignUp'));
-const Request = loadable(() => import('@pages/Request'));
+const Notice = loadable(() => import('@pages/Notice'));
 const NavBar = loadable(() => import('@layouts/NavBar'));
 const Diary = loadable(() => import('@pages/Diary'));
 const Setting = loadable(() => import('@pages/Setting'));
@@ -30,7 +30,7 @@ const App = () => {
           <Route path='/*' element={<Navigate to='/' />} />
           <Route path='/:user' element={<User />} />
           <Route path='/diary' element={<Diary />} />
-          <Route path='/request' element={<Request />} />
+          <Route path='/notice' element={<Notice />} />
           <Route path='/setting' element={<Setting />} />
         </Route>
         <Route path='/login' element={<LogIn />} />

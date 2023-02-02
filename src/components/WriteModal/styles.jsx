@@ -19,7 +19,8 @@ export const Form = styled.form`
   width: 80%;
   height: 80%;
   background-color: var(--secondary1);
-  box-shadow: var(--card-shadow);  border-radius: 1rem;
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +89,7 @@ export const Button = styled.button`
   height: 3rem;
   cursor: pointer;
   border-radius: 0.5rem;
-  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--primary2)')};
+  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
   color: var(--secondary1);
   @media screen and (max-width: 768px) {
     & {

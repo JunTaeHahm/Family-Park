@@ -13,7 +13,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0 0 0.6rem 0.6rem;
-  box-shadow: var(--card-shadow);  justify-content: center;
+  box-shadow: var(--card-shadow);
+  justify-content: center;
   gap: 0.6rem;
   transition: all 0.3s;
   cursor: pointer;
@@ -25,7 +26,10 @@ export const ModalList = styled.div`
   width: 100%;
   transition: background-color 0.2s;
   a {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
     width: 100%;
     height: 100%;
   }
@@ -41,4 +45,13 @@ export const ModalList = styled.div`
   }
 `;
 
-export const Logout = styled.div``;
+export const Logout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  svg {
+    transform-origin: center center;
+    transform: rotate(180deg);
+  }
+`;

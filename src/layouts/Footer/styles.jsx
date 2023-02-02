@@ -15,23 +15,31 @@ export const Container = styled.footer`
   align-items: center;
   gap: 2rem;
   & > div {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 0.8rem;
-    a {
-      font-family: var(--IMB-Li);
+    justify-content: space-between;
+    div {
       display: flex;
       align-items: center;
-      background-color: var(--primary1);
-      color: var(--secondary1);
-      border-radius: 2rem;
-      padding: 0.3rem 1rem;
+      justify-content: space-around;
       gap: 0.8rem;
-      transition: all 0.2s;
-      &:hover {
-        background-color: var(--primary2);
-        color: var(--primary1);
+      a {
+        font-family: var(--IMB-Li);
+        display: flex;
+        align-items: center;
+        background-color: var(--primary1);
+        color: var(--secondary1);
+        border-radius: 2rem;
+        padding: 0.3rem 1rem;
+        gap: 0.8rem;
+        transition: all 0.2s;
+        &:hover {
+          background-color: var(--primary2);
+          color: var(--primary1);
+        }
       }
     }
   }

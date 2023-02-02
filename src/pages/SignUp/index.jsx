@@ -6,6 +6,7 @@ import {
   Container,
   Form,
   FormTitle,
+  HeaderLogo,
   LinkContainer,
   Button,
 } from './styles';
@@ -65,9 +66,9 @@ const SignUp = () => {
             toast.success('회원가입 성공!');
           })
           .catch((error) => {
-            if (error.response.data.message) toast.error(error.response.data.message);
-            if (error.response.data.userName) toast.error('유저명을 확인해주세요.');
-            if (error.response.data.password) toast.error('비밀번호를 확인해주세요.');
+            if (error.response.data?.exUserMessage) toast.error(error.response.data.exUserMessage);
+            if (error.response.data.errors?.userName) toast.error('유저명을 확인해주세요.');
+            if (error.response.data.errors?.password) toast.error('비밀번호를 확인해주세요.');
           });
       }
     },
@@ -77,11 +78,20 @@ const SignUp = () => {
   return (
     <Container>
       <Form onSubmit={onSubmit}>
+        <HeaderLogo>
+          <Link to='/'>
+            <img
+              src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
+              alt='센텐스유 로고'
+            />
+          </Link>
+        </HeaderLogo>
         <FormTitle>회원가입</FormTitle>
         <Label htmlFor='username-label'>
           <span>유저명</span>
           <div>
             <Input
+              autoFocus
               autoComplete='off'
               type='text'
               name='username'
@@ -91,7 +101,7 @@ const SignUp = () => {
               onChange={onChangeUserName}
             />
           </div>
-          <FormRequest>유저명은 2자 이상, 5자 이하의 한글만 허용됩니다.</FormRequest>
+          <FormRequest>유저명은 2자 이상, 5자 이하만 허용됩니다.</FormRequest>
         </Label>
         <Label className='password-wrap' htmlFor='password-label'>
           <span>비밀번호</span>

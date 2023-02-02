@@ -24,41 +24,19 @@ export const HeaderLogo = styled.h1`
   height: 100%;
   padding: 0 1.5rem;
   img {
-    width: 12rem;
+    width: 10rem;
     height: 100%;
     vertical-align: middle;
     object-fit: scale-down;
   }
 `;
-export const NavWrap = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  align-items: center;
-  gap: 6rem;
-  & > a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.3rem;
-    background-color: var(--primary1);
-    color: var(--secondary1);
-    padding: 0.3rem 0.6rem;
-    transition: all 0.2s;
-    &:hover {
-      background-color: var(--primary2);
-      color: var(--primary1);
-    }
-  }
-`;
 
-export const ThemeButton = styled.button`
+export const ActionButton = styled.button`
   background-color: transparent;
   cursor: pointer;
-  margin-right: 0.8rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  margin-right: 0.5rem;
+  width: 2.3rem;
+  height: 2.3rem;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -89,7 +67,6 @@ export const LoginWrap = styled.div`
     justify-content: center;
     gap: 1rem;
     img {
-      border: 0.06rem solid var(--secondary1);
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
@@ -102,8 +79,9 @@ export const LoginWrap = styled.div`
   }
   @media screen and (max-width: 768px) {
     & {
+      min-width: 8rem;
       width: max-content;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
     }
   }
 `;

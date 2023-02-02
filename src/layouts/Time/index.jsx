@@ -12,7 +12,6 @@ const Time = () => {
   return (
     <Container>
       {nowTime}
-      <div>준비중입니다.</div>
     </Container>
   );
 };
