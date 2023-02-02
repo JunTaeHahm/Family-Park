@@ -1,4 +1,4 @@
-![](https://velog.velcdn.com/images/ahuuae/post/bc7793bb-46b9-40ec-b179-dfb93fe826ad/image.png)
+![](https://velog.velcdn.com/images/ahuuae/post/0b9aa86d-ba08-4b16-a090-511144100945/image.png)
 
 ## 💬 누군가의 말 한마디에 
 용기가 생긴 적이 있나요?
