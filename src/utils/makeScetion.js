@@ -8,7 +8,7 @@ export const makeSection = (postList) => {
   postList.forEach((post) => {
     const monthDate = dayjs(post.createdAt).format('MM월 DD일 ddd요일');
     if (Array.isArray(sections[monthDate])) {
-      sections[monthDate].push(post);
+      sections[monthDate]?.push(post);
     } else {
       sections[monthDate] = [post];
     }

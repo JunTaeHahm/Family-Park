@@ -1,10 +1,9 @@
 import ProfileMenu from '../../components/ProfileMenu';
-import { HeaderLogo, Header, ActionButton, LoginWrap } from './styles';
+import { HeaderLogo, Header, ThemeButton, LoginWrap } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { BsBell } from 'react-icons/bs';
 import { BsFillSunFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
@@ -44,12 +43,9 @@ const NavBar = () => {
             />
           </Link>
         </HeaderLogo>
-        <ActionButton>
-          <BsBell />
-        </ActionButton>
-        <ActionButton>
+        <ThemeButton>
           <BsFillSunFill />
-        </ActionButton>
+        </ThemeButton>
         <LoginWrap
           onTouchStart={onTouchStartProfile}
           onMouseOver={onMouseOverProfile}

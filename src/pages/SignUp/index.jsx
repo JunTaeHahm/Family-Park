@@ -63,12 +63,12 @@ const SignUp = () => {
           })
           .then(() => {
             navigate('/login');
-            toast.success('회원가입 성공!');
+            toast.success(`회원가입 성공`);
           })
           .catch((error) => {
             if (error.response.data?.exUserMessage) toast.error(error.response.data.exUserMessage);
-            if (error.response.data.errors?.userName) toast.error('유저명을 확인해주세요.');
-            if (error.response.data.errors?.password) toast.error('비밀번호를 확인해주세요.');
+            if (error.response.data.errors?.userName) toast.error('유저명 조건을 확인해주세요.');
+            if (error.response.data.errors?.password) toast.error('비밀번호 조건을 확인해주세요.');
           });
       }
     },

@@ -23,7 +23,7 @@ export const useAllUsers = () => {
 
   let allUsers = [];
   for (let key in data) {
-    allUsers.push(data[key].userName);
+    allUsers?.push(data[key].userName);
   }
   return { data, allUsers, isLoading, error };
 };

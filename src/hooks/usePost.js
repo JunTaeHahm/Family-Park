@@ -23,7 +23,7 @@ export const useGetAllPosts = () => {
   let allPosts = [];
 
   for (let key in data) {
-    allPosts.push({
+    allPosts?.push({
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,
@@ -58,7 +58,7 @@ export const useGetRecentPosts = () => {
   let recentPosts = [];
 
   for (let key in data) {
-    recentPosts.push({
+    recentPosts?.push({
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,
@@ -92,7 +92,7 @@ export const useGetUserPosts = (userName) => {
   );
   let userPosts = [];
   for (let key in data) {
-    userPosts.push({
+    userPosts?.push({
       postId: data[key].postId,
       postContent: data[key].postContent,
       postUser: data[key].postUser,

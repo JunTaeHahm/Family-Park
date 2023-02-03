@@ -11,7 +11,6 @@ import { IoWarningOutline } from 'react-icons/io5';
 const Intro = loadable(() => import('@layouts/Intro'));
 const Footer = loadable(() => import('@layouts/Footer'));
 const RecentPosts = loadable(() => import('@layouts/RecentPosts'));
-const Time = loadable(() => import('@layouts/Time'));
 const UserLists = loadable(() => import('@layouts/UserLists'));
 const WriteModal = loadable(() => import('@components/WriteModal'));
 const TopPosts = loadable(() => import('@layouts/TopPosts'));
@@ -55,7 +54,6 @@ const Home = () => {
               <RecentPosts />
             </CenterWrap>
             <RightWrap>
-              <Time />
               <UserLists />
             </RightWrap>
           </>

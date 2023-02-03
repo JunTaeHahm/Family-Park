@@ -4,7 +4,6 @@ import axios from 'axios';
 import React, { useCallback } from 'react';
 import { BsPersonBoundingBox } from 'react-icons/bs';
 import { SlLogout, SlSettings } from 'react-icons/sl';
-import { TfiAgenda } from 'react-icons/tfi';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileMenu = ({ isOpenned }) => {
@@ -35,12 +34,6 @@ const ProfileMenu = ({ isOpenned }) => {
         <Link to={`/${userName}`}>
           내 프로필
           <BsPersonBoundingBox />
-        </Link>
-      </ModalList>
-      <ModalList>
-        <Link to='/diary'>
-          다이어리
-          <TfiAgenda />
         </Link>
       </ModalList>
       <ModalList>

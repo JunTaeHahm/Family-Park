@@ -31,7 +31,7 @@ export const HeaderLogo = styled.h1`
   }
 `;
 
-export const ActionButton = styled.button`
+export const ThemeButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   margin-right: 0.5rem;

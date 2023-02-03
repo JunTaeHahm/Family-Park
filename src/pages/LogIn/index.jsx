@@ -47,6 +47,7 @@ const LogIn = () => {
           )
           .then((res) => {
             navigate('/');
+            toast.success(`환영합니다 ${userName}님!`);
           })
           .catch((error) => {
             console.log(error.response);

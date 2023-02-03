@@ -15,9 +15,9 @@ const UserLists = () => {
   let offlineUsers = [];
   allUsers.forEach((user, i) => {
     if (onlineList.indexOf(user) !== -1) {
-      onlineUsers.push(user);
+      onlineUsers?.push(user);
     } else {
-      offlineUsers.push(user);
+      offlineUsers?.push(user);
     }
   });
   const sortedUsers = [...onlineUsers, ...offlineUsers.sort()];
