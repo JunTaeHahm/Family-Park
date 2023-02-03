@@ -1,10 +1,10 @@
 import { Container, Catuion, Main, LeftWrap, CenterWrap, RightWrap } from './styles';
 import { WriteButton } from './styles';
 import PostMenu from '@components/PostMenu';
+import { useViewPort } from '@hooks/useViewPort';
 import { useGetClientUser } from '@hooks/userInfo';
 import loadable from '@loadable/component';
 import React, { useCallback, useState } from 'react';
-import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { IoWarningOutline } from 'react-icons/io5';
 
@@ -18,15 +18,9 @@ const TopPosts = loadable(() => import('@layouts/TopPosts'));
 const Home = () => {
   const [wirteModalOpen, setWirteModalOpen] = useState(false);
   const [isBtnActive, setIsBtnActive] = useState(false);
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-  const { userId, userName, userAvatar } = useGetClientUser();
 
-  useEffect(() => {
-    const resizeListener = () => {
-      setInnerWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', resizeListener);
-  }, []);
+  const { innerWidth } = useViewPort();
+  const { userId, userName, userAvatar } = useGetClientUser();
 
   const onWriteHandler = useCallback(() => {
     if (userName) {
@@ -41,7 +35,7 @@ const Home = () => {
     <Container>
       <Catuion>
         <IoWarningOutline />
-        &nbsp; 아직 개발 중인 서비스로 여러 문제가 발생할 수 있어요.
+        &nbsp;개발 중인 서비스로 문제가 발생할 수 있어요 :&#40;
       </Catuion>
       <Main>
         <LeftWrap>
@@ -54,7 +48,7 @@ const Home = () => {
               <RecentPosts />
             </CenterWrap>
             <RightWrap>
-              <UserLists />
+              <UserLists innerWidth={innerWidth} />
             </RightWrap>
           </>
         ) : (

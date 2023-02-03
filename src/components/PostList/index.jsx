@@ -238,7 +238,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
                 <EditInput
                   autoFocus
                   autoComplete='off'
-                  type='text'
+                  type='textarea'
                   name='editContent'
                   id='editContent-label'
                   value={editContent}

@@ -9,11 +9,11 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   position: relative;
   z-index: 10;
   width: 80%;
@@ -54,15 +54,15 @@ export const FormHeader = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled.textarea`
   transition: all 0.3s;
   border: none;
+  resize: none;
   box-sizing: border-box;
   width: 80%;
-  max-height: 5rem;
-  padding: 0.8rem;
+  padding: 1rem;
   height: 15%;
-  text-indent: 0.8rem;
+  line-height: 1.5;
   &:focus {
     outline: none;
     border-bottom: 0.06rem solid var(--primary1);
@@ -79,7 +79,7 @@ export const Input = styled.input`
       font-size: 0.9rem;
       width: 80%;
       padding: 0;
-      margin: 1.5rem 0rem 1rem;
+      margin: 2.5rem 0rem 2rem;
     }
   }
 `;

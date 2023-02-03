@@ -4,9 +4,10 @@ import axios from 'axios';
 import React, { useCallback } from 'react';
 import { BsPersonBoundingBox } from 'react-icons/bs';
 import { SlLogout, SlSettings } from 'react-icons/sl';
+import { TfiAnnouncement } from 'react-icons/tfi';
 import { Link, useNavigate } from 'react-router-dom';
 
-const ProfileMenu = ({ isOpenned }) => {
+const ProfileMenu = ({ isOpened }) => {
   const navigate = useNavigate();
 
   const { userName, refetch } = useGetClientUser();
@@ -29,28 +30,22 @@ const ProfileMenu = ({ isOpenned }) => {
   );
 
   return userName ? (
-    <Container isOpenned={isOpenned}>
+    <Container isOpened={isOpened}>
       <ModalList>
-        <Link to={`/${userName}`}>
-          내 프로필
-          <BsPersonBoundingBox />
-        </Link>
+        <Link to={`/${userName}`}>내 프로필</Link>
       </ModalList>
       <ModalList>
-        <Link to='/setting'>
-          설정
-          <SlSettings />
-        </Link>
+        <Link to='/setting'>설정</Link>
       </ModalList>
       <ModalList>
-        <Logout onClick={onClickLogout}>
-          로그아웃
-          <SlLogout />
-        </Logout>
+        <Link to='/센텐스유'>공지사항</Link>
+      </ModalList>
+      <ModalList>
+        <Logout onClick={onClickLogout}>로그아웃</Logout>
       </ModalList>
     </Container>
   ) : (
-    <Container isOpenned={isOpenned}>
+    <Container isOpened={isOpened}>
       <ModalList>
         <Link to={'/login'}>로그인</Link>
       </ModalList>

@@ -41,7 +41,7 @@ export const Label = styled.label`
   color: var(--primary3);
   font-size: 0.9rem;
   & span {
-    font-family: var(--IMB-Rg);
+    font-weight: normal;
     color: var(--primary1);
   }
   &.password-wrap {
@@ -60,7 +60,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   background-color: var(--secondary1);
   transition: all 0.3s;
   font-size: 0.9rem;
@@ -83,7 +83,7 @@ export const Input = styled.input`
 `;
 
 export const FormRequest = styled.p`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   font-size: 0.8rem;
   display: block;
   width: 100%;

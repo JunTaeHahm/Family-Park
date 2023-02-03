@@ -18,7 +18,7 @@ export const Title = styled.h2`
   font-size: 1.3rem;
   padding: 1.5rem 1rem 1rem;
   background-color: var(--secondary2);
-  font-family: var(--IMB-Md);
+  font-weight: 500;
   width: 100%;
   @media screen and (max-width: 768px) {
     & {
@@ -64,7 +64,7 @@ export const DateHeader = styled.div`
   z-index: 10;
   background-color: var(--secondary2);
   button {
-    font-family: var(--IMB-Li);
+    font-weight: 300;
     font-size: 0.9rem;
     height: 2rem;
     line-height: 1.8rem;

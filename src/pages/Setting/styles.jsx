@@ -207,7 +207,7 @@ export const Withdrawal = styled.button`
 `;
 export const Caution = styled.div`
   margin-top: 0.5rem;
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   @media screen and (max-width: 768px) {
     & {
       margin-top: 1rem;

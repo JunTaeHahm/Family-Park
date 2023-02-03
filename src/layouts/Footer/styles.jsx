@@ -27,7 +27,7 @@ export const Container = styled.footer`
       justify-content: space-around;
       gap: 0.8rem;
       a {
-        font-family: var(--IMB-Li);
+        font-weight: 300;
         display: flex;
         align-items: center;
         background-color: var(--primary1);

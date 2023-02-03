@@ -64,7 +64,6 @@ export const ProfileName = styled.div`
 `;
 export const UserTitle = styled.div`
   font-size: 1.3rem;
-  background-color: var(--primary2);
   line-height: 1.3;
   padding: 0 0.3rem;
 `;
@@ -72,10 +71,9 @@ export const UserTitle = styled.div`
 export const MenuWrap = styled.div`
   position: relative;
   font-size: 1.3rem;
-  font-family: var(--Mont-Rg);
   width: 100%;
   height: 4rem;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem;
   span {
     cursor: pointer;
     margin: 0 3rem;
@@ -98,6 +96,9 @@ export const MenuWrap = styled.div`
     }
     &.collection:first-of-type::after {
       transform: translate(3rem, 0);
+    }
+    &.notice:first-of-type::after {
+      transform: translate(-50%, 0);
     }
   }
   @media screen and (max-width: 768px) {
@@ -124,6 +125,8 @@ export const Loading = styled.div`
   align-items: center;
   gap: 2rem;
 `;
+
+export const Notice = styled.span``;
 export const MyPost = styled.span``;
 export const Collection = styled.span``;
 
@@ -153,31 +156,4 @@ export const NoPost = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`;
-
-export const DateSection = styled.section``;
-
-export const DateHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: sticky;
-  height: 3rem;
-  top: 0;
-  z-index: 10;
-  background-color: var(--secondary2);
-  button {
-    font-family: var(--IMB-Li);
-    font-size: 0.9rem;
-    height: 2rem;
-    line-height: 1.8rem;
-    padding: 0 1rem;
-    z-index: 2;
-    border-radius: 3rem;
-    position: relative;
-    background: var(--primary1);
-    color: var(--secondary1);
-    outline: none;
-  }
 `;

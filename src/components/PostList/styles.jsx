@@ -62,7 +62,7 @@ export const ContentWrap = styled.div`
   text-align: left;
 `;
 export const DateWrap = styled.div`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   text-align: right;
 `;
 export const ActionWrap = styled.div`
@@ -76,6 +76,7 @@ export const ActionWrap = styled.div`
 `;
 
 export const Content = styled.div`
+  white-space: pre-line;
   font-size: 1.1rem;
   line-height: 1.4;
 `;
@@ -89,9 +90,10 @@ export const EditLabel = styled.label`
   border-color: transparent;
   border-style: none;
 `;
-export const EditInput = styled.input`
+export const EditInput = styled.textarea`
   font-size: 1.1rem;
   outline: none;
+  resize: none;
   width: 100%;
   background-color: var(--secondary1);
   padding: 0.5rem;
@@ -121,7 +123,7 @@ export const Avatar = styled.img`
 export const Name = styled.span`
   font-size: 0.9rem;
   display: inline-block;
-  font-family: var(--IMB-Rg);
+  font-weight: normal;
   background-color: var(--primary1);
   color: var(--secondary1);
   padding: 0.1rem 0.3rem;
@@ -133,7 +135,7 @@ export const Name = styled.span`
 `;
 
 export const Actions = styled.div`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   display: flex;
   align-items: center;
   svg {
@@ -173,7 +175,7 @@ export const CommentWrap = styled.div`
   }
 `;
 export const PostAction = styled.div`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -230,7 +232,7 @@ export const Input = styled.input`
   }
 `;
 export const Button = styled.button`
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   font-size: 0.9rem;
   background-color: var(--primary1);
   color: var(--secondary1);
@@ -276,14 +278,14 @@ export const CommentList = styled.div`
 export const NoComment = styled.div`
   position: relative;
   top: 50%;
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   font-size: 0.8rem;
   text-align: center;
 `;
 export const Comment = styled.div`
   font-size: 0.8rem;
   line-height: 1.2;
-  font-family: var(--IMB-Li);
+  font-weight: 300;
   position: relative;
   width: 100%;
   margin-bottom: 0.7rem;

@@ -50,11 +50,15 @@ export const CenterWrap = styled.div`
 `;
 
 export const RightWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 15%;
 `;
 
 export const WriteButton = styled.div`
-  font-family: var(--Mont-Li);
+  font-family: 'Montserrat';
+  font-weight: 300;
   z-index: 1000;
   width: 4rem;
   height: 4rem;

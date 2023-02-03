@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: var(--IMB-Md);
+  font-weight: 500;
   font-size: 1.3rem;
   width: 100%;
   text-align: center;

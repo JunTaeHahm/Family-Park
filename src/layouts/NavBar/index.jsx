@@ -1,24 +1,17 @@
 import ProfileMenu from '../../components/ProfileMenu';
 import { HeaderLogo, Header, ThemeButton, LoginWrap } from './styles';
+import { useViewPort } from '@hooks/useViewPort';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsFillSunFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const { userName, userAvatar } = useGetClientUser();
+  const { innerWidth } = useViewPort();
 
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const resizeListener = () => {
-      setInnerWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', resizeListener);
-  }, []);
 
   const onMouseOverProfile = () => {
     setProfileMenuOpen(true);
@@ -67,13 +60,13 @@ const NavBar = () => {
           )}
           {userName && userAvatar ? (
             <ProfileMenu
-              isOpenned={profileMenuOpen}
+              isOpened={profileMenuOpen}
               onMouseOver={onMouseOverProfile}
               onMouseOut={onMouseOutProfile}
             />
           ) : (
             <ProfileMenu
-              isOpenned={profileMenuOpen}
+              isOpened={profileMenuOpen}
               onMouseOver={onMouseOverProfile}
               onMouseOut={onMouseOutProfile}
             />

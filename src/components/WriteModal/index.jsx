@@ -67,7 +67,7 @@ const WriteModal = ({
   return (
     <Container>
       {wirteModalOpen && (
-        <Form onSubmit={onSubmit} ref={ref}>
+        <Form ref={ref}>
           <ArrowBackIosNewIcon onClick={closeModalHandler} />
           <FormHeader>
             <img
@@ -75,17 +75,18 @@ const WriteModal = ({
               alt='센텐스유 로고'
             />
           </FormHeader>
+          <Input hidden='hidden' />
           <Input
             autoFocus
             autoComplete='off'
-            type='text'
+            type='textarea'
             name='post-writeModal'
             id='post-write-label'
             placeholder='들려주고 싶은 한 마디를 적어보세요.'
             value={content}
             onChange={onChangeContent}
           />
-          <Button buttonActive={buttonActive} id='Button' type='submit'>
+          <Button buttonActive={buttonActive} id='Button' onClick={onSubmit}>
             작성
           </Button>
         </Form>

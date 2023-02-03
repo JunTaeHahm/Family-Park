@@ -7,10 +7,12 @@ import React from 'react';
 
 const RecentPosts = () => {
   const { recentPosts, isLoading } = useGetRecentPosts();
-  const postSections = makeSection(recentPosts ? [...recentPosts] : []);
+  const postSections = makeSection(
+    recentPosts ? [...recentPosts].filter((v) => v.postUser !== '센텐스유') : [],
+  );
 
   return (
-    <Container >
+    <Container>
       <Title>최신 포스트</Title>
       {isLoading ? (
         <Loading>

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Container = styled.ul`
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: ${(props) => (props.isOpenned ? 'translate(-50%, 0)' : 'translate(-50%, -200%)')};
+  transform: ${(props) => (props.isOpened ? 'translate(-50%, 0)' : 'translate(-50%, -200%)')};
   width: calc(100% + 0.13rem);
   background-color: var(--primary1);
   color: var(--secondary1);
@@ -20,7 +20,7 @@ export const Container = styled.div`
   cursor: pointer;
 `;
 
-export const ModalList = styled.div`
+export const ModalList = styled.li`
   padding: 0.6rem 0;
   text-align: center;
   width: 100%;

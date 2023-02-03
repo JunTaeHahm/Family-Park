@@ -1,5 +1,5 @@
 import loadable from '@loadable/component';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 const RollingBanner = loadable(() => import('@layouts/RollingBanner'));

@@ -28,7 +28,7 @@ const GlobalStyle = () => (
         color: var(--primary1);
         background-color: var(--secondary2);
         height: 100%;
-        font-family: var(--IMB-Rg), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        font-family: 'IBM Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
         touch-action: manipulation;
@@ -55,42 +55,55 @@ const GlobalStyle = () => (
         text-decoration: none;
         color: inherit;
       }
-      /* IBMPlexSansKR */
+
       @font-face {
-        font-family: IBM-Bold;
-        src: url(./src/assets/fonts/IBMPlexSansKR-Bold.ttf);
+        font-family: 'IBM Sans KR';
+        src: url(./src/assets/fonts/IBMSansKR-Light.woff2) format('woff2'),
+          url(./src/assets/fonts/IBMSansKR-Light.woff) format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
       }
       @font-face {
-        font-family: IBM-Regular;
-        src: url(./src/assets/fonts/IBMPlexSansKR-Regular.ttf);
+        font-family: 'IBM Sans KR';
+        src: url(./src/assets/fonts/IBMSansKR-Medium.woff2) format('woff2'),
+          url(./src/assets/fonts/IBMSansKR-Medium.woff) format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
       }
       @font-face {
-        font-family: IBM-Medium;
-        src: url(./src/assets/fonts/IBMPlexSansKR-Medium.ttf);
+        font-family: 'IBM Sans KR';
+        src: url(./src/assets/fonts/IBMSansKR-Regular.woff2) format('woff2'),
+          url(./src/assets/fonts/IBMSansKR-Regular.woff) format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
       }
       @font-face {
-        font-family: IBM-Light;
-        src: url(./src/assets/fonts/IBMPlexSansKR-Light.ttf);
+        font-family: 'IBM Sans KR';
+        src: url(./src/assets/fonts/IBMSansKR-Bold.woff2) format('woff2'),
+          url(./src/assets/fonts/IBMSansKR-Bold.woff) format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
       }
 
-      /* Montserrat */
       @font-face {
-        font-family: Montserrat-Regular;
-        src: url(./src/assets/fonts/Montserrat-Regular.ttf);
+        font-family: 'Montserrat';
+        src: url(./src/assets/fonts/Montserrat-Light.woff2) format('woff2'),
+          url(./src/assets/fonts/Montserrat-Light.woff) format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
       }
       @font-face {
-        font-family: Montserrat-Light;
-        src: url(./src/assets/fonts/Montserrat-Light.ttf);
-      }
-
-      /* SD Samlip */
-      @font-face {
-        font-family: SDSamlipBasic;
-        src: url(./src/assets/fonts/SDSamlipBasic.ttf);
-      }
-      @font-face {
-        font-family: SDSamlipOutline;
-        src: url(./src/assets/fonts/SDSamlipOutline.ttf);
+        font-family: 'Montserrat';
+        src: url(./src/assets/fonts/Montserrat-Regular.woff2) format('woff2'),
+          url(./src/assets/fonts/Montserrat-Regular.woff) format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
       }
 
       @media screen and (min-width: 1020.3rem) {
@@ -110,19 +123,6 @@ const GlobalStyle = () => (
       }
 
       :root {
-        // 폰트
-        --SD-B: SDSamlipBasic;
-        --SD-O: SDSamlipOutline;
-
-        --IMB-Bd: IBM-Bold;
-        --IMB-Rg: IBM-Regular;
-        --IMB-Md: IBM-Medium;
-        --IMB-Li: IBM-Light;
-
-        --Mont-Rg: Montserrat-Regular;
-        --Mont-Li: Montserrat-Light;
-
-        // 색상
         --card-shadow: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
         --deactive: #c9c9c9;
         --primary1: #222;
