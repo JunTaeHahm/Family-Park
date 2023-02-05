@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       position: fixed;
       transition: all 0.3s;
@@ -51,7 +51,7 @@ export const ListWrap = styled.div`
     height: 1.5rem;
     background-color: transparent;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: max-content;
       max-width: none;
@@ -70,7 +70,7 @@ export const Title = styled.div`
   color: var(--secondary1);
   border-radius: 2rem;
   padding: 0.19rem 0.9rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       padding: 0.3rem 1.3rem;
       font-weight: normal;
@@ -120,7 +120,7 @@ export const Online = styled.span`
     border-radius: 50%;
     background-color: var(--primary2);
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       color: var(--secondary1);
     }

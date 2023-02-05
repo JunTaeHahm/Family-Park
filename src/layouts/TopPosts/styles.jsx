@@ -14,7 +14,7 @@ export const Title = styled.h2`
   font-size: 1.3rem;
   width: 100%;
   text-align: center;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       display: none;
     }

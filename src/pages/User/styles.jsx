@@ -13,7 +13,7 @@ export const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       overflow: visible;
     }
@@ -43,7 +43,7 @@ export const ProfileImage = styled.img`
   height: 7rem;
   margin-right: 3rem;
   object-fit: cover;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: 5rem;
       height: 5rem;
@@ -56,7 +56,7 @@ export const ProfileName = styled.div`
   height: 5rem;
   line-height: 5rem;
   font-size: 2.2rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       font-size: 1.8rem;
     }
@@ -101,7 +101,7 @@ export const MenuWrap = styled.div`
       transform: translate(-50%, 0);
     }
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       margin: 1rem 0;
       span {
@@ -143,7 +143,7 @@ export const PostWrap = styled.div`
 export const List = styled.div`
   width: 90%;
   height: 100%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: 100%;
       max-width: 100%;

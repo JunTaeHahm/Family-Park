@@ -33,6 +33,7 @@
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
     "react-mentions": "^4.4.7",
+    "react-pull-to-refresh": "^2.0.1",
     "react-router-dom": "^6.6.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",

@@ -42,7 +42,7 @@ export const Container = styled.div`
   }
   &:hover .likeBtn {
     animation: ${heartbeat} 0.3s infinite;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
       & {
         animation: none;
       }
@@ -77,6 +77,7 @@ export const ActionWrap = styled.div`
 
 export const Content = styled.div`
   white-space: pre-line;
+  text-align: justify;
   font-size: 1.1rem;
   line-height: 1.4;
 `;
@@ -205,9 +206,9 @@ export const Form = styled.form`
   width: 100%;
 `;
 export const Label = styled.label`
-  width: 92%;
+  width: 90%;
   height: 100%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
     & {
       width: 85%;
     }
@@ -237,17 +238,21 @@ export const Button = styled.button`
   background-color: var(--primary1);
   color: var(--secondary1);
   cursor: pointer;
-  width: 8%;
+  width: 10%;
   height: 100%;
   transition: all 0.2s;
   &:hover {
     background-color: var(--primary2);
     color: var(--primary1);
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
+    & {
+      width: 15%;
+    }
+  }
+  @media screen and (max-width: 767px) {
     & {
       font-size: 0.7rem;
-      width: 15%;
     }
   }
 `;
@@ -308,7 +313,7 @@ export const Comment = styled.div`
         background-color: var(--primary2);
         color: var(--primary1);
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767px) {
         & {
           width: 23%;
           max-width: 23%;
@@ -321,7 +326,7 @@ export const Comment = styled.div`
       max-width: 85%;
       line-height: 1.2rem;
       cursor: pointer;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767px) {
         & {
           width: 77%;
           max-width: 77%;

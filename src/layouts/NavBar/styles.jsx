@@ -34,18 +34,27 @@ export const HeaderLogo = styled.h1`
 export const ThemeButton = styled.button`
   background-color: transparent;
   cursor: pointer;
-  margin-right: 0.5rem;
-  width: 2.3rem;
-  height: 2.3rem;
-  font-size: 1.5rem;
+  margin-right: 0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
     background-color: var(--primary2);
     border-radius: 50%;
   }
 `;
+
+export const LightMode = styled.div``;
+export const DarkMode = styled.div``;
 
 export const LoginWrap = styled.div`
   border-left: 0.06rem solid var(--primary1);
@@ -77,7 +86,7 @@ export const LoginWrap = styled.div`
     background-color: var(--primary2);
     color: var(--primary1);
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       min-width: 8rem;
       width: max-content;

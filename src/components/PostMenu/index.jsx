@@ -48,7 +48,6 @@ const PostMenu = () => {
 
   return (
     <Container>
-      <UserLists userListOpen={userListOpen} setUserListOpen={setUserListOpen} />
       <TopPostTitle ref={postMenuRef} onClick={onTopPostClick}>
         인기 포스트
       </TopPostTitle>
@@ -62,8 +61,12 @@ const PostMenu = () => {
           <MenuList onClick={onUserListClick}>유저목록</MenuList>
         </DotMenu>
       </DotWrap>
-      <PostWrap>{isPostMenu ? <TopPosts /> : <RecentPosts />}</PostWrap>
-      {/* {userListOpen ? <UserLists /> : ''} */}
+      <PostWrap isPostMenu={isPostMenu}>{isPostMenu ? <TopPosts /> : <RecentPosts />}</PostWrap>
+      {userListOpen ? (
+        <UserLists userListOpen={userListOpen} setUserListOpen={setUserListOpen} />
+      ) : (
+        ''
+      )}
     </Container>
   );
 };

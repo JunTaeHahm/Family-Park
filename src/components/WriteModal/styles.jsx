@@ -32,7 +32,7 @@ export const Form = styled.div`
     top: 3rem;
     cursor: pointer;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       height: 25%;
       gap: 0;
@@ -74,7 +74,7 @@ export const Input = styled.textarea`
     opacity: 0.5;
     height: 100%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       font-size: 0.9rem;
       width: 80%;
@@ -91,7 +91,7 @@ export const Button = styled.button`
   border-radius: 0.5rem;
   background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
   color: var(--secondary1);
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       font-size: 0.8rem;
       align-self: flex-end;

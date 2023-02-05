@@ -31,30 +31,34 @@ const Home = () => {
     }
   }, [userName]);
 
+
+
   return (
     <Container>
       <Catuion>
         <IoWarningOutline />
         &nbsp;개발 중인 서비스로 문제가 발생할 수 있어요 :&#40;
       </Catuion>
-      <Main>
-        <LeftWrap>
-          <Intro />
-          {innerWidth > 768 ? <TopPosts /> : <PostMenu />}
-        </LeftWrap>
-        {innerWidth > 768 ? (
-          <>
+        <Main>
+          <LeftWrap>
+            <Intro />
+            {innerWidth < 768 ? <PostMenu /> : <TopPosts />}
+          </LeftWrap>
+          {innerWidth < 768 ? (
+            ''
+          ) : (
             <CenterWrap>
               <RecentPosts />
             </CenterWrap>
+          )}
+          {innerWidth < 1024 ? (
+            ''
+          ) : (
             <RightWrap>
-              <UserLists innerWidth={innerWidth} />
+              <UserLists />
             </RightWrap>
-          </>
-        ) : (
-          ''
-        )}
-      </Main>
+          )}
+        </Main>
       <Footer />
       <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
         +

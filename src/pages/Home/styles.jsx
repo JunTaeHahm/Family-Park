@@ -21,7 +21,8 @@ export const Catuion = styled.div`
 export const Main = styled.div`
   min-height: calc(100vh - 7rem);
   display: flex;
-  @media screen and (max-width: 768px) {
+  justify-content: center;
+  @media screen and (max-width: 767px) {
     & {
       flex-wrap: wrap;
     }
@@ -33,7 +34,12 @@ export const LeftWrap = styled.div`
   flex-direction: column;
   align-items: center;
   width: 42.5%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
+    & {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 767px) {
     & {
       width: 100%;
     }
@@ -42,7 +48,12 @@ export const LeftWrap = styled.div`
 
 export const CenterWrap = styled.div`
   width: 42.5%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
+    & {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 767px) {
     & {
       width: 100%;
     }
@@ -81,7 +92,7 @@ export const WriteButton = styled.div`
     color: var(--primary1);
     transform: scale(1.05);
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1023px) {
     & {
       width: 3.5rem;
       height: 3.5rem;

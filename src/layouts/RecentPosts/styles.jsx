@@ -20,7 +20,7 @@ export const Title = styled.h2`
   background-color: var(--secondary2);
   font-weight: 500;
   width: 100%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       display: none;
     }
@@ -30,12 +30,12 @@ export const Title = styled.h2`
 export const PostWrap = styled.div`
   width: 100%;
   padding-top: 4rem;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 5rem);
   overflow-x: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       padding-top: 0;
       overflow: visible;

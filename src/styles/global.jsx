@@ -32,7 +32,7 @@ const GlobalStyle = () => (
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         overflow: hidden;
         touch-action: manipulation;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           & {
             overflow: scroll;
             ::-webkit-scrollbar {
@@ -106,17 +106,17 @@ const GlobalStyle = () => (
         font-display: swap;
       }
 
-      @media screen and (min-width: 1020.3rem) {
+      @media screen and (min-width: 1024px) {
         :root {
           font-size: 16px;
         }
       }
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1023px) {
         :root {
           font-size: 0.9rem;
         }
       }
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767px) {
         :root {
           font-size: 0.8rem;
         }
@@ -139,6 +139,76 @@ const GlobalStyle = () => (
         --prism-code-7: #c678dd;
         --prism-code-8: #61afef;
         --prism-code-9: #c678dd;
+      }
+
+      /* React-Pull-To-Refresh */
+      .ptr-element {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: var(--primary2);
+        z-index: 10;
+        text-align: center;
+        transition: all;
+      }
+
+      .loading {
+        text-align: center;
+        opacity: 0.4;
+        display: none;
+      }
+      .ptr-loading .loading {
+        display: block;
+      }
+
+      .loading span {
+        display: inline-block;
+        vertical-align: middle;
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+        transform: scale(0.3);
+        border-radius: 50%;
+        animation: ptr-loading 0.4s infinite alternate;
+      }
+
+      .loading-ptr-1 {
+        animation-delay: 0 !important;
+      }
+
+      .loading-ptr-2 {
+        animation-delay: 0.2s !important;
+      }
+
+      .loading-ptr-3 {
+        animation-delay: 0.4s !important;
+      }
+
+      @keyframes ptr-loading {
+        0% {
+          transform: translateY(0) scale(0.3);
+          opacity: 0;
+        }
+
+        100% {
+          transform: scale(1);
+          background-color: var(--primary1);
+          opacity: 1;
+        }
+      }
+
+      .ptr-loading .refresh-view,
+      .ptr-reset .refresh-view,
+      .ptr-loading .ptr-element,
+      .ptr-reset .ptr-element {
+        transition: all 0.3s;
+      }
+      .ptr-reset .refresh-view {
+        transform: translate(0, 0);
+      }
+      .ptr-loading .refresh-view {
+        transform: translate(0, 2rem);
       }
     `}
   />

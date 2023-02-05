@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   height: 2.5rem;
   width: 100%;
@@ -14,11 +13,12 @@ export const Container = styled.div`
 `;
 
 export const TopPostTitle = styled.div`
+  margin-left: 3.5rem;
   position: relative;
-  width: 30%;
+  width: 9rem;
+  max-width: 14rem;
   height: 100%;
   line-height: 2.5rem;
-  transform: translate(-50%, 0);
   &::after {
     content: '';
     position: absolute;
@@ -33,19 +33,26 @@ export const TopPostTitle = styled.div`
     transition: all 0.3s;
   }
   &.recent::after {
-    transform: translate(70%, 0);
+    transform: translate(5.5rem, 0);
+  }
+  @media screen and (max-width: 767px) {
+    & {
+      margin-left: 1.5rem;
+    }
+    &.recent::after {
+      transform: translate(5.5rem, 0);
+    }
   }
 `;
 
 export const RecentPostTitle = styled.div`
-  width: 30%;
-  transform: translate(-50%, 0);
+  max-width: 14rem;
+  width: 9rem;
   height: 100%;
   line-height: 2.5rem;
 `;
 export const DotWrap = styled.div`
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   z-index: 10;
   right: 8%;

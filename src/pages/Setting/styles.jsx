@@ -23,7 +23,7 @@ export const SettingWrap = styled.div`
 export const ProfileWrap = styled.div`
   display: flex;
   width: 100%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       flex-wrap: wrap;
     }
@@ -38,7 +38,7 @@ export const AvatarForm = styled.form`
   align-items: center;
   padding-top: 2rem;
   gap: 1rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: 100%;
       height: min-content;
@@ -54,7 +54,7 @@ export const Avatar = styled.img`
   object-fit: cover;
   width: 10rem;
   height: 10rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: 7rem;
       height: 7rem;
@@ -93,7 +93,7 @@ export const UserForm = styled.div`
   gap: 1.5rem;
   width: 70%;
   height: 100%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       gap: 1rem;
       width: 100%;
@@ -103,7 +103,7 @@ export const UserForm = styled.div`
 export const Name = styled.span`
   display: inline-block;
   font-size: 2.2rem;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       font-size: 1.8rem;
     }
@@ -130,7 +130,7 @@ export const NameInput = styled.input`
     font-size: 1.3rem;
     height: 100%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       font-size: 1.8rem;
     }
@@ -185,7 +185,7 @@ export const Menu = styled.span`
   width: 30%;
   font-size: 1.3rem;
   padding: 1rem 0;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       width: 100%;
       font-size: 1.2rem;
@@ -208,7 +208,7 @@ export const Withdrawal = styled.button`
 export const Caution = styled.div`
   margin-top: 0.5rem;
   font-weight: 300;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & {
       margin-top: 1rem;
     }
