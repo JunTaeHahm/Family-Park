@@ -7,6 +7,7 @@ import React from 'react';
 const RollingBanner = () => {
   const { saying, writer, isLoading } = useCrawling();
 
+  /* 명언 크롤링 로딩 시 */
   if (isLoading) {
     return (
       <Container>
@@ -17,6 +18,7 @@ const RollingBanner = () => {
       </Container>
     );
   }
+
   return (
     <Container isLoading={isLoading}>
       <List>

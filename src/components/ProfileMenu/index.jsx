@@ -2,9 +2,6 @@ import { Container, ModalList, Logout } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
 import React, { useCallback } from 'react';
-import { BsPersonBoundingBox } from 'react-icons/bs';
-import { SlLogout, SlSettings } from 'react-icons/sl';
-import { TfiAnnouncement } from 'react-icons/tfi';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileMenu = ({ isOpened }) => {
@@ -12,15 +9,16 @@ const ProfileMenu = ({ isOpened }) => {
 
   const { userName, refetch } = useGetClientUser();
 
+  /* 로그아웃 함수 */
   const onClickLogout = useCallback(
     (e) => {
       e.preventDefault();
       axios
         .get(`/api/logout`)
         .then(() => {
-          navigate('/');
-          window.location.reload();
-          refetch();
+          navigate('/'); // 홈으로 이동
+          window.location.reload(); // 새로고침
+          refetch(); // 클라이언트 유저정보 리패치
         })
         .catch((error) => {
           console.log(error);
@@ -29,10 +27,10 @@ const ProfileMenu = ({ isOpened }) => {
     [refetch, navigate],
   );
 
-  return userName ? (
+  return userName ? ( // 로그인 상태에 따라 보이는 메뉴 다르도록
     <Container isOpened={isOpened}>
       <ModalList>
-        <Link to={`/${userName}`}>내 프로필</Link>
+        <Link to={`/${userName}`}>프로필</Link>
       </ModalList>
       <ModalList>
         <Link to='/setting'>설정</Link>

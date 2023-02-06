@@ -36,8 +36,11 @@ import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
+  // 댓글만 모아놓은 배열 생성
   let commentArr = [];
   if (comments) commentArr = Object.entries(comments).map(([, comment]) => comment);
+
+  const { userName, role } = useGetClientUser();
 
   const sendBtnRef = useRef(null);
   const containerRef = useRef(null);
@@ -52,12 +55,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const [commentList, setCommentList] = useState(commentArr);
   const [comment, setComment] = useState('');
 
-  const { userName, role } = useGetClientUser();
-
-  const onChangeEditContent = (e) => {
-    setEditContent(e.target.value);
-  };
-
+  /* 글 작성자 아바타 가져오기 */
   useEffect(() => {
     axios
       .get(`/api/users/${postUser}`)
@@ -71,13 +69,14 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       });
   }, [postUser]);
 
+  /* 포스트 클릭 시 open 클래스 추가 */
   const onPostClick = useCallback(
     (e) => {
       if (
-        e.target.className !== 'like-count' &&
-        e.target.tagName !== 'svg' &&
-        e.target.tagName !== 'path' &&
-        !isEditing
+        e.target.className !== 'like-count' && // 좋아요 버튼 아닐 것
+        e.target.tagName !== 'svg' && // svg 아닐 것
+        e.target.tagName !== 'path' && // path 아닐 것
+        !isEditing // 수정모드 아닐 것
       ) {
         if (containerRef.current.classList.contains('open')) {
           containerRef.current.classList.remove('open');
@@ -91,15 +90,29 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [isEditing],
   );
 
+  /* 수정모드 변경 함수 */
   const onEditHandler = useCallback(() => {
     setIsEditing((prev) => !prev);
   }, []);
 
+  /* 포스트 밖 클릭 시 수정모드 false */
+  useClickOutsideModal(containerRef, () => {
+    containerRef.current.classList.remove('open');
+    commentWrapRef.current.classList.remove('open');
+    setIsEditing(false);
+  });
+
+  /* 글 수정 */
+  const onChangeEditContent = (e) => {
+    setEditContent(e.target.value);
+  };
+
+  /* 수정 글 Submit 함수 */
   const onEditPostSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      const editCheck = postContent !== editContent;
-      if (!editCheck) toast.error('수정 한 내용이 없습니다.');
+      const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
+      if (!editCheck) toast.error('수정 한 내용이 없습니다.'); // 없으면 에러 토스트
       else {
         axios
           .put(
@@ -110,9 +123,9 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             },
             { withCredentials: true },
           )
-          .then((res) => {
+          .then(() => {
             toast.success('수정 성공');
-            setIsEditing(false);
+            setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
             console.log(error);
@@ -123,16 +136,18 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [postId, editContent, postContent],
   );
 
+  /* 포스트 삭제 함수 */
   const onDeletePost = useCallback(() => {
     if (window.confirm('포스트를 삭제하시겠습니까?')) {
       axios
         .delete(`/api/posts/${postId}`, { withCredentials: true })
         .then(() => {
           toast.success('삭제 성공');
+          // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
           containerRef.current.classList.add('removed');
           containerRef.current.classList.remove('open');
           commentWrapRef.current.classList.remove('open');
-          setIsEditing(false);
+          setIsEditing(false); // 수정모드 false
         })
         .catch((error) => {
           console.log(error);
@@ -141,14 +156,9 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     }
   }, [postId]);
 
-  useClickOutsideModal(containerRef, () => {
-    containerRef.current.classList.remove('open');
-    commentWrapRef.current.classList.remove('open');
-    setIsEditing(false);
-  });
-
-  /* Like */
+  /* 좋아요 버튼 */
   useEffect(() => {
+    // postLike에 클라이언트 userName 유무에 따라 하트 보여주기
     if (postLike.indexOf(userName) !== -1) {
       setIsLiked(true);
     } else {
@@ -158,42 +168,44 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     commentWrapRef.current.classList.remove('open');
   }, [postLike, userName, postId]);
 
+  /* 좋아요 버튼 클릭 함수 */
   const onLikeClick = useCallback(() => {
     if (userName) {
       axios
         .patch('api/posts/like', { postId: postId, userName: userName }, { withCredentials: true })
         .then((res) => {
-          setIsLiked((prev) => !prev);
-          setLikeCount(res.data.post.postLike.length);
+          setIsLiked((prev) => !prev); // 이미 좋아요 눌렀다면 해제, 안눌렀다면 설정
+          setLikeCount(res.data.post.postLike.length); // 좋아요 카운트 DB의 postLike의 length로 설정
         })
         .catch((error) => console.log(error));
     } else {
-      toast.error('로그인 후 이용 가능합니다.');
+      toast.error('로그인 후 이용 가능합니다.'); // 로그인 후에 이용 가능하도록
     }
   }, [postId, userName]);
 
-  /* Comment */
+  /* 댓글 */
   const onChangeComment = (e) => {
     setComment(e.target.value);
-    sendBtnRef.current.classList.add('active');
-    if (!e.target.value) sendBtnRef.current.classList.remove('active');
+    sendBtnRef.current.classList.add('active'); // 댓글 작성 시 등록 버튼에 acitve 클래스 추가
+    if (!e.target.value) sendBtnRef.current.classList.remove('active'); // 댓글 빈 칸일 경우 등록 버튼 active 클래스 삭제
   };
   if (comment) sendBtnRef.current.classList.add('active');
 
+  /* 댓글 Submit 함수 */
   const onCommentSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if (!userName) toast.error('로그인 후 이용하실 수 있습니다.');
-      if (!comment) toast.error('댓글을 적어주세요.');
+      if (!userName) toast.error('로그인 후 이용하실 수 있습니다.'); // 로그인 후에 이용 가능하도록
+      if (!comment) toast.error('댓글을 적어주세요.'); // 댓글 빈 칸인데 등록 누른 경우
       if (comment && userName) {
         axios
           .post(`/api/posts/${postId}/comments`, { postId, userName, comment })
           .then((res) => {
             toast.success('작성 성공!');
-            setCommentList(res.data.comments);
-            setCommentCount(res.data.comments.length);
-            setComment('');
-            setIsEditing(false);
+            setCommentList(res.data.comments); // 추가된 최신 댓글리스트로 갱신
+            setCommentCount(res.data.comments.length); // 추가된 최신 댓글 개수로 갱신
+            setComment(''); // 댓글창 초기화
+            setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
             console.log(error);
@@ -204,8 +216,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [comment, postId, userName],
   );
 
+  /* 댓글 삭제 함수 */
   const onDeleteComment = useCallback(
     (e) => {
+      // 댓글 작성자가 클라이언트 유저인 경우에만 삭제 가능하도록
       if (e.target.parentElement.children[0].innerHTML === userName) {
         if (window.confirm('댓글을 삭제하시겠습니까?')) {
           axios
@@ -213,10 +227,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               withCredentials: true,
             })
             .then((res) => {
-              setCommentList(res.data.comments);
-              setCommentCount(res.data.comments.length);
+              setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
+              setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신
+              setIsEditing(false); // 수정모드 false
               toast.success('삭제 성공');
-              setIsEditing(false);
             })
             .catch((error) => {
               console.log(error);
@@ -230,6 +244,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
 
   return (
     <Container id={postId} ref={containerRef}>
+
       <PostWrap onClick={onPostClick}>
         <ContentWrap>
           {isEditing ? (
@@ -251,6 +266,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             <Content>{editContent ? editContent : postContent}</Content>
           )}
         </ContentWrap>
+
         <DateWrap>
           <Date>
             {updatedAt
@@ -258,6 +274,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               : dayjs(createdAt).format('MM월 DD일')}
           </Date>
         </DateWrap>
+
         <ActionWrap>
           <Actions>
             <LikeButton onClick={onLikeClick}>
@@ -275,6 +292,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           </Link>
         </ActionWrap>
       </PostWrap>
+
       <CommentWrap ref={commentWrapRef}>
         {postUser === userName || role === 1 ? (
           <PostAction>
@@ -284,6 +302,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         ) : (
           ''
         )}
+
         <CommentList>
           <Scrollbars className='scroll-bar' autoHide autoHideTimeout={500} autoHideDuration={200}>
             {commentList.length === 0 ? (
@@ -300,6 +319,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             )}
           </Scrollbars>
         </CommentList>
+
         <Form onSubmit={onCommentSubmit}>
           <Label htmlFor='comment-label'>
             <Input
@@ -313,11 +333,14 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               onChange={onChangeComment}
             />
           </Label>
+
           <Button ref={sendBtnRef} id='Button' type='submit'>
             등록
           </Button>
+          
         </Form>
       </CommentWrap>
+
     </Container>
   );
 };

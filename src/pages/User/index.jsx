@@ -23,27 +23,29 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const User = () => {
-  const menuRef = useRef(null);
   const params = useParams();
-
-  const [loadUserName, setLoadUserName] = useState();
-  const [loadUserTitle, setLoadUserTitle] = useState('');
-  const [loadUserAvatar, setLoadUserAvatar] = useState('');
-  const [isPostMenu, setIsPostMenu] = useState('myPost');
+  const menuRef = useRef(null);
 
   const { allPosts, isLoading } = useGetAllPosts();
   const { userPosts: myPosts, refetch } = useGetUserPosts(params.user);
+
+  const [isPostMenu, setIsPostMenu] = useState('myPost');
+  const [loadUserName, setLoadUserName] = useState();
+  const [loadUserTitle, setLoadUserTitle] = useState('');
+  const [loadUserAvatar, setLoadUserAvatar] = useState('');
+
   const collectionPosts = allPosts
     ? [...allPosts].filter((post) => post.postLike.indexOf(params.user) !== -1)
     : [];
 
   useEffect(() => {
-    refetch();
+    refetch(); // 해당 유저의 포스트만 보이도록 리패치
     axios
       .get(`/api/users/${encodeURI(params.user)}`)
       .then((res) => {
         if (res.data.userName && res.data.userTitle && res.data.userAvatar) {
           if (res.data.userName === '센텐스유') {
+            // 로그인 계정이 admin일 경우, postMenu가 공지사항만 보이도록
             setLoadUserName(res.data.userName);
             setIsPostMenu('admin');
           } else {
@@ -57,17 +59,21 @@ const User = () => {
         console.log(error.response);
       });
   }, [refetch, params.user]);
+
+  /* MyPost 버튼 클릭 시 */
   const onMyPostClick = useCallback(() => {
     menuRef.current.classList.remove('collection');
     setIsPostMenu('myPost');
   }, []);
 
+  /* Collection 버튼 클릭 시 */
   const onCollectionClick = useCallback(() => {
     menuRef.current.classList.add('collection');
     setIsPostMenu('collectionPost');
   }, []);
 
   if (isLoading)
+    // 포스트 로딩 중
     return (
       <Container>
         <Loading>
@@ -78,11 +84,13 @@ const User = () => {
     );
 
   if (!(loadUserName && loadUserAvatar)) {
+    // params의 유저가 없을 경우
     return <Container>해당하는 유저가 없습니다.</Container>;
   } else {
     return (
       <>
         <Container>
+
           <ProfileWrap>
             <UserInfo>
               <ProfileImage alt={loadUserName} src={loadUserAvatar} />
@@ -90,7 +98,9 @@ const User = () => {
             </UserInfo>
             <UserTitle>{loadUserTitle}</UserTitle>
           </ProfileWrap>
+
           {isPostMenu === 'admin' ? (
+            // 포스트메뉴 admin일 경우 공지사항만 보이도록
             <MenuWrap>
               <Notice className='notice'>공지사항</Notice>
             </MenuWrap>
@@ -102,6 +112,7 @@ const User = () => {
               <Collection onClick={onCollectionClick}>컬렉션</Collection>
             </MenuWrap>
           )}
+
           <PostWrap>
             <List>
               {isPostMenu === 'collectionPost' ? (
@@ -138,9 +149,13 @@ const User = () => {
                 ))
               )}
             </List>
+
           </PostWrap>
+
         </Container>
+
         <Footer />
+
       </>
     );
   }

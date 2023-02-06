@@ -19,24 +19,27 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [userName, onChangeUserName] = useInput('');
-  const [buttonActive, setButtonActive] = useState(false);
-  const [password, , setPassword] = useInput('');
-  const [passwordCheck, , setPasswordCheck] = useInput('');
-  const [mismatchError, setMismatchError] = useState(false);
+
   const { isAuth: userLoginStatus } = useGetClientUser();
 
+  const [userName, onChangeUserName] = useInput('');
+  const [password, , setPassword] = useInput('');
+  const [passwordCheck, , setPasswordCheck] = useInput('');
+  const [buttonActive, setButtonActive] = useState(false);
+  const [mismatchError, setMismatchError] = useState(false);
+
   useEffect(() => {
-    if (userLoginStatus) navigate('/');
-    !mismatchError && userName && password ? setButtonActive(true) : setButtonActive(false);
+    if (userLoginStatus) navigate('/'); // 로그인상태라면 홈으로 navigate
+    !mismatchError && userName && password ? setButtonActive(true) : setButtonActive(false); // 모든 칸 다 작성하면 버튼 활성화
   }, [userLoginStatus, navigate, mismatchError, userName, password]);
-  /* 비밀번호 */
+
+  /* 비밀번호 입력 */
   const onChangePassword = useCallback(
     (e) => {
       const trimValue = e.target.value;
-      setPassword(trimValue.trim());
-      setMismatchError(e.target.value !== passwordCheck);
-      // 비밀번호-비밀번호 확인 비교해서 미스매치에 반환
+
+      setPassword(trimValue.trim()); // 띄어쓰기 없이 설정
+      setMismatchError(e.target.value !== passwordCheck); // 비밀번호-비밀번호 확인 비교해서 mismatch에 boolean반환
     },
     [passwordCheck, setPassword],
   );
@@ -45,13 +48,14 @@ const SignUp = () => {
   const onChangePasswordCheck = useCallback(
     (e) => {
       const trimValue = e.target.value;
+
       setPasswordCheck(trimValue.trim());
-      setMismatchError(e.target.value !== password); // 비밀번호-비밀번호 확인 비교해서 미스매치에 반환
+      setMismatchError(e.target.value !== password); // 비밀번호-비밀번호 확인 비교해서 mismatch에 boolean반환
     },
     [password, setPasswordCheck],
   );
 
-  /* Submit */
+  /* 회원가입 Submit */
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -62,13 +66,13 @@ const SignUp = () => {
             password,
           })
           .then(() => {
-            navigate('/login');
+            navigate('/login'); // 회원가입 성공 시 login페이지로 navigate
             toast.success(`회원가입 성공`);
           })
           .catch((error) => {
-            if (error.response.data?.exUserMessage) toast.error(error.response.data.exUserMessage);
-            if (error.response.data.errors?.userName) toast.error('유저명 조건을 확인해주세요.');
-            if (error.response.data.errors?.password) toast.error('비밀번호 조건을 확인해주세요.');
+            if (error.response.data?.exUserMessage) toast.error(error.response.data.exUserMessage); // 이미 있는 유저명일 경우
+            if (error.response.data.errors?.userName) toast.error('유저명 조건을 확인해주세요.'); // 유저명 조건 틀렸을 경우
+            if (error.response.data.errors?.password) toast.error('비밀번호 조건을 확인해주세요.'); // 비밀번호 조건 틀렸을 경우
           });
       }
     },

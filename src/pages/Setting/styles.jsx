@@ -10,13 +10,13 @@ export const Container = styled.div`
 `;
 
 export const SettingWrap = styled.div`
-  width: 100%;
-  height: 100%;
-  max-width: 768px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 768px;
   padding: 1rem;
 `;
 
@@ -31,13 +31,13 @@ export const ProfileWrap = styled.div`
 `;
 
 export const AvatarForm = styled.form`
-  width: 30%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2rem;
   gap: 1rem;
+  width: 30%;
+  height: 100%;
+  padding-top: 2rem;
   @media screen and (max-width: 767px) {
     & {
       width: 100%;
@@ -50,10 +50,10 @@ export const AvatarForm = styled.form`
 `;
 
 export const Avatar = styled.img`
-  border-radius: 50%;
-  object-fit: cover;
   width: 10rem;
   height: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
   @media screen and (max-width: 767px) {
     & {
       width: 7rem;
@@ -61,13 +61,14 @@ export const Avatar = styled.img`
     }
   }
 `;
+
 export const Upload = styled.label`
   display: inline-block;
   padding: 0.6rem 1.8rem;
-  cursor: pointer;
   border-radius: 0.5rem;
   background-color: var(--primary1);
   color: var(--secondary1);
+  cursor: pointer;
   input {
     display: none;
   }
@@ -87,12 +88,12 @@ export const Remove = styled.button`
 `;
 
 export const UserForm = styled.div`
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 70%;
   height: 100%;
+  padding: 2rem;
   @media screen and (max-width: 767px) {
     & {
       gap: 1rem;
@@ -100,6 +101,7 @@ export const UserForm = styled.div`
     }
   }
 `;
+
 export const Name = styled.span`
   display: inline-block;
   font-size: 2.2rem;
@@ -111,24 +113,23 @@ export const Name = styled.span`
 `;
 
 export const Title = styled.span``;
-
 export const Label = styled.label``;
 
 export const NameInput = styled.input`
-  font-size: 2.2rem;
-  background-color: transparent;
-  outline: none;
   width: 100%;
   padding: 0.5rem;
+  outline: none;
   border: 0.06rem solid var(--primary2);
   border-radius: 0.3rem;
+  background-color: transparent;
+  font-size: 2.2rem;
   &:focus {
     border: 0.1rem solid var(--primary1);
   }
   &::placeholder {
+    height: 100%;
     color: var(--primary1);
     font-size: 1.3rem;
-    height: 100%;
   }
   @media screen and (max-width: 767px) {
     & {
@@ -136,75 +137,80 @@ export const NameInput = styled.input`
     }
   }
 `;
+
 export const TitleInput = styled.input`
-  background-color: transparent;
-  outline: none;
   width: 100%;
   padding: 0.5rem;
+  outline: none;
   border: 0.06rem solid var(--primary2);
   border-radius: 0.3rem;
+  background-color: transparent;
   &:focus {
     border: 0.1rem solid var(--primary1);
   }
   &::placeholder {
+    height: 100%;
     color: var(--primary1);
     font-size: 1.3rem;
-    height: 100%;
   }
 `;
 
 export const Edit = styled.button`
-  cursor: pointer;
   display: inline-block;
-  padding: 0.5rem 1.5rem;
   align-self: flex-end;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   background-color: var(--primary1);
   color: var(--secondary1);
+  cursor: pointer;
   &:hover {
     background-color: var(--primary2);
     color: var(--primary1);
   }
 `;
+
 export const SettingForm = styled.div`
-  width: 100%;
-  height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  width: 100%;
+  height: 40%;
   margin: 2rem 0;
+  background-color: transparent;
 `;
 
 export const WithdrawalForm = styled.div`
   width: 100%;
   padding: 1rem;
 `;
+
 export const Menu = styled.span`
   display: inline-block;
   width: 30%;
-  font-size: 1.3rem;
   padding: 1rem 0;
+  font-size: 1.3rem;
   @media screen and (max-width: 767px) {
     & {
       width: 100%;
-      font-size: 1.2rem;
       padding: 0.5rem 0;
+      font-size: 1.2rem;
     }
   }
 `;
+
 export const Withdrawal = styled.button`
-  cursor: pointer;
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   background-color: var(--primary1);
   color: var(--secondary1);
+  cursor: pointer;
   &:hover {
     background-color: var(--primary2);
     color: var(--primary1);
   }
 `;
+
 export const Caution = styled.div`
   margin-top: 0.5rem;
   font-weight: 300;

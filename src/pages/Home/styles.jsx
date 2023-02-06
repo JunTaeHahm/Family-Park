@@ -1,27 +1,34 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 5rem 0 2rem;
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
+  padding: 5rem 0 2rem;
+  @media screen and (max-width: 1023px) {
+    & {
+      padding: 5rem 0 0;
+    }
+  }
 `;
+
 export const Catuion = styled.div`
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   color: var(--prism-code-3);
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left: 50%;
   transform: translate(-50%, 0);
-  top: 5rem;
-  z-index: 99;
 `;
+
 export const Main = styled.div`
-  min-height: calc(100vh - 7rem);
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 7rem);
   @media screen and (max-width: 767px) {
     & {
       flex-wrap: wrap;
@@ -62,31 +69,31 @@ export const CenterWrap = styled.div`
 
 export const RightWrap = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 15%;
 `;
 
 export const WriteButton = styled.div`
-  font-family: 'Montserrat';
-  font-weight: 300;
-  z-index: 1000;
-  width: 4rem;
-  height: 4rem;
-  font-size: 2.5rem;
-  border-radius: 50%;
-  background-color: var(--primary1);
   position: fixed;
   right: 2rem;
   bottom: 4rem;
-  color: var(--secondary1);
+  z-index: 1000;
   opacity: ${(props) => (props.isBtnActive ? 0 : 1)};
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--primary1);
+  color: var(--secondary1);
+  font-family: 'Montserrat';
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
   box-shadow: var(--card-shadow);
   transition: all 0.3s;
-  cursor: pointer;
   &:hover {
     background-color: var(--primary2);
     color: var(--primary1);
@@ -94,9 +101,9 @@ export const WriteButton = styled.div`
   }
   @media screen and (max-width: 1023px) {
     & {
+      bottom: 2rem;
       width: 3.5rem;
       height: 3.5rem;
-      bottom: 2rem;
     }
   }
 `;

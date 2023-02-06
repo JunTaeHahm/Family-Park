@@ -13,7 +13,7 @@ const User = loadable(() => import('@pages/User'));
 const App = () => {
   function Layout() {
     return (
-      <div>
+      <div style={{ height: '100%' }}>
         <NavBar />
         <RollingBanner />
         <Outlet />

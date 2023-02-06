@@ -4,32 +4,32 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  height: 2.5rem;
   width: 100%;
-  font-weight: 500;
-  font-size: 1.3rem;
-  text-align: center;
+  height: 2.5rem;
   margin-top: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: center;
 `;
 
 export const TopPostTitle = styled.div`
-  margin-left: 3.5rem;
   position: relative;
   width: 9rem;
-  max-width: 14rem;
   height: 100%;
+  max-width: 14rem;
+  margin-left: 3.5rem;
   line-height: 2.5rem;
   &::after {
     content: '';
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 0);
-    transition: all 0.3s;
     display: block;
     width: 7rem;
     height: 0.3rem;
     border-radius: 0.6rem;
     background-color: var(--primary1);
+    transform: translate(-50%, 0);
+    transition: all 0.3s;
     transition: all 0.3s;
   }
   &.recent::after {
@@ -46,49 +46,50 @@ export const TopPostTitle = styled.div`
 `;
 
 export const RecentPostTitle = styled.div`
-  max-width: 14rem;
   width: 9rem;
   height: 100%;
+  max-width: 14rem;
   line-height: 2.5rem;
 `;
+
 export const DotWrap = styled.div`
   position: absolute;
-  border-radius: 50%;
-  z-index: 10;
   right: 8%;
-  width: 2.5rem;
-  height: 2.5rem;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
   font-size: 1.5rem;
   line-height: 2.5rem;
 `;
 
 export const DotMenu = styled.ul`
-  font-size: 0.9rem;
   position: absolute;
-  transition: all 0.3s;
   width: 8rem;
-  box-shadow: var(--card-shadow);
+  padding: 0.5rem 0;
+  border-radius: 0.6rem;
   background-color: var(--primary1);
   color: var(--secondary1);
-  transform-origin: top right;
-  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  box-shadow: var(--card-shadow);
   transform: ${(props) =>
     props.dotMenuOpen ? 'translate(-50%, 70%) scale(1)' : 'translate(-50%, 70%) scale(0)'};
-  border-radius: 0.6rem;
+  transform-origin: top right;
+  transition: all 0.3s;
 `;
 
 export const MenuList = styled.li`
+  width: 100%;
   padding: 0.4rem 0;
   text-align: center;
-  width: 100%;
   transition: background-color 0.2s;
   a {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 0.2rem;
     width: 100%;
     height: 100%;
@@ -97,6 +98,6 @@ export const MenuList = styled.li`
 
 export const PostWrap = styled.div`
   position: relative;
-  margin-top: 1rem;
   width: 100%;
+  margin-top: 1rem;
 `;

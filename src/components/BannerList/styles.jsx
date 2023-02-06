@@ -7,9 +7,11 @@ export const List = styled.span`
   gap: 1rem;
   margin: 0 1rem;
 `;
+
 export const Saying = styled.div`
   font-size: 1rem;
 `;
+
 export const Writer = styled.div`
   color: var(--primary1);
   font-size: 0.9rem;

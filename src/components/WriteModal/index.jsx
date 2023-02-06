@@ -15,44 +15,50 @@ const WriteModal = ({
   setWirteModalOpen,
 }) => {
   const ref = useRef();
-  const [content, setContent] = useState('');
-  const [buttonActive, setButtonActive] = useState(false);
+
   const { refetch } = useGetRecentPosts();
 
+  const [content, setContent] = useState('');
+  const [buttonActive, setButtonActive] = useState(false);
+
+  /* 글 내용 유무에 따라 작성버튼 활성화 */
   useEffect(() => {
     content ? setButtonActive(true) : setButtonActive(false);
   }, [content]);
 
+  /* 글 작성 */
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
 
+  /* 모달 창 닫는 함수 */
   const closeModalHandler = () => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
   };
 
+  /* 모달 창 밖 클릭 시 닫히는 함수 */
   useClickOutsideModal(ref, () => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
   });
 
+  /* 새 글 Submit */
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if (!userName) toast.error('로그인 후 이용하실 수 있습니다.');
-      if (!content) toast.error('문장을 적어주세요.');
+      if (!content) toast.error('문장을 적어주세요.'); // 빈 칸일 경우
       if (content && userName && userId) {
         if (content.length > 300) {
           toast.error('최대 글자 수를 초과했습니다.(최대 300자)');
         } else {
           axios
             .post('/api/posts', { userId, userAvatar, userName, content })
-            .then((res) => {
-              refetch();
+            .then(() => {
+              refetch(); // 최신 글 리패치
+              setContent(''); // 글 작성 칸 비우기
+              closeModalHandler(); // 모달창 닫기
               toast.success('작성 성공!');
-              setContent('');
-              closeModalHandler();
             })
             .catch((error) => {
               console.log(error);
@@ -68,14 +74,16 @@ const WriteModal = ({
     <Container>
       {wirteModalOpen && (
         <Form ref={ref}>
+
           <ArrowBackIosNewIcon onClick={closeModalHandler} />
+
           <FormHeader>
             <img
               src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
               alt='센텐스유 로고'
             />
           </FormHeader>
-          <Input hidden='hidden' />
+
           <Input
             autoFocus
             autoComplete='off'
@@ -86,9 +94,11 @@ const WriteModal = ({
             value={content}
             onChange={onChangeContent}
           />
+
           <Button buttonActive={buttonActive} id='Button' onClick={onSubmit}>
             작성
           </Button>
+
         </Form>
       )}
     </Container>

@@ -1,14 +1,15 @@
-import { Container, Image, Info, Title, PS, Description } from './styles';
+import { Container, Image, Title, PS, Description } from './styles';
 import React from 'react';
 
 const Intro = () => {
   return (
     <Container>
-      <Info>
+
         <Image
           src={'https://www.sentenceu.co.kr/src/assets/images/landing_graphic.gif'}
           alt='poster'
         />
+
         <Description>
           <Title>
             <img
@@ -21,8 +22,9 @@ const Intro = () => {
             공간입니다.
           </p>
         </Description>
+
         <PS>&quot;여러분의 한 마디로 이 공간을 아름답게 빛내주세요.&quot;</PS>
-      </Info>
+        
     </Container>
   );
 };

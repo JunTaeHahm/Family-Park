@@ -5,6 +5,7 @@
   "start_url": ".",
   "display": "fullscreen",
   "crossorigin": "use-credentials",
+  "gcm_sender_id": 0,
   "theme_color": "#fbfdfc",
   "background_color": "#fbfdfc",
   "icons": [

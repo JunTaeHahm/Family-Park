@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100vh;
 `;
+
 export const Form = styled.form`
-  margin: 0 auto;
   width: 24rem;
   max-width: 24rem;
+  margin: 0 auto;
 `;
 
 export const HeaderLogo = styled.h1`
@@ -23,16 +24,16 @@ export const HeaderLogo = styled.h1`
   img {
     width: 15rem;
     height: 100%;
-    vertical-align: middle;
     object-fit: scale-down;
+    vertical-align: middle;
   }
 `;
 
 export const FormTitle = styled.h2`
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
   font-weight: normal;
   text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
 `;
 
 export const Label = styled.label`
@@ -41,17 +42,17 @@ export const Label = styled.label`
   color: var(--primary3);
   font-size: 0.9rem;
   & span {
-    font-weight: normal;
     color: var(--primary1);
+    font-weight: normal;
   }
   &.password-wrap {
     position: relative;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-between;
     span {
-      width: 48%;
       display: block;
+      width: 48%;
     }
     div {
       width: 48%;
@@ -60,35 +61,35 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  font-weight: 300;
-  background-color: var(--secondary1);
-  transition: all 0.3s;
-  font-size: 0.9rem;
-  border: none;
   box-sizing: border-box;
-  margin-top: 0.3rem;
   width: 100%;
-  padding: 0.8rem;
   height: 3rem;
+  margin-top: 0.3rem;
+  padding: 0.8rem;
+  border: none;
+  background-color: var(--secondary1);
+  font-size: 0.9rem;
+  font-weight: 300;
+  transition: all 0.3s;
   &:focus {
     outline: none;
     border-bottom: 0.06rem solid black;
   }
   &::placeholder {
-    color: var(--primary3);
     opacity: 0.5;
-    font-size: 0.9rem;
     height: 100%;
+    color: var(--primary3);
+    font-size: 0.9rem;
   }
 `;
 
 export const FormRequest = styled.p`
-  font-weight: 300;
-  font-size: 0.8rem;
   display: block;
   width: 100%;
-  text-align: center;
   padding: 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: center;
 `;
 
 export const Mismatch = styled.span`
@@ -99,26 +100,26 @@ export const Mismatch = styled.span`
 `;
 
 export const Button = styled.button`
-  margin: 0.6rem 0 1.3rem;
   width: 100%;
-  color: #fff;
-  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
-  border: none;
   height: 4rem;
-  user-select: none;
+  margin: 0.6rem 0 1.3rem;
   outline: none;
-  cursor: pointer;
+  border: none;
   border-radius: 0.5rem;
+  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
+  color: #fff;
+  cursor: pointer;
   box-shadow: var(--card-shadow);
+  user-select: none;
 `;
 
 export const LinkContainer = styled.p`
   display: flex;
   justify-content: flex-end;
-  font-size: 0.8rem;
-  color: var(--primary1);
-  margin: 0 auto 0.5rem;
   width: 100%;
+  margin: 0 auto 0.5rem;
+  color: var(--primary1);
+  font-size: 0.8rem;
   a {
     margin-left: 0.6rem;
     color: var(--primary1);

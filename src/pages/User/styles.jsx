@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 5rem 0 2rem;
-  width: 100%;
-  max-width: 768px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  height: 100vh;
   overflow: scroll;
+  width: 100%;
+  height: 100vh;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 5rem 0 2rem;
+  text-align: center;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -21,28 +21,30 @@ export const Container = styled.div`
 `;
 
 export const ProfileWrap = styled.div`
-  width: 100%;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background-color: var(--secondary2);
-  z-index: 10;
-  margin-top: 2rem;
-`;
-export const UserInfo = styled.div`
+  align-items: center;
   width: 100%;
+  margin-top: 2rem;
+  background-color: var(--secondary2);
+`;
+
+export const UserInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   margin-bottom: 2rem;
 `;
+
 export const ProfileImage = styled.img`
-  border-radius: 50%;
   width: 7rem;
   height: 7rem;
-  margin-right: 3rem;
   object-fit: cover;
+  margin-right: 3rem;
+  border-radius: 50%;
   @media screen and (max-width: 767px) {
     & {
       width: 5rem;
@@ -54,45 +56,46 @@ export const ProfileImage = styled.img`
 
 export const ProfileName = styled.div`
   height: 5rem;
-  line-height: 5rem;
   font-size: 2.2rem;
+  line-height: 5rem;
   @media screen and (max-width: 767px) {
     & {
       font-size: 1.8rem;
     }
   }
 `;
+
 export const UserTitle = styled.div`
+  padding: 0 0.3rem;
   font-size: 1.3rem;
   line-height: 1.3;
-  padding: 0 0.3rem;
 `;
 
 export const MenuWrap = styled.div`
   position: relative;
-  font-size: 1.3rem;
   width: 100%;
   height: 4rem;
   margin: 2rem 0 1rem;
+  font-size: 1.3rem;
   span {
-    cursor: pointer;
-    margin: 0 3rem;
     display: inline-block;
-    line-height: 3rem;
     width: 10rem;
     height: 3rem;
+    margin: 0 3rem;
+    line-height: 3rem;
+    cursor: pointer;
     &:first-of-type::after {
       content: '';
       position: absolute;
       left: 50%;
-      transform: translate(-13rem, 0);
-      transition: all 0.3s;
       display: block;
       width: 10rem;
       height: 0.3rem;
-      border-radius: 0.6rem;
       margin-bottom: 1.5rem;
+      border-radius: 0.6rem;
       background-color: var(--primary1);
+      transform: translate(-13rem, 0);
+      transition: all 0.3s;
     }
     &.collection:first-of-type::after {
       transform: translate(3rem, 0);
@@ -116,14 +119,15 @@ export const MenuWrap = styled.div`
     }
   }
 `;
+
 export const Loading = styled.div`
-  width: 100%;
-  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: 100%;
+  height: 30vh;
 `;
 
 export const Notice = styled.span``;

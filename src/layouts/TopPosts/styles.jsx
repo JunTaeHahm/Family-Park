@@ -4,15 +4,15 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-direction: column;
   align-items: center;
   width: 100%;
-  flex-direction: column;
 `;
 
 export const Title = styled.h2`
-  font-weight: 500;
-  font-size: 1.3rem;
   width: 100%;
+  font-size: 1.3rem;
+  font-weight: 500;
   text-align: center;
   @media screen and (max-width: 767px) {
     & {
@@ -20,15 +20,17 @@ export const Title = styled.h2`
     }
   }
 `;
+
 export const Loading = styled.div`
-  width: 100%;
-  height: 15rem; //todo
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: 100%;
+  height: 15rem;
 `;
+
 export const PostWrap = styled.div`
   width: 100%;
 `;

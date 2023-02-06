@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
+/**
+ * 전체 포스트 가져오는 react-query 함수
+ * @returns allPosts, isLoading, error, refetch
+ */
 export const useGetAllPosts = () => {
   const { data, isLoading, error, refetch } = useQuery(
     ['allPosts'],
@@ -20,8 +24,9 @@ export const useGetAllPosts = () => {
       refetchInterval: Infinity,
     },
   );
-  let allPosts = [];
 
+  let allPosts = [];
+  // Object의 모든 데이터의 key별로 allPosts배열에 push
   for (let key in data) {
     allPosts?.push({
       postId: data[key].postId,
@@ -33,9 +38,14 @@ export const useGetAllPosts = () => {
       updatedAt: data[key].updatedAt,
     });
   }
+
   return { allPosts, isLoading, error, refetch };
 };
 
+/**
+ * 최근 포스트 가져오는 react-query 함수
+ * @returns recentPosts, isLoading, error, refetch
+ */
 export const useGetRecentPosts = () => {
   const { data, isLoading, error, refetch } = useQuery(
     ['recentPosts'],
@@ -55,8 +65,9 @@ export const useGetRecentPosts = () => {
       refetchInterval: Infinity,
     },
   );
-  let recentPosts = [];
 
+  let recentPosts = [];
+  // Object의 모든 데이터의 key별로 recentPosts배열에 push
   for (let key in data) {
     recentPosts?.push({
       postId: data[key].postId,
@@ -68,15 +79,20 @@ export const useGetRecentPosts = () => {
       updatedAt: data[key].updatedAt,
     });
   }
+
   return { recentPosts, isLoading, error, refetch };
 };
 
+/**
+ * 특정 유저의 포스트 가져오는 react-query 함수
+ * @returns userPosts, isLoading, error, refetch
+ */
 export const useGetUserPosts = (userName) => {
   const { data, isLoading, error, refetch } = useQuery(
     ['userPosts'],
     async () => {
       return await axios
-        .get(`/api/allposts/${userName}`)
+        .get(`/api/allposts/${userName}`) // userName은 인수로 받음
         .then((res) => {
           return res.data;
         })
@@ -90,7 +106,9 @@ export const useGetUserPosts = (userName) => {
       refetchInterval: Infinity,
     },
   );
+
   let userPosts = [];
+  // Object의 모든 데이터의 key별로 userPosts배열에 push
   for (let key in data) {
     userPosts?.push({
       postId: data[key].postId,
@@ -102,5 +120,6 @@ export const useGetUserPosts = (userName) => {
       updatedAt: data[key].updatedAt,
     });
   }
+
   return { userPosts, isLoading, error, refetch };
 };

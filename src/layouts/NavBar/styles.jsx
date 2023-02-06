@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 
-export const Header = styled.nav`
-  font-size: 0.9rem;
+export const Container = styled.nav`
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 1920px;
-  height: 3rem;
   z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  max-width: 1920px;
   background-color: var(--secondary2);
+  font-size: 0.9rem;
+  transform: translate(-50%, 0);
 `;
 
 export const HeaderLogo = styled.h1`
@@ -26,20 +26,20 @@ export const HeaderLogo = styled.h1`
   img {
     width: 10rem;
     height: 100%;
-    vertical-align: middle;
     object-fit: scale-down;
+    vertical-align: middle;
   }
 `;
 
 export const ThemeButton = styled.button`
-  background-color: transparent;
-  cursor: pointer;
-  margin-right: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 1.5rem;
   height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: 0.8rem;
+  background-color: transparent;
+  cursor: pointer;
   div {
     display: flex;
     justify-content: center;
@@ -48,8 +48,8 @@ export const ThemeButton = styled.button`
     height: 100%;
   }
   &:hover {
-    background-color: var(--primary2);
     border-radius: 50%;
+    background-color: var(--primary2);
   }
 `;
 
@@ -57,29 +57,29 @@ export const LightMode = styled.div``;
 export const DarkMode = styled.div``;
 
 export const LoginWrap = styled.div`
-  border-left: 0.06rem solid var(--primary1);
-  border-right: 0.06rem solid var(--primary1);
   position: relative;
-  width: 10rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 10rem;
   height: 100%;
+  border-right: 0.06rem solid var(--primary1);
+  border-left: 0.06rem solid var(--primary1);
   background-color: var(--primary1);
   color: var(--secondary1);
-  transition: all 0.3s;
   cursor: pointer;
+  transition: all 0.3s;
   a {
-    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
+    height: 100%;
     img {
       width: 2rem;
       height: 2rem;
-      border-radius: 50%;
       object-fit: cover;
+      border-radius: 50%;
     }
   }
   &:hover {
@@ -88,8 +88,8 @@ export const LoginWrap = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
-      min-width: 8rem;
       width: max-content;
+      min-width: 8rem;
       padding: 0 1.5rem;
     }
   }

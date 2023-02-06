@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   position: sticky;
   top: 5rem;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 export const Title = styled.h2`
@@ -14,12 +14,12 @@ export const Title = styled.h2`
   top: 0;
   left: 0;
   z-index: 20;
-  text-align: center;
-  font-size: 1.3rem;
+  width: 100%;
   padding: 1.5rem 1rem 1rem;
   background-color: var(--secondary2);
+  font-size: 1.3rem;
   font-weight: 500;
-  width: 100%;
+  text-align: center;
   @media screen and (max-width: 767px) {
     & {
       display: none;
@@ -28,52 +28,54 @@ export const Title = styled.h2`
 `;
 
 export const PostWrap = styled.div`
-  width: 100%;
-  padding-top: 4rem;
-  height: calc(100vh - 5rem);
   overflow-x: scroll;
+  width: 100%;
+  height: calc(100vh - 5rem);
+  padding-top: 4rem;
   ::-webkit-scrollbar {
     display: none;
   }
   @media screen and (max-width: 767px) {
     & {
-      padding-top: 0;
       overflow: visible;
+      padding-top: 0;
     }
   }
 `;
+
 export const Loading = styled.div`
-  width: 100%;
-  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  width: 100%;
+  height: 30vh;
 `;
+
 export const DateSection = styled.section``;
 
 export const DateHeader = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  position: sticky;
   height: 3rem;
-  top: 0;
-  z-index: 10;
   background-color: var(--secondary2);
   button {
-    font-weight: 300;
-    font-size: 0.9rem;
-    height: 2rem;
-    line-height: 1.8rem;
-    padding: 0 1rem;
-    z-index: 2;
-    border-radius: 3rem;
     position: relative;
+    z-index: 2;
+    height: 2rem;
+    padding: 0 1rem;
+    outline: none;
+    border-radius: 3rem;
     background: var(--primary1);
     color: var(--secondary1);
-    outline: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.8rem;
   }
 `;

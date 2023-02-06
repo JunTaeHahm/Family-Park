@@ -16,14 +16,16 @@ const WriteModal = loadable(() => import('@components/WriteModal'));
 const TopPosts = loadable(() => import('@layouts/TopPosts'));
 
 const Home = () => {
-  const [wirteModalOpen, setWirteModalOpen] = useState(false);
-  const [isBtnActive, setIsBtnActive] = useState(false);
-
   const { innerWidth } = useViewPort();
   const { userId, userName, userAvatar } = useGetClientUser();
 
+  const [wirteModalOpen, setWirteModalOpen] = useState(false);
+  const [isBtnActive, setIsBtnActive] = useState(false);
+
+  /* 글 작성 모달 버튼 클릭 시 */
   const onWriteHandler = useCallback(() => {
     if (userName) {
+      // 로그인 상태에만 이용 가능하도록
       setWirteModalOpen(true);
       setIsBtnActive(true);
     } else {
@@ -31,38 +33,43 @@ const Home = () => {
     }
   }, [userName]);
 
-
-
   return (
     <Container>
+
       <Catuion>
         <IoWarningOutline />
         &nbsp;개발 중인 서비스로 문제가 발생할 수 있어요 :&#40;
       </Catuion>
-        <Main>
-          <LeftWrap>
-            <Intro />
-            {innerWidth < 768 ? <PostMenu /> : <TopPosts />}
-          </LeftWrap>
-          {innerWidth < 768 ? (
-            ''
-          ) : (
-            <CenterWrap>
-              <RecentPosts />
-            </CenterWrap>
-          )}
-          {innerWidth < 1024 ? (
-            ''
-          ) : (
-            <RightWrap>
-              <UserLists />
-            </RightWrap>
-          )}
-        </Main>
+
+      <Main>
+        <LeftWrap>
+          <Intro />
+          {innerWidth < 768 ? <PostMenu /> : <TopPosts />}
+        </LeftWrap>
+
+        {innerWidth < 768 ? (
+          ''
+        ) : (
+          <CenterWrap>
+            <RecentPosts />
+          </CenterWrap>
+        )}
+
+        {innerWidth < 1024 ? (
+          ''
+        ) : (
+          <RightWrap>
+            <UserLists />
+          </RightWrap>
+        )}
+      </Main>
+
       <Footer />
+
       <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
         +
       </WriteButton>
+
       {wirteModalOpen && (
         <WriteModal
           userId={userId}
@@ -73,6 +80,7 @@ const Home = () => {
           setWirteModalOpen={setWirteModalOpen}
         />
       )}
+      
     </Container>
   );
 };
