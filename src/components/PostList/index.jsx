@@ -244,7 +244,6 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
 
   return (
     <Container id={postId} ref={containerRef}>
-
       <PostWrap onClick={onPostClick}>
         <ContentWrap>
           {isEditing ? (
@@ -337,10 +336,8 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           <Button ref={sendBtnRef} id='Button' type='submit'>
             등록
           </Button>
-          
         </Form>
       </CommentWrap>
-
     </Container>
   );
 };

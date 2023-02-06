@@ -47,8 +47,7 @@ const LogIn = () => {
             toast.success(`환영합니다 ${userName}님!`);
           })
           .catch((error) => {
-            console.log(error.response);
-            toast.error('유저명 혹은 비밀번호가 틀렸습니다.');
+            toast.error(error.response.data);
           });
       }
     },
@@ -58,7 +57,6 @@ const LogIn = () => {
   return (
     <Container>
       <Form onSubmit={onSubmit}>
-        
         <HeaderLogo>
           <Link to='/'>
             <img
@@ -109,7 +107,6 @@ const LogIn = () => {
           아직 회원이 아니신가요?
           <Link to='/signup'>회원가입 &gt;</Link>
         </LinkContainer>
-
       </Form>
     </Container>
   );

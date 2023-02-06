@@ -8,8 +8,8 @@ import path from 'path';
 import webpack from 'webpack';
 import pkg from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import WebpackPwaManifest from 'webpack-pwa-manifest';
-import WorkboxPlugin from 'workbox-webpack-plugin';
+// import WebpackPwaManifest from 'webpack-pwa-manifest';
+// import WorkboxPlugin from 'workbox-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const __dirname = path.resolve(); // ES모듈에서 __dirname 사용법
@@ -184,41 +184,41 @@ if (isDevelopment && config.plugins) {
 if (!isDevelopment && config.plugins) {
   config.plugins?.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
   config.plugins?.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: true }));
-  config.plugins?.push(
-    new WebpackPwaManifest({
-      filename: 'manifest.json',
-      short_name: '센텐스유',
-      name: 'Sentence U',
-      start_url: '.',
-      display: 'fullscreen',
-      crossorigin: 'use-credentials',
-      theme_color: '#fbfdfc',
-      background_color: '#fbfdfc',
-      icons: [
-        {
-          src: './src/assets/images/favicon.ico',
-          sizes: '16x16',
-          type: 'image/x-icon',
-        },
-        {
-          src: './src/assets/images/logo192.png',
-          type: 'image/png',
-          sizes: '192x192',
-        },
-        {
-          src: './src/assets/images/logo512.png',
-          type: 'image/png',
-          sizes: '512x512',
-        },
-      ],
-    }),
-  );
-  config.plugins?.push(
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './src/service-worker.js',
-      swDest: 'service-worker.js',
-    }),
-  );
+  // config.plugins?.push(
+  //   new WebpackPwaManifest({
+  //     filename: 'manifest.json',
+  //     short_name: '센텐스유',
+  //     name: 'Sentence U',
+  //     start_url: '.',
+  //     display: 'fullscreen',
+  //     crossorigin: 'use-credentials',
+  //     theme_color: '#fbfdfc',
+  //     background_color: '#fbfdfc',
+  //     icons: [
+  //       {
+  //         src: './src/assets/images/favicon.ico',
+  //         sizes: '16x16',
+  //         type: 'image/x-icon',
+  //       },
+  //       {
+  //         src: './src/assets/images/logo192.png',
+  //         type: 'image/png',
+  //         sizes: '192x192',
+  //       },
+  //       {
+  //         src: './src/assets/images/logo512.png',
+  //         type: 'image/png',
+  //         sizes: '512x512',
+  //       },
+  //     ],
+  //   }),
+  // );
+  // config.plugins?.push(
+  //   new WorkboxPlugin.InjectManifest({
+  //     swSrc: './src/service-worker.js',
+  //     swDest: 'service-worker.js',
+  //   }),
+  // );
 }
 
 export default config;

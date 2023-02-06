@@ -119,7 +119,7 @@ export const NameInput = styled.input`
   width: 100%;
   padding: 0.5rem;
   outline: none;
-  border: 0.06rem solid var(--primary2);
+  border: 0.06rem solid var(--primary1);
   border-radius: 0.3rem;
   background-color: transparent;
   font-size: 2.2rem;
@@ -142,7 +142,7 @@ export const TitleInput = styled.input`
   width: 100%;
   padding: 0.5rem;
   outline: none;
-  border: 0.06rem solid var(--primary2);
+  border: 0.06rem solid var(--primary1);
   border-radius: 0.3rem;
   background-color: transparent;
   &:focus {

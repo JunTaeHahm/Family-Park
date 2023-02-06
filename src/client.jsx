@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom/client';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+// const isDevelopment = process.env.NODE_ENV !== 'production';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,24 +18,24 @@ const queryClient = new QueryClient({
   },
 });
 
-if (!isDevelopment) {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('./service-worker.js')
-        .then((registration) => {
-          console.log('SW registered', registration);
-          registration.pushManager.subscribe({ userVisibleOnly: true });
-          Notification.requestPermission().then((p) => {
-            console.log(p);
-          });
-        })
-        .catch((e) => {
-          console.log('SW registration failed: ', e);
-        });
-    });
-  }
-}
+// if (!isDevelopment) {
+//   if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//       navigator.serviceWorker
+//         .register('./service-worker.js')
+//         .then((registration) => {
+//           console.log('SW registered', registration);
+//           registration.pushManager.subscribe({ userVisibleOnly: true });
+//           Notification.requestPermission().then((p) => {
+//             console.log(p);
+//           });
+//         })
+//         .catch((e) => {
+//           console.log('SW registration failed: ', e);
+//         });
+//     });
+//   }
+// }
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.API_SERVER;
