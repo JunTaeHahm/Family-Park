@@ -1,8 +1,15 @@
 import { Container } from './styles';
-import { WriteButton } from './styles';
+import {
+  NoticePopup,
+  NoticeWrap,
+  NoticeDate,
+  NoticeTitle,
+  NoticeList,
+  WriteButton,
+} from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import loadable from '@loadable/component';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const Intro = loadable(() => import('@layouts/Intro'));
@@ -12,8 +19,22 @@ const WriteModal = loadable(() => import('@components/WriteModal'));
 
 const Home = () => {
   const { userId, userName, userAvatar } = useGetClientUser();
-  const [wirteModalOpen, setWirteModalOpen] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(true);
   const [isBtnActive, setIsBtnActive] = useState(false);
+  const [wirteModalOpen, setWirteModalOpen] = useState(false);
+
+  /* 공지사항 팝업 */
+  useEffect(() => {
+    const shouldShow = localStorage.getItem('showPopup') !== 'false';
+    setShowPopup(shouldShow);
+  }, []);
+
+  /* 팝업 닫기 */
+  const closePopupHandler = () => {
+    setShowPopup(false);
+    localStorage.setItem('showPopup', false);
+  };
 
   /* 글 작성 모달 버튼 클릭 시 */
   const onWriteHandler = useCallback(() => {
@@ -28,14 +49,23 @@ const Home = () => {
 
   return (
     <Container>
+      {showPopup && (
+        <NoticePopup>
+          <NoticeWrap>
+            <NoticeTitle>📌 업데이트 📌</NoticeTitle>
+            <NoticeDate>2023년 02월 07일</NoticeDate>
+            <NoticeList>카카오 로그인 기능 추가</NoticeList>
+            <NoticeList>이미지 업로드 기능 활성화</NoticeList>
+            <button onClick={closePopupHandler}>Close</button>
+          </NoticeWrap>
+        </NoticePopup>
+      )}
       <Intro />
       <PostMenu slice={3} />
       <UserLists />
-
       <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
         +
       </WriteButton>
-
       {wirteModalOpen && (
         <WriteModal
           userId={userId}

@@ -17,6 +17,9 @@ export const Container = styled.ul`
   box-shadow: var(--card);
   transform: ${(props) => (props.isOpened ? 'translate(-50%, 0)' : 'translate(-50%, -200%)')};
   transition: all 0.3s;
+  & span {
+    color: var(--primary-white);
+  }
 `;
 
 export const ModalList = styled.li`
@@ -31,6 +34,7 @@ export const ModalList = styled.li`
     gap: 0.2rem;
     width: 100%;
     height: 100%;
+    color: var(--primary-white);
   }
   &:first-of-type {
     margin-top: 0.9rem;
@@ -41,6 +45,9 @@ export const ModalList = styled.li`
   &:hover {
     background-color: var(--primary-skyblue);
     color: var(--primary-black);
+    a {
+      color: var(--primary-black);
+    }
   }
 `;
 

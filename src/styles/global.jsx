@@ -18,6 +18,7 @@ const GlobalStyle = () => (
       input,
       textarea,
       button {
+        color: var(--primary-black);
         border-radius: 0;
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
@@ -49,7 +50,7 @@ const GlobalStyle = () => (
         list-style: none;
       }
       a {
-        color: inherit;
+        color: var(--primary-black);
         text-decoration: none;
       }
 

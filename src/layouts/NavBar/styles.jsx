@@ -69,6 +69,9 @@ export const LoginWrap = styled.div`
   color: var(--primary-white);
   cursor: pointer;
   transition: all 0.3s;
+  span {
+    color: var(--primary-white);
+  }
   a {
     display: flex;
     justify-content: center;
@@ -85,6 +88,9 @@ export const LoginWrap = styled.div`
   &:hover {
     background-color: var(--primary-skyblue);
     color: var(--primary-black);
+    span {
+      color: var(--primary-black);
+    }
   }
   @media screen and (max-width: 767px) {
     & {

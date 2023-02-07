@@ -296,7 +296,11 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       <CommentWrap ref={commentWrapRef}>
         {postUser === userName || role === 1 ? (
           <PostAction>
-            <span onClick={onEditHandler}>{isEditing ? '확인' : '수정'}</span>
+            {isEditing ? (
+              <span onClick={onEditPostSubmit}>확인</span>
+            ) : (
+              <span onClick={onEditHandler}>수정</span>
+            )}
             <span onClick={onDeletePost}>삭제</span>
           </PostAction>
         ) : (
