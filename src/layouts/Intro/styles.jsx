@@ -7,8 +7,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 2rem;
-  gap: 2rem;
+  padding: 3rem 1rem 1rem;
+  gap: 3rem;
   @media screen and (max-width: 1023px) {
     & {
       margin-bottom: 2.5rem;
@@ -34,7 +34,7 @@ export const Image = styled.img`
   height: 10rem;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card);
   @media screen and (max-width: 767px) {
     & {
       display: none;
@@ -59,20 +59,18 @@ export const Title = styled.h2`
 export const Description = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 50%;
+  font-size: 1.1rem;
   p {
     margin-top: 1.2rem;
     line-height: 1.3;
     letter-spacing: 0.03rem;
   }
-  b {
-    padding: 0 0.2rem;
-    background-color: var(--primary2);
-    font-weight: normal;
-  }
+
   @media screen and (max-width: 767px) {
     & {
       width: 100%;
+      font-size: 1rem;
       p {
         margin-top: 0;
         line-height: 1.5;
@@ -83,15 +81,24 @@ export const Description = styled.div`
 
 export const PS = styled.span`
   padding: 0 0.3rem;
-  background-color: var(--primary2);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   line-height: 1.5;
   text-align: center;
   white-space: nowrap;
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-size: 100% 88%;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  cursor: pointer;
+  transition: background-size 0.2s ease;
+  &:hover {
+    background-size: 100% 0.2rem;
+  }
+  @media screen and (max-width: 767px) {
     & {
-      position: absolute;
-      bottom: -1rem;
+      order: -1;
+      font-size: 1.2rem;
     }
   }
 `;

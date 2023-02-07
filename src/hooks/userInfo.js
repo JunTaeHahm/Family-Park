@@ -6,7 +6,11 @@ import axios from 'axios';
  * @returns data, allUsers, isLoading, error
  */
 export const useAllUsers = () => {
-  const { data, isLoading, error } = useQuery(
+  const {
+    data: allUsers,
+    isLoading,
+    error,
+  } = useQuery(
     ['allUsers'],
     async () => {
       return await axios
@@ -25,13 +29,7 @@ export const useAllUsers = () => {
     },
   );
 
-  let allUsers = [];
-  // Object에서 userName만 allUsers배열에 push
-  for (let key in data) {
-    allUsers?.push(data[key].userName);
-  }
-
-  return { data, allUsers, isLoading, error };
+  return { allUsers, isLoading, error };
 };
 
 /**
@@ -39,6 +37,7 @@ export const useAllUsers = () => {
  * @returns isAuth, role, userId, userName, userTitle, userAvatar, isLoading, error, refetch
  * isAuth: 인증상태
  * role: 어드민 여부
+ * kakaoId: 카카오로그인의 경우 부여된 아이디
  * userId: 유저아이디
  * userName: 유저명
  * userTitle: 유저타이틀
@@ -76,10 +75,22 @@ export const useGetClientUser = () => {
   }
 
   const role = Object(data).role;
+  const kakaoId = Object(data).kakao_id;
   const userId = Object(data)._id;
   const userName = Object(data).userName;
   const userTitle = Object(data).userTitle;
   const userAvatar = Object(data).userAvatar;
 
-  return { isAuth, role, userId, userName, userTitle, userAvatar, isLoading, error, refetch };
+  return {
+    isAuth,
+    role,
+    kakaoId,
+    userId,
+    userName,
+    userTitle,
+    userAvatar,
+    isLoading,
+    error,
+    refetch,
+  };
 };

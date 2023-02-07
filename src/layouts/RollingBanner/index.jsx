@@ -1,7 +1,6 @@
 import { Container, List, Loading } from './styles';
 import BannerList from '@components/BannerList';
 import { useCrawling } from '@hooks/useCrawling';
-import CircularProgress from '@mui/material/CircularProgress';
 import React from 'react';
 
 const RollingBanner = () => {
@@ -12,7 +11,6 @@ const RollingBanner = () => {
     return (
       <Container>
         <Loading>
-          <CircularProgress color='inherit' />
           <span>불러오는 중...</span>
         </Loading>
       </Container>

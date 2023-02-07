@@ -1,20 +1,18 @@
-import { Container, Loading, PostWrap, Title } from './styles';
+import { Container, Loading, PostWrap } from './styles';
 import PostList from '@components/PostList';
+import Spinner from '@components/Spinner';
 import { useGetAllPosts } from '@hooks/usePost';
-import { CircularProgress } from '@mui/material';
 import React from 'react';
 
-const TopPosts = () => {
+const TopPosts = ({ slice }) => {
   const { allPosts, isLoading } = useGetAllPosts();
 
   return (
     <Container>
-      <Title>인기 포스트</Title>
-
       {isLoading ? (
         // 포스트 로딩 중
         <Loading>
-          <CircularProgress color='inherit' />
+          <Spinner />
           <div>불러오는 중...</div>
         </Loading>
       ) : (
@@ -23,7 +21,7 @@ const TopPosts = () => {
             .sort((a, b) => {
               return b.postLike.length - a.postLike.length;
             }) // 전체 포스트 중에 postLike의 개수 순으로 정렬
-            .slice(0, 3) // postLike 제일 많은 세개만
+            .slice(0, slice)
             .map((post) => (
               <PostList
                 key={post.postId}

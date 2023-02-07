@@ -132,7 +132,6 @@ const Setting = () => {
   return (
     <Container>
       <SettingWrap>
-
         <ProfileWrap>
           <AvatarForm>
             <Avatar src={userAvatar} alt={userName} />
@@ -189,7 +188,6 @@ const Setting = () => {
           <Withdrawal onClick={onWithdrawalHandler}>계정 삭제</Withdrawal>
           <Caution>계정 삭제 시 작성하신 모든 포스트가 삭제되며 복구되지 않습니다.</Caution>
         </WithdrawalForm>
-
       </SettingWrap>
     </Container>
   );

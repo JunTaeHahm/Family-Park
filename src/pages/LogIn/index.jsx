@@ -1,3 +1,5 @@
+import useInput from '@hooks/useInput';
+import { useGetClientUser } from '@hooks/userInfo';
 import {
   LinkContainer,
   HeaderLogo,
@@ -7,9 +9,7 @@ import {
   Input,
   FormTitle,
   Container,
-} from '../SignUp/styles';
-import useInput from '@hooks/useInput';
-import { useGetClientUser } from '@hooks/userInfo';
+} from '@pages//SignUp/styles';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';

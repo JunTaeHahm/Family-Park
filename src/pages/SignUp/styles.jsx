@@ -39,10 +39,10 @@ export const FormTitle = styled.h2`
 export const Label = styled.label`
   display: block;
   margin-bottom: 1.3rem;
-  color: var(--primary3);
+  color: var(--primary-skyblue);
   font-size: 0.9rem;
   & span {
-    color: var(--primary1);
+    color: var(--primary-black);
     font-weight: normal;
   }
   &.password-wrap {
@@ -67,7 +67,7 @@ export const Input = styled.input`
   margin-top: 0.3rem;
   padding: 0.8rem;
   border: none;
-  background-color: var(--secondary1);
+  background-color: var(--primary-white);
   font-size: 0.9rem;
   font-weight: 300;
   transition: all 0.3s;
@@ -78,7 +78,7 @@ export const Input = styled.input`
   &::placeholder {
     opacity: 0.5;
     height: 100%;
-    color: var(--primary3);
+    color: var(--primary-skyblue);
     font-size: 0.9rem;
   }
 `;
@@ -106,10 +106,11 @@ export const Button = styled.button`
   outline: none;
   border: none;
   border-radius: 0.5rem;
-  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
+  background-color: ${(props) =>
+    props.buttonActive ? 'var(--primary-black)' : 'var(--primary-grey)'};
   color: #fff;
   cursor: pointer;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card);
   user-select: none;
 `;
 
@@ -118,14 +119,21 @@ export const LinkContainer = styled.p`
   justify-content: flex-end;
   width: 100%;
   margin: 0 auto 0.5rem;
-  color: var(--primary1);
+  color: var(--primary-black);
   font-size: 0.8rem;
   a {
     margin-left: 0.6rem;
-    color: var(--primary1);
+    color: var(--primary-black);
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
   }
+`;
+
+export const KakaoLogin = styled.button`
+  width: 183px;
+  height: 45px;
+  cursor: pointer;
+  background: url('https://www.sentenceu.co.kr/src/assets/images/kakao_login_medium_narrow.png');
 `;

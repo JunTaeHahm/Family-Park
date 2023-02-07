@@ -28,26 +28,21 @@ const GlobalStyle = () => (
       html,
       body,
       #root {
-        overflow: hidden;
         height: 100%;
-        background-color: var(--secondary2);
-        color: var(--primary1);
+        background-color: var(--background);
+        color: var(--primary-black);
         font-family: 'IBM Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         touch-action: manipulation;
-        @media screen and (max-width: 767px) {
-          & {
-            overflow: scroll;
-            ::-webkit-scrollbar {
-              display: none;
-            }
-          }
+        overflow: scroll;
+        ::-webkit-scrollbar {
+          display: none;
         }
       }
       #app {
         height: 100%;
         min-height: 100%;
-        max-width: 1920px;
+        max-width: 1300px;
         margin: 0 auto;
       }
       li {
@@ -131,13 +126,14 @@ const GlobalStyle = () => (
       }
 
       :root {
-        --card-shadow: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
-        --deactive: #c9c9c9;
-        --primary1: #222;
-        --primary2: #a0c3d2;
-        --primary3: #83a2a1;
-        --secondary1: #f8f9fa;
-        --secondary2: #fbfdfc;
+        --primary-black: #222;
+        --primary-skyblue: #e0effe;
+        --primary-blue: #008bf8;
+        --primary-white: #f8f9fa;
+        --primary-grey: #c9c9c9;
+        --primary-lightgrey: #dedede;
+        --background: #fbfdfc;
+
         --prism-code-1: #7c858d;
         --prism-code-2: #abb2bf;
         --prism-code-3: #e06c75;
@@ -147,6 +143,9 @@ const GlobalStyle = () => (
         --prism-code-7: #c678dd;
         --prism-code-8: #61afef;
         --prism-code-9: #c678dd;
+
+        --neumorphic: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem var(--primary-white);
+        --card: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
       }
     `}
   />

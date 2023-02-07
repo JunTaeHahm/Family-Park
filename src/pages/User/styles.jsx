@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   max-width: 768px;
   margin: 0 auto;
-  padding: 5rem 0 2rem;
+  padding-top: 5rem;
   text-align: center;
   ::-webkit-scrollbar {
     display: none;
@@ -28,7 +28,7 @@ export const ProfileWrap = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 2rem;
-  background-color: var(--secondary2);
+  background-color: var(--background);
 `;
 
 export const UserInfo = styled.div`
@@ -69,53 +69,34 @@ export const UserTitle = styled.div`
   padding: 0 0.3rem;
   font-size: 1.3rem;
   line-height: 1.3;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2rem;
+  background-position: 0 50%;
+  cursor: pointer;
+  transition: background-size 0.2s ease-in;
+  &:hover {
+    background-size: 100% 88%;
+  }
 `;
 
 export const MenuWrap = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   width: 100%;
   height: 4rem;
   margin: 2rem 0 1rem;
   font-size: 1.3rem;
-  span {
-    display: inline-block;
-    width: 10rem;
-    height: 3rem;
-    margin: 0 3rem;
-    line-height: 3rem;
+  button {
+    width: 8rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-black);
     cursor: pointer;
-    &:first-of-type::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      display: block;
-      width: 10rem;
-      height: 0.3rem;
-      margin-bottom: 1.5rem;
-      border-radius: 0.6rem;
-      background-color: var(--primary1);
-      transform: translate(-13rem, 0);
-      transition: all 0.3s;
-    }
-    &.collection:first-of-type::after {
-      transform: translate(3rem, 0);
-    }
-    &.notice:first-of-type::after {
-      transform: translate(-50%, 0);
-    }
-  }
-  @media screen and (max-width: 767px) {
-    & {
-      margin: 1rem 0;
-      span {
-        margin: 0 1rem;
-        &:first-of-type::after {
-          transform: translate(-11rem, 0);
-        }
-        &.collection:first-of-type::after {
-          transform: translate(1rem, 0);
-        }
-      }
+    &.active span {
+      background: var(--primary-white);
     }
   }
 `;
@@ -130,9 +111,28 @@ export const Loading = styled.div`
   height: 30vh;
 `;
 
-export const Notice = styled.span``;
-export const MyPost = styled.span``;
-export const Collection = styled.span``;
+export const UserPost = styled.button``;
+export const MyPost = styled.button``;
+export const Collection = styled.button``;
+
+export const Button = styled.span`
+  display: inline-block;
+  width: 8rem;
+  box-sizing: border-box;
+  border: 2px solid var(--primary-black);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--primary-white);
+  color: var(--primary-black);
+  transform: translateY(-0.2rem);
+  transition: transform 0.1s ease;
+  &:hover {
+    transform: translateY(-0.33rem);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+`;
 
 export const PostWrap = styled.div`
   position: relative;

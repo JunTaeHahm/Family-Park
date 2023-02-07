@@ -1,5 +1,12 @@
 import ProfileMenu from '../../components/ProfileMenu';
-import { HeaderLogo, LightMode, DarkMode, Container, ThemeButton, LoginWrap } from './styles';
+import {
+  HeaderLogo,
+  LightMode,
+  DarkMode,
+  Container,
+  ThemeButton,
+  LoginWrap,
+} from './styles';
 import { useViewPort } from '@hooks/useViewPort';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';
@@ -64,7 +71,7 @@ const NavBar = () => {
         )}
       </ThemeButton>
 
-      <LoginWrap
+            <LoginWrap
         onTouchStart={onTouchStartProfile}
         onMouseOver={onMouseOverProfile}
         onMouseOut={onMouseOutProfile}>

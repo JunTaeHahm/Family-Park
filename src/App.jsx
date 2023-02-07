@@ -1,4 +1,6 @@
 import loadable from '@loadable/component';
+import Admin from '@pages/Admin';
+import Posts from '@pages/Posts';
 import React from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
@@ -26,7 +28,9 @@ const App = () => {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/*' element={<Navigate to='/' />} />
+          <Route path='/posts' element={<Posts />} />
           <Route path='/:user' element={<User />} />
+          <Route path='/센텐스유' element={<Admin />} />
           <Route path='/setting' element={<Setting />} />
         </Route>
         <Route path='/login' element={<LogIn />} />

@@ -1,17 +1,4 @@
-import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-
-const heartbeat = keyframes`
-    0% {
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(1.2);
-  }
-  40% {
-    transform: scale(1);
-  }
-`;
 
 export const Container = styled.div`
   position: relative;
@@ -21,13 +8,44 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 85%;
-  margin: 2rem 0;
-  padding: 1.5rem 1.5rem 1rem;
-  border-radius: 1rem;
-  background-color: var(--secondary1);
-  box-shadow: var(--card-shadow);
+  margin: 1.2rem 0;
+  padding: 1.2rem 1.2rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary-white);
+  border: 0.13rem solid var(--primary-grey);
   transform: translate(-50%, 0) scaleY(1);
   transition: all 0.5s;
+  cursor: pointer;
+  .card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translate(-50%, 125%);
+    border-radius: 10rem;
+    background-color: var(--primary-blue);
+    color: #fff;
+    width: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.1rem 1rem;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    &.open {
+    }
+  }
+  &:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+    .card-button {
+      transform: translate(-50%, 50%);
+      opacity: 1;
+    }
+  }
   &.open {
     height: max-content;
     transition: all 0.5s;
@@ -37,17 +55,6 @@ export const Container = styled.div`
     opacity: 0;
     transform: translate(-500%, 0);
   }
-  &:hover {
-    transform: translate(-50%, 0) scale(1.02);
-  }
-  &:hover .likeBtn {
-    animation: ${heartbeat} 0.3s infinite;
-    @media screen and (max-width: 767px) {
-      & {
-        animation: none;
-      }
-    }
-  }
 `;
 
 export const PostWrap = styled.div`
@@ -55,7 +62,6 @@ export const PostWrap = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 `;
 
 export const ContentWrap = styled.div`
@@ -97,14 +103,14 @@ export const EditInput = styled.textarea`
   width: 100%;
   padding: 0.5rem;
   outline: none;
-  border: 0.06rem solid var(--primary2);
+  border: 0.06rem solid var(--primary-skyblue);
   border-radius: 0.3rem;
-  background-color: var(--secondary1);
+  background-color: var(--primary-white);
   font-size: 1.1rem;
   resize: none;
   &::placeholder {
     height: 100%;
-    color: var(--primary1);
+    color: var(--primary-black);
     font-size: 1.3rem;
   }
 `;
@@ -165,14 +171,14 @@ export const Avatar = styled.img`
 export const Name = styled.span`
   display: inline-block;
   padding: 0.1rem 0.3rem;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   font-size: 0.9rem;
   font-weight: normal;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
 `;
 
@@ -205,7 +211,7 @@ export const PostAction = styled.div`
     margin-left: 0.5rem;
     cursor: pointer;
     &:first-of-type {
-      color: var(--primary1);
+      color: var(--primary-black);
     }
     &:last-of-type {
       color: var(--prism-code-3);
@@ -223,7 +229,7 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 2rem;
+  height: 2.3rem;
 `;
 
 export const Label = styled.label`
@@ -241,32 +247,29 @@ export const Input = styled.input`
   height: 100%;
   padding: 0.3rem;
   outline: none;
-  border: 0.06rem solid var(--primary1);
-  background-color: var(--secondary1);
+  border: 0.06rem solid var(--primary-black);
+  background-color: var(--primary-white);
   font-size: 0.8rem;
   text-indent: 0.3rem;
-  &:focus {
-    border: 0.06rem solid var(--primary1);
-  }
   &::placeholder {
     opacity: 0.5;
     height: 100%;
-    color: var(--primary1);
+    color: var(--primary-black);
   }
 `;
 
 export const Button = styled.button`
   width: 10%;
   height: 100%;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   font-size: 0.9rem;
   font-weight: 300;
   cursor: pointer;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
   @media screen and (max-width: 1023px) {
     & {
@@ -282,10 +285,13 @@ export const Button = styled.button`
 
 export const CommentList = styled.div`
   position: absolute;
-  top: 1rem;
   overflow: hidden;
+  top: 1rem;
   width: 100%;
   height: 11rem;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   .scroll-bar > div:last-of-type {
     display: none !important;
   }
@@ -304,47 +310,38 @@ export const Comment = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 0.7rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.5;
   span {
     display: inline-block;
     &:nth-of-type(1) {
-      width: 15%;
-      height: 1.2rem;
-      max-width: 15%;
+      flex: 1;
       margin-right: 0.5rem;
-      padding: 0 0.3rem;
-      background-color: var(--primary1);
-      color: var(--secondary1);
-      line-height: 1.2rem;
+      padding: 0.1rem 0.2rem;
+      max-height: 1.5rem;
+      background-color: var(--primary-black);
+      color: var(--primary-white);
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
       &:hover {
-        background-color: var(--primary2);
-        color: var(--primary1);
+        background-color: var(--primary-skyblue);
+        color: var(--primary-black);
       }
       @media screen and (max-width: 767px) {
         & {
-          width: 23%;
-          max-width: 23%;
+          min-width: 25%;
         }
       }
     }
     &:nth-of-type(2) {
-      width: 85%;
-      max-width: 85%;
-      line-height: 1.2rem;
+      flex: 9;
+      line-height: 1.3;
       text-align: justify;
       cursor: pointer;
-      @media screen and (max-width: 767px) {
-        & {
-          width: 77%;
-          max-width: 77%;
-          padding-right: 0.8rem;
-        }
-      }
     }
   }
 `;
+
+export const CardButton = styled.button``;

@@ -18,9 +18,9 @@ export const Container = styled.div`
   z-index: 99;
   overflow: hidden;
   height: 2rem;
-  border-top: 0.06rem solid var(--primary1);
-  border-bottom: 0.06rem solid var(--primary1);
-  background-color: ${(props) => (props.isLoading ? 'transparent' : 'var(--secondary1)')};
+  border-top: 0.06rem solid var(--primary-black);
+  border-bottom: 0.06rem solid var(--primary-black);
+  background-color: ${(props) => (props.isLoading ? 'transparent' : 'var(--primary-white)')};
 `;
 
 export const Loading = styled.div`
@@ -29,9 +29,7 @@ export const Loading = styled.div`
   align-items: center;
   width: 100vw;
   height: 100%;
-  svg {
-    transform: scale(0.5);
-  }
+
 `;
 
 export const List = styled.div`

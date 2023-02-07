@@ -9,8 +9,8 @@ export const Container = styled.nav`
   align-items: center;
   width: 100%;
   height: 3rem;
-  max-width: 1920px;
-  background-color: var(--secondary2);
+  max-width: 1300px;
+  background-color: var(--background);
   font-size: 0.9rem;
   transform: translate(-50%, 0);
 `;
@@ -35,8 +35,8 @@ export const ThemeButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-right: 0.8rem;
   background-color: transparent;
   cursor: pointer;
@@ -49,7 +49,7 @@ export const ThemeButton = styled.button`
   }
   &:hover {
     border-radius: 50%;
-    background-color: var(--primary2);
+    background-color: var(--primary-skyblue);
   }
 `;
 
@@ -63,10 +63,10 @@ export const LoginWrap = styled.div`
   align-items: center;
   width: 10rem;
   height: 100%;
-  border-right: 0.06rem solid var(--primary1);
-  border-left: 0.06rem solid var(--primary1);
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  border-right: 0.06rem solid var(--primary-black);
+  border-left: 0.06rem solid var(--primary-black);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   cursor: pointer;
   transition: all 0.3s;
   a {
@@ -83,8 +83,8 @@ export const LoginWrap = styled.div`
     }
   }
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
   @media screen and (max-width: 767px) {
     & {

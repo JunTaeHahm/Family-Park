@@ -3,7 +3,7 @@ import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetRecentPosts } from '@hooks/usePost';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import axios from 'axios';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const WriteModal = ({
@@ -19,12 +19,6 @@ const WriteModal = ({
   const { refetch } = useGetRecentPosts();
 
   const [content, setContent] = useState('');
-  const [buttonActive, setButtonActive] = useState(false);
-
-  /* 글 내용 유무에 따라 작성버튼 활성화 */
-  useEffect(() => {
-    content ? setButtonActive(true) : setButtonActive(false);
-  }, [content]);
 
   /* 글 작성 */
   const onChangeContent = (e) => {
@@ -74,7 +68,6 @@ const WriteModal = ({
     <Container>
       {wirteModalOpen && (
         <Form ref={ref}>
-
           <ArrowBackIosNewIcon onClick={closeModalHandler} />
 
           <FormHeader>
@@ -90,15 +83,14 @@ const WriteModal = ({
             type='textarea'
             name='post-writeModal'
             id='post-write-label'
-            placeholder='들려주고 싶은 한 마디를 적어보세요.'
+            placeholder='들려주고 싶은 이야기를 적어보세요.'
             value={content}
             onChange={onChangeContent}
           />
 
-          <Button buttonActive={buttonActive} id='Button' onClick={onSubmit}>
-            작성
+          <Button id='Button' onClick={onSubmit}>
+            <span className='button-top'>등록</span>
           </Button>
-
         </Form>
       )}
     </Container>

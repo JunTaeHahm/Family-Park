@@ -24,6 +24,7 @@ import {
   Button,
   PostWrap,
   Date,
+  CardButton,
 } from './styles';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
@@ -338,6 +339,9 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           </Button>
         </Form>
       </CommentWrap>
+      <CardButton onClick={onPostClick} className='card-button'>
+        &middot;&middot;&middot;
+      </CardButton>
     </Container>
   );
 };

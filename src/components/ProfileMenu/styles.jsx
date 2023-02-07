@@ -11,10 +11,10 @@ export const Container = styled.ul`
   gap: 0.6rem;
   width: calc(100% + 0.13rem);
   border-radius: 0 0 0.6rem 0.6rem;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   cursor: pointer;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card);
   transform: ${(props) => (props.isOpened ? 'translate(-50%, 0)' : 'translate(-50%, -200%)')};
   transition: all 0.3s;
 `;
@@ -39,8 +39,8 @@ export const ModalList = styled.li`
     margin-bottom: 0.9rem;
   }
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
 `;
 

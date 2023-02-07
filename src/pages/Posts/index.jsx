@@ -1,19 +1,19 @@
 import { Container } from './styles';
-import { WriteButton } from './styles';
+import { TopButton, WriteButton } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
 import loadable from '@loadable/component';
 import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { TbArrowBigTop, TbPlus } from 'react-icons/tb';
 
-const Intro = loadable(() => import('@layouts/Intro'));
 const PostMenu = loadable(() => import('@layouts/PostMenu'));
-const UserLists = loadable(() => import('@layouts/UserLists'));
 const WriteModal = loadable(() => import('@components/WriteModal'));
 
-const Home = () => {
+const Posts = () => {
   const { userId, userName, userAvatar } = useGetClientUser();
-  const [wirteModalOpen, setWirteModalOpen] = useState(false);
+
   const [isBtnActive, setIsBtnActive] = useState(false);
+  const [wirteModalOpen, setWirteModalOpen] = useState(false);
 
   /* 글 작성 모달 버튼 클릭 시 */
   const onWriteHandler = useCallback(() => {
@@ -26,14 +26,23 @@ const Home = () => {
     }
   }, [userName]);
 
+  // const scrollToTop = () => {
+  //   window.scroll({
+  //     top: 0,
+  //     behavior: 'smooth',
+  //   });
+  // };
+
   return (
     <Container>
-      <Intro />
-      <PostMenu slice={3} />
-      <UserLists />
+      <PostMenu />
+
+      {/* <TopButton isBtnActive={isBtnActive} onClick={scrollToTop}>
+          <TbArrowBigTop />
+        </TopButton> */}
 
       <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
-        +
+        <TbPlus />
       </WriteButton>
 
       {wirteModalOpen && (
@@ -50,4 +59,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Posts;

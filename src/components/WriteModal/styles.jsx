@@ -24,8 +24,8 @@ export const Form = styled.div`
   width: 80%;
   height: 80%;
   border-radius: 1rem;
-  background-color: var(--secondary1);
-  box-shadow: var(--card-shadow);
+  background-color: var(--primary-white);
+  box-shadow: var(--card);
   svg {
     position: absolute;
     top: 3rem;
@@ -34,8 +34,9 @@ export const Form = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
-      gap: 0;
-      height: 25%;
+      justify-content: center;
+      gap: 2rem;
+      height: 60%;
       svg {
         display: none;
       }
@@ -52,6 +53,13 @@ export const FormHeader = styled.div`
     width: 30vw;
     object-fit: cover;
   }
+  @media screen and (max-width: 767px) {
+    & {
+      img {
+        width: 70%;
+      }
+    }
+  }
 `;
 
 export const Input = styled.textarea`
@@ -63,23 +71,22 @@ export const Input = styled.textarea`
   border: none;
   line-height: 1.5;
   transition: all 0.3s;
+  background-color: var(--primary-white);
+  border: 0.13rem solid var(--primary-grey);
+  border-radius: 0.5rem;
+  transition: all 0.3s;
   &:focus {
     outline: none;
-    border-bottom: 0.06rem solid var(--primary1);
-    transition: all 0.3s;
   }
   &::placeholder {
-    opacity: 0.5;
     height: 100%;
-    color: var(gray);
+    color: var(--primary-grey);
     text-align: center;
   }
   @media screen and (max-width: 767px) {
     & {
       width: 80%;
-      margin: 2.5rem 0rem 2rem;
-      padding: 0;
-      font-size: 0.9rem;
+      height: 50%;
     }
   }
 `;
@@ -88,16 +95,25 @@ export const Button = styled.button`
   width: 12rem;
   height: 3rem;
   border-radius: 0.5rem;
-  background-color: ${(props) => (props.buttonActive ? 'var(--primary1)' : 'var(--deactive)')};
-  color: var(--secondary1);
+  background: var(--primary-black);
   cursor: pointer;
-  @media screen and (max-width: 767px) {
-    & {
-      align-self: flex-end;
-      width: 4.5rem;
-      height: 1.8rem;
-      margin-right: 10%;
-      font-size: 0.8rem;
-    }
+  .button-top {
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid var(--primary-black);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--primary-white);
+    color: var(--primary-black);
+    transform: translateY(-0.2rem);
+    transition: transform 0.1s ease;
+  }
+
+  &:hover .button-top {
+    transform: translateY(-0.33em);
+  }
+
+  &:active .button-top {
+    transform: translateY(0);
   }
 `;

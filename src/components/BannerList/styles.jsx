@@ -13,6 +13,6 @@ export const Saying = styled.div`
 `;
 
 export const Writer = styled.div`
-  color: var(--primary1);
+  color: var(--primary-black);
   font-size: 0.9rem;
 `;

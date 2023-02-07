@@ -44,7 +44,7 @@ export const AvatarForm = styled.form`
       height: min-content;
       padding-top: 1rem;
       padding-bottom: 1rem;
-      border-bottom: 0.06rem solid var(--primary2);
+      border-bottom: 0.06rem solid var(--primary-skyblue);
     }
   }
 `;
@@ -66,15 +66,15 @@ export const Upload = styled.label`
   display: inline-block;
   padding: 0.6rem 1.8rem;
   border-radius: 0.5rem;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   cursor: pointer;
   input {
     display: none;
   }
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
 `;
 
@@ -119,16 +119,16 @@ export const NameInput = styled.input`
   width: 100%;
   padding: 0.5rem;
   outline: none;
-  border: 0.06rem solid var(--primary1);
+  border: 0.06rem solid var(--primary-black);
   border-radius: 0.3rem;
   background-color: transparent;
   font-size: 2.2rem;
   &:focus {
-    border: 0.1rem solid var(--primary1);
+    border: 0.1rem solid var(--primary-black);
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary1);
+    color: var(--primary-black);
     font-size: 1.3rem;
   }
   @media screen and (max-width: 767px) {
@@ -142,15 +142,15 @@ export const TitleInput = styled.input`
   width: 100%;
   padding: 0.5rem;
   outline: none;
-  border: 0.06rem solid var(--primary1);
+  border: 0.06rem solid var(--primary-black);
   border-radius: 0.3rem;
   background-color: transparent;
   &:focus {
-    border: 0.1rem solid var(--primary1);
+    border: 0.1rem solid var(--primary-black);
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary1);
+    color: var(--primary-black);
     font-size: 1.3rem;
   }
 `;
@@ -160,12 +160,12 @@ export const Edit = styled.button`
   align-self: flex-end;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   cursor: pointer;
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
 `;
 
@@ -202,12 +202,12 @@ export const Withdrawal = styled.button`
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: var(--primary1);
-  color: var(--secondary1);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   cursor: pointer;
   &:hover {
-    background-color: var(--primary2);
-    color: var(--primary1);
+    background-color: var(--primary-skyblue);
+    color: var(--primary-black);
   }
 `;
 

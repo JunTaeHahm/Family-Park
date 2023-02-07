@@ -7,36 +7,43 @@ import { Link, useNavigate } from 'react-router-dom';
 const ProfileMenu = ({ isOpened }) => {
   const navigate = useNavigate();
 
-  const { userName, refetch } = useGetClientUser();
+  const { userName, kakaoId, refetch } = useGetClientUser();
 
   /* 로그아웃 함수 */
   const onClickLogout = useCallback(
     (e) => {
       e.preventDefault();
-      axios
-        .get(`/api/logout`)
-        .then(() => {
-          navigate('/'); // 홈으로 이동
-          window.location.reload(); // 새로고침
-          refetch(); // 클라이언트 유저정보 리패치
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (kakaoId) {
+        window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.KAKAO_REST_API_KEY}&logout_redirect_uri=${process.env.KAKAO_LOGOUT_REDIRECT_URI}`;
+      } else {
+        axios
+          .get(`/api/logout`)
+          .then(() => {
+            navigate('/'); // 홈으로 이동
+            window.location.reload(); // 새로고침
+            refetch(); // 클라이언트 유저정보 리패치
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
-    [refetch, navigate],
+    [refetch, navigate, kakaoId],
   );
 
   return userName ? ( // 로그인 상태에 따라 보이는 메뉴 다르도록
     <Container isOpened={isOpened}>
       <ModalList>
-        <Link to={`/${userName}`}>프로필</Link>
-      </ModalList>
-      <ModalList>
-        <Link to='/setting'>설정</Link>
+        <Link to={`/${userName}`}>내 프로필</Link>
       </ModalList>
       <ModalList>
         <Link to='/센텐스유'>공지사항</Link>
+      </ModalList>
+      <ModalList>
+        <Link onClick={() => (window.location = 'mailto:ahuuae_@kakao.com')}>문의하기</Link>
+      </ModalList>
+      <ModalList>
+        <Link to='/setting'>설정</Link>
       </ModalList>
       <ModalList>
         <Logout onClick={onClickLogout}>로그아웃</Logout>
