@@ -156,8 +156,8 @@ export const List = styled.div`
 `;
 
 export const NoPost = styled.div`
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 200%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 `;

@@ -3,6 +3,7 @@ import { useGetClientUser } from '@hooks/userInfo';
 import {
   LinkContainer,
   HeaderLogo,
+  KakaoLogin,
   Button,
   Form,
   Label,
@@ -54,6 +55,13 @@ const LogIn = () => {
     [userName, password, navigate],
   );
 
+  /* 카카오 로그인 */
+  const onKaKaoLogin = useCallback((e) => {
+    e.preventDefault();
+
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&redirect_uri=${process.env.KAKAO_LOGIN_REDIRECT_URI}&response_type=code`;
+  }, []);
+
   return (
     <Container>
       <Form onSubmit={onSubmit}>
@@ -103,6 +111,7 @@ const LogIn = () => {
           로그인
         </Button>
 
+        <KakaoLogin onClick={onKaKaoLogin} />
         <LinkContainer>
           아직 회원이 아니신가요?
           <Link to='/signup'>회원가입 &gt;</Link>

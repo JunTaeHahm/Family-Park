@@ -147,9 +147,7 @@ const SignUp = () => {
         <Button buttonActive={buttonActive} id='Button' type='submit'>
           작성완료
         </Button>
-
         <KakaoLogin onClick={onKaKaoLogin} />
-
         <LinkContainer>
           이미 회원이신가요?&nbsp;
           <Link to='/login'>로그인 &gt;</Link>

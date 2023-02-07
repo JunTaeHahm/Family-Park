@@ -40,6 +40,7 @@ export const Container = styled.div`
   &:hover {
     border-color: var(--primary-blue);
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+    touch-action: none;
     transition: all 0.3s;
     .card-button {
       transform: translate(-50%, 50%);
