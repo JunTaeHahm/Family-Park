@@ -10,7 +10,7 @@ import {
   Input,
   FormTitle,
   Container,
-} from '@pages//SignUp/styles';
+} from '@pages/SignUp/styles';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';

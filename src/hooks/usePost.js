@@ -121,5 +121,5 @@ export const useGetUserPosts = (userName) => {
     });
   }
 
-  return { userPosts, isLoading, error, refetch };
+  return { data, userPosts, isLoading, error, refetch };
 };

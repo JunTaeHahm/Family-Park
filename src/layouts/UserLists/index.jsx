@@ -3,7 +3,6 @@ import ProfileCard from '@components/ProfileCard';
 import { useSocket } from '@hooks/useSocket';
 import { useViewPort } from '@hooks/useViewPort';
 import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
-// import { useAllUsers } from '@hooks/userInfo';
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 

@@ -13,14 +13,37 @@ export const Container = styled.div`
   text-align: center;
   @media screen and (max-width: 767px) {
     & {
-      justify-content: flex-start;
+      justify-content: ${(props) => (props.path ? 'center' : 'flex-start')};
       font-size: 1.1rem;
     }
   }
 `;
 
+export const PS = styled.span`
+  position: absolute;
+  padding: 0 0.3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-size: 100% 88%;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  transition: background-size 0.2s ease;
+  &:hover {
+    background-size: 100% 0.2rem;
+  }
+  @media screen and (max-width: 767px) {
+    & {
+      font-size: 1.2rem;
+    }
+  }
+`;
+
 export const TopPostTitle = styled.div`
-  margin: 0 1rem 1rem;
+  margin: ${(props) => (props.path ? '4rem 1rem 1rem' : '0rem 1rem 1rem')};
   border-radius: 0.5rem;
   background: var(--primary-black);
   cursor: pointer;
@@ -29,13 +52,13 @@ export const TopPostTitle = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
-      margin: 0 0.5rem 1rem 7.5%;
+      margin: ${(props) => (props.path ? '3rem 0.5rem 1rem' : '0 0.5rem 1rem 7.5%')};
     }
   }
 `;
 
 export const RecentPostTitle = styled.div`
-  margin: 0 1rem 1rem;
+  margin: ${(props) => (props.path ? '4rem 1rem 1rem' : '0rem 1rem 1rem')};
   border-radius: 0.5rem;
   background: var(--primary-black);
   cursor: pointer;
@@ -44,7 +67,7 @@ export const RecentPostTitle = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
-      margin: 0 0.5rem 1rem;
+      margin: ${(props) => (props.path ? '3rem 0.5rem 1rem' : '0 0.5rem 1rem')};
     }
   }
 `;

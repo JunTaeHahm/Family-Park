@@ -90,7 +90,6 @@ export const PS = styled.span`
   background-size: 100% 88%;
   background-repeat: no-repeat;
   background-position: 0 50%;
-  cursor: pointer;
   transition: background-size 0.2s ease;
   &:hover {
     background-size: 100% 0.2rem;

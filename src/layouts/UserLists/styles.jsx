@@ -30,7 +30,6 @@ export const Title = styled.span`
   background-repeat: no-repeat;
   background-size: 100% 88%;
   background-position: 0 50%;
-  cursor: pointer;
   transition: background-size 0.2s ease;
   &:hover {
     background-size: 100% 0.2rem;

@@ -1,6 +1,6 @@
 import PostList from '@components/PostList';
-import Spinner from '@components/Spinner';
 import { useGetUserPosts } from '@hooks/usePost';
+import { CircularProgress } from '@mui/material';
 import {
   Container,
   UserInfo,
@@ -47,7 +47,7 @@ const Admin = () => {
     return (
       <Container>
         <Loading>
-          <Spinner />
+          <CircularProgress color='inherit' />
           <div>불러오는 중...</div>
         </Loading>
       </Container>

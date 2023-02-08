@@ -1,7 +1,7 @@
 import { Container, PostWrap, DateHeader, DateSection, Loading } from './styles';
 import PostList from '@components/PostList';
-import Spinner from '@components/Spinner';
 import { useGetRecentPosts } from '@hooks/usePost';
+import { CircularProgress } from '@mui/material';
 import { makeSection } from '@utils/makeScetion';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
@@ -21,7 +21,7 @@ const RecentPosts = ({ slice }) => {
       {isLoading ? (
         // 포스트 로딩 중
         <Loading>
-          <Spinner />
+          <CircularProgress color='inherit' />
           <div>불러오는 중...</div>
         </Loading>
       ) : (

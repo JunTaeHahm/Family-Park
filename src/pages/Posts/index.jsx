@@ -1,13 +1,10 @@
-import { Container } from './styles';
-import { TopButton, WriteButton } from './styles';
+import { Container, WriteButton } from './styles';
+import WriteModal from '@components/WriteModal';
 import { useGetClientUser } from '@hooks/userInfo';
-import loadable from '@loadable/component';
+import PostMenu from '@layouts/PostMenu';
 import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { TbArrowBigTop, TbPlus } from 'react-icons/tb';
-
-const PostMenu = loadable(() => import('@layouts/PostMenu'));
-const WriteModal = loadable(() => import('@components/WriteModal'));
+import { TbPlus } from 'react-icons/tb';
 
 const Posts = () => {
   const { userId, userName, userAvatar } = useGetClientUser();
@@ -26,20 +23,9 @@ const Posts = () => {
     }
   }, [userName]);
 
-  // const scrollToTop = () => {
-  //   window.scroll({
-  //     top: 0,
-  //     behavior: 'smooth',
-  //   });
-  // };
-
   return (
     <Container>
       <PostMenu />
-
-      {/* <TopButton isBtnActive={isBtnActive} onClick={scrollToTop}>
-          <TbArrowBigTop />
-        </TopButton> */}
 
       <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
         <TbPlus />

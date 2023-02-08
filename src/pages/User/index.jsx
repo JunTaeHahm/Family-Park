@@ -16,9 +16,9 @@ import {
   Loading,
 } from './styles';
 import PostList from '@components/PostList';
-import Spinner from '@components/Spinner';
 import { useGetAllPosts, useGetUserPosts } from '@hooks/usePost';
 import { useGetClientUser } from '@hooks/userInfo';
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ const User = () => {
 
   const { allPosts, isLoading } = useGetAllPosts();
   const { userName } = useGetClientUser();
-  const { userPosts: myPosts, refetch } = useGetUserPosts(params.user);
+  const { userPosts, refetch } = useGetUserPosts(params.user);
 
   const [isPostMenu, setIsPostMenu] = useState('myPost');
   const [loadUserName, setLoadUserName] = useState();
@@ -76,7 +76,7 @@ const User = () => {
     return (
       <Container>
         <Loading>
-          <Spinner />
+          <CircularProgress color='inherit' />
           <div>불러오는 중...</div>
         </Loading>
       </Container>
@@ -106,12 +106,12 @@ const User = () => {
         ) : (
           // 내 페이지일 경우 포스트/컬렉션 모두 보이도록
           <MenuWrap>
-            <MyPost onClick={onMyPostClick} className={isPostMenu === 'myPost' ? 'active' : ''}>
+            <MyPost onClick={onMyPostClick} className={isPostMenu === 'myPost' && 'active'}>
               <Button>내 포스트</Button>
             </MyPost>
             <Collection
               onClick={onCollectionClick}
-              className={isPostMenu === 'collection' ? 'active' : ''}>
+              className={isPostMenu === 'collection' && 'active'}>
               <Button>컬렉션</Button>
             </Collection>
           </MenuWrap>
@@ -136,10 +136,10 @@ const User = () => {
                   />
                 ))
               )
-            ) : myPosts.length === 0 ? (
+            ) : userPosts.length === 0 ? (
               <NoPost>작성한 포스트가 없습니다.</NoPost>
             ) : (
-              myPosts.map((post) => (
+              userPosts.map((post) => (
                 <PostList
                   key={post.postId}
                   postId={post.postId}

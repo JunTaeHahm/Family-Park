@@ -1,5 +1,5 @@
-import ProfileMenu from '../../components/ProfileMenu';
 import { HeaderLogo, LightMode, DarkMode, Container, ThemeButton, LoginWrap } from './styles';
+import ProfileMenu from '@components/ProfileMenu';
 import { useViewPort } from '@hooks/useViewPort';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useState } from 'react';

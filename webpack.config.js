@@ -8,6 +8,7 @@ import path from 'path';
 import webpack from 'webpack';
 import pkg from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+
 // import WebpackPwaManifest from 'webpack-pwa-manifest';
 // import WorkboxPlugin from 'workbox-webpack-plugin';
 
@@ -45,13 +46,6 @@ const config = {
     devMiddleware: { publicPath: '/' },
     hot: true,
     port: 3000,
-    /* 로컬에서 server 돌릴 때 사용 */
-    // proxy: {
-    //   '/api/': {
-    //     target: 'http://localhost:8000',
-    //     changeOrigin: true,
-    //   },
-    // },
   },
 
   entry: {
@@ -60,7 +54,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js',
+    filename: 'js/[name].js',
     publicPath: '/',
   },
 
@@ -78,9 +72,6 @@ const config = {
                   targets: {
                     browsers: ['> 1% in KR'], // 지원되는 브라우저 설정, browserlist
                   },
-                  // useBuiltIns: 'usage',
-                  // corejs: 3,
-                  // shippedProposals: true,
                   debug: true, // 디버깅 옵션
                 },
               ],

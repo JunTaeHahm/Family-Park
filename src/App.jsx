@@ -1,25 +1,25 @@
 import loadable from '@loadable/component';
-import Admin from '@pages/Admin';
-import Posts from '@pages/Posts';
 import React from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
-const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
+const User = loadable(() => import('@pages/User'));
 const Home = loadable(() => import('@pages/Home'));
 const LogIn = loadable(() => import('@pages/LogIn'));
+const Admin = loadable(() => import('@pages/Admin'));
+const Posts = loadable(() => import('@pages/Posts'));
 const SignUp = loadable(() => import('@pages/SignUp'));
 const NavBar = loadable(() => import('@layouts/NavBar'));
 const Setting = loadable(() => import('@pages/Setting'));
-const User = loadable(() => import('@pages/User'));
+const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
 
 const App = () => {
   function Layout() {
     return (
-      <div style={{ height: '100%' }}>
+      <>
         <NavBar />
         <RollingBanner />
         <Outlet />
-      </div>
+      </>
     );
   }
   return (

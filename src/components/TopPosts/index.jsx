@@ -1,7 +1,7 @@
 import { Container, Loading, PostWrap } from './styles';
 import PostList from '@components/PostList';
-import Spinner from '@components/Spinner';
 import { useGetAllPosts } from '@hooks/usePost';
+import { CircularProgress } from '@mui/material';
 import React from 'react';
 
 const TopPosts = ({ slice }) => {
@@ -12,7 +12,7 @@ const TopPosts = ({ slice }) => {
       {isLoading ? (
         // 포스트 로딩 중
         <Loading>
-          <Spinner />
+          <CircularProgress color='inherit' />
           <div>불러오는 중...</div>
         </Loading>
       ) : (
