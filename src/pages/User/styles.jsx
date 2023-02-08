@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   max-width: 768px;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding-top: 6rem;
   text-align: center;
   ::-webkit-scrollbar {
     display: none;
@@ -71,7 +71,7 @@ export const UserTitle = styled.div`
   line-height: 1.3;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background-repeat: no-repeat;
-  background-size: 100% 0.2rem;
+  background-size: 100% 0.3rem;
   background-position: 0 50%;
   cursor: pointer;
   transition: background-size 0.2s ease-in;

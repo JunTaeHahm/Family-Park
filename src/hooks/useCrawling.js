@@ -30,6 +30,8 @@ export const useCrawling = () => {
         .catch((error) => console.log(error));
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true, // 한 번 데이터 가져오면 더 이상 가져오지 않음
       cacheTime: Infinity, // 캐싱 타임, 무한
       refetchInterval: false, // 리패치 반복 주기, 없음

@@ -77,6 +77,7 @@ export const Input = styled.textarea`
   transition: all 0.3s;
   &:focus {
     outline: none;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
   &::placeholder {
     height: 100%;
@@ -92,7 +93,7 @@ export const Input = styled.textarea`
 `;
 
 export const Button = styled.button`
-  width: 12rem;
+  width: 8rem;
   height: 3rem;
   border-radius: 0.5rem;
   background: var(--primary-black);

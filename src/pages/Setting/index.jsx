@@ -2,18 +2,20 @@ import {
   Avatar,
   AvatarForm,
   Caution,
+  Title,
   Container,
   Edit,
   Menu,
-  Name,
+  UserName,
   Label,
   NameInput,
+  UploadButtonBack,
+  EditButtonBack,
   TitleInput,
   ProfileWrap,
   Remove,
-  SettingForm,
-  SettingWrap,
-  Title,
+  UserTitle,
+  WithdrawalButtonBack,
   Upload,
   UserForm,
   Withdrawal,
@@ -38,7 +40,7 @@ const Setting = () => {
   const onUploadHandler = useCallback(
     (e) => {
       e.preventDefault();
-
+      console.log('유저 아바타 변경::');
       const formData = new FormData(); // formData생성
       formData.append('avatar', e.target.files[0]); // input(file)에서 받은 파일 formData에 append, name은 'avatar'
 
@@ -131,64 +133,69 @@ const Setting = () => {
 
   return (
     <Container>
-      <SettingWrap>
-        <ProfileWrap>
-          <AvatarForm>
-            <Avatar src={userAvatar} alt={userName} />
+      <Title>내 정보 수정</Title>
+      <ProfileWrap>
+        <AvatarForm>
+          <Avatar src={userAvatar} alt={userName} />
+          <UploadButtonBack>
             <Upload htmlFor='avatar'>
-              이미지 업로드
+              이미지 변경
               <input type='file' id='avatar' name='avatar' onChange={onUploadHandler} />
             </Upload>
-            <Remove onClick={onRemoveHandler}>이미지 제거</Remove>
-          </AvatarForm>
+          </UploadButtonBack>
+          <Remove onClick={onRemoveHandler}>이미지 제거</Remove>
+        </AvatarForm>
 
-          <UserForm onSubmit={onEditUserSubmit}>
-            {isEditing ? (
-              <>
-                <Label htmlFor='editName-label'>
-                  <NameInput
-                    autoComplete='off'
-                    type='text'
-                    name='editName'
-                    id='editName-label'
-                    value={editName}
-                    onChange={onChangeEditName}
-                  />
-                </Label>
-                <Label htmlFor='editTitle-label'>
-                  <TitleInput
-                    autoFocus
-                    autoComplete='off'
-                    type='text'
-                    name='editTitle'
-                    id='editTitle-label'
-                    value={editTitle}
-                    onChange={onChangeEditTitle}
-                  />
-                </Label>
-              </>
-            ) : (
-              <>
-                <Name>{userName}</Name>
-                <Title>{userTitle}</Title>
-              </>
-            )}
-            {isEditing ? (
+        <UserForm onSubmit={onEditUserSubmit}>
+          {isEditing ? (
+            <>
+              <Label htmlFor='editName-label'>
+                <NameInput
+                  autoComplete='off'
+                  type='text'
+                  name='editName'
+                  id='editName-label'
+                  value={editName}
+                  onChange={onChangeEditName}
+                />
+              </Label>
+              <Label htmlFor='editTitle-label'>
+                <TitleInput
+                  autoFocus
+                  autoComplete='off'
+                  type='text'
+                  name='editTitle'
+                  id='editTitle-label'
+                  value={editTitle}
+                  onChange={onChangeEditTitle}
+                />
+              </Label>
+            </>
+          ) : (
+            <>
+              <UserName>{userName}</UserName>
+              <UserTitle>{userTitle}</UserTitle>
+            </>
+          )}
+          {isEditing ? (
+            <EditButtonBack>
               <Edit onClick={onEditUserSubmit}>저장</Edit>
-            ) : (
+            </EditButtonBack>
+          ) : (
+            <EditButtonBack>
               <Edit onClick={onEditHandler}>수정</Edit>
-            )}
-          </UserForm>
-        </ProfileWrap>
+            </EditButtonBack>
+          )}
+        </UserForm>
+      </ProfileWrap>
 
-        <SettingForm>준비 중입니다.</SettingForm>
-
-        <WithdrawalForm>
-          <Menu>계정 삭제</Menu>
+      <WithdrawalForm>
+        <Menu>계정 삭제</Menu>
+        <WithdrawalButtonBack>
           <Withdrawal onClick={onWithdrawalHandler}>계정 삭제</Withdrawal>
-          <Caution>계정 삭제 시 작성하신 모든 포스트가 삭제되며 복구되지 않습니다.</Caution>
-        </WithdrawalForm>
-      </SettingWrap>
+        </WithdrawalButtonBack>
+        <Caution>계정 삭제 시 작성하신 모든 포스트가 삭제되며 복구되지 않습니다.</Caution>
+      </WithdrawalForm>
     </Container>
   );
 };

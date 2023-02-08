@@ -23,6 +23,8 @@ export const useAllUsers = () => {
         });
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true,
       cacheTime: Infinity, // 캐싱 시간
       refetchInterval: Infinity, // 5초 간격 리패치
@@ -60,6 +62,8 @@ export const useGetClientUser = () => {
         });
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true,
       cacheTime: Infinity, // 캐싱 시간
       refetchInterval: false, // 리패치시간

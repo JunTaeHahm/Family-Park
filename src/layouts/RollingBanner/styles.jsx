@@ -13,7 +13,7 @@ const listAni = keyframes`
 
 export const Container = styled.div`
   position: fixed;
-  top: 3rem;
+  top: 4rem;
   left: 0;
   z-index: 99;
   overflow: hidden;
@@ -29,7 +29,6 @@ export const Loading = styled.div`
   align-items: center;
   width: 100vw;
   height: 100%;
-
 `;
 
 export const List = styled.div`

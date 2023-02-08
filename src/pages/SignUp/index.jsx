@@ -113,7 +113,6 @@ const SignUp = () => {
               onChange={onChangeUserName}
             />
           </div>
-          <FormRequest>유저명은 2자 이상, 5자 이하만 허용됩니다.</FormRequest>
         </Label>
         <Label className='password-wrap' htmlFor='password-label'>
           <span>비밀번호</span>

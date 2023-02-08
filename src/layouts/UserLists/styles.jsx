@@ -30,9 +30,10 @@ export const Title = styled.span`
   background-repeat: no-repeat;
   background-size: 100% 88%;
   background-position: 0 50%;
+  cursor: default;
   transition: background-size 0.2s ease;
   &:hover {
-    background-size: 100% 0.2rem;
+    background-size: 100% 0.3rem;
   }
   @media screen and (max-width: 767px) {
     & {
@@ -47,7 +48,7 @@ export const Online = styled.span`
   justify-content: center;
   gap: 0.5rem;
   position: absolute;
-  top: 1rem;
+  top: 2rem;
   right: 7rem;
   height: 2rem;
   line-height: 2rem;

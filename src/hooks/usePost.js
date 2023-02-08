@@ -19,6 +19,8 @@ export const useGetAllPosts = () => {
         });
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,
@@ -60,6 +62,8 @@ export const useGetRecentPosts = () => {
         });
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,
@@ -101,6 +105,8 @@ export const useGetUserPosts = (userName) => {
         });
     },
     {
+      manual: true,
+      staleTime: 0,
       skip: true,
       cacheTime: Infinity,
       refetchInterval: Infinity,

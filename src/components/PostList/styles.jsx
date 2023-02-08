@@ -14,38 +14,10 @@ export const Container = styled.div`
   background-color: var(--primary-white);
   border: 0.13rem solid var(--primary-grey);
   transform: translate(-50%, 0) scaleY(1);
-  transition: all 0.5s;
+  transition: all 0.3s;
   cursor: pointer;
-  .card-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    transform: translate(-50%, 125%);
-    border-radius: 10rem;
-    background-color: var(--primary-blue);
-    color: #fff;
-    width: auto;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.1rem 1rem;
-    left: 50%;
-    bottom: 0;
-    opacity: 0;
-    cursor: pointer;
-    transition: all 0.3s;
-    &.open {
-    }
-  }
   &:hover {
-    border-color: var(--primary-blue);
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-    touch-action: none;
-    transition: all 0.3s;
-    .card-button {
-      transform: translate(-50%, 50%);
-      opacity: 1;
-    }
   }
   &.open {
     height: max-content;
@@ -344,5 +316,3 @@ export const Comment = styled.div`
     }
   }
 `;
-
-export const CardButton = styled.button``;

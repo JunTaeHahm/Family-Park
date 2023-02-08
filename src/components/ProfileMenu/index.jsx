@@ -39,9 +39,9 @@ const ProfileMenu = ({ isOpened }) => {
       <ModalList>
         <Link to='/센텐스유'>공지사항</Link>
       </ModalList>
-      <ModalList>
-        <Link onClick={() => (window.location = 'mailto:ahuuae_@kakao.com')}>문의하기</Link>
-      </ModalList>
+      {/* <ModalList>
+        <Link onClick={() => (window.location = 'mailto:ahuuae_@kakao.com')}>문의</Link>
+      </ModalList> */}
       <ModalList>
         <Link to='/setting'>설정</Link>
       </ModalList>

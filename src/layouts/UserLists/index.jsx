@@ -48,7 +48,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
 
   return (
     <Container userListOpen={userListOpen}>
-      <Title>공간을 빛내주시는 분들 </Title>
+      <Title>센텐스유를 빛내주시는 분들 </Title>
       <Online><span></span>접속중</Online>
       {sortedUsers?.map((user, i) => {
         // 온라인 일 경우 isOnline !== -1

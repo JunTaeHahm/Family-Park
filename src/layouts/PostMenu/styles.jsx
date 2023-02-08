@@ -33,7 +33,7 @@ export const PS = styled.span`
   background-position: 0 50%;
   transition: background-size 0.2s ease;
   &:hover {
-    background-size: 100% 0.2rem;
+    background-size: 100% 0.3rem;
   }
   @media screen and (max-width: 767px) {
     & {
