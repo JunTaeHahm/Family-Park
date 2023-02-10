@@ -24,8 +24,8 @@ import {
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const API_SERVER =
   process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://www.sentenceu.co.kr';
@@ -93,30 +93,32 @@ const Setting = () => {
     (e) => {
       e.preventDefault();
 
-      const regexp = /^[가-힣.,?;^_!%\s]+$/g; // 유저명 정규표현식
       if (editName) {
-        if (editName.length > 5 || editName.length < 2 || !regexp.test(editName)) {
-          toast.error('유저명은 최소 2자, 최대 5자의 한글만 가능합니다.'); // 유저명 조건 틀릴 시
-        } else {
-          axios
-            .put(
-              `/api/users/${userId}`,
-              {
-                userName: userName,
-                editName: editName,
-                editTitle: editTitle,
-              },
-              { withCredentials: true },
-            )
-            .then(() => {
-              refetch(); // 유저정보 변경 성공 시 리패치
-              setIsEditing(false); // 수정모드 false
-            })
-            .catch((error) => {
-              console.log(error);
-              toast.error('오류가 발생했습니다.');
+        axios
+          .put(
+            `/api/users/${userId}`,
+            {
+              userName: userName,
+              editName: editName,
+              editTitle: editTitle,
+            },
+            { withCredentials: true },
+          )
+          .then(() => {
+            refetch(); // 유저정보 변경 성공 시 리패치
+            setIsEditing(false); // 수정모드 false
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: '에러가 발생했습니다.',
+              footer: '관리자에게 문의바랍니다.',
+              showConfirmButton: false,
+              timer: 1500,
             });
-        }
+          });
       }
     },
     [userName, editName, editTitle, userId, refetch],

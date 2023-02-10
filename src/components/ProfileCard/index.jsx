@@ -4,7 +4,7 @@ import React from 'react';
 const ProfileCard = ({ userAvatar, userName, userTitle, isOnline }) => {
   return (
     <Container>
-      <UserAvatar src={userAvatar} alt={userName} />
+      <UserAvatar src={userAvatar.replace('http:', 'https:')} alt={userName} />
       {isOnline && <OnlineLight />}
       <UserName>{userName}</UserName>
       <UserTitle>{userTitle}</UserTitle>

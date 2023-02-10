@@ -15,8 +15,8 @@ import useInput from '@hooks/useInput';
 import { useGetClientUser } from '@hooks/userInfo';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -68,12 +68,35 @@ const SignUp = () => {
           })
           .then(() => {
             navigate('/login'); // 회원가입 성공 시 login페이지로 navigate
-            toast.success(`회원가입 성공`);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '가입 성공',
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
-            if (error.response.data?.exUserMessage) toast.error(error.response.data.exUserMessage); // 이미 있는 유저명일 경우
-            if (error.response.data.errors?.userName) toast.error('유저명 조건을 확인해주세요.'); // 유저명 조건 틀렸을 경우
-            if (error.response.data.errors?.password) toast.error('비밀번호 조건을 확인해주세요.'); // 비밀번호 조건 틀렸을 경우
+            // 이미 있는 유저명일 경우:
+            if (error.response.data?.exUserMessage) {
+              Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: error.response.data.exUserMessage,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+            // 비밀번호 조건 틀렸을 경우:
+            if (error.response.data.errors?.password) {
+              Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: '비밀번호 조건을 확인해주세요.',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
           });
       }
     },

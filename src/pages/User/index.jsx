@@ -90,7 +90,7 @@ const User = () => {
       <Container>
         <ProfileWrap>
           <UserInfo>
-            <ProfileImage alt={loadUserName} src={loadUserAvatar} />
+            <ProfileImage alt={loadUserName} src={loadUserAvatar.replace('http:', 'https:')} />
             <ProfileName>{loadUserName}</ProfileName>
           </UserInfo>
           <UserTitle>{loadUserTitle}</UserTitle>

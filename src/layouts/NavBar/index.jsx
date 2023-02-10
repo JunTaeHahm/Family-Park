@@ -14,10 +14,9 @@ import WriteModal from '@components/WriteModal';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
 import React, { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { BsFillCaretDownFill } from 'react-icons/bs';
-// import { HiOutlineBellAlert } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const NavBar = () => {
   const ref = useRef();
@@ -39,7 +38,13 @@ const NavBar = () => {
       setWirteModalOpen(true);
       setIsBtnActive(true);
     } else {
-      toast.error('로그인 후 작성 가능합니다.');
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: '로그인 후 이용 가능합니다.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }, [userName]);
 
@@ -59,10 +64,6 @@ const NavBar = () => {
             />
           </Link>
         </HeaderLogo>
-
-        {/* <AlertWrap>
-          <HiOutlineBellAlert />
-        </AlertWrap> */}
 
         {userName && (
           <WriteWrap>

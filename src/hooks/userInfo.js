@@ -78,12 +78,14 @@ export const useGetClientUser = () => {
     isAuth = false;
   }
 
+  const avatar = Object(data).userAvatar;
+
   const role = Object(data).role;
   const kakaoId = Object(data).kakao_id;
   const userId = Object(data)._id;
   const userName = Object(data).userName;
   const userTitle = Object(data).userTitle;
-  const userAvatar = Object(data).userAvatar;
+  const userAvatar = avatar?.replace('http:', 'https:');
 
   return {
     isAuth,

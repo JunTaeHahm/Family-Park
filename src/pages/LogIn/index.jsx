@@ -13,8 +13,8 @@ import {
 } from '@pages/SignUp/styles';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -45,10 +45,22 @@ const LogIn = () => {
           )
           .then(() => {
             navigate('/'); // 로그인 성공 시 홈으로 navigate
-            toast.success(`환영합니다 ${userName}님!`);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: `환영합니다 ${userName}님!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
           })
           .catch((error) => {
-            toast.error(error.response.data);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error.response.data,
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
       }
     },

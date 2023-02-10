@@ -31,9 +31,9 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
-import { toast } from 'react-hot-toast';
 import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
   // 댓글만 모아놓은 배열 생성
@@ -112,7 +112,15 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     (e) => {
       e.preventDefault();
       const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
-      if (!editCheck) toast.error('수정 한 내용이 없습니다.'); // 없으면 에러 토스트
+      if (!editCheck) {
+        Swal.fire({
+          position: 'center',
+          icon: 'question',
+          title: '수정 한 내용이 없습니다.',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } 
       else {
         axios
           .put(
@@ -124,12 +132,25 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             { withCredentials: true },
           )
           .then(() => {
-            toast.success('수정 성공');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '수정 성공',
+              showConfirmButton: false,
+              timer: 1500,
+            });
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
             console.log(error);
-            toast.error('오류가 발생했습니다.');
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: '에러가 발생했습니다.',
+              footer: '관리자에게 문의바랍니다.',
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
       }
     },
@@ -142,7 +163,13 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       axios
         .delete(`/api/posts/${postId}`, { withCredentials: true })
         .then(() => {
-          toast.success('삭제 성공');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '수정 성공',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
           containerRef.current.classList.add('removed');
           containerRef.current.classList.remove('open');
@@ -151,7 +178,14 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         })
         .catch((error) => {
           console.log(error);
-          toast.error('오류가 발생했습니다.');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: '에러가 발생했습니다.',
+            footer: '관리자에게 문의바랍니다.',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     }
   }, [postId]);
@@ -179,7 +213,13 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         })
         .catch((error) => console.log(error));
     } else {
-      toast.error('로그인 후 이용 가능합니다.'); // 로그인 후에 이용 가능하도록
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: '로그인 후 이용 가능합니다.',
+        showConfirmButton: false,
+        timer: 1500,
+      }); // 로그인 후에 이용 가능하도록
     }
   }, [postId, userName]);
 
@@ -195,13 +235,26 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onCommentSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if (!userName) toast.error('로그인 후 이용하실 수 있습니다.'); // 로그인 후에 이용 가능하도록
-      if (!comment) toast.error('댓글을 적어주세요.'); // 댓글 빈 칸인데 등록 누른 경우
+      if (!userName) {
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: '로그인 후 이용 가능합니다.',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } // 로그인 후에 이용 가능하도록
       if (comment && userName) {
         axios
           .post(`/api/posts/${postId}/comments`, { postId, userName, comment })
           .then((res) => {
-            toast.success('작성 성공!');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: '작성 성공',
+              showConfirmButton: false,
+              timer: 1500,
+            });
             setCommentList(res.data.comments); // 추가된 최신 댓글리스트로 갱신
             setCommentCount(res.data.comments.length); // 추가된 최신 댓글 개수로 갱신
             setComment(''); // 댓글창 초기화
@@ -209,7 +262,14 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           })
           .catch((error) => {
             console.log(error);
-            toast.error('오류가 발생했습니다.');
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: '에러가 발생했습니다.',
+              footer: '관리자에게 문의바랍니다.',
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
       }
     },
@@ -230,11 +290,24 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
               setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신
               setIsEditing(false); // 수정모드 false
-              toast.success('삭제 성공');
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '삭제 성공',
+                showConfirmButton: false,
+                timer: 1500,
+              });
             })
             .catch((error) => {
               console.log(error);
-              toast.error('오류가 발생했습니다.');
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '에러가 발생했습니다.',
+                footer: '관리자에게 문의바랍니다.',
+                showConfirmButton: false,
+                timer: 1500,
+              });
             });
         }
       }

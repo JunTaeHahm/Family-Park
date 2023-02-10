@@ -17,7 +17,7 @@ const ProfileMenu = ({ isOpened }) => {
         window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.KAKAO_REST_API_KEY}&logout_redirect_uri=${process.env.KAKAO_LOGOUT_REDIRECT_URI}`;
       } else {
         axios
-          .get(`/api/logout`)
+          .get(`/api/users/logout`)
           .then(() => {
             navigate('/'); // 홈으로 이동
             window.location.reload(); // 새로고침
@@ -39,9 +39,9 @@ const ProfileMenu = ({ isOpened }) => {
       <ModalList>
         <Link to='/센텐스유'>공지사항</Link>
       </ModalList>
-      {/* <ModalList>
+      <ModalList>
         <Link onClick={() => (window.location = 'mailto:ahuuae_@kakao.com')}>문의</Link>
-      </ModalList> */}
+      </ModalList>
       <ModalList>
         <Link to='/setting'>설정</Link>
       </ModalList>

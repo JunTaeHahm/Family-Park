@@ -48,13 +48,15 @@ const config = {
   },
 
   entry: {
-    app: './src/client',
+    sw: './src/service-worker', // Service Worker
+    app: { import: './src/client', asyncChunks: true },
   },
 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'js/[name].js',
+    filename: '[name].js',
     publicPath: '/',
+    clean: true,
   },
 
   module: {
@@ -185,48 +187,48 @@ if (isDevelopment && config.plugins) {
 if (!isDevelopment && config.plugins) {
   config.plugins?.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
   config.plugins?.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: true }));
-  // config.plugins?.push(
-  //   new WebpackPwaManifest({
-  //     filename: 'manifest.json',
-  //     name: '센텐스유',
-  //     short_name: '센텐스유',
-  //     description: '짧은 글로 사람들에게 동기부여와 여러 긍정적인 메시지를 보내보세요!',
-  //     scope: '/',
-  //     start_url: '.',
-  //     display: 'fullscreen',
-  //     orientation: 'portrait',
-  //     categories: ['personalization'],
-  //     crossorigin: 'use-credentials',
-  //     background_color: '#fbfdfc',
-  //     theme_color: '#fbfdfc',
-  //     lang: 'ko',
-  //     dir: 'auto',
-  //     display_override: ['fullscreen'],
-  //     icons: [
-  //       {
-  //         src: 'src/assets/images/favicon.ico',
-  //         sizes: [16, 24, 32, 64],
-  //         type: 'image/x-icon',
-  //       },
-  //       {
-  //         src: 'src/assets/images/logo192.png',
-  //         type: 'image/png',
-  //         sizes: '192x192',
-  //       },
-  //       {
-  //         src: 'src/assets/images/logo512.png',
-  //         type: 'image/png',
-  //         sizes: '512x512',
-  //       },
-  //     ],
-  //   }),
-  // );
-  // config.plugins?.push(
-  //   new WorkboxPlugin.InjectManifest({
-  //     swSrc: './service-worker.js',
-  //     swDest: 'service-worker.js',
-  //   }),
-  // );
+  config.plugins?.push(
+    new WebpackPwaManifest({
+      filename: 'manifest.json',
+      name: '센텐스유',
+      short_name: '센텐스유',
+      description: '짧은 글로 사람들에게 동기부여와 여러 긍정적인 메시지를 보내보세요!',
+      scope: '/',
+      start_url: '.',
+      display: 'fullscreen',
+      orientation: 'portrait',
+      categories: ['personalization'],
+      crossorigin: 'use-credentials',
+      background_color: '#fbfdfc',
+      theme_color: '#fbfdfc',
+      lang: 'ko',
+      dir: 'auto',
+      display_override: ['fullscreen'],
+      icons: [
+        {
+          src: 'src/assets/images/favicon.ico',
+          sizes: [16, 24, 32, 64],
+          type: 'image/x-icon',
+        },
+        {
+          src: 'src/assets/images/logo192.png',
+          type: 'image/png',
+          sizes: '192x192',
+        },
+        {
+          src: 'src/assets/images/logo512.png',
+          type: 'image/png',
+          sizes: '512x512',
+        },
+      ],
+    }),
+  );
+  config.plugins?.push(
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './src/service-worker.js',
+      swDest: 'service-worker.js',
+    }),
+  );
 }
 
 export default config;

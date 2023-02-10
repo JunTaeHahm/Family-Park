@@ -4,7 +4,7 @@ import { useGetRecentPosts } from '@hooks/usePost';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import axios from 'axios';
 import React, { useCallback, useRef, useState } from 'react';
-import { toast } from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const WriteModal = ({
   userId,
@@ -41,10 +41,24 @@ const WriteModal = ({
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if (!content) toast.error('문장을 적어주세요.'); // 빈 칸일 경우
+      if (!content) {
+        Swal.fire({
+          position: 'center',
+          icon: 'question',
+          title: '입력 란이 빈 칸입니다.',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } // 빈 칸일 경우
       if (content && userName && userId) {
         if (content.length > 300) {
-          toast.error('최대 글자 수를 초과했습니다.(최대 300자)');
+          Swal.fire({
+            position: 'center',
+            icon: 'question',
+            title: '최대 글자 수를 초과했습니다.(최대 300자)',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         } else {
           axios
             .post('/api/posts', { userId, userAvatar, userName, content })
@@ -52,11 +66,24 @@ const WriteModal = ({
               refetch(); // 최신 글 리패치
               setContent(''); // 글 작성 칸 비우기
               closeModalHandler(); // 모달창 닫기
-              toast.success('작성 성공!');
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '작성 성공',
+                showConfirmButton: false,
+                timer: 1500,
+              });
             })
             .catch((error) => {
               console.log(error);
-              toast.error('오류가 발생했습니다.');
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '에러가 발생했습니다.',
+                footer: '관리자에게 문의바랍니다.',
+                showConfirmButton: false,
+                timer: 1500,
+              });
             });
         }
       }
