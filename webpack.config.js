@@ -8,17 +8,16 @@ import path from 'path';
 import webpack from 'webpack';
 import pkg from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-
-// import WebpackPwaManifest from 'webpack-pwa-manifest';
-// import WorkboxPlugin from 'workbox-webpack-plugin';
+import WebpackPwaManifest from 'webpack-pwa-manifest';
+import WorkboxPlugin from 'workbox-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const __dirname = path.resolve(); // ES모듈에서 __dirname 사용법
 const { DefinePlugin } = pkg;
 
-isDevelopment ? dotenv.config({ path: './dev.env' }) : dotenv.config({ path: './.env' });
+dotenv.config();
 
-console.log(isDevelopment, process.env.API_SERVER);
+console.log('isDevelopment::', isDevelopment);
 
 const config = {
   name: 'sentence-u',
@@ -154,7 +153,18 @@ const config = {
     new webpack.LoaderOptionsPlugin({ debug: true }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new MiniCssExtractPlugin({ filename: './common.css' }),
-    new HtmlWebpackPlugin({ showErrors: true, template: './index.html' }),
+    new HtmlWebpackPlugin({
+      title: 'Index',
+      filename: 'index.html',
+      showErrors: true,
+      template: './index.html',
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Offline',
+      filename: 'offline.html',
+      showErrors: true,
+      template: './offline.html',
+    }),
   ],
 };
 
@@ -178,26 +188,33 @@ if (!isDevelopment && config.plugins) {
   // config.plugins?.push(
   //   new WebpackPwaManifest({
   //     filename: 'manifest.json',
+  //     name: '센텐스유',
   //     short_name: '센텐스유',
-  //     name: 'Sentence U',
+  //     description: '짧은 글로 사람들에게 동기부여와 여러 긍정적인 메시지를 보내보세요!',
+  //     scope: '/',
   //     start_url: '.',
   //     display: 'fullscreen',
+  //     orientation: 'portrait',
+  //     categories: ['personalization'],
   //     crossorigin: 'use-credentials',
-  //     theme_color: '#fbfdfc',
   //     background_color: '#fbfdfc',
+  //     theme_color: '#fbfdfc',
+  //     lang: 'ko',
+  //     dir: 'auto',
+  //     display_override: ['fullscreen'],
   //     icons: [
   //       {
-  //         src: './src/assets/images/favicon.ico',
-  //         sizes: '16x16',
+  //         src: 'src/assets/images/favicon.ico',
+  //         sizes: [16, 24, 32, 64],
   //         type: 'image/x-icon',
   //       },
   //       {
-  //         src: './src/assets/images/logo192.png',
+  //         src: 'src/assets/images/logo192.png',
   //         type: 'image/png',
   //         sizes: '192x192',
   //       },
   //       {
-  //         src: './src/assets/images/logo512.png',
+  //         src: 'src/assets/images/logo512.png',
   //         type: 'image/png',
   //         sizes: '512x512',
   //       },
@@ -206,7 +223,7 @@ if (!isDevelopment && config.plugins) {
   // );
   // config.plugins?.push(
   //   new WorkboxPlugin.InjectManifest({
-  //     swSrc: './src/service-worker.js',
+  //     swSrc: './service-worker.js',
   //     swDest: 'service-worker.js',
   //   }),
   // );

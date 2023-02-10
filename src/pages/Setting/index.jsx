@@ -27,6 +27,9 @@ import React, { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
+const API_SERVER =
+  process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://www.sentenceu.co.kr';
+
 const Setting = () => {
   const navigate = useNavigate();
 
@@ -40,11 +43,10 @@ const Setting = () => {
   const onUploadHandler = useCallback(
     (e) => {
       e.preventDefault();
-      console.log('유저 아바타 변경::');
       const formData = new FormData(); // formData생성
       formData.append('avatar', e.target.files[0]); // input(file)에서 받은 파일 formData에 append, name은 'avatar'
 
-      fetch(`${process.env.API_SERVER}/api/users/${userId}/avatar/upload`, {
+      fetch(`${API_SERVER}/api/users/${userId}/avatar/upload`, {
         // POST로 formData 전송
         method: 'POST',
         body: formData,
@@ -63,7 +65,7 @@ const Setting = () => {
       // confirm창으로 확인
       if (window.confirm('프로필 이미지를 삭제하시겠습니까?')) {
         axios
-          .post(`${process.env.API_SERVER}/api/users/${userId}/avatar/remove`)
+          .post(`/api/users/${userId}/avatar/remove`)
           .then(() => refetch()) // 삭제 성공 시 유저 정보 리패치
           .catch((error) => console.log(error));
       }
@@ -125,7 +127,7 @@ const Setting = () => {
     // confirm창으로 확인
     if (window.confirm('계정을 삭제하시겠습니까?')) {
       axios
-        .delete(`${process.env.API_SERVER}/api/users/${userId}`, { withCredentials: true })
+        .delete(`/api/users/${userId}`, { withCredentials: true })
         .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
         .catch((error) => console.log(error));
     }

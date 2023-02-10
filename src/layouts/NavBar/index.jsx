@@ -2,8 +2,7 @@ import {
   HeaderLogo,
   NavWrap,
   WriteWrap,
-  Container,
-  AlertWrap,
+  Container, // AlertWrap,
   LoginWrap,
   WriteButton,
   WriteButtonBack,
@@ -17,7 +16,7 @@ import { useGetClientUser } from '@hooks/userInfo';
 import React, { useCallback, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { BsFillCaretDownFill } from 'react-icons/bs';
-import { HiOutlineBellAlert } from 'react-icons/hi2';
+// import { HiOutlineBellAlert } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
@@ -61,9 +60,9 @@ const NavBar = () => {
           </Link>
         </HeaderLogo>
 
-        <AlertWrap>
+        {/* <AlertWrap>
           <HiOutlineBellAlert />
-        </AlertWrap>
+        </AlertWrap> */}
 
         {userName && (
           <WriteWrap>

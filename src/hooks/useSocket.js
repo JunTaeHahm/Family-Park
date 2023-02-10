@@ -7,8 +7,13 @@ export const useSocket = (userName) => {
 
   /* Socket.io 연결 */
   useEffect(() => {
+    const API_SERVER =
+      process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8000'
+        : 'https://www.sentenceu.co.kr';
+        
     // API_SERVER의 online에 소켓연결
-    const socketIo = io.connect(`${process.env.API_SERVER}/online`, {
+    const socketIo = io.connect(`${API_SERVER}/online`, {
       path: '/socket.io',
       cors: { origin: '*', credentials: true }, // CORS 설정 (아래의 transports 설정 있으면 없어도 가능)
       transports: ['websocket'], // websocket만 사용하겠다는 설정

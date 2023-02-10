@@ -56,7 +56,7 @@ export const Logout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.2rem;
+  padding: 0.5rem 0;
   svg {
     transform: rotate(180deg);
     transform-origin: center center;

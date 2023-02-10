@@ -86,14 +86,13 @@ export const AlertWrap = styled.div`
 `;
 
 export const LoginWrap = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(0, 0.2rem);
   cursor: pointer;
   margin-right: 1rem;
   a {
-    transform: translate(0, -0.2rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,6 +110,7 @@ export const LoginWrap = styled.div`
 export const LoginButtonBack = styled.span`
   display: inline-block;
   align-self: flex-end;
+  transform: translate(0, 0.2rem);
   border-radius: 0.5rem;
   background: var(--primary-black);
 `;
@@ -123,7 +123,7 @@ export const LoginButton = styled.button`
   padding: 0.4rem 1.2rem;
   background-color: var(--primary-white);
   color: var(--primary-black);
-  transform: translateY(-0.2rem);
+  transform: translate(0, -0.2rem);
   transition: transform 0.1s ease;
   font-weight: bold;
   cursor: pointer;

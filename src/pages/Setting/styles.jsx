@@ -6,9 +6,13 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: 768px;
-  height: 100vh;
   margin: 0 auto;
   padding-top: 10rem;
+  @media screen and (max-width: 767px) {
+    & {
+      padding-top: 7rem;
+    }
+  }
 `;
 
 export const Title = styled.h2`
@@ -21,6 +25,11 @@ export const Title = styled.h2`
   transition: background-size 0.2s ease;
   &:hover {
     background-size: 100% 88%;
+  }
+  @media screen and (max-width: 767px) {
+    & {
+      margin-bottom: 1rem;
+    }
   }
 `;
 
@@ -111,8 +120,11 @@ export const UserForm = styled.div`
   padding: 2rem;
   @media screen and (max-width: 767px) {
     & {
+      border-top: 0.06rem solid var(--primary-black);
+      justify-content: flex-start;
       gap: 1rem;
       width: 100%;
+      height: auto;
     }
   }
 `;
@@ -204,6 +216,12 @@ export const WithdrawalForm = styled.div`
   margin-top: 2rem;
   padding: 5rem 2rem 2rem;
   width: 100%;
+  @media screen and (max-width: 767px) {
+    & {
+      margin-top: 0;
+      padding: 1rem 2rem 2rem;
+    }
+  }
 `;
 
 export const Menu = styled.span`
@@ -214,7 +232,6 @@ export const Menu = styled.span`
   @media screen and (max-width: 767px) {
     & {
       width: 100%;
-      padding: 0.5rem 0;
       font-size: 1.2rem;
     }
   }
