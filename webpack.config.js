@@ -3,7 +3,6 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import pkg from 'webpack';
@@ -94,11 +93,6 @@ const config = {
         exclude: path.join(__dirname, 'node_modules'),
       },
       {
-        test: [/\.css$/, /\.s[ac]ss$/i],
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        exclude: /node_modules/,
-      },
-      {
         test: /\.(woff(2)?|eot|ttf|otf)$/,
         use: [
           {
@@ -154,7 +148,6 @@ const config = {
     }),
     new webpack.LoaderOptionsPlugin({ debug: true }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
-    new MiniCssExtractPlugin({ filename: './common.css' }),
     new HtmlWebpackPlugin({
       title: 'Index',
       filename: 'index.html',

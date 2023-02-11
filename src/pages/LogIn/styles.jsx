@@ -142,3 +142,20 @@ export const KakaoLogin = styled.button`
   background-size: cover;
   border-radius: 6px;
 `;
+
+export const LinkContainer = styled.p`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 1rem 0;
+  color: var(--primary-black);
+  font-size: 0.8rem;
+  a {
+    margin-left: 0.6rem;
+    color: var(--primary-black);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;

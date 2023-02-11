@@ -35,7 +35,7 @@ const ProfileMenu = ({ isOpened }) => {
     userName && (
       <Container isOpened={isOpened}>
         <ModalList>
-          <Link to={`/${userName}`}>내 프로필</Link>
+          <Link to={`/${userName}`}>마이페이지</Link>
         </ModalList>
         <ModalList>
           <Link to='/센텐스유'>공지사항</Link>

@@ -7,10 +7,11 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 const User = loadable(() => import('@pages/User'));
 const Home = loadable(() => import('@pages/Home'));
 const LogIn = loadable(() => import('@pages/LogIn'));
+const SignUp = loadable(() => import('@pages/SignUp'));
 const Admin = loadable(() => import('@pages/Admin'));
 const Posts = loadable(() => import('@pages/Posts'));
-const NavBar = loadable(() => import('@layouts/NavBar'));
 const Setting = loadable(() => import('@pages/Setting'));
+const NavBar = loadable(() => import('@layouts/NavBar'));
 const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
 
 const userAgent = navigator.userAgent.toLowerCase(); // userAgent 값 (디바이스)
@@ -49,6 +50,7 @@ const App = () => {
           <Route path='/setting' element={<Setting />} />
         </Route>
         <Route path='/login' element={<LogIn />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
       {(userAgent.indexOf('iphone') > -1 || userAgent.indexOf('ipad') > -1) && hasRendered && (
         <PWAPrompt
