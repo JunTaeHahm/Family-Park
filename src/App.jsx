@@ -9,7 +9,6 @@ const Home = loadable(() => import('@pages/Home'));
 const LogIn = loadable(() => import('@pages/LogIn'));
 const Admin = loadable(() => import('@pages/Admin'));
 const Posts = loadable(() => import('@pages/Posts'));
-const SignUp = loadable(() => import('@pages/SignUp'));
 const NavBar = loadable(() => import('@layouts/NavBar'));
 const Setting = loadable(() => import('@pages/Setting'));
 const RollingBanner = loadable(() => import('@layouts/RollingBanner'));
@@ -50,7 +49,6 @@ const App = () => {
           <Route path='/setting' element={<Setting />} />
         </Route>
         <Route path='/login' element={<LogIn />} />
-        <Route path='/signup' element={<SignUp />} />
       </Routes>
       {(userAgent.indexOf('iphone') > -1 || userAgent.indexOf('ipad') > -1) && hasRendered && (
         <PWAPrompt
@@ -60,9 +58,8 @@ const App = () => {
           }
           copyShareButtonLabel={"1) '공유' 버튼을 누르세요."}
           copyAddHomeButtonLabel={"2) '홈 화면에 추가'를 누릅니다"}
-          copyClosePrompt={'취소'}
+          copyClosePrompt={'확인'}
           permanentlyHideOnDismiss={false}
-          debug={true}
         />
       )}
       {userAgent.indexOf('android') > -1 && hasRendered && <InstallAppButton />}

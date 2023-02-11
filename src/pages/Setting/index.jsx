@@ -22,6 +22,7 @@ import {
   WithdrawalForm,
 } from './styles';
 import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
 import axios from 'axios';
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -62,13 +63,22 @@ const Setting = () => {
     (e) => {
       e.preventDefault();
 
-      // confirm창으로 확인
-      if (window.confirm('프로필 이미지를 삭제하시겠습니까?')) {
-        axios
-          .post(`/api/users/${userId}/avatar/remove`)
-          .then(() => refetch()) // 삭제 성공 시 유저 정보 리패치
-          .catch((error) => console.log(error));
-      }
+      Swal.fire({
+        title: '이미지를 삭제하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#008bf8',
+        cancelButtonColor: '#e06c75',
+        confirmButtonText: '확인',
+        cancelButtonText: '취소',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post(`/api/users/${userId}/avatar/remove`)
+            .then(() => refetch()) // 삭제 성공 시 유저 정보 리패치
+            .catch((error) => console.log(error));
+        }
+      });
     },
     [userId, refetch],
   );
@@ -110,14 +120,7 @@ const Setting = () => {
           })
           .catch((error) => {
             console.log(error);
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: '에러가 발생했습니다.',
-              footer: '관리자에게 문의바랍니다.',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
     },
@@ -126,13 +129,23 @@ const Setting = () => {
 
   /* 계정 삭제 함수 */
   const onWithdrawalHandler = useCallback(() => {
-    // confirm창으로 확인
-    if (window.confirm('계정을 삭제하시겠습니까?')) {
-      axios
-        .delete(`/api/users/${userId}`, { withCredentials: true })
-        .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
-        .catch((error) => console.log(error));
-    }
+    Swal.fire({
+      title: '계정을 삭제하시겠습니까?',
+      text: '작성하신 모든 포스트가 삭제되며 복구되지 않습니다.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#008bf8',
+      cancelButtonColor: '#e06c75',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`/api/users/${userId}`, { withCredentials: true })
+          .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
+          .catch((error) => console.log(error));
+      }
+    });
   }, [userId, navigate]);
 
   return (
@@ -198,7 +211,9 @@ const Setting = () => {
         <WithdrawalButtonBack>
           <Withdrawal onClick={onWithdrawalHandler}>계정 삭제</Withdrawal>
         </WithdrawalButtonBack>
-        <Caution>계정 삭제 시 작성하신 모든 포스트가 삭제되며 복구되지 않습니다.</Caution>
+        <Caution>
+          계정 삭제 시 작성하신 <b>모든 포스트</b>가 삭제되며 복구되지 않습니다.
+        </Caution>
       </WithdrawalForm>
     </Container>
   );

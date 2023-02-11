@@ -8,7 +8,6 @@ const listAni = keyframes`
   to{
     transform: translate(-80%,0%);
   }
-
 `;
 
 export const Container = styled.div`

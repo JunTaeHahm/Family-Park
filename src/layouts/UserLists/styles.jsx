@@ -10,9 +10,15 @@ export const Container = styled.div`
   padding-top: 4rem;
   gap: 1.5rem;
   width: 100%;
+  @media screen and (max-width: 1023px) {
+    & {
+      gap: 1.2rem;
+    }
+  }
   @media screen and (max-width: 767px) {
     & {
       margin-top: 1rem;
+      gap: 1rem;
     }
   }
 `;
@@ -57,11 +63,16 @@ export const Online = styled.span`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: var(--primary-blue);
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+  @media screen and (max-width: 1023px) {
+    & {
+      right: 1.5rem;
+    }
   }
   @media screen and (max-width: 767px) {
     & {
-      right: 2rem;
+      right: 2.5rem;
     }
   }
 `;

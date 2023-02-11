@@ -27,6 +27,7 @@ import {
 } from './styles';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -113,15 +114,8 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       e.preventDefault();
       const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
       if (!editCheck) {
-        Swal.fire({
-          position: 'center',
-          icon: 'question',
-          title: '수정 한 내용이 없습니다.',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } 
-      else {
+        setIsEditing(false); // 수정모드 false
+      } else {
         axios
           .put(
             `/api/posts/${postId}`,
@@ -132,62 +126,47 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             { withCredentials: true },
           )
           .then(() => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: '수정 성공',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('success', '수정 성공');
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
             console.log(error);
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: '에러가 발생했습니다.',
-              footer: '관리자에게 문의바랍니다.',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
     },
-    [postId, editContent, postContent],
+    [postId, editContent],
   );
 
   /* 포스트 삭제 함수 */
   const onDeletePost = useCallback(() => {
-    if (window.confirm('포스트를 삭제하시겠습니까?')) {
-      axios
-        .delete(`/api/posts/${postId}`, { withCredentials: true })
-        .then(() => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: '수정 성공',
-            showConfirmButton: false,
-            timer: 1500,
+    Swal.fire({
+      title: '포스트를 삭제하시겠습니까?',
+      text: '삭제 한 포스트는 복구되지 않습니다.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#008bf8',
+      cancelButtonColor: '#e06c75',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`/api/posts/${postId}`, { withCredentials: true })
+          .then(() => {
+            sweetAlert('success', '삭제 성공');
+            // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
+            containerRef.current.classList.add('removed');
+            containerRef.current.classList.remove('open');
+            commentWrapRef.current.classList.remove('open');
+            setIsEditing(false); // 수정모드 false
+          })
+          .catch((error) => {
+            console.log(error);
+            sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
-          // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
-          containerRef.current.classList.add('removed');
-          containerRef.current.classList.remove('open');
-          commentWrapRef.current.classList.remove('open');
-          setIsEditing(false); // 수정모드 false
-        })
-        .catch((error) => {
-          console.log(error);
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: '에러가 발생했습니다.',
-            footer: '관리자에게 문의바랍니다.',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        });
-    }
+      }
+    });
   }, [postId]);
 
   /* 좋아요 버튼 */
@@ -213,13 +192,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         })
         .catch((error) => console.log(error));
     } else {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: '로그인 후 이용 가능합니다.',
-        showConfirmButton: false,
-        timer: 1500,
-      }); // 로그인 후에 이용 가능하도록
+      sweetAlert('warning', '로그인 후 이용 가능합니다.');
     }
   }, [postId, userName]);
 
@@ -236,25 +209,13 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     (e) => {
       e.preventDefault();
       if (!userName) {
-        Swal.fire({
-          position: 'center',
-          icon: 'warning',
-          title: '로그인 후 이용 가능합니다.',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        sweetAlert('warning', '로그인 후 이용 가능합니다.');
       } // 로그인 후에 이용 가능하도록
       if (comment && userName) {
         axios
           .post(`/api/posts/${postId}/comments`, { postId, userName, comment })
           .then((res) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: '작성 성공',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('success', '작성 성공');
             setCommentList(res.data.comments); // 추가된 최신 댓글리스트로 갱신
             setCommentCount(res.data.comments.length); // 추가된 최신 댓글 개수로 갱신
             setComment(''); // 댓글창 초기화
@@ -262,14 +223,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           })
           .catch((error) => {
             console.log(error);
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: '에러가 발생했습니다.',
-              footer: '관리자에게 문의바랍니다.',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
     },
@@ -281,35 +235,33 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     (e) => {
       // 댓글 작성자가 클라이언트 유저인 경우에만 삭제 가능하도록
       if (e.target.parentElement.children[0].innerHTML === userName) {
-        if (window.confirm('댓글을 삭제하시겠습니까?')) {
-          axios
-            .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
-              withCredentials: true,
-            })
-            .then((res) => {
-              setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
-              setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신
-              setIsEditing(false); // 수정모드 false
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '삭제 성공',
-                showConfirmButton: false,
-                timer: 1500,
+        Swal.fire({
+          title: '댓글을 삭제하시겠습니까?',
+          text: '삭제 한 댓글은 복구되지 않습니다.',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#008bf8',
+          cancelButtonColor: '#e06c75',
+          confirmButtonText: '확인',
+          cancelButtonText: '취소',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios
+              .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
+                setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신
+                setIsEditing(false); // 수정모드 false
+                sweetAlert('success', '삭제 성공');
+              })
+              .catch((error) => {
+                console.log(error);
+                sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
               });
-            })
-            .catch((error) => {
-              console.log(error);
-              Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: '에러가 발생했습니다.',
-                footer: '관리자에게 문의바랍니다.',
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            });
-        }
+          }
+        });
       }
     },
     [userName],
@@ -359,7 +311,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             </CommentButton>
           </Actions>
           <Link to={`/${postUser}`}>
-            <Avatar src={postAvatar} />
+            <Avatar src={postAvatar.replace('http:', 'https:')} />
             <Name>{postUser}</Name>
           </Link>
         </ActionWrap>

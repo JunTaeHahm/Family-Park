@@ -12,78 +12,89 @@ import { Workbox } from 'workbox-window';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 /* PWA */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    /*===================================================
+if (!isDevelopment) {
+  // 개발모드일 때 개발자 도구에서 SW Unregister하고 작업 할 것
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      /*===================================================
                       Work Box 사용
-    ===================================================*/
-    const wb = new Workbox('/sw.js');
-    wb.addEventListener('installed', (event) => {
-      if (!event.isUpdate) {
-        console.log('Workbox가 설치 되었습니다.');
-      }
-    });
-
-    wb.register();
-
-    /*===================================================
-                      SW 버전 확인
-    ===================================================*/
-    const swVersion = wb.messageSW({ type: 'GET_VERSION' });
-    swVersion.then((res) => {
-      console.log(`현재 SW의 버전은 ${res} 입니다.`);
-    });
-
-    /*===================================================
-              새로운 버전의 SW 업데이트 프롬프트
-    ===================================================*/
-    const showSkipWaitingPrompt = (event) => {
-      // 유저가 업데이트를 수락할 경우, 대기 중이던 SW가 제어권을 얻음.
-      wb.addEventListener('controlling', () => {
-        // 이 시점에서 다시 로드하면 현재 탭이 새 SW의 제어 하에 로드됨.
-        window.location.reload();
-      });
-
-      // 업데이트 수락 할 프롬프트 UI 선언
-      Swal.fire({
-        title: '새로운 버전 확인!',
-        icon: 'info',
-        confirmButtonColor: '#008bf8',
-        confirmButtonText: '업데이트',
-      }).then((result) => {
-        // 업데이트 수락 시
-        if (result.isConfirmed) {
-          wb.messageSkipWaiting();
+      ===================================================*/
+      const wb = new Workbox('/sw.js');
+      wb.addEventListener('installed', (event) => {
+        if (!event.isUpdate) {
+          console.log('Workbox가 설치 되었습니다.');
         }
       });
-    };
-    // 새로 등록 된 SW가 설치되었지만 활성화 대기 중인 시점을 탐지하는 이벤트 추가
-    wb.addEventListener('waiting', (event) => {
-      showSkipWaitingPrompt(event);
-    });
 
-    /*===================================================
+      wb.register();
+
+      /*===================================================
                           SW 등록
-    ===================================================*/
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((registration) => {
-        console.log('SW 등록 성공::', registration);
+      ===================================================*/
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          console.log('SW 등록 성공::', registration);
 
-        const convertedVapidPublicKey = urlBase64ToUint8Array(process.env.WEBPUSH_PUBLIC_KEY);
-        registration?.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: convertedVapidPublicKey,
+          const convertedVapidPublicKey = urlBase64ToUint8Array(process.env.WEBPUSH_PUBLIC_KEY);
+          registration?.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: convertedVapidPublicKey,
+          });
+          Notification.requestPermission().then((p) => {
+            console.log(p);
+          });
+        })
+        .catch((error) => {
+          console.log('SW 등록 실패:: ', error);
         });
-        Notification.requestPermission().then((p) => {
-          console.log(p);
-        });
-      })
-      .catch((error) => {
-        console.log('SW 등록 실패:: ', error);
+
+      /*===================================================
+                      SW 버전 확인
+      ===================================================*/
+      let swVersion;
+      const getVersion = wb.messageSW({ type: 'GET_VERSION' });
+      getVersion.then((res) => {
+        console.log(`Service Worker Version:: ${res}`);
+        swVersion = res;
       });
-  });
+
+      /*===================================================
+              새로운 버전의 SW 업데이트 프롬프트
+      ===================================================*/
+      const showSkipWaitingPrompt = (event) => {
+        // 유저가 업데이트를 수락할 경우, 대기 중이던 SW가 제어권을 얻음.
+        wb.addEventListener('controlling', () => {
+          // 이 시점에서 다시 로드하면 현재 탭이 새 SW의 제어 하에 로드됨.
+          window.location.reload();
+        });
+
+        // 업데이트 수락 할 프롬프트
+        Swal.fire({
+          title: `${swVersion} 버전 업데이트 안내`,
+          text: '새로운 버전이 있습니다.',
+          icon: 'info',
+          confirmButtonColor: '#008bf8',
+          confirmButtonText: '업데이트',
+        }).then((result) => {
+          // 업데이트 수락 시
+          if (result.isConfirmed) {
+            wb.messageSkipWaiting();
+          }
+        });
+      };
+
+      /*===================================================
+          새로 등록 된 SW가 설치되었지만 활성화 대기 중인 시점을 탐지
+      ===================================================*/
+      wb.addEventListener('waiting', (event) => {
+        showSkipWaitingPrompt(event);
+      });
+    });
+  }
 }
 
 /* Axios 기본 설정 */
@@ -94,7 +105,7 @@ if (isDevelopment) {
   axios.defaults.baseURL = 'https://www.sentenceu.co.kr'; // 배포
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+/* React-Query 기본 설정 */
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

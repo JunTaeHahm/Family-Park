@@ -70,14 +70,14 @@ export const Input = styled.textarea`
   resize: none;
   border: none;
   line-height: 1.5;
-  transition: all 0.3s;
+  transition: all 0.2s;
   background-color: var(--primary-white);
   border: 0.13rem solid var(--primary-grey);
   border-radius: 0.5rem;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &:focus {
     outline: none;
-    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   }
   &::placeholder {
     height: 100%;

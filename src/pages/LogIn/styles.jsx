@@ -13,10 +13,9 @@ export const Form = styled.form`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 24rem;
-  max-width: 24rem;
+  width: 25rem;
   margin: 0 auto;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     & {
       justify-content: center;
     }
@@ -79,10 +78,10 @@ export const Input = styled.input`
   background-color: var(--primary-white);
   font-size: 0.9rem;
   font-weight: 300;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &:focus {
     outline: none;
-    border-bottom: 0.06rem solid black;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   }
   &::placeholder {
     height: 100%;
@@ -107,7 +106,21 @@ export const Mismatch = styled.span`
   text-align: right;
 `;
 
-export const Button = styled.button`
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  @media screen and (max-width: 767px) {
+    & {
+      flex-direction: column;
+    }
+  }
+`;
+
+export const Login = styled.button`
   width: 183px;
   height: 45px;
   outline: none;
@@ -128,26 +141,4 @@ export const KakaoLogin = styled.button`
   background: url('https://www.sentenceu.co.kr/src/assets/images/kakao_login_large_narrow.png');
   background-size: cover;
   border-radius: 6px;
-  @media screen and (max-width: 767px) {
-    & {
-      margin-top: 1rem;
-    }
-  }
-`;
-
-export const LinkContainer = styled.p`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin: 1rem 0;
-  color: var(--primary-black);
-  font-size: 0.8rem;
-  a {
-    margin-left: 0.6rem;
-    color: var(--primary-black);
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;

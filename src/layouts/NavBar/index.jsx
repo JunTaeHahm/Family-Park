@@ -13,10 +13,10 @@ import ProfileMenu from '@components/ProfileMenu';
 import WriteModal from '@components/WriteModal';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
 import React, { useCallback, useRef, useState } from 'react';
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 const NavBar = () => {
   const ref = useRef();
@@ -38,13 +38,7 @@ const NavBar = () => {
       setWirteModalOpen(true);
       setIsBtnActive(true);
     } else {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: '로그인 후 이용 가능합니다.',
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      sweetAlert('warning', '로그인 후 이용 가능합니다.');
     }
   }, [userName]);
 
@@ -79,7 +73,9 @@ const NavBar = () => {
           {/* 로그인 상태에 따라 보이는 메뉴 다르도록 */}
           {!userName ? (
             <LoginButtonBack>
-              <LoginButton>시작하기</LoginButton>
+              <LoginButton>
+                <Link to='/login'>시작하기</Link>
+              </LoginButton>
             </LoginButtonBack>
           ) : (
             <Link>

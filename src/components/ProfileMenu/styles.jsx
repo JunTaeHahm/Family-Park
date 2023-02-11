@@ -17,8 +17,8 @@ export const Container = styled.ul`
   box-shadow: var(--card);
   transform-origin: top right;
   transform: ${(props) =>
-    props.isOpened ? 'translate(-70%, 8%) scale(1)' : 'translate(-70%, 8%) scale(0)'};
-  transition: all 0.3s;
+    props.isOpened ? 'translate(-70%, 5%) scale(1)' : 'translate(-70%, 5%) scale(0)'};
+  transition: all 0.2s;
   & span {
     color: var(--primary-white);
   }

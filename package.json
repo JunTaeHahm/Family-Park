@@ -9,8 +9,7 @@
   "type": "module",
   "scripts": {
     "dev": "webpack serve --env development",
-    "build": "cross-env NODE_ENV=production webpack",
-    "web-push": "web-push"
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.13",

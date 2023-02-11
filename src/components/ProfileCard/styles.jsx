@@ -27,21 +27,28 @@ export const Container = styled.div`
     left: 50%;
     bottom: 0;
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
   &:hover {
     border-color: var(--primary-blue);
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-    transition: all 0.3s;
+    transition: all 0.2s;
     .card-button {
       transform: translate(-50%, 50%);
       opacity: 1;
     }
   }
+  @media screen and (max-width: 1023px) {
+    & {
+      width: 30vw;
+      height: max-content;
+      padding: 1.5rem 0;
+    }
+  }
   @media screen and (max-width: 767px) {
     & {
-      width: 85vw;
-      height: max-content;
+      width: 40vw;
+      height: 30vh;
       padding: 1.5rem 0;
     }
   }
@@ -51,19 +58,15 @@ export const UserAvatar = styled.img`
   position: relative;
   width: 5rem;
   height: 5rem;
-  border-radius: 50%;
   object-fit: cover;
-`;
-
-export const OnlineLight = styled.span`
-  position: relative;
-  top: -1rem;
-  left: 1.8rem;
-  width: 1rem;
-  height: 1rem;
-  border: 0.13rem solid var(--background);
   border-radius: 50%;
-  background-color: var(--primary-blue);
+  border: 0.2rem solid transparent;
+  background-image: ${(props) =>
+    props.isOnline
+      ? 'linear-gradient(#fff, #fff), linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%)'
+      : 'none'};
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 `;
 
 export const UserName = styled.div`
@@ -71,6 +74,15 @@ export const UserName = styled.div`
   font-weight: bold;
   font-size: 1.2rem;
 `;
-export const UserTitle = styled.div``;
+export const UserTitle = styled.div`
+  @media screen and (max-width: 767px) {
+    & {
+      max-width: 90%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+`;
 
 export const CardButton = styled.button``;

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export const useCrawling = () => {
-  // 명언 카테고리 총 12개
+  // 명언 카테고리:
   const sayingCategories = [
     'love',
     'life',
@@ -22,7 +22,8 @@ export const useCrawling = () => {
     async () => {
       return await axios
         .post(`/api/famous`, {
-          category: sayingCategories[Math.floor(Math.random() * 12)], // 카테고리 12개 중에 랜덤 선택
+          // 카테고리 중 랜덤 선택:
+          category: sayingCategories[Math.floor(Math.random() * 12)],
         })
         .then((res) => {
           if (res.data) return res.data;
@@ -32,19 +33,13 @@ export const useCrawling = () => {
     {
       manual: true,
       staleTime: 0,
-      skip: true, // 한 번 데이터 가져오면 더 이상 가져오지 않음
-      cacheTime: Infinity, // 캐싱 타임, 무한
-      refetchInterval: false, // 리패치 반복 주기, 없음
+      skip: true,
+      cacheTime: Infinity,
+      refetchInterval: false,
     },
   );
-
-  let saying = [];
-  let writer = [];
-  // data = [saying배열, writer배열]
-  if (data) {
-    saying.push([...data][0]);
-    writer.push([...data][1]);
-  }
+  let saying = data && [].concat(data[0]);
+  let writer = data && [].concat(data[1]);
 
   return { saying, writer, isLoading, error };
 };

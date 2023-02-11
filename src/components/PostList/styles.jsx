@@ -14,7 +14,7 @@ export const Container = styled.div`
   background-color: var(--primary-white);
   border: 0.13rem solid var(--primary-grey);
   transform: translate(-50%, 0) scaleY(1);
-  transition: all 0.3s;
+  transition: all 0.2s;
   cursor: pointer;
   &:hover {
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
@@ -164,12 +164,12 @@ export const CommentWrap = styled.div`
   align-items: center;
   width: 100%;
   height: 0;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &.open {
     opacity: 1;
     visibility: visible;
     height: 15rem;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
 `;
 
@@ -224,6 +224,10 @@ export const Input = styled.input`
   background-color: var(--primary-white);
   font-size: 0.8rem;
   text-indent: 0.3rem;
+  &::focus {
+    outline: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
   &::placeholder {
     opacity: 0.5;
     height: 100%;

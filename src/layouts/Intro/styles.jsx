@@ -14,11 +14,6 @@ export const Container = styled.div`
       margin-bottom: 2.5rem;
     }
   }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    & {
-      flex-wrap: nowrap;
-    }
-  }
   @media screen and (max-width: 767px) {
     & {
       width: 100%;

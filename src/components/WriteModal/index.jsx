@@ -2,9 +2,9 @@ import { Button, Container, FormHeader, Form, Input } from './styles';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetRecentPosts } from '@hooks/usePost';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { sweetAlert } from '@utils/sweetAlert';
 import axios from 'axios';
 import React, { useCallback, useRef, useState } from 'react';
-import Swal from 'sweetalert2';
 
 const WriteModal = ({
   userId,
@@ -42,23 +42,11 @@ const WriteModal = ({
     (e) => {
       e.preventDefault();
       if (!content) {
-        Swal.fire({
-          position: 'center',
-          icon: 'question',
-          title: '입력 란이 빈 칸입니다.',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        sweetAlert('question', '입력 란이 빈 칸입니다.');
       } // 빈 칸일 경우
       if (content && userName && userId) {
         if (content.length > 300) {
-          Swal.fire({
-            position: 'center',
-            icon: 'question',
-            title: '최대 글자 수를 초과했습니다.(최대 300자)',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          sweetAlert('question', '최대 글자 수를 초과했습니다.(최대 300자)');
         } else {
           axios
             .post('/api/posts', { userId, userAvatar, userName, content })
@@ -66,24 +54,11 @@ const WriteModal = ({
               refetch(); // 최신 글 리패치
               setContent(''); // 글 작성 칸 비우기
               closeModalHandler(); // 모달창 닫기
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '작성 성공',
-                showConfirmButton: false,
-                timer: 1500,
-              });
+              sweetAlert('success', '작성 성공');
             })
             .catch((error) => {
               console.log(error);
-              Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: '에러가 발생했습니다.',
-                footer: '관리자에게 문의바랍니다.',
-                showConfirmButton: false,
-                timer: 1500,
-              });
+              sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
             });
         }
       }

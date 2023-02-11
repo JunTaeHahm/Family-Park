@@ -1,20 +1,20 @@
-import useInput from '@hooks/useInput';
-import { useGetClientUser } from '@hooks/userInfo';
 import {
-  LinkContainer,
   HeaderLogo,
   KakaoLogin,
-  Button,
+  ButtonWrap,
+  Login,
   Form,
   Label,
   Input,
   FormTitle,
   Container,
-} from '@pages/SignUp/styles';
+} from './styles';
+import useInput from '@hooks/useInput';
+import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -45,23 +45,13 @@ const LogIn = () => {
           )
           .then(() => {
             navigate('/'); // 로그인 성공 시 홈으로 navigate
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: `환영합니다 ${userName}님!`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('success', `환영합니다 ${userName}님!`);
           })
           .catch((error) => {
-            Swal.fire({
-              position: 'center',
-              icon: 'error',
-              title: error.response.data,
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            sweetAlert('error', error.response.data);
           });
+      } else {
+        sweetAlert('question', '빈 칸이 있습니다.');
       }
     },
     [userName, password, navigate],
@@ -119,15 +109,13 @@ const LogIn = () => {
           </div>
         </Label>
 
-        <Button buttonActive={buttonActive} id='Button' type='submit'>
-          로그인
-        </Button>
+        <ButtonWrap>
+          <Login buttonActive={buttonActive} id='Button' type='submit'>
+            로그인
+          </Login>
 
-        <KakaoLogin onClick={onKaKaoLogin} />
-        <LinkContainer>
-          아직 회원이 아니신가요?
-          <Link to='/signup'>회원가입 &gt;</Link>
-        </LinkContainer>
+          <KakaoLogin onClick={onKaKaoLogin} />
+        </ButtonWrap>
       </Form>
     </Container>
   );

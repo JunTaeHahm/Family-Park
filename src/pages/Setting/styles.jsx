@@ -8,6 +8,11 @@ export const Container = styled.div`
   max-width: 768px;
   margin: 0 auto;
   padding-top: 10rem;
+  @media screen and (max-width: 1023px) {
+    & {
+      padding: 7rem 2rem 0;
+    }
+  }
   @media screen and (max-width: 767px) {
     & {
       padding-top: 7rem;
@@ -267,11 +272,6 @@ export const Withdrawal = styled.button`
 `;
 
 export const Caution = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   font-weight: 300;
-  @media screen and (max-width: 767px) {
-    & {
-      margin-top: 1rem;
-    }
-  }
 `;

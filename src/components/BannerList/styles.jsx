@@ -13,6 +13,10 @@ export const Saying = styled.div`
 `;
 
 export const Writer = styled.div`
-  color: var(--primary-black);
   font-size: 0.9rem;
+  font-weight: bold;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-size: 100% 50%;
+  background-repeat: no-repeat;
+  background-position: 0 50%;
 `;

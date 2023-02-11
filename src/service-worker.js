@@ -11,7 +11,12 @@ precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공�
 /*===================================================
                    SW 버전 관리
 ===================================================*/
-const SW_VERSION = '0.9.9';
+const SW_VERSION = '0.1.3';
+// 0.1.0: 배포
+// 0.1.1: 이미지 업로드 버그 수정
+// 0.1.2: AWS S3 액세스 키 포트 및 엔트리 포인트 수정
+// 0.1.3: 회원가입 삭제
+//        명언 크롤링 수정
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -60,15 +65,8 @@ const networkWithFallbackStrategy = new NetworkOnly({
 });
 
 self.addEventListener('install', (event) => {
-  console.log('SW가 설치되었습니다.');
+  console.log('Installed:: SW 설치 완료');
   event.waitUntil(caches.open(FALLBACK_CACHE_NAME).then((cache) => cache.add(FALLBACK_HTML)));
-
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
-    }),
-  );
-  console.log('Install:: SW 캐시 삭제');
 });
 
 // 모든 탐색을 처리할 경로를 등록
@@ -83,7 +81,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
     }),
   );
-  console.log('Activate:: SW 캐시 삭제');
+  console.log('Activated:: SW 캐시 삭제');
 });
 
 /*===================================================
