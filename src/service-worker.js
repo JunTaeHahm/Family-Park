@@ -12,9 +12,9 @@ precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공�
 /*===================================================
                    SW 버전 관리
 ===================================================*/
-const SW_VERSION = '1.0.1';
+const SW_VERSION = '1.0.2';
 
-addEventListener('message', (event) => {
+self.addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
     event.ports[0].postMessage(SW_VERSION);
   }
@@ -44,7 +44,7 @@ registerRoute(imageAssetRoute);
                 오프라인 캐싱 및 SW 설치
 ===================================================*/
 const FALLBACK_CACHE_NAME = 'offline-fallback';
-const FALLBACK_HTML = '/offline.html';
+const FALLBACK_HTML = '../offline.html';
 const networkWithFallbackStrategy = new NetworkOnly({
   // 오프라인이거나 네트워크 응답이 있기 전에
   // 5초 이상 경과한 경우 캐시된 offline.html로 폴백
