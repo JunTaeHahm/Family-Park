@@ -179,7 +179,7 @@ if (isDevelopment && config.plugins) {
 /* Production */
 if (!isDevelopment && config.plugins) {
   config.plugins?.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
-  config.plugins?.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: true }));
+  config.plugins?.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false }));
   config.plugins?.push(
     new WebpackPwaManifest({
       filename: 'manifest.json',
