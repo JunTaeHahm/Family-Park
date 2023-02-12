@@ -1,15 +1,16 @@
-import { Container, Title, Online } from './styles';
+import { Container, Title, Online, Loading } from './styles';
 import ProfileCard from '@components/ProfileCard';
 import { useSocket } from '@hooks/useSocket';
 import { useViewPort } from '@hooks/useViewPort';
 import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
+import { CircularProgress } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const UserLists = ({ userListOpen, setUserListOpen }) => {
   const ref = useRef();
 
-  const { allUsers } = useAllUsers();
+  const { allUsers, isLoading } = useAllUsers();
   const { userName } = useGetClientUser();
   const { onlineList } = useSocket(userName);
   const { innerWidth } = useViewPort();
@@ -48,23 +49,32 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
   return (
     <Container userListOpen={userListOpen}>
       <Title>센텐스유를 빛내주시는 분들 </Title>
+
       <Online>
         <span></span>접속중
       </Online>
-      {sortedUsers?.map((user, i) => {
-        // 온라인 일 경우 isOnline: true
-        const isOnline = onlineList.indexOf(user.userName) > -1;
-        return (
-          <Link to={`/${user.userName}`} key={user._id}>
-            <ProfileCard
-              isOnline={isOnline}
-              userName={user.userName}
-              userAvatar={user.userAvatar}
-              userTitle={user.userTitle}
-            />
-          </Link>
-        );
-      })}
+
+      {isLoading ? (
+        <Loading>
+          <CircularProgress color='inherit' />
+          <div>불러오는 중...</div>
+        </Loading>
+      ) : (
+        sortedUsers?.map((user, i) => {
+          // 온라인 일 경우 isOnline: true
+          const isOnline = onlineList.indexOf(user.userName) > -1;
+          return (
+            <Link to={`/${user.userName}`} key={user._id}>
+              <ProfileCard
+                isOnline={isOnline}
+                userName={user.userName}
+                userAvatar={user.userAvatar}
+                userTitle={user.userTitle}
+              />
+            </Link>
+          );
+        })
+      )}
     </Container>
   );
 };

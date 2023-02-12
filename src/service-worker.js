@@ -2,7 +2,8 @@
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
-import { registerRoute, NavigationRoute, Route } from 'workbox-routing';
+import { offlineFallback } from 'workbox-recipes';
+import { registerRoute, setDefaultHandler, NavigationRoute, Route } from 'workbox-routing';
 import { NetworkOnly, NetworkFirst, CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 clientsClaim();
@@ -11,7 +12,7 @@ precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공�
 /*===================================================
                    SW 버전 관리
 ===================================================*/
-const SW_VERSION = '1.0.0';
+const SW_VERSION = '1.0.1';
 
 addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -164,3 +165,10 @@ addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+/*===================================================
+                  오프라인 페이지
+===================================================*/
+setDefaultHandler(new NetworkOnly());
+
+offlineFallback();
