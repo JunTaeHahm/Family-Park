@@ -26,8 +26,19 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
     }
   });
 
-  // 온라인, 오프라인 순서의 배열 생성. '센텐스유'라는 유저명은 제외(공식계정)
-  const sortedUsers = [...onlineUsers, ...offlineUsers];
+  // 온라인, 오프라인 순서의 배열 생성
+  // 영어 유저명은 뒤로 정렬
+  const sortedUsers = [...onlineUsers, ...offlineUsers].sort((a, b) => {
+    if (a.userName.charCodeAt(0) > 127 && b.userName.charCodeAt(0) > 127) {
+      return a.userName > b.userName ? 1 : -1;
+    } else if (a.userName.charCodeAt(0) > 127) {
+      return -1;
+    } else if (b.userName.charCodeAt(0) > 127) {
+      return 1;
+    } else {
+      return a.userName > b.userName ? 1 : -1;
+    }
+  });
 
   /* useClickOutsideModal Hooks 함수 (모바일에서만 작동하도록) */
   useEffect(() => {
@@ -45,7 +56,6 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
       document.removeEventListener('touchstart', listener);
     };
   }, [ref, setUserListOpen, innerWidth]);
-
   return (
     <Container userListOpen={userListOpen}>
       <Title>센텐스유를 빛내주시는 분들 </Title>
