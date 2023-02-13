@@ -117,14 +117,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         setIsEditing(false); // 수정모드 false
       } else {
         axios
-          .put(
-            `/api/posts/${postId}`,
-            {
-              postId: postId,
-              postContent: editContent,
-            },
-            { withCredentials: true },
-          )
+          .put(`/api/posts/${postId}`, {
+            postId: postId,
+            postContent: editContent,
+          })
           .then(() => {
             sweetAlert('success', '수정 성공');
             setIsEditing(false); // 수정모드 false
@@ -152,7 +148,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/posts/${postId}`, { withCredentials: true })
+          .delete(`/api/posts/${postId}`)
           .then(() => {
             sweetAlert('success', '삭제 성공');
             // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
@@ -185,7 +181,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onLikeClick = useCallback(() => {
     if (userName) {
       axios
-        .patch('api/posts/like', { postId: postId, userName: userName }, { withCredentials: true })
+        .patch('api/posts/like', { postId: postId, userName: userName })
         .then((res) => {
           setIsLiked((prev) => !prev); // 이미 좋아요 눌렀다면 해제, 안눌렀다면 설정
           setLikeCount(res.data.post.postLike.length); // 좋아요 카운트 DB의 postLike의 length로 설정
@@ -247,9 +243,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         }).then((result) => {
           if (result.isConfirmed) {
             axios
-              .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
-                withCredentials: true,
-              })
+              .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`)
               .then((res) => {
                 setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
                 setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신

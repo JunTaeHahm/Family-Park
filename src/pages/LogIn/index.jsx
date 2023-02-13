@@ -8,7 +8,7 @@ import {
   Input,
   FormTitle,
   Container,
-  LinkContainer
+  LinkContainer,
 } from './styles';
 import useInput from '@hooks/useInput';
 import { useGetClientUser } from '@hooks/userInfo';
@@ -37,13 +37,7 @@ const LogIn = () => {
       event.preventDefault();
       if (userName && password) {
         axios
-          .post(
-            `/api/users/login`,
-            { userName, password },
-            {
-              withCredentials: true,
-            },
-          )
+          .post(`/api/users/login`, { userName, password })
           .then(() => {
             navigate('/'); // 로그인 성공 시 홈으로 navigate
             sweetAlert('success', `환영합니다 ${userName}님!`);
@@ -116,7 +110,7 @@ const LogIn = () => {
           </Login>
           <KakaoLogin onClick={onKaKaoLogin} />
         </ButtonWrap>
-        
+
         <LinkContainer>
           아직 회원이 아니신가요?
           <Link to='/signup'>회원가입 &gt;</Link>

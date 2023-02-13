@@ -51,9 +51,7 @@ export const useGetClientUser = () => {
     ['clientUser'],
     async () => {
       return await axios
-        .get(`/api/users`, {
-          withCredentials: true,
-        })
+        .get(`/api/users`)
         .then((res) => {
           return res.data;
         })

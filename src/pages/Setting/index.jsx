@@ -105,15 +105,11 @@ const Setting = () => {
 
       if (editName) {
         axios
-          .put(
-            `/api/users/${userId}`,
-            {
-              userName: userName,
-              editName: editName,
-              editTitle: editTitle,
-            },
-            { withCredentials: true },
-          )
+          .put(`/api/users/${userId}`, {
+            userName: userName,
+            editName: editName,
+            editTitle: editTitle,
+          })
           .then(() => {
             refetch(); // 유저정보 변경 성공 시 리패치
             setIsEditing(false); // 수정모드 false
@@ -141,7 +137,7 @@ const Setting = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/users/${userId}`, { withCredentials: true })
+          .delete(`/api/users/${userId}`)
           .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
           .catch((error) => console.log(error));
       }
