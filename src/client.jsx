@@ -55,11 +55,9 @@ if (!isDevelopment) {
       /*===================================================
                       SW 버전 확인
       ===================================================*/
-      let swVersion;
       const getVersion = wb.messageSW({ type: 'GET_VERSION' });
       getVersion.then((res) => {
         console.log(`Service Worker Version:: ${res}`);
-        swVersion = res;
       });
 
       /*===================================================
@@ -74,8 +72,7 @@ if (!isDevelopment) {
 
         // 업데이트 수락 할 프롬프트
         Swal.fire({
-          title: `${swVersion} 버전 업데이트 안내`,
-          text: '새로운 버전이 있습니다.',
+          title: `새로운 업데이트가 있습니다.`,
           icon: 'info',
           confirmButtonColor: '#008bf8',
           confirmButtonText: '업데이트',
