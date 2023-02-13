@@ -27,18 +27,21 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
   });
 
   // 온라인, 오프라인 순서의 배열 생성
-  // 영어 유저명은 뒤로 정렬
-  const sortedUsers = [...onlineUsers, ...offlineUsers].sort((a, b) => {
-    if (a.userName.charCodeAt(0) > 127 && b.userName.charCodeAt(0) > 127) {
-      return a.userName > b.userName ? 1 : -1;
-    } else if (a.userName.charCodeAt(0) > 127) {
-      return -1;
-    } else if (b.userName.charCodeAt(0) > 127) {
-      return 1;
-    } else {
-      return a.userName > b.userName ? 1 : -1;
-    }
-  });
+  const sortedUsers = [
+    ...onlineUsers,
+    // 오프라인 중 영어 유저명은 뒤로 정렬:
+    ...offlineUsers.sort((a, b) => {
+      if (a.userName.charCodeAt(0) > 127 && b.userName.charCodeAt(0) > 127) {
+        return a.userName > b.userName ? 1 : -1;
+      } else if (a.userName.charCodeAt(0) > 127) {
+        return -1;
+      } else if (b.userName.charCodeAt(0) > 127) {
+        return 1;
+      } else {
+        return a.userName > b.userName ? 1 : -1;
+      }
+    }),
+  ];
 
   /* useClickOutsideModal Hooks 함수 (모바일에서만 작동하도록) */
   useEffect(() => {
