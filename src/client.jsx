@@ -75,7 +75,7 @@ if (!isDevelopment) {
         // 업데이트 수락 할 프롬프트
         Swal.fire({
           title: `${swVersion} 버전 업데이트 안내`,
-          text: '새로운 버전이 있습니다.',
+          text: '회원가입 비밀번호 오류 버그 수정',
           icon: 'info',
           confirmButtonColor: '#008bf8',
           confirmButtonText: '업데이트',
