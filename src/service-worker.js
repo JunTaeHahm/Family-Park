@@ -12,7 +12,7 @@ precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공�
 /*===================================================
                    SW 버전 관리
 ===================================================*/
-const SW_VERSION = '1.0.2';
+const SW_VERSION = '1.0.4';
 
 self.addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
