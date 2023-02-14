@@ -9,6 +9,7 @@ function useClickOutsideModal(ref, handler) {
       }
       handler(e);
     };
+
     document.addEventListener('mousedown', listener);
     document.addEventListener('touchstart', listener);
 

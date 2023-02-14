@@ -29,10 +29,10 @@ const WriteModal = ({
   };
 
   /* 모달 창 닫는 함수 */
-  const closeModalHandler = () => {
+  const closeModalHandler = useCallback(() => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
-  };
+  }, [setWirteModalOpen, setIsBtnActive]);
 
   /* 모달 창 밖 클릭 시 닫히는 함수 */
   useClickOutsideModal(ref, () => {
@@ -66,7 +66,7 @@ const WriteModal = ({
         }
       }
     },
-    [content, userId, refetch, userName, userAvatar],
+    [content, userId, refetch, userName, userAvatar, closeModalHandler],
   );
 
   return (

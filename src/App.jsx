@@ -25,11 +25,12 @@ const App = () => {
     if (hasRendered) return;
 
     const currentSession = sessionStorage.getItem('hasRendered');
+
     if (!currentSession) {
       sessionStorage.setItem('hasRendered', true);
       setHasRendered(true);
     }
-  }, []);
+  }, [hasRendered]);
 
   function Layout() {
     return (
@@ -40,6 +41,7 @@ const App = () => {
       </>
     );
   }
+
   return (
     <div id='app'>
       <Routes>

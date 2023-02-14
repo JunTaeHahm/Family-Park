@@ -24,7 +24,7 @@ export const Container = styled.div`
     border-radius: 1rem;
     font-size: 1rem;
     white-space: nowrap;
-    color: #FFF;
+    color: #fff;
     opacity: 0;
     background-color: var(--primary-blue);
     transform: translate(-50%, 125%);

@@ -42,6 +42,7 @@ import {
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
   // 댓글만 모아놓은 배열 생성
   let commentArr = [];
+
   if (comments) commentArr = Object.entries(comments).map(([, comment]) => comment);
 
   const { userName, role } = useGetClientUser();
@@ -116,12 +117,13 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     (e) => {
       e.preventDefault();
       const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
+
       if (!editCheck) {
         setIsEditing(false); // 수정모드 false
       } else {
         axios
           .put(`/api/posts/${postId}`, {
-            postId: postId,
+            postId,
             postContent: editContent,
           })
           .then(() => {
@@ -134,7 +136,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           });
       }
     },
-    [postId, editContent],
+    [postId, editContent, postContent],
   );
 
   /* 포스트 삭제 함수 */
@@ -184,7 +186,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onLikeClick = useCallback(() => {
     if (userName) {
       axios
-        .patch('api/posts/like', { postId: postId, userName: userName })
+        .patch('api/posts/like', { postId, userName })
         .then((res) => {
           setIsLiked((prev) => !prev); // 이미 좋아요 눌렀다면 해제, 안눌렀다면 설정
           setLikeCount(res.data.post.postLike.length); // 좋아요 카운트 DB의 postLike의 length로 설정
@@ -201,6 +203,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     sendBtnRef.current.classList.add('active'); // 댓글 작성 시 등록 버튼에 acitve 클래스 추가
     if (!e.target.value) sendBtnRef.current.classList.remove('active'); // 댓글 빈 칸일 경우 등록 버튼 active 클래스 삭제
   };
+
   if (comment) sendBtnRef.current.classList.add('active');
 
   /* 댓글 Submit 함수 */

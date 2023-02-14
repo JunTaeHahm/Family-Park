@@ -19,12 +19,13 @@ export const useSocket = (userName) => {
       cors: { origin: '*', credentials: true }, // CORS 설정 (아래의 transports 설정 있으면 없어도 가능)
       transports: ['websocket'], // websocket만 사용하겠다는 설정
     });
+
     setSocket(socketIo); // 소켓 연결되면 따로 socket state에 다시 저장
 
     if (userName) {
       // userConnect연결 시 userName 요청 받음
       socketIo?.on('userConnect', () => {
-        socketIo?.emit('login', { userName: userName }); // userName 서버로 보냄
+        socketIo?.emit('login', { userName }); // userName 서버로 보냄
       });
     }
 
@@ -41,6 +42,7 @@ export const useSocket = (userName) => {
       const userArray = data.filter((ele, i) => {
         return data.indexOf(ele) === i;
       });
+
       // 새로운 배열 온라인리스트 state에 저장
       setOnlineList(userArray);
     });

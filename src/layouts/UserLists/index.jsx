@@ -21,6 +21,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
   /* 온라인 유저가 맨 위에 위치하도록 배열 순서 바꾸기 */
   let onlineUsers = [];
   let offlineUsers = [];
+
   allUsers?.forEach((user, i) => {
     if (onlineList.indexOf(user.userName) !== -1) {
       onlineUsers?.push(user); // 온라인 리스트에 있는 유저명일 경우 onlineUsers 배열에 추가
@@ -54,6 +55,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
       }
       innerWidth < 768 && setUserListOpen(false);
     };
+
     document.addEventListener('mousedown', listener);
     document.addEventListener('touchstart', listener);
 
@@ -62,6 +64,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
       document.removeEventListener('touchstart', listener);
     };
   }, [ref, setUserListOpen, innerWidth]);
+
   return (
     <Container userListOpen={userListOpen}>
       <Title>센텐스유를 빛내주시는 분들 </Title>
@@ -79,6 +82,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
         sortedUsers?.map((user, i) => {
           // 온라인 일 경우 isOnline: true
           const isOnline = onlineList.indexOf(user.userName) > -1;
+
           return (
             <Link to={`/${user.userName}`} key={user._id}>
               <ProfileCard

@@ -69,7 +69,7 @@ export const UserTitle = styled.div`
   padding: 0 0.3rem;
   font-size: 1.3rem;
   line-height: 1.3;
-  background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background-repeat: no-repeat;
   background-position: 0 50%;
   background-size: 100% 0.3rem;

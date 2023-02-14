@@ -42,7 +42,7 @@ export const Title = styled.span`
   line-height: 1.5;
   text-align: center;
   white-space: nowrap;
-  background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background-repeat: no-repeat;
   background-position: 0 50%;
   background-size: 100% 88%;
@@ -73,7 +73,7 @@ export const Online = styled.span`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   }
   @media screen and (max-width: 1023px) {
     & {

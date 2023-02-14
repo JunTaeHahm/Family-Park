@@ -30,16 +30,16 @@ const RecentPosts = ({ slice }) => {
       ) : (
         <PostWrap path={path} className='post-wrap'>
           {Object.entries(postSections).map(([date, posts]) => {
-            /* 섹션에서 date, posts로 1차 맵핑 */
+            // 섹션에서 date, posts로 1차 맵핑:
             return (
-              /* date에 있는 날짜로 2차 맵핑 */
+              // date에 있는 날짜로 2차 맵핑:
               <DateSection key={date}>
                 <DateHeader>
                   <button>{date}</button>
                 </DateHeader>
 
                 {posts.map((post) => (
-                  /* posts안에 있는 포스트 데이터 2차 맵핑 */
+                  // posts안에 있는 포스트 데이터 2차 맵핑:
                   <PostList
                     key={post.postId}
                     postId={post.postId}

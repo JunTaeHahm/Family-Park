@@ -28,6 +28,7 @@ export const useGetAllPosts = () => {
   );
 
   let allPosts = [];
+
   // Object의 모든 데이터의 key별로 allPosts배열에 push
   for (let key in data) {
     allPosts?.push({
@@ -71,6 +72,7 @@ export const useGetRecentPosts = () => {
   );
 
   let recentPosts = [];
+
   // Object의 모든 데이터의 key별로 recentPosts배열에 push
   for (let key in data) {
     recentPosts?.push({
@@ -114,6 +116,7 @@ export const useGetUserPosts = (userName) => {
   );
 
   let userPosts = [];
+
   // Object의 모든 데이터의 key별로 userPosts배열에 push
   for (let key in data) {
     userPosts?.push({

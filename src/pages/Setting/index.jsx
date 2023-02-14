@@ -48,6 +48,7 @@ const Setting = () => {
     (e) => {
       e.preventDefault();
       const formData = new FormData(); // formData생성
+
       formData.append('avatar', e.target.files[0]); // input(file)에서 받은 파일 formData에 append, name은 'avatar'
 
       fetch(`${API_SERVER}/api/users/${userId}/avatar/upload`, {
@@ -109,9 +110,9 @@ const Setting = () => {
       if (editName) {
         axios
           .put(`/api/users/${userId}`, {
-            userName: userName,
-            editName: editName,
-            editTitle: editTitle,
+            userName,
+            editName,
+            editTitle,
           })
           .then(() => {
             refetch(); // 유저정보 변경 성공 시 리패치

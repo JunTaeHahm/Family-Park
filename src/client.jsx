@@ -25,12 +25,12 @@ if (!isDevelopment) {
                       Work Box 사용
       ===================================================*/
       const wb = new Workbox('/sw.js');
+
       wb.addEventListener('installed', (event) => {
         if (!event.isUpdate) {
           console.log('Workbox가 설치 되었습니다.');
         }
       });
-
       wb.register();
 
       /*===================================================
@@ -42,6 +42,7 @@ if (!isDevelopment) {
           console.log('SW 등록 성공::', registration);
 
           const convertedVapidPublicKey = urlBase64ToUint8Array(process.env.WEBPUSH_PUBLIC_KEY);
+
           registration?.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: convertedVapidPublicKey,
@@ -58,6 +59,7 @@ if (!isDevelopment) {
                       SW 버전 확인
       ===================================================*/
       const getVersion = wb.messageSW({ type: 'GET_VERSION' });
+
       getVersion.then((res) => {
         console.log(`Service Worker Version:: ${res}`);
       });

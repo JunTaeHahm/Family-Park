@@ -122,4 +122,5 @@ const LogIn = () => {
     </Container>
   );
 };
+
 export default LogIn;

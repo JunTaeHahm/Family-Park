@@ -5,6 +5,7 @@ const useInput = (initialData) => {
 
   const handler = useCallback((e) => {
     const trimValue = e.target.value;
+
     setValue(trimValue.trim()); // value를 띄어쓰기 삭제 해서 설정
   }, []);
 

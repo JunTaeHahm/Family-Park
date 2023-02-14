@@ -112,7 +112,7 @@ export const LikeButton = styled.div`
   padding: 0.3rem;
   cursor: pointer;
   .heart {
-    color: #EE6A55;
+    color: #ee6a55;
   }
 `;
 
