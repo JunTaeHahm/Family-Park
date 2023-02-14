@@ -6,7 +6,9 @@ export const useSocket = (userName) => {
   const [socket, setSocket] = useState();
   const [onlineList, setOnlineList] = useState([]);
 
-  /* Socket.io 연결 */
+  /*============================================
+                Socket.io 연결
+  ============================================*/
   useEffect(() => {
     const API_SERVER =
       process.env.NODE_ENV !== 'production'
@@ -35,7 +37,9 @@ export const useSocket = (userName) => {
     };
   }, [userName]);
 
-  /* 온라인 유저 리스트 받기 */
+  /*============================================
+              온라인 유저 리스트 받기
+  ============================================*/
   useEffect(() => {
     socket?.on('onlineList', (data) => {
       // 배열에서 중복요소 제거해서 새로운 배열 생성

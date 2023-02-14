@@ -10,6 +10,7 @@ export const useAllUsers = () => {
     data: allUsers,
     isLoading,
     error,
+    refetch,
   } = useQuery(
     ['allUsers'],
     async () => {
@@ -23,15 +24,12 @@ export const useAllUsers = () => {
         });
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity, // 캐싱 시간
-      refetchInterval: Infinity, // 5초 간격 리패치
+      staleTime: Infinity,
+      refetchInterval: false,
     },
   );
 
-  return { allUsers, isLoading, error };
+  return { allUsers, isLoading, error, refetch };
 };
 
 /**
@@ -56,15 +54,13 @@ export const useGetClientUser = () => {
           return res.data;
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity, // 캐싱 시간
-      refetchInterval: false, // 리패치시간
+      staleTime: Infinity,
+      cacheTime: 5 * 60 * 1000,
+      refetchInterval: false,
     },
   );
 

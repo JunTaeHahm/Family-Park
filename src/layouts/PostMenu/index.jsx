@@ -16,14 +16,18 @@ const PostMenu = ({ slice }) => {
 
   const [isPostMenu, setIsPostMenu] = useState(true); // true: 인기포스트, false: 최신포스트
 
-  /* 인기포스트 클릭 함수 */
-  const onTopPostClick = useCallback(() => {
+  /*============================================
+                인기포스트 클릭 함수
+  ============================================*/
+  const handleClickTopPosts = useCallback(() => {
     postMenuRef.current.classList.remove('recent');
     setIsPostMenu(true);
   }, []);
 
-  /* 최신포스트 클릭 함수 */
-  const onRecentPostClick = useCallback(() => {
+  /*============================================
+                최신포스트 클릭 함수
+  ============================================*/
+  const handleClickRecentPosts = useCallback(() => {
     postMenuRef.current.classList.add('recent');
     setIsPostMenu(false);
   }, []);
@@ -32,10 +36,10 @@ const PostMenu = ({ slice }) => {
     <Container path={path}>
       {path && <PS>여러분의 한 마디로 이 공간을 아름답게 빛내주세요.</PS>}
 
-      <TopPostTitle path={path} ref={postMenuRef} onClick={onTopPostClick}>
+      <TopPostTitle path={path} ref={postMenuRef} onClick={handleClickTopPosts}>
         <Button className={isPostMenu ? 'button-top top-post' : 'button-top'}>인기 포스트</Button>
       </TopPostTitle>
-      <RecentPostTitle path={path} onClick={onRecentPostClick}>
+      <RecentPostTitle path={path} onClick={handleClickRecentPosts}>
         <Button className={isPostMenu ? 'button-top' : 'button-top recent-post'}>
           최신 포스트
         </Button>

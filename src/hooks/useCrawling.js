@@ -4,18 +4,18 @@ import axios from 'axios';
 export const useCrawling = () => {
   // 명언 카테고리:
   const sayingCategories = [
-    'love',
-    'life',
-    'study',
-    'success',
-    'friend',
-    'book',
-    'parting',
-    'time',
-    'effort',
-    'hope',
-    'challenge',
-    'confidence',
+    'love', // 사랑
+    'life', // 인생
+    'study', // 공부
+    'success', // 성공
+    'friend', // 친구
+    'book', // 독서
+    'parting', // 이별
+    'time', // 시간
+    'effort', // 노력
+    'hope', // 희망
+    'challenge', // 도전
+    'confidence', // 자신감
   ];
   const { data, isLoading, error } = useQuery(
     ['famousSaying'],
@@ -31,10 +31,7 @@ export const useCrawling = () => {
         .catch((error) => console.log(error));
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity,
+      staleTime: Infinity,
       refetchInterval: false,
     },
   );

@@ -3,17 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { useGetClientUser } from '@hooks/userInfo';
+import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
 
 import { Container, Logout, ModalList } from './styles';
-
 const ProfileMenu = ({ isOpened }) => {
   const navigate = useNavigate();
 
-  const { userName, kakaoId, refetch } = useGetClientUser();
+  const { userName, kakaoId, refetch: clientRefetch } = useGetClientUser();
+  const { refetch: allUserRefetch } = useAllUsers();
 
-  /* 로그아웃 함수 */
-  const onClickLogout = useCallback(
+  const handleLogout = useCallback(
     (e) => {
       e.preventDefault();
       if (kakaoId) {
@@ -22,16 +21,16 @@ const ProfileMenu = ({ isOpened }) => {
         axios
           .get(`/api/users/logout`)
           .then(() => {
-            navigate('/'); // 홈으로 이동
-            window.location.reload(); // 새로고침
-            refetch(); // 클라이언트 유저정보 리패치
+            clientRefetch();
+            allUserRefetch();
+            navigate('/');
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       }
     },
-    [refetch, navigate, kakaoId],
+    [allUserRefetch, clientRefetch, navigate, kakaoId],
   );
 
   return (
@@ -50,7 +49,7 @@ const ProfileMenu = ({ isOpened }) => {
           <Link to='/setting'>설정</Link>
         </ModalList>
         <ModalList>
-          <Logout onClick={onClickLogout}>로그아웃</Logout>
+          <Logout onClick={handleLogout}>로그아웃</Logout>
         </ModalList>
       </Container>
     )

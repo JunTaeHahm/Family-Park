@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { CircularProgress } from '@mui/material';
@@ -6,19 +6,17 @@ import { CircularProgress } from '@mui/material';
 import ProfileCard from '@components/ProfileCard';
 import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
 import { useSocket } from '@hooks/useSocket';
-import { useViewPort } from '@hooks/useViewPort';
 
 import { Container, Loading, Online, Title } from './styles';
 
-const UserLists = ({ userListOpen, setUserListOpen }) => {
-  const ref = useRef();
-
+const UserLists = () => {
   const { allUsers, isLoading } = useAllUsers();
   const { userName } = useGetClientUser();
   const { onlineList } = useSocket(userName);
-  const { innerWidth } = useViewPort();
 
-  /* 온라인 유저가 맨 위에 위치하도록 배열 순서 바꾸기 */
+  /*============================================
+      온라인 유저가 맨 위에 위치하도록 배열 순서 바꾸기
+  ============================================*/
   let onlineUsers = [];
   let offlineUsers = [];
 
@@ -33,7 +31,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
   // 온라인, 오프라인 순서의 배열 생성
   const sortedUsers = [
     ...onlineUsers,
-    // 오프라인 중 영어 유저명은 뒤로 정렬:
+    // 오프라인 중 영어 유저명은 뒤로 정렬
     ...offlineUsers.sort((a, b) => {
       if (a.userName.charCodeAt(0) > 127 && b.userName.charCodeAt(0) > 127) {
         return a.userName > b.userName ? 1 : -1;
@@ -47,26 +45,8 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
     }),
   ];
 
-  /* useClickOutsideModal Hooks 함수 (모바일에서만 작동하도록) */
-  useEffect(() => {
-    const listener = (e) => {
-      if (!ref.current || ref.current.contains(e.target)) {
-        return;
-      }
-      innerWidth < 768 && setUserListOpen(false);
-    };
-
-    document.addEventListener('mousedown', listener);
-    document.addEventListener('touchstart', listener);
-
-    return () => {
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
-    };
-  }, [ref, setUserListOpen, innerWidth]);
-
   return (
-    <Container userListOpen={userListOpen}>
+    <Container>
       <Title>센텐스유를 빛내주시는 분들 </Title>
 
       <Online>
@@ -76,7 +56,7 @@ const UserLists = ({ userListOpen, setUserListOpen }) => {
       {isLoading ? (
         <Loading>
           <CircularProgress color='inherit' />
-          <div>불러오는 중...</div>
+          <div>로딩중...</div>
         </Loading>
       ) : (
         sortedUsers?.map((user, i) => {

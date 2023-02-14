@@ -12,7 +12,7 @@ precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공�
 /*===================================================
                    SW 버전 관리
 ===================================================*/
-const SW_VERSION = '1.0.4';
+const SW_VERSION = '1.0.5';
 
 self.addEventListener('message', (event) => {
   if (event.data.type === 'GET_VERSION') {
@@ -122,7 +122,6 @@ registerRoute(stylesRoute);
 /*===================================================
               새로운 버전의 SW 업데이트 수락 시
 ===================================================*/
-// Evict image cache entries older thirty days:
 const imageExpRoute = new Route(
   ({ request }) => {
     return request.destination === 'image';

@@ -23,25 +23,28 @@ const WriteModal = ({
 
   const [content, setContent] = useState('');
 
-  /* 글 작성 */
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
-  };
-
-  /* 모달 창 닫는 함수 */
-  const closeModalHandler = useCallback(() => {
+  /*============================================
+                  모달 창 닫기
+  ============================================*/
+  const handleCloseWriteModal = useCallback(() => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
   }, [setWirteModalOpen, setIsBtnActive]);
 
-  /* 모달 창 밖 클릭 시 닫히는 함수 */
+  // 모달 창 밖 클릭 시 닫힘
   useClickOutsideModal(ref, () => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
   });
 
-  /* 새 글 Submit */
-  const onSubmit = useCallback(
+  /*============================================
+                  포스트 작성
+  ============================================*/
+  const handleWritePost = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handleSubmitNewPost = useCallback(
     (e) => {
       e.preventDefault();
       if (!content) {
@@ -56,24 +59,24 @@ const WriteModal = ({
             .then(() => {
               refetch(); // 최신 글 리패치
               setContent(''); // 글 작성 칸 비우기
-              closeModalHandler(); // 모달창 닫기
+              handleCloseWriteModal(); // 모달창 닫기
               sweetAlert('success', '작성 성공');
             })
             .catch((error) => {
-              console.log(error);
+              console.error(error);
               sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
             });
         }
       }
     },
-    [content, userId, refetch, userName, userAvatar, closeModalHandler],
+    [content, userId, refetch, userName, userAvatar, handleCloseWriteModal],
   );
 
   return (
     <Container>
       {wirteModalOpen && (
         <Form ref={ref}>
-          <ArrowBackIosNewIcon onClick={closeModalHandler} />
+          <ArrowBackIosNewIcon onClick={handleCloseWriteModal} />
 
           <FormHeader>
             <img
@@ -90,10 +93,10 @@ const WriteModal = ({
             id='post-write-label'
             placeholder='들려주고 싶은 이야기를 적어보세요.'
             value={content}
-            onChange={onChangeContent}
+            onChange={handleWritePost}
           />
 
-          <Button id='Button' onClick={onSubmit}>
+          <Button id='Button' onClick={handleSubmitNewPost}>
             <span className='button-top'>등록</span>
           </Button>
         </Form>

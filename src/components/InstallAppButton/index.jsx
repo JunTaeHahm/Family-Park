@@ -7,9 +7,9 @@ const InstallAppButton = () => {
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      // Chrome 67 및 이전 버전에서 자동으로 프롬프트 표시 안 함
       e.preventDefault();
-      // Stash the event so it can be triggered later.
+      // 나중에 트리거될 수 있도록 이벤트를 저장
       setPrompt(e);
     };
 
@@ -21,9 +21,9 @@ const InstallAppButton = () => {
   }, []);
 
   const handleInstallApp = () => {
-    // Show the prompt
+    // 프롬프트 보여주기
     prompt.prompt();
-    // Wait for the user to respond to the prompt
+    // 유저의 프롬프트 응답 기다리기
     prompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the A2HS prompt');

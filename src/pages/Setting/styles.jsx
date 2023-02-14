@@ -20,6 +20,16 @@ export const Container = styled.div`
   }
 `;
 
+export const Loading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 30vh;
+`;
+
 export const Title = styled.h2`
   margin-bottom: 3rem;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
@@ -216,7 +226,7 @@ export const Edit = styled.button`
   }
 `;
 
-export const WithdrawalForm = styled.div`
+export const DeleteAccountForm = styled.div`
   width: 100%;
   margin-top: 2rem;
   padding: 5rem 2rem 2rem;
@@ -242,14 +252,14 @@ export const Menu = styled.span`
   }
 `;
 
-export const WithdrawalButtonBack = styled.span`
+export const DeleteAccountButtonBack = styled.span`
   display: inline-block;
   align-self: flex-end;
   border-radius: 0.5rem;
   background-color: var(--primary-black);
 `;
 
-export const Withdrawal = styled.button`
+export const DeleteAccount = styled.button`
   display: inline-block;
   box-sizing: border-box;
   padding: 0.6rem 1.8rem;

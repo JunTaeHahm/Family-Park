@@ -19,45 +19,49 @@ const RecentPosts = ({ slice }) => {
   );
   const path = location.pathname.split('/')[1] === 'posts';
 
-  return (
-    <Container>
-      {isLoading ? (
-        // 포스트 로딩 중
-        <Loading>
-          <CircularProgress color='inherit' />
-          <div>불러오는 중...</div>
-        </Loading>
-      ) : (
-        <PostWrap path={path} className='post-wrap'>
-          {Object.entries(postSections).map(([date, posts]) => {
-            // 섹션에서 date, posts로 1차 맵핑:
-            return (
-              // date에 있는 날짜로 2차 맵핑:
-              <DateSection key={date}>
-                <DateHeader>
-                  <button>{date}</button>
-                </DateHeader>
+  switch (isLoading) {
+    case true:
+      return (
+        <Container>
+          <Loading>
+            <CircularProgress color='inherit' />
+            <div>로딩중...</div>
+          </Loading>
+        </Container>
+      );
+    default:
+      return (
+        <Container>
+          <PostWrap path={path} className='post-wrap'>
+            {Object.entries(postSections).map(([date, posts]) => {
+              // 섹션에서 date, posts로 1차 맵핑:
+              return (
+                // date에 있는 날짜로 2차 맵핑:
+                <DateSection key={date}>
+                  <DateHeader>
+                    <button>{date}</button>
+                  </DateHeader>
 
-                {posts.map((post) => (
-                  // posts안에 있는 포스트 데이터 2차 맵핑:
-                  <PostList
-                    key={post.postId}
-                    postId={post.postId}
-                    postUser={post.postUser}
-                    postContent={post.postContent}
-                    postLike={post.postLike}
-                    comments={post.comments}
-                    createdAt={post.createdAt}
-                    updatedAt={post.updatedAt}
-                  />
-                ))}
-              </DateSection>
-            );
-          })}
-        </PostWrap>
-      )}
-    </Container>
-  );
+                  {posts.map((post) => (
+                    // posts안에 있는 포스트 데이터 2차 맵핑:
+                    <PostList
+                      key={post.postId}
+                      postId={post.postId}
+                      postUser={post.postUser}
+                      postContent={post.postContent}
+                      postLike={post.postLike}
+                      comments={post.comments}
+                      createdAt={post.createdAt}
+                      updatedAt={post.updatedAt}
+                    />
+                  ))}
+                </DateSection>
+              );
+            })}
+          </PostWrap>
+        </Container>
+      );
+  }
 };
 
 export default RecentPosts;

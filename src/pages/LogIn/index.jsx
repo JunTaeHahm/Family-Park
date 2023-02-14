@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
 import useInput from '@hooks/useInput';
@@ -17,32 +18,34 @@ import {
   KakaoLogin,
   Label,
   LinkContainer,
+  Loading,
   Login,
 } from './styles';
 
 const LogIn = () => {
   const navigate = useNavigate();
 
-  const { isAuth: userLoginStatus } = useGetClientUser();
+  const { isAuth, refetch, isLoading } = useGetClientUser();
 
   const [userName, onChangeUserName] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [buttonActive, setButtonActive] = useState(false);
 
   useEffect(() => {
-    if (userLoginStatus) navigate('/'); // 로그인상태라면 홈으로 navigate
-    userName && password ? setButtonActive(true) : setButtonActive(false); // 모든 칸 다 작성하면 버튼 활성화
-  }, [userLoginStatus, navigate, userName, password]);
+    if (isAuth) navigate('/'); // 로그인상태라면 홈으로 navigate
+  }, [isAuth, navigate]);
 
-  /* 로그인 Submit */
-  const onSubmit = useCallback(
+  /*============================================
+                    일반 로그인
+  ============================================*/
+  const handleLogin = useCallback(
     (event) => {
       event.preventDefault();
       if (userName && password) {
         axios
           .post(`/api/users/login`, { userName, password })
           .then(() => {
-            navigate('/'); // 로그인 성공 시 홈으로 navigate
+            navigate('/'); // 홈으로 navigate
+            refetch(); // ClientUser 정보 리패치
             sweetAlert('success', `환영합니다 ${userName}님!`);
           })
           .catch((error) => {
@@ -52,75 +55,90 @@ const LogIn = () => {
         sweetAlert('question', '빈 칸이 있습니다.');
       }
     },
-    [userName, password, navigate],
+    [userName, password, navigate, refetch],
   );
 
-  /* 카카오 로그인 */
-  const onKaKaoLogin = useCallback((e) => {
+  /*============================================
+                   카카오 로그인
+  ============================================*/
+  const handleKakaoLogin = useCallback((e) => {
     e.preventDefault();
 
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&redirect_uri=${process.env.KAKAO_LOGIN_REDIRECT_URI}&response_type=code`;
   }, []);
 
-  return (
-    <Container>
-      <Form onSubmit={onSubmit}>
-        <HeaderLogo>
-          <Link to='/'>
-            <img
-              src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
-              alt='센텐스유 로고'
-            />
-          </Link>
-        </HeaderLogo>
+  switch (isLoading) {
+    case true:
+      return (
+        <Container>
+          <Loading>
+            <CircularProgress color='inherit' />
+            <div>로딩중...</div>
+          </Loading>
+        </Container>
+      );
 
-        <FormTitle>로그인</FormTitle>
+    default:
+      return (
+        <Container>
+          <Form onSubmit={handleLogin}>
+            <HeaderLogo>
+              <Link to='/'>
+                <img
+                  src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
+                  alt='센텐스유 로고'
+                />
+              </Link>
+            </HeaderLogo>
 
-        <Label htmlFor='userName-label'>
-          <span>유저명</span>
-          <div>
-            <Input
-              autoFocus
-              autoComplete='off'
-              type='userName'
-              name='userName'
-              id='userName-label'
-              placeholder='User Name'
-              value={userName}
-              onChange={onChangeUserName}
-            />
-          </div>
-        </Label>
+            <FormTitle>로그인</FormTitle>
 
-        <Label htmlFor='password-label'>
-          <span>비밀번호</span>
-          <div>
-            <Input
-              autoComplete='off'
-              type='password'
-              name='password'
-              id='password-label'
-              placeholder='Password'
-              value={password}
-              onChange={onChangePassword}
-            />
-          </div>
-        </Label>
+            <Label htmlFor='userName-label'>
+              <span>유저명</span>
+              <div>
+                <Input
+                  autoFocus
+                  autoComplete='off'
+                  type='userName'
+                  name='userName'
+                  id='userName-label'
+                  placeholder='User Name'
+                  value={userName}
+                  onChange={onChangeUserName}
+                />
+              </div>
+            </Label>
 
-        <ButtonWrap>
-          <Login buttonActive={buttonActive} id='Button' type='submit'>
-            로그인
-          </Login>
-          <KakaoLogin onClick={onKaKaoLogin} />
-        </ButtonWrap>
+            <Label htmlFor='password-label'>
+              <span>비밀번호</span>
+              <div>
+                <Input
+                  autoComplete='off'
+                  type='password'
+                  name='password'
+                  id='password-label'
+                  placeholder='Password'
+                  value={password}
+                  onChange={onChangePassword}
+                />
+              </div>
+            </Label>
 
-        <LinkContainer>
-          아직 회원이 아니신가요?
-          <Link to='/signup'>회원가입 &gt;</Link>
-        </LinkContainer>
-      </Form>
-    </Container>
-  );
+            <ButtonWrap>
+              <Login id='Button' type='submit'>
+                로그인
+              </Login>
+              <KakaoLogin onClick={handleKakaoLogin} />
+            </ButtonWrap>
+
+            <LinkContainer>
+              아직 회원이 아니신가요?
+              <Link to='/signup'>회원가입 &gt;</Link>
+            </LinkContainer>
+          </Form>
+        </Container>
+      );
+  }
 };
 
 export default LogIn;
