@@ -30,7 +30,6 @@
     "react-ios-pwa-prompt": "^1.8.4",
     "react-router-dom": "^6.6.1",
     "socket.io-client": "^4.5.4",
-    "style-loader": "^3.3.1",
     "sweetalert2": "^11.7.1",
     "web-push": "^3.5.0",
     "workbox-window": "^6.5.4"
@@ -47,7 +46,6 @@
     "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.7.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
@@ -60,7 +58,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.7.2",
     "process": "^0.11.10",
     "react-refresh": "^0.14.0",
     "webpack": "^5.75.0",
