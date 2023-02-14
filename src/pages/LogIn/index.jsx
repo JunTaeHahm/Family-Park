@@ -1,21 +1,24 @@
-import {
-  HeaderLogo,
-  KakaoLogin,
-  ButtonWrap,
-  Login,
-  Form,
-  Label,
-  Input,
-  FormTitle,
-  Container,
-  LinkContainer
-} from './styles';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
 import useInput from '@hooks/useInput';
 import { useGetClientUser } from '@hooks/userInfo';
 import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
+import {
+  ButtonWrap,
+  Container,
+  Form,
+  FormTitle,
+  HeaderLogo,
+  Input,
+  KakaoLogin,
+  Label,
+  LinkContainer,
+  Login,
+} from './styles';
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -37,13 +40,7 @@ const LogIn = () => {
       event.preventDefault();
       if (userName && password) {
         axios
-          .post(
-            `/api/users/login`,
-            { userName, password },
-            {
-              withCredentials: true,
-            },
-          )
+          .post(`/api/users/login`, { userName, password })
           .then(() => {
             navigate('/'); // 로그인 성공 시 홈으로 navigate
             sweetAlert('success', `환영합니다 ${userName}님!`);
@@ -116,7 +113,7 @@ const LogIn = () => {
           </Login>
           <KakaoLogin onClick={onKaKaoLogin} />
         </ButtonWrap>
-        
+
         <LinkContainer>
           아직 회원이 아니신가요?
           <Link to='/signup'>회원가입 &gt;</Link>
@@ -125,4 +122,5 @@ const LogIn = () => {
     </Container>
   );
 };
+
 export default LogIn;

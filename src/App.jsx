@@ -1,8 +1,10 @@
-import InstallAppButton from '@components/InstallAppButton';
-import loadable from '@loadable/component';
 import React, { useEffect, useState } from 'react';
-import PWAPrompt from 'react-ios-pwa-prompt';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+
+import loadable from '@loadable/component';
+import PWAPrompt from 'react-ios-pwa-prompt';
+
+import InstallAppButton from '@components/InstallAppButton';
 
 const User = loadable(() => import('@pages/User'));
 const Home = loadable(() => import('@pages/Home'));
@@ -23,11 +25,12 @@ const App = () => {
     if (hasRendered) return;
 
     const currentSession = sessionStorage.getItem('hasRendered');
+
     if (!currentSession) {
       sessionStorage.setItem('hasRendered', true);
       setHasRendered(true);
     }
-  }, []);
+  }, [hasRendered]);
 
   function Layout() {
     return (
@@ -38,6 +41,7 @@ const App = () => {
       </>
     );
   }
+
   return (
     <div id='app'>
       <Routes>

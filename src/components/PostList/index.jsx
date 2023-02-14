@@ -1,44 +1,48 @@
-import {
-  LikeButton,
-  Container,
-  ContentWrap,
-  DateWrap,
-  ActionWrap,
-  Actions,
-  CommentWrap,
-  Content,
-  CommentButton,
-  NoComment,
-  Name,
-  Form,
-  Label,
-  Input,
-  Avatar,
-  EditForm,
-  CommentList,
-  Comment,
-  PostAction,
-  EditLabel,
-  EditInput,
-  EditButton,
-  Button,
-  PostWrap,
-  Date,
-} from './styles';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import axios from 'axios';
+import dayjs from 'dayjs';
+import Scrollbars from 'react-custom-scrollbars-2';
+import { FaHeart, FaRegCommentDots, FaRegHeart } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
 import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Scrollbars from 'react-custom-scrollbars-2';
-import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+
+import {
+  ActionWrap,
+  Actions,
+  Avatar,
+  Button,
+  Comment,
+  CommentButton,
+  CommentList,
+  CommentWrap,
+  Container,
+  Content,
+  ContentWrap,
+  Date,
+  DateWrap,
+  EditButton,
+  EditForm,
+  EditInput,
+  EditLabel,
+  Form,
+  Input,
+  Label,
+  LikeButton,
+  Name,
+  NoComment,
+  PostAction,
+  PostWrap,
+} from './styles';
 
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
   // 댓글만 모아놓은 배열 생성
   let commentArr = [];
+
   if (comments) commentArr = Object.entries(comments).map(([, comment]) => comment);
 
   const { userName, role } = useGetClientUser();
@@ -113,18 +117,15 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     (e) => {
       e.preventDefault();
       const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
+
       if (!editCheck) {
         setIsEditing(false); // 수정모드 false
       } else {
         axios
-          .put(
-            `/api/posts/${postId}`,
-            {
-              postId: postId,
-              postContent: editContent,
-            },
-            { withCredentials: true },
-          )
+          .put(`/api/posts/${postId}`, {
+            postId,
+            postContent: editContent,
+          })
           .then(() => {
             sweetAlert('success', '수정 성공');
             setIsEditing(false); // 수정모드 false
@@ -135,7 +136,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           });
       }
     },
-    [postId, editContent],
+    [postId, editContent, postContent],
   );
 
   /* 포스트 삭제 함수 */
@@ -152,7 +153,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/posts/${postId}`, { withCredentials: true })
+          .delete(`/api/posts/${postId}`)
           .then(() => {
             sweetAlert('success', '삭제 성공');
             // 삭제 성공 시 removed클래스 추가, open클래스 삭제 (화면에서 사라지도록)
@@ -185,7 +186,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const onLikeClick = useCallback(() => {
     if (userName) {
       axios
-        .patch('api/posts/like', { postId: postId, userName: userName }, { withCredentials: true })
+        .patch('api/posts/like', { postId, userName })
         .then((res) => {
           setIsLiked((prev) => !prev); // 이미 좋아요 눌렀다면 해제, 안눌렀다면 설정
           setLikeCount(res.data.post.postLike.length); // 좋아요 카운트 DB의 postLike의 length로 설정
@@ -202,6 +203,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     sendBtnRef.current.classList.add('active'); // 댓글 작성 시 등록 버튼에 acitve 클래스 추가
     if (!e.target.value) sendBtnRef.current.classList.remove('active'); // 댓글 빈 칸일 경우 등록 버튼 active 클래스 삭제
   };
+
   if (comment) sendBtnRef.current.classList.add('active');
 
   /* 댓글 Submit 함수 */
@@ -247,9 +249,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         }).then((result) => {
           if (result.isConfirmed) {
             axios
-              .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`, {
-                withCredentials: true,
-              })
+              .delete(`/api/posts/${containerRef.current.id}/comments/${e.target.id}`)
               .then((res) => {
                 setCommentList(res.data.comments); // 삭제된 최신 댓글리스트로 갱신
                 setCommentCount(res.data.comments.length); // 삭제된 최신 댓글 개수로 갱신

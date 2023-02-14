@@ -5,4 +5,3 @@ export const Container = styled.div`
   height: 100%;
   padding-top: 6rem;
 `;
-

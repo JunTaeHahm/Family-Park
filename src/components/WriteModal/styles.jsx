@@ -67,22 +67,21 @@ export const Input = styled.textarea`
   width: 80%;
   height: 15%;
   padding: 1rem;
-  resize: none;
   border: none;
-  line-height: 1.5;
-  transition: all 0.2s;
-  background-color: var(--primary-white);
   border: 0.13rem solid var(--primary-grey);
   border-radius: 0.5rem;
+  line-height: 1.5;
+  background-color: var(--primary-white);
+  resize: none;
   transition: all 0.2s;
   &:focus {
-    outline: none;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary-grey);
     text-align: center;
+    color: var(--primary-grey);
   }
   @media screen and (max-width: 767px) {
     & {
@@ -101,11 +100,11 @@ export const Button = styled.button`
   .button-top {
     display: block;
     box-sizing: border-box;
+    padding: 0.75rem 1rem;
     border: 2px solid var(--primary-black);
     border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: var(--primary-white);
     color: var(--primary-black);
+    background: var(--primary-white);
     transform: translateY(-0.2rem);
     transition: transform 0.1s ease;
   }

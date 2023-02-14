@@ -1,27 +1,30 @@
-import {
-  Container,
-  UserInfo,
-  ProfileWrap,
-  Button,
-  ProfileImage,
-  ProfileName,
-  PostWrap,
-  List,
-  MenuWrap,
-  MyPost,
-  UserPost,
-  Collection,
-  NoPost,
-  UserTitle,
-  Loading,
-} from './styles';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { CircularProgress } from '@mui/material';
+import axios from 'axios';
+
 import PostList from '@components/PostList';
 import { useGetAllPosts, useGetUserPosts } from '@hooks/usePost';
 import { useGetClientUser } from '@hooks/userInfo';
-import { CircularProgress } from '@mui/material';
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
+import {
+  Button,
+  Collection,
+  Container,
+  List,
+  Loading,
+  MenuWrap,
+  MyPost,
+  NoPost,
+  PostWrap,
+  ProfileImage,
+  ProfileName,
+  ProfileWrap,
+  UserInfo,
+  UserPost,
+  UserTitle,
+} from './styles';
 
 const User = () => {
   const params = useParams();

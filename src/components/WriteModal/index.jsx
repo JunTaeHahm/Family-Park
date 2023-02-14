@@ -1,10 +1,13 @@
-import { Button, Container, FormHeader, Form, Input } from './styles';
+import React, { useCallback, useRef, useState } from 'react';
+
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import axios from 'axios';
+
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetRecentPosts } from '@hooks/usePost';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import React, { useCallback, useRef, useState } from 'react';
+
+import { Button, Container, Form, FormHeader, Input } from './styles';
 
 const WriteModal = ({
   userId,
@@ -26,10 +29,10 @@ const WriteModal = ({
   };
 
   /* 모달 창 닫는 함수 */
-  const closeModalHandler = () => {
+  const closeModalHandler = useCallback(() => {
     setWirteModalOpen(false);
     setIsBtnActive(false);
-  };
+  }, [setWirteModalOpen, setIsBtnActive]);
 
   /* 모달 창 밖 클릭 시 닫히는 함수 */
   useClickOutsideModal(ref, () => {
@@ -63,7 +66,7 @@ const WriteModal = ({
         }
       }
     },
-    [content, userId, refetch, userName, userAvatar],
+    [content, userId, refetch, userName, userAvatar, closeModalHandler],
   );
 
   return (

@@ -1,5 +1,6 @@
-import { Container, UserAvatar, UserName, UserTitle, CardButton } from './styles';
 import React from 'react';
+
+import { CardButton, Container, UserAvatar, UserName, UserTitle } from './styles';
 
 const ProfileCard = ({ userAvatar, userName, userTitle, isOnline }) => {
   return (

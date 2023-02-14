@@ -3,8 +3,8 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute } from 'workbox-precaching';
 import { offlineFallback } from 'workbox-recipes';
-import { registerRoute, setDefaultHandler, NavigationRoute, Route } from 'workbox-routing';
-import { NetworkOnly, NetworkFirst, CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+import { NavigationRoute, Route, registerRoute, setDefaultHandler } from 'workbox-routing';
+import { CacheFirst, NetworkFirst, NetworkOnly, StaleWhileRevalidate } from 'workbox-strategies';
 
 clientsClaim();
 precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공식문서)
@@ -36,6 +36,7 @@ const imageAssetRoute = new Route(
     cacheName: 'image-assets',
   }),
 );
+
 // 라우터 등록:
 registerRoute(navigationRoute);
 registerRoute(imageAssetRoute);

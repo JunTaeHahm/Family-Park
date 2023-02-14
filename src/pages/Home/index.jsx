@@ -1,6 +1,8 @@
-import { Container } from './styles';
-import loadable from '@loadable/component';
 import React from 'react';
+
+import loadable from '@loadable/component';
+
+import { Container } from './styles';
 
 const Intro = loadable(() => import('@layouts/Intro'));
 const PostMenu = loadable(() => import('@layouts/PostMenu'));

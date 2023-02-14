@@ -5,8 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   overflow: scroll;
   width: 100%;
-  height: 100vh;
   max-width: 768px;
+  height: 100vh;
   margin: 0 auto;
   padding-top: 6rem;
   text-align: center;
@@ -71,8 +71,8 @@ export const UserTitle = styled.div`
   line-height: 1.3;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background-repeat: no-repeat;
-  background-size: 100% 0.3rem;
   background-position: 0 50%;
+  background-size: 100% 0.3rem;
   cursor: pointer;
   transition: background-size 0.2s ease-in;
   &:hover {
@@ -117,13 +117,13 @@ export const Collection = styled.button``;
 
 export const Button = styled.span`
   display: inline-block;
-  width: 8rem;
   box-sizing: border-box;
+  width: 8rem;
+  padding: 0.75rem 1rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  background-color: var(--primary-white);
   color: var(--primary-black);
+  background-color: var(--primary-white);
   transform: translateY(-0.2rem);
   transition: transform 0.1s ease;
   &:hover {

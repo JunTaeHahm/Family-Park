@@ -1,8 +1,11 @@
-import { Container, ModalList, Logout } from './styles';
-import { useGetClientUser } from '@hooks/userInfo';
-import axios from 'axios';
 import React, { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
+import { useGetClientUser } from '@hooks/userInfo';
+
+import { Container, Logout, ModalList } from './styles';
 
 const ProfileMenu = ({ isOpened }) => {
   const navigate = useNavigate();

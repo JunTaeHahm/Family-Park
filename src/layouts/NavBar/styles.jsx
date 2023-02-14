@@ -2,16 +2,16 @@ import styled from '@emotion/styled';
 
 export const Container = styled.nav`
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 4rem;
-  background-color: var(--background);
   font-size: 0.9rem;
+  background-color: var(--background);
 `;
 export const NavWrap = styled.div`
   position: relative;
@@ -20,8 +20,8 @@ export const NavWrap = styled.div`
   align-items: center;
   gap: 1rem;
   width: 100%;
-  height: 100%;
   max-width: 1300px;
+  height: 100%;
 `;
 export const HeaderLogo = styled.h1`
   position: absolute;
@@ -43,8 +43,8 @@ export const WriteWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(0, 0.2rem);
   cursor: pointer;
+  transform: translate(0, 0.2rem);
 `;
 export const WriteButtonBack = styled.span`
   display: inline-block;
@@ -54,18 +54,18 @@ export const WriteButtonBack = styled.span`
 `;
 
 export const WriteButton = styled.button`
-  font-size: 0.9rem;
   display: inline-block;
   box-sizing: border-box;
+  padding: 0.4rem 1.2rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.4rem 1.2rem;
-  background-color: var(--primary-white);
-  color: var(--primary-black);
   font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--primary-black);
+  background-color: var(--primary-white);
+  cursor: pointer;
   transform: translateY(-0.2rem);
   transition: transform 0.1s ease;
-  cursor: pointer;
   input {
     display: none;
   }
@@ -90,8 +90,8 @@ export const LoginWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   margin-right: 1rem;
+  cursor: pointer;
   a {
     display: flex;
     justify-content: center;
@@ -110,23 +110,23 @@ export const LoginWrap = styled.div`
 export const LoginButtonBack = styled.span`
   display: inline-block;
   align-self: flex-end;
-  transform: translate(0, 0.2rem);
   border-radius: 0.5rem;
   background: var(--primary-black);
+  transform: translate(0, 0.2rem);
 `;
 
 export const LoginButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
+  padding: 0.4rem 1.2rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.4rem 1.2rem;
-  background-color: var(--primary-white);
+  font-weight: bold;
   color: var(--primary-black);
+  background-color: var(--primary-white);
+  cursor: pointer;
   transform: translate(0, -0.2rem);
   transition: transform 0.1s ease;
-  font-weight: bold;
-  cursor: pointer;
   input {
     display: none;
   }

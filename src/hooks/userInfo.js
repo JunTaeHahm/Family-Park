@@ -51,9 +51,7 @@ export const useGetClientUser = () => {
     ['clientUser'],
     async () => {
       return await axios
-        .get(`/api/users`, {
-          withCredentials: true,
-        })
+        .get(`/api/users`)
         .then((res) => {
           return res.data;
         })
@@ -71,6 +69,7 @@ export const useGetClientUser = () => {
   );
 
   let isAuth;
+
   if (Object(data).isAuth === (null || undefined)) {
     // res.data에 isAuth가 없으면 로그인 상태이므로 true 할당
     isAuth = true;

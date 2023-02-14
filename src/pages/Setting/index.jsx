@@ -1,32 +1,35 @@
+import React, { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
+
 import {
   Avatar,
   AvatarForm,
   Caution,
-  Title,
   Container,
   Edit,
-  Menu,
-  UserName,
-  Label,
-  NameInput,
-  UploadButtonBack,
   EditButtonBack,
-  TitleInput,
+  Label,
+  Menu,
+  NameInput,
   ProfileWrap,
   Remove,
-  UserTitle,
-  WithdrawalButtonBack,
+  Title,
+  TitleInput,
   Upload,
+  UploadButtonBack,
   UserForm,
+  UserName,
+  UserTitle,
   Withdrawal,
+  WithdrawalButtonBack,
   WithdrawalForm,
 } from './styles';
-import { useGetClientUser } from '@hooks/userInfo';
-import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import React, { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 const API_SERVER =
   process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://www.sentenceu.co.kr';
@@ -45,6 +48,7 @@ const Setting = () => {
     (e) => {
       e.preventDefault();
       const formData = new FormData(); // formData생성
+
       formData.append('avatar', e.target.files[0]); // input(file)에서 받은 파일 formData에 append, name은 'avatar'
 
       fetch(`${API_SERVER}/api/users/${userId}/avatar/upload`, {
@@ -105,15 +109,11 @@ const Setting = () => {
 
       if (editName) {
         axios
-          .put(
-            `/api/users/${userId}`,
-            {
-              userName: userName,
-              editName: editName,
-              editTitle: editTitle,
-            },
-            { withCredentials: true },
-          )
+          .put(`/api/users/${userId}`, {
+            userName,
+            editName,
+            editTitle,
+          })
           .then(() => {
             refetch(); // 유저정보 변경 성공 시 리패치
             setIsEditing(false); // 수정모드 false
@@ -141,7 +141,7 @@ const Setting = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`/api/users/${userId}`, { withCredentials: true })
+          .delete(`/api/users/${userId}`)
           .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
           .catch((error) => console.log(error));
       }

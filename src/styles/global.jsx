@@ -1,6 +1,7 @@
-import { css, Global } from '@emotion/react';
-import emotionNormalize from 'emotion-normalize';
 import React from 'react';
+
+import { Global, css } from '@emotion/react';
+import emotionNormalize from 'emotion-normalize';
 
 const GlobalStyle = () => (
   <Global
@@ -18,92 +19,92 @@ const GlobalStyle = () => (
       input,
       textarea,
       button {
-        color: var(--primary-black);
-        border-radius: 0;
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
-        appearance: none;
+        border-radius: 0;
+        color: var(--primary-black);
         -moz-appearance: none;
         -webkit-appearance: none;
+        appearance: none;
       }
       html,
       body,
       #root {
+        overflow: scroll;
         height: 100%;
-        background-color: var(--background);
-        color: var(--primary-black);
         font-family: 'IBM Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: var(--primary-black);
+        background-color: var(--background);
         touch-action: manipulation;
-        overflow: scroll;
         ::-webkit-scrollbar {
           display: none;
         }
       }
       #app {
+        max-width: 1300px;
         height: 100%;
         min-height: 100%;
-        max-width: 1300px;
         margin: 0 auto;
       }
       li {
         list-style: none;
       }
       a {
-        color: var(--primary-black);
         text-decoration: none;
+        color: var(--primary-black);
       }
 
       /*===================================================
                               Font
       ===================================================*/
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: 300;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Light.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Light.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: 500;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Medium.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Medium.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: normal;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Regular.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Regular.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: bold;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Bold.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Bold.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Montserrat';
+        font-style: normal;
         font-weight: 300;
+        font-family: 'Montserrat';
         src: url(./src/assets/fonts/Montserrat-Light.woff2) format('woff2'),
           url(./src/assets/fonts/Montserrat-Light.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'Montserrat';
+        font-style: normal;
         font-weight: normal;
+        font-family: 'Montserrat';
         src: url(./src/assets/fonts/Montserrat-Regular.woff2) format('woff2'),
           url(./src/assets/fonts/Montserrat-Regular.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
 
@@ -151,4 +152,5 @@ const GlobalStyle = () => (
     `}
   />
 );
+
 export default GlobalStyle;

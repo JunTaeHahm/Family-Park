@@ -1,14 +1,16 @@
-import App from './App';
-import GlobalStyle from '@styles/global';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { urlBase64ToUint8Array } from '@utils/urlBase64toUnit8Array';
-import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Workbox } from 'workbox-window';
+
+import App from './App';
+import GlobalStyle from '@styles/global';
+import { urlBase64ToUint8Array } from '@utils/urlBase64toUnit8Array';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -23,12 +25,12 @@ if (!isDevelopment) {
                       Work Box 사용
       ===================================================*/
       const wb = new Workbox('/sw.js');
+
       wb.addEventListener('installed', (event) => {
         if (!event.isUpdate) {
           console.log('Workbox가 설치 되었습니다.');
         }
       });
-
       wb.register();
 
       /*===================================================
@@ -40,6 +42,7 @@ if (!isDevelopment) {
           console.log('SW 등록 성공::', registration);
 
           const convertedVapidPublicKey = urlBase64ToUint8Array(process.env.WEBPUSH_PUBLIC_KEY);
+
           registration?.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: convertedVapidPublicKey,
@@ -55,11 +58,10 @@ if (!isDevelopment) {
       /*===================================================
                       SW 버전 확인
       ===================================================*/
-      let swVersion;
       const getVersion = wb.messageSW({ type: 'GET_VERSION' });
+
       getVersion.then((res) => {
         console.log(`Service Worker Version:: ${res}`);
-        swVersion = res;
       });
 
       /*===================================================
@@ -74,8 +76,7 @@ if (!isDevelopment) {
 
         // 업데이트 수락 할 프롬프트
         Swal.fire({
-          title: `${swVersion} 버전 업데이트 안내`,
-          text: '회원가입 비밀번호 오류 버그 수정',
+          title: `새로운 업데이트가 있습니다.`,
           icon: 'info',
           confirmButtonColor: '#008bf8',
           confirmButtonText: '업데이트',

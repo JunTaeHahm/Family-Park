@@ -1,5 +1,6 @@
-import { List, Saying, Writer } from './styles';
 import React from 'react';
+
+import { List, Saying, Writer } from './styles';
 
 const BannerList = ({ saying, writer }) => {
   if (saying && writer) {

@@ -6,9 +6,9 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
   width: 100%;
   padding: 3rem 1rem 1rem;
-  gap: 3rem;
   @media screen and (max-width: 1023px) {
     & {
       margin-bottom: 2.5rem;
@@ -16,10 +16,10 @@ export const Container = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
+      gap: 1rem;
       width: 100%;
       margin-bottom: 0;
       padding: 1.5rem 1.8rem 0;
-      gap: 1rem;
     }
   }
 `;
@@ -76,15 +76,15 @@ export const Description = styled.div`
 
 export const PS = styled.span`
   padding: 0 0.3rem;
-  font-size: 1.5rem;
   font-weight: bold;
+  font-size: 1.5rem;
   line-height: 1.5;
   text-align: center;
   white-space: nowrap;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-  background-size: 100% 88%;
   background-repeat: no-repeat;
   background-position: 0 50%;
+  background-size: 100% 88%;
   cursor: default;
   transition: background-size 0.2s ease;
   &:hover {

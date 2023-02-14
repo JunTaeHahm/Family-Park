@@ -1,23 +1,26 @@
-import {
-  FormRequest,
-  Mismatch,
-  Input,
-  Label,
-  Container,
-  Form,
-  FormTitle,
-  HeaderLogo,
-  LinkContainer,
-  KakaoLogin,
-  ButtonWrap,
-  Login,
-} from '../LogIn/styles';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
 import useInput from '@hooks/useInput';
 import { useGetClientUser } from '@hooks/userInfo';
 import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
+import {
+  ButtonWrap,
+  Container,
+  Form,
+  FormRequest,
+  FormTitle,
+  HeaderLogo,
+  Input,
+  KakaoLogin,
+  Label,
+  LinkContainer,
+  Login,
+  Mismatch,
+} from '../LogIn/styles';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -165,4 +168,5 @@ const SignUp = () => {
     </Container>
   );
 };
+
 export default SignUp;
