@@ -13,18 +13,14 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "stylelint": "stylelint \"**/styles.jsx\"",
-    "stylelint:fix": "stylelint \"**/styles.jsx\" --fix"
+    "stylelint:fix": "stylelint \"**/styles.jsx\" --fix",
+    "prepare": "husky install"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.13",
