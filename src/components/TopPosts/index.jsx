@@ -1,8 +1,11 @@
-import { Container, Loading, PostWrap } from './styles';
+import React from 'react';
+
+import { CircularProgress } from '@mui/material';
+
 import PostList from '@components/PostList';
 import { useGetAllPosts } from '@hooks/usePost';
-import { CircularProgress } from '@mui/material';
-import React from 'react';
+
+import { Container, Loading, PostWrap } from './styles';
 
 const TopPosts = ({ slice }) => {
   const { allPosts, isLoading } = useGetAllPosts();

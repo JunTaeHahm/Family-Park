@@ -1,5 +1,6 @@
+import React, { useEffect, useState } from 'react';
+
 import { Container } from './styles';
-import React, { useState, useEffect } from 'react';
 
 const InstallAppButton = () => {
   const [prompt, setPrompt] = useState(null);

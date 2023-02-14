@@ -1,10 +1,13 @@
-import { Container, PostWrap, DateHeader, DateSection, Loading } from './styles';
-import PostList from '@components/PostList';
-import { useGetRecentPosts } from '@hooks/usePost';
-import { CircularProgress } from '@mui/material';
-import { makeSection } from '@utils/makeScetion';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { CircularProgress } from '@mui/material';
+
+import PostList from '@components/PostList';
+import { useGetRecentPosts } from '@hooks/usePost';
+import { makeSection } from '@utils/makeScetion';
+
+import { Container, DateHeader, DateSection, Loading, PostWrap } from './styles';
 
 const RecentPosts = ({ slice }) => {
   const location = useLocation();

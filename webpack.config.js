@@ -1,9 +1,10 @@
+import path from 'path';
+
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
 import webpack from 'webpack';
 import pkg from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';

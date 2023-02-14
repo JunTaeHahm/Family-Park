@@ -1,22 +1,25 @@
-import {
-  HeaderLogo,
-  NavWrap,
-  WriteWrap,
-  Container, // AlertWrap,
-  LoginWrap,
-  WriteButton,
-  WriteButtonBack,
-  LoginButtonBack,
-  LoginButton,
-} from './styles';
+import React, { useCallback, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { BsFillCaretDownFill } from 'react-icons/bs';
+
 import ProfileMenu from '@components/ProfileMenu';
 import WriteModal from '@components/WriteModal';
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
 import { sweetAlert } from '@utils/sweetAlert';
-import React, { useCallback, useRef, useState } from 'react';
-import { BsFillCaretDownFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+
+import {
+  Container,
+  HeaderLogo,
+  LoginButton,
+  LoginButtonBack,
+  LoginWrap,
+  NavWrap,
+  WriteButton,
+  WriteButtonBack,
+  WriteWrap,
+} from './styles';
 
 const NavBar = () => {
   const ref = useRef();

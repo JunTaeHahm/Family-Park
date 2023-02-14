@@ -1,32 +1,35 @@
+import React, { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+import { useGetClientUser } from '@hooks/userInfo';
+import { sweetAlert } from '@utils/sweetAlert';
+
 import {
   Avatar,
   AvatarForm,
   Caution,
-  Title,
   Container,
   Edit,
-  Menu,
-  UserName,
-  Label,
-  NameInput,
-  UploadButtonBack,
   EditButtonBack,
-  TitleInput,
+  Label,
+  Menu,
+  NameInput,
   ProfileWrap,
   Remove,
-  UserTitle,
-  WithdrawalButtonBack,
+  Title,
+  TitleInput,
   Upload,
+  UploadButtonBack,
   UserForm,
+  UserName,
+  UserTitle,
   Withdrawal,
+  WithdrawalButtonBack,
   WithdrawalForm,
 } from './styles';
-import { useGetClientUser } from '@hooks/userInfo';
-import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import React, { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 const API_SERVER =
   process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://www.sentenceu.co.kr';

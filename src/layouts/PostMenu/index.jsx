@@ -1,7 +1,9 @@
-import { Container, PS, Button, More, PostWrap, RecentPostTitle, TopPostTitle } from './styles';
-import loadable from '@loadable/component';
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
+import loadable from '@loadable/component';
+
+import { Button, Container, More, PS, PostWrap, RecentPostTitle, TopPostTitle } from './styles';
 
 const RecentPosts = loadable(() => import('@components/RecentPosts'));
 const TopPosts = loadable(() => import('@components/TopPosts'));

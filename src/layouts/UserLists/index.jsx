@@ -1,11 +1,14 @@
-import { Container, Title, Online, Loading } from './styles';
-import ProfileCard from '@components/ProfileCard';
-import { useSocket } from '@hooks/useSocket';
-import { useViewPort } from '@hooks/useViewPort';
-import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
-import { CircularProgress } from '@mui/material';
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+
+import { CircularProgress } from '@mui/material';
+
+import ProfileCard from '@components/ProfileCard';
+import { useAllUsers, useGetClientUser } from '@hooks/userInfo';
+import { useSocket } from '@hooks/useSocket';
+import { useViewPort } from '@hooks/useViewPort';
+
+import { Container, Loading, Online, Title } from './styles';
 
 const UserLists = ({ userListOpen, setUserListOpen }) => {
   const ref = useRef();

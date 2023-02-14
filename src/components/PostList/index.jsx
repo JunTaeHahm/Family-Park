@@ -1,40 +1,43 @@
-import {
-  LikeButton,
-  Container,
-  ContentWrap,
-  DateWrap,
-  ActionWrap,
-  Actions,
-  CommentWrap,
-  Content,
-  CommentButton,
-  NoComment,
-  Name,
-  Form,
-  Label,
-  Input,
-  Avatar,
-  EditForm,
-  CommentList,
-  Comment,
-  PostAction,
-  EditLabel,
-  EditInput,
-  EditButton,
-  Button,
-  PostWrap,
-  Date,
-} from './styles';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import axios from 'axios';
+import dayjs from 'dayjs';
+import Scrollbars from 'react-custom-scrollbars-2';
+import { FaHeart, FaRegCommentDots, FaRegHeart } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
 import { useGetClientUser } from '@hooks/userInfo';
 import { sweetAlert } from '@utils/sweetAlert';
-import axios from 'axios';
-import dayjs from 'dayjs';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Scrollbars from 'react-custom-scrollbars-2';
-import { FaHeart, FaRegHeart, FaRegCommentDots } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+
+import {
+  ActionWrap,
+  Actions,
+  Avatar,
+  Button,
+  Comment,
+  CommentButton,
+  CommentList,
+  CommentWrap,
+  Container,
+  Content,
+  ContentWrap,
+  Date,
+  DateWrap,
+  EditButton,
+  EditForm,
+  EditInput,
+  EditLabel,
+  Form,
+  Input,
+  Label,
+  LikeButton,
+  Name,
+  NoComment,
+  PostAction,
+  PostWrap,
+} from './styles';
 
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
   // 댓글만 모아놓은 배열 생성

@@ -1,23 +1,25 @@
-import PostList from '@components/PostList';
-import { useGetUserPosts } from '@hooks/usePost';
+import React, { useEffect, useState } from 'react';
+
 import { CircularProgress } from '@mui/material';
 import {
-  Container,
-  UserInfo,
-  ProfileWrap,
   Button,
+  Container,
+  List,
+  Loading,
+  MenuWrap,
+  NoPost,
+  PostWrap,
   ProfileImage,
   ProfileName,
-  PostWrap,
-  List,
-  MenuWrap,
+  ProfileWrap,
+  UserInfo,
   UserPost,
-  NoPost,
   UserTitle,
-  Loading,
 } from '@pages/User/styles';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+
+import PostList from '@components/PostList';
+import { useGetUserPosts } from '@hooks/usePost';
 
 const Admin = () => {
   const { userPosts, isLoading, refetch } = useGetUserPosts('센텐스유');

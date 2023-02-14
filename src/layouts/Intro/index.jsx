@@ -1,5 +1,6 @@
-import { Container, Image, Title, PS, Description } from './styles';
 import React from 'react';
+
+import { Container, Description, Image, PS, Title } from './styles';
 
 const Intro = () => {
   return (

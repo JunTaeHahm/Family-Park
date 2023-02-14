@@ -1,6 +1,8 @@
-import { Container } from './styles';
-import PostMenu from '@layouts/PostMenu';
 import React from 'react';
+
+import PostMenu from '@layouts/PostMenu';
+
+import { Container } from './styles';
 
 const Posts = () => {
   return (

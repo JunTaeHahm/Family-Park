@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { io } from 'socket.io-client';
 
 export const useSocket = (userName) => {
@@ -11,7 +12,7 @@ export const useSocket = (userName) => {
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8000'
         : 'https://www.sentenceu.co.kr';
-        
+
     // API_SERVER의 online에 소켓연결
     const socketIo = io.connect(`${API_SERVER}/online`, {
       path: '/socket.io',

@@ -1,7 +1,9 @@
-import { Container, List, Loading } from './styles';
+import React from 'react';
+
 import BannerList from '@components/BannerList';
 import { useCrawling } from '@hooks/useCrawling';
-import React from 'react';
+
+import { Container, List, Loading } from './styles';
 
 const RollingBanner = () => {
   const { saying, writer, isLoading } = useCrawling();
