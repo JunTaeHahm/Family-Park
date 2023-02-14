@@ -11,8 +11,8 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
   width: 25rem;
   margin: 0 auto;
   @media screen and (max-width: 1023px) {
@@ -26,9 +26,9 @@ export const HeaderLogo = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: max-content;
   margin-bottom: 2rem;
-  width: 100%;
   img {
     width: 15rem;
     height: 100%;
@@ -40,8 +40,8 @@ export const HeaderLogo = styled.h1`
 export const FormTitle = styled.h2`
   width: 100%;
   margin-bottom: 2rem;
-  font-size: 1.5rem;
   font-weight: normal;
+  font-size: 1.5rem;
   text-align: center;
 `;
 
@@ -75,18 +75,18 @@ export const Input = styled.input`
   margin-top: 0.3rem;
   padding: 0.8rem;
   border: none;
-  background-color: var(--primary-white);
-  font-size: 0.9rem;
   font-weight: 300;
+  font-size: 0.9rem;
+  background-color: var(--primary-white);
   transition: all 0.2s;
   &:focus {
-    outline: none;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary-grey);
     font-size: 0.9rem;
+    color: var(--primary-grey);
   }
 `;
 
@@ -94,16 +94,16 @@ export const FormRequest = styled.p`
   display: block;
   width: 100%;
   padding: 0.5rem 0;
-  font-size: 0.8rem;
   font-weight: 300;
+  font-size: 0.8rem;
   text-align: center;
 `;
 
 export const Mismatch = styled.span`
   position: absolute;
   top: 0;
-  color: var(--prism-code-3) !important;
   text-align: right;
+  color: var(--prism-code-3) !important;
 `;
 
 export const ButtonWrap = styled.div`
@@ -123,13 +123,13 @@ export const ButtonWrap = styled.div`
 export const Login = styled.button`
   width: 183px;
   height: 45px;
-  outline: none;
   border: none;
   border-radius: 6px;
-  background-color: var(--primary-black);
-  color: var(--primary-white);
   font-weight: 300;
+  color: var(--primary-white);
+  background-color: var(--primary-black);
   cursor: pointer;
+  outline: none;
   user-select: none;
 `;
 
@@ -137,10 +137,10 @@ export const KakaoLogin = styled.button`
   position: relative;
   width: 183px;
   height: 45px;
-  cursor: pointer;
+  border-radius: 6px;
   background: url('https://www.sentenceu.co.kr/src/assets/images/kakao_login_large_narrow.png');
   background-size: cover;
-  border-radius: 6px;
+  cursor: pointer;
 `;
 
 export const LinkContainer = styled.p`
@@ -148,12 +148,12 @@ export const LinkContainer = styled.p`
   justify-content: flex-end;
   width: 100%;
   margin: 1rem 0;
-  color: var(--primary-black);
   font-size: 0.8rem;
+  color: var(--primary-black);
   a {
     margin-left: 0.6rem;
-    color: var(--primary-black);
     text-decoration: none;
+    color: var(--primary-black);
     &:hover {
       text-decoration: underline;
     }

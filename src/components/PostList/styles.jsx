@@ -10,12 +10,12 @@ export const Container = styled.div`
   width: 85%;
   margin: 1.2rem 0;
   padding: 1.2rem 1.2rem 1rem;
+  border: 0.13rem solid var(--primary-grey);
   border-radius: 0.5rem;
   background-color: var(--primary-white);
-  border: 0.13rem solid var(--primary-grey);
+  cursor: pointer;
   transform: translate(-50%, 0) scaleY(1);
   transition: all 0.2s;
-  cursor: pointer;
   &:hover {
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
@@ -68,23 +68,23 @@ export const EditForm = styled.form`
 export const EditLabel = styled.label`
   width: 100%;
   height: 100%;
-  outline: none;
-  border-color: transparent;
   border-style: none;
+  border-color: transparent;
+  outline: none;
 `;
 export const EditInput = styled.textarea`
   width: 100%;
   padding: 0.5rem;
-  outline: none;
   border: 0.06rem solid var(--primary-skyblue);
   border-radius: 0.3rem;
-  background-color: var(--primary-white);
   font-size: 1.1rem;
+  background-color: var(--primary-white);
+  outline: none;
   resize: none;
   &::placeholder {
     height: 100%;
-    color: var(--primary-black);
     font-size: 1.3rem;
+    color: var(--primary-black);
   }
 `;
 
@@ -112,7 +112,7 @@ export const LikeButton = styled.div`
   padding: 0.3rem;
   cursor: pointer;
   .heart {
-    color: #ee6a55;
+    color: #EE6A55;
   }
 `;
 
@@ -144,31 +144,31 @@ export const Avatar = styled.img`
 export const Name = styled.span`
   display: inline-block;
   padding: 0.1rem 0.3rem;
-  background-color: var(--primary-black);
-  color: var(--primary-white);
-  font-size: 0.9rem;
   font-weight: normal;
+  font-size: 0.9rem;
+  color: var(--primary-white);
+  background-color: var(--primary-black);
   transition: all 0.2s;
   &:hover {
-    background-color: var(--primary-skyblue);
     color: var(--primary-black);
+    background-color: var(--primary-skyblue);
   }
 `;
 
 export const CommentWrap = styled.div`
   position: relative;
-  opacity: 0;
-  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 0;
+  opacity: 0;
+  visibility: hidden;
   transition: all 0.2s;
   &.open {
+    height: 15rem;
     opacity: 1;
     visibility: visible;
-    height: 15rem;
     transition: all 0.2s;
   }
 `;
@@ -177,8 +177,8 @@ export const PostAction = styled.div`
   position: absolute;
   top: -1rem;
   left: 50%;
-  font-size: 0.8rem;
   font-weight: 300;
+  font-size: 0.8rem;
   transform: translate(-50%, 0);
   & span {
     margin-left: 0.5rem;
@@ -219,34 +219,34 @@ export const Input = styled.input`
   width: 100%;
   height: 100%;
   padding: 0.3rem;
-  outline: none;
   border: 0.06rem solid var(--primary-black);
-  background-color: var(--primary-white);
   font-size: 0.8rem;
   text-indent: 0.3rem;
-  &::focus {
-    outline: none;
+  background-color: var(--primary-white);
+  outline: none;
+  &:focus {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    outline: none;
   }
   &::placeholder {
-    opacity: 0.5;
     height: 100%;
     color: var(--primary-black);
+    opacity: 0.5;
   }
 `;
 
 export const Button = styled.button`
   width: 10%;
   height: 100%;
-  background-color: var(--primary-black);
-  color: var(--primary-white);
-  font-size: 0.9rem;
   font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--primary-white);
+  background-color: var(--primary-black);
   cursor: pointer;
   transition: all 0.2s;
   &:hover {
-    background-color: var(--primary-skyblue);
     color: var(--primary-black);
+    background-color: var(--primary-skyblue);
   }
   @media screen and (max-width: 1023px) {
     & {
@@ -262,8 +262,8 @@ export const Button = styled.button`
 
 export const CommentList = styled.div`
   position: absolute;
-  overflow: hidden;
   top: 1rem;
+  overflow: hidden;
   width: 100%;
   height: 11rem;
   ::-webkit-scrollbar {
@@ -277,8 +277,8 @@ export const CommentList = styled.div`
 export const NoComment = styled.div`
   position: relative;
   top: 50%;
-  font-size: 0.8rem;
   font-weight: 300;
+  font-size: 0.8rem;
   text-align: center;
 `;
 
@@ -287,36 +287,36 @@ export const Comment = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 0.7rem;
-  font-size: 0.9rem;
   font-weight: 300;
+  font-size: 0.9rem;
   line-height: 1.5;
   span {
     display: inline-block;
+    &:nth-of-type(2) {
+      flex: 9;
+      line-height: 1.3;
+      text-align: justify;
+      cursor: pointer;
+    }
     &:nth-of-type(1) {
       flex: 1;
+      max-height: 1.5rem;
       margin-right: 0.5rem;
       padding: 0.1rem 0.2rem;
-      max-height: 1.5rem;
-      background-color: var(--primary-black);
-      color: var(--primary-white);
       text-align: center;
+      color: var(--primary-white);
+      background-color: var(--primary-black);
       cursor: pointer;
       transition: all 0.2s;
       &:hover {
-        background-color: var(--primary-skyblue);
         color: var(--primary-black);
+        background-color: var(--primary-skyblue);
       }
       @media screen and (max-width: 767px) {
         & {
           min-width: 25%;
         }
       }
-    }
-    &:nth-of-type(2) {
-      flex: 9;
-      line-height: 1.3;
-      text-align: justify;
-      cursor: pointer;
     }
   }
 `;

@@ -22,10 +22,10 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   margin-bottom: 3rem;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
   background-repeat: no-repeat;
-  background-size: 100% 0.3rem;
   background-position: 0 50%;
+  background-size: 100% 0.3rem;
   cursor: default;
   transition: background-size 0.2s ease;
   &:hover {
@@ -87,14 +87,14 @@ export const UploadButtonBack = styled.span`
 export const Upload = styled.label`
   display: inline-block;
   box-sizing: border-box;
+  padding: 0.6rem 1.8rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.6rem 1.8rem;
-  background-color: var(--primary-white);
   color: var(--primary-black);
+  background-color: var(--primary-white);
+  cursor: pointer;
   transform: translateY(-0.2rem);
   transition: transform 0.1s ease;
-  cursor: pointer;
   input {
     display: none;
   }
@@ -125,11 +125,11 @@ export const UserForm = styled.div`
   padding: 2rem;
   @media screen and (max-width: 767px) {
     & {
-      border-top: 0.06rem solid var(--primary-black);
       justify-content: flex-start;
       gap: 1rem;
       width: 100%;
       height: auto;
+      border-top: 0.06rem solid var(--primary-black);
     }
   }
 `;
@@ -150,18 +150,18 @@ export const Label = styled.label``;
 export const NameInput = styled.input`
   width: 100%;
   padding: 0.5rem;
-  outline: none;
   border: 0.06rem solid var(--primary-black);
   border-radius: 0.3rem;
-  background-color: transparent;
   font-size: 2.2rem;
+  background-color: transparent;
+  outline: none;
   &:focus {
     border: 0.1rem solid var(--primary-black);
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary-black);
     font-size: 1.3rem;
+    color: var(--primary-black);
   }
   @media screen and (max-width: 767px) {
     & {
@@ -173,17 +173,17 @@ export const NameInput = styled.input`
 export const TitleInput = styled.input`
   width: 100%;
   padding: 0.5rem;
-  outline: none;
   border: 0.06rem solid var(--primary-black);
   border-radius: 0.3rem;
   background-color: transparent;
+  outline: none;
   &:focus {
     border: 0.1rem solid var(--primary-black);
   }
   &::placeholder {
     height: 100%;
-    color: var(--primary-black);
     font-size: 1.3rem;
+    color: var(--primary-black);
   }
 `;
 
@@ -197,14 +197,14 @@ export const EditButtonBack = styled.span`
 export const Edit = styled.button`
   display: inline-block;
   box-sizing: border-box;
+  padding: 0.6rem 1.8rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.6rem 1.8rem;
-  background-color: var(--primary-white);
   color: var(--primary-black);
+  background-color: var(--primary-white);
+  cursor: pointer;
   transform: translateY(-0.2rem);
   transition: transform 0.1s ease;
-  cursor: pointer;
   input {
     display: none;
   }
@@ -217,10 +217,10 @@ export const Edit = styled.button`
 `;
 
 export const WithdrawalForm = styled.div`
-  border-top: 0.06rem solid var(--primary-black);
+  width: 100%;
   margin-top: 2rem;
   padding: 5rem 2rem 2rem;
-  width: 100%;
+  border-top: 0.06rem solid var(--primary-black);
   @media screen and (max-width: 767px) {
     & {
       margin-top: 0;
@@ -252,14 +252,14 @@ export const WithdrawalButtonBack = styled.span`
 export const Withdrawal = styled.button`
   display: inline-block;
   box-sizing: border-box;
+  padding: 0.6rem 1.8rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
-  padding: 0.6rem 1.8rem;
-  background-color: var(--primary-white);
   color: var(--primary-black);
+  background-color: var(--primary-white);
+  cursor: pointer;
   transform: translateY(-0.2rem);
   transition: transform 0.1s ease;
-  cursor: pointer;
   input {
     display: none;
   }

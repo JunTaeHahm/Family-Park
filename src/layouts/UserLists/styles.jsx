@@ -6,10 +6,10 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
-  padding-top: 4rem;
   gap: 1.5rem;
   width: 100%;
+  margin-top: 2rem;
+  padding-top: 4rem;
   @media screen and (max-width: 1023px) {
     & {
       gap: 1.2rem;
@@ -17,8 +17,8 @@ export const Container = styled.div`
   }
   @media screen and (max-width: 767px) {
     & {
-      margin-top: 1rem;
       gap: 1rem;
+      margin-top: 1rem;
     }
   }
 `;
@@ -37,15 +37,15 @@ export const Title = styled.span`
   position: absolute;
   top: 0;
   padding: 0 0.3rem;
-  font-size: 1.5rem;
   font-weight: bold;
+  font-size: 1.5rem;
   line-height: 1.5;
   text-align: center;
   white-space: nowrap;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
   background-repeat: no-repeat;
-  background-size: 100% 88%;
   background-position: 0 50%;
+  background-size: 100% 88%;
   cursor: default;
   transition: background-size 0.2s ease;
   &:hover {
@@ -59,21 +59,21 @@ export const Title = styled.span`
 `;
 
 export const Online = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   position: absolute;
   top: 2rem;
   right: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   height: 2rem;
-  line-height: 2rem;
   font-size: 0.9rem;
+  line-height: 2rem;
   span {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-image: linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%);
   }
   @media screen and (max-width: 1023px) {
     & {

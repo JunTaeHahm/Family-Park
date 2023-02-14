@@ -45,12 +45,12 @@ export const DateHeader = styled.div`
     z-index: 2;
     height: 2rem;
     padding: 0 1rem;
-    outline: none;
     border-radius: 3rem;
-    background: var(--primary-black);
-    color: var(--primary-white);
-    font-size: 0.9rem;
     font-weight: 300;
+    font-size: 0.9rem;
     line-height: 1.8rem;
+    color: var(--primary-white);
+    background: var(--primary-black);
+    outline: none;
   }
 `;

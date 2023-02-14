@@ -11,13 +11,13 @@ export const Container = styled.ul`
   gap: 1.2rem;
   width: 10rem;
   border-radius: 0.5rem;
-  background-color: var(--primary-black);
   color: var(--primary-white);
-  cursor: pointer;
+  background-color: var(--primary-black);
   box-shadow: var(--card);
-  transform-origin: top right;
+  cursor: pointer;
   transform: ${(props) =>
     props.isOpened ? 'translate(-70%, 5%) scale(1)' : 'translate(-70%, 5%) scale(0)'};
+  transform-origin: top right;
   transition: all 0.2s;
   & span {
     color: var(--primary-white);
@@ -32,9 +32,9 @@ export const ModalList = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 0;
     width: 100%;
     height: 100%;
+    padding: 0.5rem 0;
     color: var(--primary-white);
   }
   &:first-of-type {
@@ -44,8 +44,8 @@ export const ModalList = styled.li`
     margin-bottom: 1.2rem;
   }
   &:hover {
-    background-color: var(--primary-skyblue);
     color: var(--primary-black);
+    background-color: var(--primary-skyblue);
     a {
       color: var(--primary-black);
     }

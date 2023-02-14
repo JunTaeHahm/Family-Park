@@ -19,92 +19,92 @@ const GlobalStyle = () => (
       input,
       textarea,
       button {
-        color: var(--primary-black);
-        border-radius: 0;
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
-        appearance: none;
+        border-radius: 0;
+        color: var(--primary-black);
         -moz-appearance: none;
         -webkit-appearance: none;
+        appearance: none;
       }
       html,
       body,
       #root {
+        overflow: scroll;
         height: 100%;
-        background-color: var(--background);
-        color: var(--primary-black);
         font-family: 'IBM Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        color: var(--primary-black);
+        background-color: var(--background);
         touch-action: manipulation;
-        overflow: scroll;
         ::-webkit-scrollbar {
           display: none;
         }
       }
       #app {
+        max-width: 1300px;
         height: 100%;
         min-height: 100%;
-        max-width: 1300px;
         margin: 0 auto;
       }
       li {
         list-style: none;
       }
       a {
-        color: var(--primary-black);
         text-decoration: none;
+        color: var(--primary-black);
       }
 
       /*===================================================
                               Font
       ===================================================*/
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: 300;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Light.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Light.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: 500;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Medium.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Medium.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: normal;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Regular.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Regular.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'IBM Sans KR';
+        font-style: normal;
         font-weight: bold;
+        font-family: 'IBM Sans KR';
         src: url(./src/assets/fonts/IBMSansKR-Bold.woff2) format('woff2'),
           url(./src/assets/fonts/IBMSansKR-Bold.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
 
       @font-face {
-        font-family: 'Montserrat';
+        font-style: normal;
         font-weight: 300;
+        font-family: 'Montserrat';
         src: url(./src/assets/fonts/Montserrat-Light.woff2) format('woff2'),
           url(./src/assets/fonts/Montserrat-Light.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
       @font-face {
-        font-family: 'Montserrat';
+        font-style: normal;
         font-weight: normal;
+        font-family: 'Montserrat';
         src: url(./src/assets/fonts/Montserrat-Regular.woff2) format('woff2'),
           url(./src/assets/fonts/Montserrat-Regular.woff) format('woff');
-        font-style: normal;
         font-display: swap;
       }
 
@@ -129,24 +129,24 @@ const GlobalStyle = () => (
 
       :root {
         --primary-black: #222;
-        --primary-skyblue: #e0effe;
-        --primary-blue: #008bf8;
-        --primary-white: #f8f9fa;
-        --primary-grey: #c9c9c9;
-        --primary-lightgrey: #dedede;
-        --background: #fbfdfc;
+        --primary-skyblue: #E0EFFE;
+        --primary-blue: #008BF8;
+        --primary-white: #F8F9FA;
+        --primary-grey: #C9C9C9;
+        --primary-lightgrey: #DEDEDE;
+        --background: #FBFDFC;
 
-        --prism-code-1: #7c858d;
-        --prism-code-2: #abb2bf;
-        --prism-code-3: #e06c75;
-        --prism-code-4: #d19a66;
-        --prism-code-5: #98c379;
-        --prism-code-6: #56b6c2;
-        --prism-code-7: #c678dd;
-        --prism-code-8: #61afef;
-        --prism-code-9: #c678dd;
+        --prism-code-1: #7C858D;
+        --prism-code-2: #ABB2BF;
+        --prism-code-3: #E06C75;
+        --prism-code-4: #D19A66;
+        --prism-code-5: #98C379;
+        --prism-code-6: #56B6C2;
+        --prism-code-7: #C678DD;
+        --prism-code-8: #61AFEF;
+        --prism-code-9: #C678DD;
 
-        --neumorphic: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem var(--primary-white);
+        --neumorphic: 0.3rem 0.3rem 0.6rem #C8D0E7, -0.2rem -0.2rem 0.5rem var(--primary-white);
         --card: 0.13rem 0.13rem 0.6rem 0 rgba(0, 0, 0, 0.4);
       }
     `}
