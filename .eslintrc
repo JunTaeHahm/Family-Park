@@ -63,7 +63,7 @@
     "semi": ["error", "always"],
     // 세미콜론 항상 설정 ( always || never)
 
-    "object-shorthand": "error",
+    "object-shorthand": "warn",
     // ES6에서 나온 객체를 간편하게 쓰는 문법으로 강제
 
     "padding-line-between-statements": [

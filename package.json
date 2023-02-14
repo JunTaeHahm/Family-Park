@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "webpack serve --env development",
     "build": "cross-env NODE_ENV=production webpack",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "stylelint": "stylelint \"**/styles.jsx\"",
     "stylelint:fix": "stylelint \"**/styles.jsx\" --fix",
     "prepare": "husky install"
