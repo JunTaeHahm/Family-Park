@@ -1,20 +1,60 @@
 {
-  "extends": [
-    "react-app",
-    // "plugin:prettier/recommended",
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  "extends": ["react-app", "eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks", "prettier", "import"],
   "rules": {
     "react/prop-types": "off",
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": 0,
-    "react/jsx-one-expression-per-line": 0
-    // "react-hooks/exhaustive-deps": 0
+    "react/jsx-one-expression-per-line": 0,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["sibling", "parent", "index"],
+          "type",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-router-dom,react-dom,react-dom/*}",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "{./App,@assets/*,@components/*,@hooks/*,@layouts/*,@pages/*,@styles/*,@utils/*}",
+            "group": "unknown",
+            "position": "after"
+          },
+          {
+            "pattern": "{./styles,../**/styles}",
+            "group": "unknown",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [],
+        "alphabetize": {
+          "order": "asc", // 알파벳 순서 정렬 방식
+          "caseInsensitive": true // 대소문자 안함
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+        "allowSeparatedGroups": true
+      }
+    ]
   },
   "env": {
     "browser": true,

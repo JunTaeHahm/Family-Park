@@ -9,7 +9,8 @@
   "type": "module",
   "scripts": {
     "dev": "webpack serve --env development",
-    "build": "cross-env NODE_ENV=production webpack"
+    "build": "cross-env NODE_ENV=production webpack",
+    "lint": "eslint --fix"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.13",
@@ -43,7 +44,6 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@tanstack/react-query": "^4.22.4",
     "@tanstack/react-query-devtools": "^4.22.4",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
