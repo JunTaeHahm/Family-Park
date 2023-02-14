@@ -10,9 +10,21 @@
   "scripts": {
     "dev": "webpack serve --env development",
     "build": "cross-env NODE_ENV=production webpack",
-    "lint": "eslint --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "stylelint": "stylelint \"**/styles.jsx\"",
     "stylelint:fix": "stylelint \"**/styles.jsx\" --fix"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.20.13",
@@ -46,6 +58,8 @@
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@tanstack/react-query": "^4.22.4",
     "@tanstack/react-query-devtools": "^4.22.4",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
@@ -53,14 +67,17 @@
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "postcss": "^8.4.21",
     "postcss-syntax": "^0.36.2",
     "process": "^0.11.10",

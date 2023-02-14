@@ -11,7 +11,7 @@
     "function-no-unknown": [true, { "ignoreFunctions": ["/\\${/"] }],
     "comment-no-empty": true,
     "no-empty-source": true,
-    "color-hex-case": "upper",
+    "color-hex-case": "lower",
     "unit-case": "lower",
     "block-no-empty": true,
     "color-named": "never",
