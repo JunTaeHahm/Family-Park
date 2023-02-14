@@ -29,13 +29,22 @@ const NavBar = () => {
   const [wirteModalOpen, setWirteModalOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
-  /* 프로필 메뉴 클릭 시 */
-  const onClickProfile = () => {
+  /*============================================
+                  프로필 메뉴
+  ============================================*/
+  const handleClickProfileMenu = () => {
     setProfileMenuOpen((prev) => !prev);
   };
 
-  /* 글 작성 모달 버튼 클릭 시 */
-  const onWriteHandler = useCallback(() => {
+  // 프로필메뉴 밖 클릭 시 닫히는 함수
+  useClickOutsideModal(ref, () => {
+    setProfileMenuOpen(false);
+  });
+
+  /*============================================
+                포스트 작성 모달
+  ============================================*/
+  const handleClickWriteModal = useCallback(() => {
     if (userName) {
       // 로그인 상태에만 이용 가능하도록
       setWirteModalOpen(true);
@@ -44,11 +53,6 @@ const NavBar = () => {
       sweetAlert('warning', '로그인 후 이용 가능합니다.');
     }
   }, [userName]);
-
-  /* 프로필메뉴 밖 클릭 시 닫히는 함수 */
-  useClickOutsideModal(ref, () => {
-    setProfileMenuOpen(false);
-  });
 
   return (
     <Container>
@@ -62,18 +66,19 @@ const NavBar = () => {
           </Link>
         </HeaderLogo>
 
+        {/* 로그인 상태 */}
         {userName && (
           <WriteWrap>
             <WriteButtonBack>
-              <WriteButton isBtnActive={isBtnActive} onClick={() => onWriteHandler()}>
+              <WriteButton isBtnActive={isBtnActive} onClick={handleClickWriteModal}>
                 새 글 작성
               </WriteButton>
             </WriteButtonBack>
           </WriteWrap>
         )}
 
-        <LoginWrap ref={ref} onClick={onClickProfile}>
-          {/* 로그인 상태에 따라 보이는 메뉴 다르도록 */}
+        <LoginWrap ref={ref} onClick={handleClickProfileMenu}>
+          {/* 로그아웃 상태 */}
           {!userName ? (
             <LoginButtonBack>
               <LoginButton>
@@ -87,10 +92,11 @@ const NavBar = () => {
             </Link>
           )}
 
+          {/* 로그인 상태 */}
           {userName && userAvatar ? (
-            <ProfileMenu isOpened={profileMenuOpen} onClick={onClickProfile} />
+            <ProfileMenu isOpened={profileMenuOpen} onClick={handleClickProfileMenu} />
           ) : (
-            <ProfileMenu isOpened={profileMenuOpen} onClick={onClickProfile} />
+            <ProfileMenu isOpened={profileMenuOpen} onClick={handleClickProfileMenu} />
           )}
         </LoginWrap>
 

@@ -122,7 +122,6 @@ registerRoute(stylesRoute);
 /*===================================================
               새로운 버전의 SW 업데이트 수락 시
 ===================================================*/
-// Evict image cache entries older thirty days:
 const imageExpRoute = new Route(
   ({ request }) => {
     return request.destination === 'image';

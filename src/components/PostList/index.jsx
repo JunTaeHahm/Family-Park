@@ -40,7 +40,7 @@ import {
 } from './styles';
 
 const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt, updatedAt }) => {
-  // 댓글만 모아놓은 배열 생성
+  // 댓글만 모아놓은 배열:
   let commentArr = [];
 
   if (comments) commentArr = Object.entries(comments).map(([, comment]) => comment);
@@ -60,7 +60,9 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
   const [commentList, setCommentList] = useState(commentArr);
   const [comment, setComment] = useState('');
 
-  /* 글 작성자 아바타 가져오기 */
+  /*============================================
+              글 작성자 아바타 가져오기
+  ============================================*/
   useEffect(() => {
     axios
       .get(`/api/users/${postUser}`)
@@ -74,8 +76,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
       });
   }, [postUser]);
 
-  /* 포스트 클릭 시 open 클래스 추가 */
-  const onPostClick = useCallback(
+  /*============================================
+          Post 클릭 시 'open' 클래스 추가
+  ============================================*/
+  const handleClickPost = useCallback(
     (e) => {
       if (
         e.target.className !== 'like-count' && // 좋아요 버튼 아닐 것
@@ -95,25 +99,28 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [isEditing],
   );
 
-  /* 수정모드 변경 함수 */
-  const onEditHandler = useCallback(() => {
+  /*============================================
+                    수정모드 변경
+  ============================================*/
+  const handlePostEditMode = useCallback(() => {
     setIsEditing((prev) => !prev);
   }, []);
 
-  /* 포스트 밖 클릭 시 수정모드 false */
+  // 포스트 밖 클릭 시 수정모드 false
   useClickOutsideModal(containerRef, () => {
     containerRef.current.classList.remove('open');
     commentWrapRef.current.classList.remove('open');
     setIsEditing(false);
   });
 
-  /* 글 수정 */
-  const onChangeEditContent = (e) => {
+  /*============================================
+                    포스트 수정
+  ============================================*/
+  const handleEditPostContent = (e) => {
     setEditContent(e.target.value);
   };
 
-  /* 수정 글 Submit 함수 */
-  const onEditPostSubmit = useCallback(
+  const handleSubmitEditedPost = useCallback(
     (e) => {
       e.preventDefault();
       const editCheck = postContent !== editContent; // 기존 글에서 수정 했는지 확인
@@ -131,7 +138,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
             sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
@@ -139,8 +146,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [postId, editContent, postContent],
   );
 
-  /* 포스트 삭제 함수 */
-  const onDeletePost = useCallback(() => {
+  /*============================================
+                    포스트 삭제
+  ============================================*/
+  const handleDeletePost = useCallback(() => {
     Swal.fire({
       title: '포스트를 삭제하시겠습니까?',
       text: '삭제 한 포스트는 복구되지 않습니다.',
@@ -163,14 +172,16 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
             sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
     });
   }, [postId]);
 
-  /* 좋아요 버튼 */
+  /*============================================
+                    좋아요 버튼
+  ============================================*/
   useEffect(() => {
     // postLike에 클라이언트 userName 유무에 따라 하트 보여주기
     if (postLike.indexOf(userName) !== -1) {
@@ -182,8 +193,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     commentWrapRef.current.classList.remove('open');
   }, [postLike, userName, postId]);
 
-  /* 좋아요 버튼 클릭 함수 */
-  const onLikeClick = useCallback(() => {
+  const handleClickLikeButton = useCallback(() => {
     if (userName) {
       axios
         .patch('api/posts/like', { postId, userName })
@@ -197,8 +207,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     }
   }, [postId, userName]);
 
-  /* 댓글 */
-  const onChangeComment = (e) => {
+  /*============================================
+                    댓글 작성
+  ============================================*/
+  const handleWriteComment = (e) => {
     setComment(e.target.value);
     sendBtnRef.current.classList.add('active'); // 댓글 작성 시 등록 버튼에 acitve 클래스 추가
     if (!e.target.value) sendBtnRef.current.classList.remove('active'); // 댓글 빈 칸일 경우 등록 버튼 active 클래스 삭제
@@ -206,8 +218,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
 
   if (comment) sendBtnRef.current.classList.add('active');
 
-  /* 댓글 Submit 함수 */
-  const onCommentSubmit = useCallback(
+  const handleSubmitNewComment = useCallback(
     (e) => {
       e.preventDefault();
       if (!userName) {
@@ -224,7 +235,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
             sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
@@ -232,8 +243,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
     [comment, postId, userName],
   );
 
-  /* 댓글 삭제 함수 */
-  const onDeleteComment = useCallback(
+  /*============================================
+                    댓글 삭제
+  ============================================*/
+  const handleDeleteComment = useCallback(
     (e) => {
       // 댓글 작성자가 클라이언트 유저인 경우에만 삭제 가능하도록
       if (e.target.parentElement.children[0].innerHTML === userName) {
@@ -257,7 +270,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
                 sweetAlert('success', '삭제 성공');
               })
               .catch((error) => {
-                console.log(error);
+                console.error(error);
                 sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
               });
           }
@@ -269,10 +282,10 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
 
   return (
     <Container id={postId} ref={containerRef}>
-      <PostWrap onClick={onPostClick}>
+      <PostWrap onClick={handleClickPost}>
         <ContentWrap>
           {isEditing ? (
-            <EditForm onSubmit={onEditPostSubmit}>
+            <EditForm onSubmit={handleSubmitEditedPost}>
               <EditLabel htmlFor='editContent-label'>
                 <EditInput
                   autoFocus
@@ -281,7 +294,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
                   name='editContent'
                   id='editContent-label'
                   value={editContent}
-                  onChange={onChangeEditContent}
+                  onChange={handleEditPostContent}
                 />
               </EditLabel>
               <EditButton id='Button' type='submit' />
@@ -301,7 +314,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
 
         <ActionWrap>
           <Actions>
-            <LikeButton onClick={onLikeClick}>
+            <LikeButton onClick={handleClickLikeButton}>
               {isLiked ? <FaHeart className='heart' /> : <FaRegHeart className='likeBtn' />}
               <span className='like-count'>{likeCount}</span>
             </LikeButton>
@@ -321,11 +334,11 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
         {postUser === userName || role === 1 ? (
           <PostAction>
             {isEditing ? (
-              <span onClick={onEditPostSubmit}>확인</span>
+              <span onClick={handleSubmitEditedPost}>확인</span>
             ) : (
-              <span onClick={onEditHandler}>수정</span>
+              <span onClick={handlePostEditMode}>수정</span>
             )}
-            <span onClick={onDeletePost}>삭제</span>
+            <span onClick={handleDeletePost}>삭제</span>
           </PostAction>
         ) : (
           ''
@@ -339,7 +352,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               commentList.map((comment, i) => (
                 <Comment key={i}>
                   <span>{comment.commentUser}</span>
-                  <span id={comment.commentId} onClick={onDeleteComment}>
+                  <span id={comment.commentId} onClick={handleDeleteComment}>
                     {comment.comment}
                   </span>
                 </Comment>
@@ -348,7 +361,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
           </Scrollbars>
         </CommentList>
 
-        <Form onSubmit={onCommentSubmit}>
+        <Form onSubmit={handleSubmitNewComment}>
           <Label htmlFor='comment-label'>
             <Input
               autoFocus
@@ -358,7 +371,7 @@ const PostList = ({ postId, postContent, postUser, postLike, comments, createdAt
               id='comment-label'
               placeholder='댓글을 작성해보세요.'
               value={comment}
-              onChange={onChangeComment}
+              onChange={handleWriteComment}
             />
           </Label>
 

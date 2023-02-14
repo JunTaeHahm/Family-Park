@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -12,9 +13,13 @@ import {
   AvatarForm,
   Caution,
   Container,
+  DeleteAccount,
+  DeleteAccountButtonBack,
+  DeleteAccountForm,
   Edit,
   EditButtonBack,
   Label,
+  Loading,
   Menu,
   NameInput,
   ProfileWrap,
@@ -26,9 +31,6 @@ import {
   UserForm,
   UserName,
   UserTitle,
-  Withdrawal,
-  WithdrawalButtonBack,
-  WithdrawalForm,
 } from './styles';
 
 const API_SERVER =
@@ -37,14 +39,16 @@ const API_SERVER =
 const Setting = () => {
   const navigate = useNavigate();
 
-  const { userName, userTitle, refetch, userAvatar, userId } = useGetClientUser();
+  const { userName, userTitle, userAvatar, userId, isLoading, refetch } = useGetClientUser();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editName, setEditName] = useState(userName);
   const [editTitle, setEditTitle] = useState(userTitle);
 
-  /* 유저 아바타 업로드 함수 */
-  const onUploadHandler = useCallback(
+  /*============================================
+                유저 아바타 업로드
+  ============================================*/
+  const handleUploadUserAvatar = useCallback(
     (e) => {
       e.preventDefault();
       const formData = new FormData(); // formData생성
@@ -62,8 +66,10 @@ const Setting = () => {
     [userId, refetch],
   );
 
-  /* 유저 아바타 삭제 함수 */
-  const onRemoveHandler = useCallback(
+  /*============================================
+                  유저 아바타 삭제
+  ============================================*/
+  const handleRemoveUserAvatar = useCallback(
     (e) => {
       e.preventDefault();
 
@@ -86,24 +92,26 @@ const Setting = () => {
     },
     [userId, refetch],
   );
-
-  /* 유저명 변경 */
-  const onChangeEditName = (e) => {
-    setEditName(e.target.value);
-  };
-
-  /* 유저 타이틀 변경 */
-  const onChangeEditTitle = (e) => {
-    setEditTitle(e.target.value);
-  };
-
-  /* 유저정보 수정모드 변경 */
-  const onEditHandler = useCallback(() => {
+  /*============================================
+                  프로필 수정
+  ============================================*/
+  // 수정모드 변경
+  const handleProfileEditMode = useCallback(() => {
     setIsEditing((prev) => !prev);
   }, []);
 
-  /* 유저 정보 변경 Submit */
-  const onEditUserSubmit = useCallback(
+  // 유저명 변경
+  const handleChangeUserName = (e) => {
+    setEditName(e.target.value);
+  };
+
+  // 유저 타이틀 변경
+  const handleChangeUserTitle = (e) => {
+    setEditTitle(e.target.value);
+  };
+
+  // 수정된 유저 프로필 submit
+  const handleSubmitEditedUserProfile = useCallback(
     (e) => {
       e.preventDefault();
 
@@ -119,7 +127,7 @@ const Setting = () => {
             setIsEditing(false); // 수정모드 false
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
             sweetAlert('error', '에러가 발생했습니다.', '관리자에게 문의바랍니다.');
           });
       }
@@ -127,8 +135,10 @@ const Setting = () => {
     [userName, editName, editTitle, userId, refetch],
   );
 
-  /* 계정 삭제 함수 */
-  const onWithdrawalHandler = useCallback(() => {
+  /*============================================
+                  계정 삭제
+  ============================================*/
+  const handleDeleteAccount = useCallback(() => {
     Swal.fire({
       title: '계정을 삭제하시겠습니까?',
       text: '작성하신 모든 포스트가 삭제되며 복구되지 않습니다.',
@@ -148,75 +158,88 @@ const Setting = () => {
     });
   }, [userId, navigate]);
 
-  return (
-    <Container>
-      <Title>내 정보 수정</Title>
-      <ProfileWrap>
-        <AvatarForm>
-          <Avatar src={userAvatar} alt={userName} />
-          <UploadButtonBack>
-            <Upload htmlFor='avatar'>
-              이미지 변경
-              <input type='file' id='avatar' name='avatar' onChange={onUploadHandler} />
-            </Upload>
-          </UploadButtonBack>
-          <Remove onClick={onRemoveHandler}>이미지 제거</Remove>
-        </AvatarForm>
+  switch (isLoading) {
+    case true:
+      return (
+        <Container>
+          <Loading>
+            <CircularProgress color='inherit' />
+            <div>로딩중...</div>
+          </Loading>
+        </Container>
+      );
 
-        <UserForm onSubmit={onEditUserSubmit}>
-          {isEditing ? (
-            <>
-              <Label htmlFor='editName-label'>
-                <NameInput
-                  autoComplete='off'
-                  type='text'
-                  name='editName'
-                  id='editName-label'
-                  value={editName}
-                  onChange={onChangeEditName}
-                />
-              </Label>
-              <Label htmlFor='editTitle-label'>
-                <TitleInput
-                  autoFocus
-                  autoComplete='off'
-                  type='text'
-                  name='editTitle'
-                  id='editTitle-label'
-                  value={editTitle}
-                  onChange={onChangeEditTitle}
-                />
-              </Label>
-            </>
-          ) : (
-            <>
-              <UserName>{userName}</UserName>
-              <UserTitle>{userTitle}</UserTitle>
-            </>
-          )}
-          {isEditing ? (
-            <EditButtonBack>
-              <Edit onClick={onEditUserSubmit}>저장</Edit>
-            </EditButtonBack>
-          ) : (
-            <EditButtonBack>
-              <Edit onClick={onEditHandler}>수정</Edit>
-            </EditButtonBack>
-          )}
-        </UserForm>
-      </ProfileWrap>
+    default:
+      return (
+        <Container>
+          <Title>내 정보 수정</Title>
+          <ProfileWrap>
+            <AvatarForm>
+              <Avatar src={userAvatar} alt={userName} />
+              <UploadButtonBack>
+                <Upload htmlFor='avatar'>
+                  이미지 변경
+                  <input type='file' id='avatar' name='avatar' onChange={handleUploadUserAvatar} />
+                </Upload>
+              </UploadButtonBack>
+              <Remove onClick={handleRemoveUserAvatar}>이미지 제거</Remove>
+            </AvatarForm>
 
-      <WithdrawalForm>
-        <Menu>계정 삭제</Menu>
-        <WithdrawalButtonBack>
-          <Withdrawal onClick={onWithdrawalHandler}>계정 삭제</Withdrawal>
-        </WithdrawalButtonBack>
-        <Caution>
-          계정 삭제 시 작성하신 <b>모든 포스트</b>가 삭제되며 복구되지 않습니다.
-        </Caution>
-      </WithdrawalForm>
-    </Container>
-  );
+            <UserForm onSubmit={handleSubmitEditedUserProfile}>
+              {isEditing ? (
+                <>
+                  <Label htmlFor='editName-label'>
+                    <NameInput
+                      autoComplete='off'
+                      type='text'
+                      name='editName'
+                      id='editName-label'
+                      value={editName}
+                      onChange={handleChangeUserName}
+                    />
+                  </Label>
+                  <Label htmlFor='editTitle-label'>
+                    <TitleInput
+                      autoFocus
+                      autoComplete='off'
+                      type='text'
+                      name='editTitle'
+                      id='editTitle-label'
+                      value={editTitle}
+                      onChange={handleChangeUserTitle}
+                    />
+                  </Label>
+                </>
+              ) : (
+                <>
+                  <UserName>{userName}</UserName>
+                  <UserTitle>{userTitle}</UserTitle>
+                </>
+              )}
+              {isEditing ? (
+                <EditButtonBack>
+                  <Edit onClick={handleSubmitEditedUserProfile}>저장</Edit>
+                </EditButtonBack>
+              ) : (
+                <EditButtonBack>
+                  <Edit onClick={handleProfileEditMode}>수정</Edit>
+                </EditButtonBack>
+              )}
+            </UserForm>
+          </ProfileWrap>
+
+          <DeleteAccountForm>
+            <Menu>계정 삭제</Menu>
+            <DeleteAccountButtonBack>
+              <DeleteAccount onClick={handleDeleteAccount}>계정 삭제</DeleteAccount>
+            </DeleteAccountButtonBack>
+            <Caution>
+              계정 삭제 시 작성하신 <b>모든 포스트</b>가 삭제되며 복구되지 않습니다.
+            </Caution>
+          </DeleteAccountForm>
+        </Container>
+      );
+  }
 };
 
 export default Setting;

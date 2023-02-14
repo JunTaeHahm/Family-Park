@@ -9,6 +9,16 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
+export const Loading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 30vh;
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;

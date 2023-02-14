@@ -16,6 +16,23 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+/* Axios 기본 설정 */
+axios.defaults.withCredentials = true;
+if (isDevelopment) {
+  axios.defaults.baseURL = 'http://localhost:8000'; // 개발
+} else {
+  axios.defaults.baseURL = 'https://www.sentenceu.co.kr'; // 배포
+}
+
+/* React-Query 기본 설정 */
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // window focus 설정
+    },
+  },
+});
+
 /* PWA */
 if (!isDevelopment) {
   // 개발모드일 때 개발자 도구에서 SW Unregister하고 작업 할 것
@@ -97,23 +114,6 @@ if (!isDevelopment) {
     });
   }
 }
-
-/* Axios 기본 설정 */
-axios.defaults.withCredentials = true;
-if (isDevelopment) {
-  axios.defaults.baseURL = 'http://localhost:8000'; // 개발
-} else {
-  axios.defaults.baseURL = 'https://www.sentenceu.co.kr'; // 배포
-}
-
-/* React-Query 기본 설정 */
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false, // window focus 설정
-    },
-  },
-});
 
 root.render(
   <React.StrictMode>

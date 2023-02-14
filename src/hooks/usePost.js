@@ -15,15 +15,12 @@ export const useGetAllPosts = () => {
           return res.data;
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity,
-      refetchInterval: Infinity,
+      staleTime: Infinity,
+      refetchInterval: 60 * 1000,
     },
   );
 
@@ -59,15 +56,12 @@ export const useGetRecentPosts = () => {
           return res.data;
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity,
-      refetchInterval: Infinity,
+      staleTime: Infinity,
+      refetchInterval: 60 * 1000,
     },
   );
 
@@ -103,15 +97,12 @@ export const useGetUserPosts = (userName) => {
           return res.data;
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     },
     {
-      manual: true,
-      staleTime: 0,
-      skip: true,
-      cacheTime: Infinity,
-      refetchInterval: Infinity,
+      staleTime: Infinity,
+      refetchInterval: false,
     },
   );
 

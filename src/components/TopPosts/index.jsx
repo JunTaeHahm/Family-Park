@@ -10,37 +10,41 @@ import { Container, Loading, PostWrap } from './styles';
 const TopPosts = ({ slice }) => {
   const { allPosts, isLoading } = useGetAllPosts();
 
-  return (
-    <Container>
-      {isLoading ? (
-        // 포스트 로딩 중
-        <Loading>
-          <CircularProgress color='inherit' />
-          <div>불러오는 중...</div>
-        </Loading>
-      ) : (
-        <PostWrap>
-          {[...allPosts]
-            .sort((a, b) => {
-              return b.postLike.length - a.postLike.length;
-            }) // 전체 포스트 중에 postLike의 개수 순으로 정렬
-            .slice(0, slice)
-            .map((post) => (
-              <PostList
-                key={post.postId}
-                postId={post.postId}
-                postUser={post.postUser}
-                postContent={post.postContent}
-                postLike={post.postLike}
-                comments={post.comments}
-                createdAt={post.createdAt}
-                updatedAt={post.updatedAt}
-              />
-            ))}
-        </PostWrap>
-      )}
-    </Container>
-  );
+  switch (isLoading) {
+    case true:
+      return (
+        <Container>
+          <Loading>
+            <CircularProgress color='inherit' />
+            <div>로딩중...</div>
+          </Loading>
+        </Container>
+      );
+    default:
+      return (
+        <Container>
+          <PostWrap>
+            {[...allPosts]
+              .sort((a, b) => {
+                return b.postLike.length - a.postLike.length;
+              }) // 전체 포스트 중에 postLike의 개수 순으로 정렬
+              .slice(0, slice)
+              .map((post) => (
+                <PostList
+                  key={post.postId}
+                  postId={post.postId}
+                  postUser={post.postUser}
+                  postContent={post.postContent}
+                  postLike={post.postLike}
+                  comments={post.comments}
+                  createdAt={post.createdAt}
+                  updatedAt={post.updatedAt}
+                />
+              ))}
+          </PostWrap>
+        </Container>
+      );
+  }
 };
 
 export default TopPosts;

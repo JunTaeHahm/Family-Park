@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
 import useInput from '@hooks/useInput';
@@ -18,6 +19,7 @@ import {
   KakaoLogin,
   Label,
   LinkContainer,
+  Loading,
   Login,
   Mismatch,
 } from '../LogIn/styles';
@@ -25,7 +27,7 @@ import {
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const { isAuth: userLoginStatus } = useGetClientUser();
+  const { isAuth, isLoading } = useGetClientUser();
 
   const [userName, onChangeUserName] = useInput('');
   const [password, , setPassword] = useInput('');
@@ -33,11 +35,14 @@ const SignUp = () => {
   const [mismatchError, setMismatchError] = useState(false);
 
   useEffect(() => {
-    if (userLoginStatus) navigate('/'); // 로그인상태라면 홈으로 navigate
-  }, [userLoginStatus, navigate]);
+    if (isAuth) navigate('/'); // 로그인상태라면 홈으로 navigate
+  }, [isAuth, navigate]);
 
-  /* 비밀번호 입력 */
-  const onChangePassword = useCallback(
+  /*============================================
+               비밀번호 입력 및 확인
+  ============================================*/
+  // 비밀번호 입력
+  const handleInputPassword = useCallback(
     (e) => {
       const trimValue = e.target.value;
 
@@ -47,8 +52,8 @@ const SignUp = () => {
     [passwordCheck, setPassword],
   );
 
-  /* 비밀번호 확인 */
-  const onChangePasswordCheck = useCallback(
+  // 비밀번호 확인
+  const handleCheckPassword = useCallback(
     (e) => {
       const trimValue = e.target.value;
 
@@ -59,8 +64,10 @@ const SignUp = () => {
     [password, setPasswordCheck],
   );
 
-  /* 회원가입 Submit */
-  const onSubmit = useCallback(
+  /*============================================
+                    회원가입
+  ============================================*/
+  const handleSignup = useCallback(
     (e) => {
       e.preventDefault();
       if (!mismatchError && userName && password) {
@@ -86,87 +93,102 @@ const SignUp = () => {
     [password, userName, mismatchError, navigate],
   );
 
-  /* 카카오 로그인 */
-  const onKaKaoLogin = useCallback((e) => {
+  /*============================================
+                  카카오 로그인
+  ============================================*/
+  const handleKakaoLogin = useCallback((e) => {
     e.preventDefault();
 
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.KAKAO_REST_API_KEY}&redirect_uri=${process.env.KAKAO_LOGIN_REDIRECT_URI}&response_type=code`;
   }, []);
 
-  return (
-    <Container>
-      <Form onSubmit={onSubmit}>
-        <HeaderLogo>
-          <Link to='/'>
-            <img
-              src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
-              alt='센텐스유 로고'
-            />
-          </Link>
-        </HeaderLogo>
-        <FormTitle>회원가입</FormTitle>
-        <Label htmlFor='username-label'>
-          <span>유저명</span>
-          <div>
-            <Input
-              autoFocus
-              autoComplete='off'
-              type='text'
-              name='username'
-              id='username-label'
-              placeholder='Username'
-              value={userName}
-              onChange={onChangeUserName}
-            />
-          </div>
-        </Label>
-        <Label className='password-wrap' htmlFor='password-label'>
-          <span>비밀번호</span>
-          <span>
-            비밀번호 확인
-            {mismatchError && <Mismatch>불일치</Mismatch>}
-          </span>
-          <div>
-            <Input
-              autoComplete='off'
-              type='password'
-              name='password'
-              id='password-label'
-              placeholder='Password'
-              value={password}
-              onChange={onChangePassword}
-            />
-          </div>
-          <div>
-            <Input
-              autoComplete='off'
-              type='password'
-              name='password-check'
-              id='password-check-label'
-              placeholder='Repeat Password'
-              value={passwordCheck}
-              onChange={onChangePasswordCheck}
-            />
-          </div>
-          <FormRequest>
-            비밀번호는 1개 이상의 숫자와 특수문자를 포함해야 합니다.&nbsp;(최소 8자)
-          </FormRequest>
-        </Label>
+  switch (isLoading) {
+    case true:
+      return (
+        <Container>
+          <Loading>
+            <CircularProgress color='inherit' />
+            <div>로딩중...</div>
+          </Loading>
+        </Container>
+      );
 
-        <ButtonWrap>
-          <Login id='Button' type='submit'>
-            작성완료
-          </Login>
-          <KakaoLogin onClick={onKaKaoLogin} />
-        </ButtonWrap>
+    default:
+      return (
+        <Container>
+          <Form onSubmit={handleSignup}>
+            <HeaderLogo>
+              <Link to='/'>
+                <img
+                  src='https://www.sentenceu.co.kr/src/assets/images/logo_empty.png'
+                  alt='센텐스유 로고'
+                />
+              </Link>
+            </HeaderLogo>
+            <FormTitle>회원가입</FormTitle>
+            <Label htmlFor='username-label'>
+              <span>유저명</span>
+              <div>
+                <Input
+                  autoFocus
+                  autoComplete='off'
+                  type='text'
+                  name='username'
+                  id='username-label'
+                  placeholder='Username'
+                  value={userName}
+                  onChange={onChangeUserName}
+                />
+              </div>
+            </Label>
+            <Label className='password-wrap' htmlFor='password-label'>
+              <span>비밀번호</span>
+              <span>
+                비밀번호 확인
+                {mismatchError && <Mismatch>불일치</Mismatch>}
+              </span>
+              <div>
+                <Input
+                  autoComplete='off'
+                  type='password'
+                  name='password'
+                  id='password-label'
+                  placeholder='Password'
+                  value={password}
+                  onChange={handleInputPassword}
+                />
+              </div>
+              <div>
+                <Input
+                  autoComplete='off'
+                  type='password'
+                  name='password-check'
+                  id='password-check-label'
+                  placeholder='Repeat Password'
+                  value={passwordCheck}
+                  onChange={handleCheckPassword}
+                />
+              </div>
+              <FormRequest>
+                비밀번호는 1개 이상의 숫자와 특수문자를 포함해야 합니다.&nbsp;(최소 8자)
+              </FormRequest>
+            </Label>
 
-        <LinkContainer>
-          이미 회원이신가요?&nbsp;
-          <Link to='/login'>로그인 &gt;</Link>
-        </LinkContainer>
-      </Form>
-    </Container>
-  );
+            <ButtonWrap>
+              <Login id='Button' type='submit'>
+                작성완료
+              </Login>
+              <KakaoLogin onClick={handleKakaoLogin} />
+            </ButtonWrap>
+
+            <LinkContainer>
+              이미 회원이신가요?&nbsp;
+              <Link to='/login'>로그인 &gt;</Link>
+            </LinkContainer>
+          </Form>
+        </Container>
+      );
+  }
 };
 
 export default SignUp;
