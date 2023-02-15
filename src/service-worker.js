@@ -95,14 +95,14 @@ const imageRoute = new Route(
 );
 
 // 스크립트 캐싱:
-const scriptsRoute = new Route(
-  ({ request }) => {
-    return request.destination === 'script';
-  },
-  new CacheFirst({
-    cacheName: 'scripts',
-  }),
-);
+// const scriptsRoute = new Route(
+//   ({ request }) => {
+//     return request.destination === 'script';
+//   },
+//   new CacheFirst({
+//     cacheName: 'scripts',
+//   }),
+// );
 
 // 스타일 캐싱:
 const stylesRoute = new Route(
@@ -116,7 +116,7 @@ const stylesRoute = new Route(
 
 // 라우트 등록
 registerRoute(imageRoute);
-registerRoute(scriptsRoute);
+// registerRoute(scriptsRoute);
 registerRoute(stylesRoute);
 
 /*===================================================
