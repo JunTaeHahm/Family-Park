@@ -144,14 +144,13 @@ registerRoute(imageAssetRoute);
 registerRoute(new NavigationRoute(networkWithFallbackStrategy));
 
 /*============================================
-                  미사용 코드
+        새로운 버전의 SW 업데이트 수락 시
 ============================================*/
-// // 새로운 버전의 SW 업데이트 수락 시
-// addEventListener('message', (event) => {
-//   if (event.data && event.data.type === 'SKIP_WAITING') {
-//     self.skipWaiting();
-//   }
-// });
+addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 // // SW 버전 관리
 // const SW_VERSION = '1.0.0';

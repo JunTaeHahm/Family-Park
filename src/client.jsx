@@ -60,16 +60,6 @@ if ('serviceWorker' in navigator) {
     });
     wb.register();
 
-    /*============================================
-                        미사용 코드
-    ============================================*/
-    // // SW 버전 확인
-    // const getVersion = wb.messageSW({ type: 'GET_VERSION' });
-
-    // getVersion.then((res) => {
-    //   console.log(`Service Worker Version:: ${res}`);
-    // });
-
     // // 새로운 버전의 SW 업데이트
     // const showSkipWaitingPrompt = (event) => {
     //   // 유저가 업데이트를 수락할 경우, 대기 중이던 SW가 제어권을 얻음.
@@ -77,6 +67,9 @@ if ('serviceWorker' in navigator) {
     //     // 이 시점에서 다시 로드하면 현재 탭이 새 SW의 제어 하에 로드됨.
     //     window.location.reload();
     //   });
+
+    // 자동 업데이트
+    wb.messageSkipWaiting();
 
     //   // 수동 업데이트 (유저 프롬프트 확인)
     //   //   Swal.fire({
@@ -90,14 +83,18 @@ if ('serviceWorker' in navigator) {
     //   //       wb.messageSkipWaiting();
     //   //     }
     //   //   });
-
-    //   // 자동 업데이트
-    //   wb.messageSkipWaiting();
     // };
 
-    // // 새로 등록 된 SW가 설치되었지만 활성화 대기 중인 시점을 탐지
+    // 새로 등록 된 SW가 설치되었지만 활성화 대기 중인 시점을 탐지
     // wb.addEventListener('waiting', (event) => {
     //   showSkipWaitingPrompt(event);
+    // });
+
+    // // SW 버전 확인
+    // const getVersion = wb.messageSW({ type: 'GET_VERSION' });
+
+    // getVersion.then((res) => {
+    //   console.log(`Service Worker Version:: ${res}`);
     // });
   });
 }
