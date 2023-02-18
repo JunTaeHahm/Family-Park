@@ -3,12 +3,12 @@ import React from 'react';
 import { CircularProgress } from '@mui/material';
 
 import PostList from '@components/PostList';
-import { useGetAllPosts } from '@hooks/usePost';
+import { useGetRecentPosts } from '@hooks/usePost';
 
 import { Container, Loading, PostWrap } from './styles';
 
 const TopPosts = ({ slice }) => {
-  const { allPosts, isLoading } = useGetAllPosts();
+  const { recentPosts, isLoading } = useGetRecentPosts();
 
   switch (isLoading) {
     case true:
@@ -24,7 +24,7 @@ const TopPosts = ({ slice }) => {
       return (
         <Container>
           <PostWrap>
-            {[...allPosts]
+            {[...recentPosts]
               .sort((a, b) => {
                 return b.postLike.length - a.postLike.length;
               }) // 전체 포스트 중에 postLike의 개수 순으로 정렬
