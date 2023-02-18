@@ -10,38 +10,6 @@ clientsClaim();
 precacheAndRoute(self.__WB_MANIFEST || []); // 없으면 빌드 시 오류(공식문서)
 
 /*===================================================
-                   SW 버전 관리
-===================================================*/
-const SW_VERSION = '1.0.4';
-
-self.addEventListener('message', (event) => {
-  if (event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage(SW_VERSION);
-  }
-});
-
-/*===================================================
-              사전 캐싱 없이 Workbox 사용
-===================================================*/
-const navigationRoute = new NavigationRoute(
-  new NetworkFirst({
-    cacheName: 'navigations',
-  }),
-);
-const imageAssetRoute = new Route(
-  ({ request }) => {
-    return request.destination === 'image';
-  },
-  new CacheFirst({
-    cacheName: 'image-assets',
-  }),
-);
-
-// 라우터 등록:
-registerRoute(navigationRoute);
-registerRoute(imageAssetRoute);
-
-/*===================================================
                 오프라인 캐싱 및 SW 설치
 ===================================================*/
 const FALLBACK_CACHE_NAME = 'offline-fallback';
@@ -61,24 +29,18 @@ const networkWithFallbackStrategy = new NetworkOnly({
   ],
 });
 
+setDefaultHandler(new NetworkOnly());
+offlineFallback();
+
 self.addEventListener('install', (event) => {
-  console.log('Installed:: SW 설치 완료');
   event.waitUntil(caches.open(FALLBACK_CACHE_NAME).then((cache) => cache.add(FALLBACK_HTML)));
-});
-
-// 모든 탐색을 처리할 경로를 등록
-registerRoute(new NavigationRoute(networkWithFallbackStrategy));
-
-/*===================================================
-                SW 활성화 후 기존 캐시 삭제
-===================================================*/
-self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
     }),
   );
-  console.log('Activated:: SW 캐시 삭제');
+  console.log('install:: SW 설치 완료');
+  console.log('install:: SW 캐시 삭제');
 });
 
 /*===================================================
@@ -95,14 +57,14 @@ const imageRoute = new Route(
 );
 
 // 스크립트 캐싱:
-// const scriptsRoute = new Route(
-//   ({ request }) => {
-//     return request.destination === 'script';
-//   },
-//   new CacheFirst({
-//     cacheName: 'scripts',
-//   }),
-// );
+const scriptsRoute = new Route(
+  ({ request }) => {
+    return request.destination === 'script';
+  },
+  new CacheFirst({
+    cacheName: 'scripts',
+  }),
+);
 
 // 스타일 캐싱:
 const stylesRoute = new Route(
@@ -116,11 +78,11 @@ const stylesRoute = new Route(
 
 // 라우트 등록
 registerRoute(imageRoute);
-// registerRoute(scriptsRoute);
+registerRoute(scriptsRoute);
 registerRoute(stylesRoute);
 
 /*===================================================
-              새로운 버전의 SW 업데이트 수락 시
+                 불필요한 캐시 항목 제거
 ===================================================*/
 const imageExpRoute = new Route(
   ({ request }) => {
@@ -153,22 +115,49 @@ const scriptsExpRoute = new Route(
   }),
 );
 
-// Register routes
+// 라우트 등록
 registerRoute(imageExpRoute);
 registerRoute(scriptsExpRoute);
 
 /*===================================================
-              새로운 버전의 SW 업데이트 수락 시
+              사전 캐싱 없이 Workbox 사용
 ===================================================*/
-addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-});
+const navigationRoute = new NavigationRoute(
+  new NetworkFirst({
+    cacheName: 'navigations',
+  }),
+);
+const imageAssetRoute = new Route(
+  ({ request }) => {
+    return request.destination === 'image';
+  },
+  new CacheFirst({
+    cacheName: 'image-assets',
+  }),
+);
 
-/*===================================================
-                  오프라인 페이지
-===================================================*/
-setDefaultHandler(new NetworkOnly());
+// 라우터 등록:
+registerRoute(navigationRoute);
+registerRoute(imageAssetRoute);
 
-offlineFallback();
+// 모든 탐색을 처리할 경로를 등록
+registerRoute(new NavigationRoute(networkWithFallbackStrategy));
+
+/*============================================
+                  미사용 코드
+============================================*/
+// // 새로운 버전의 SW 업데이트 수락 시
+// addEventListener('message', (event) => {
+//   if (event.data && event.data.type === 'SKIP_WAITING') {
+//     self.skipWaiting();
+//   }
+// });
+
+// // SW 버전 관리
+// const SW_VERSION = '1.0.0';
+
+// self.addEventListener('message', (event) => {
+//   if (event.data.type === 'GET_VERSION') {
+//     event.ports[0].postMessage(SW_VERSION);
+//   }
+// });
