@@ -48,7 +48,7 @@ const PostMenu = ({ slice }) => {
       <More>{path || <Link to='/posts'>더 보기</Link>}</More>
 
       <PostWrap isPostMenu={isPostMenu}>
-        {isPostMenu ? <TopPosts slice={path ? 10 : 3} /> : <RecentPosts slice={slice} />}
+        {isPostMenu ? <TopPosts slice={3} /> : <RecentPosts slice={slice} />}
       </PostWrap>
     </Container>
   );

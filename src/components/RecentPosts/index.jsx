@@ -4,18 +4,18 @@ import { useLocation } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import PostList from '@components/PostList';
-import { useGetRecentPosts } from '@hooks/usePost';
+import { useGetAllPosts } from '@hooks/usePost';
 import { makeSection } from '@utils/makeScetion';
 
 import { Container, DateHeader, DateSection, Loading, PostWrap } from './styles';
 
 const RecentPosts = ({ slice }) => {
   const location = useLocation();
-  const { recentPosts, isLoading } = useGetRecentPosts();
+  const { allPosts, isLoading } = useGetAllPosts();
 
   // 날짜별로 섹션 생성하는데 postUser가 '센텐스유'인 포스트는 제외(공식 계정)
   const postSections = makeSection(
-    recentPosts ? [...recentPosts].filter((v) => v.postUser !== '센텐스유').slice(0, slice) : [],
+    allPosts ? [...allPosts].filter((v) => v.postUser !== '센텐스유').slice(0, slice) : [],
   );
   const path = location.pathname.split('/')[1] === 'posts';
 
