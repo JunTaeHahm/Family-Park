@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import axios from 'axios';
 
 import useClickOutsideModal from '@hooks/useClickOutsideModal';
-import { useGetRecentPosts } from '@hooks/usePost';
+import { useGetAllPosts } from '@hooks/usePost';
 import { sweetAlert } from '@utils/sweetAlert';
 
 import { Button, Container, Form, FormHeader, Input } from './styles';
@@ -19,7 +19,7 @@ const WriteModal = ({
 }) => {
   const ref = useRef();
 
-  const { refetch } = useGetRecentPosts();
+  const { refetch } = useGetAllPosts();
 
   const [content, setContent] = useState('');
 
