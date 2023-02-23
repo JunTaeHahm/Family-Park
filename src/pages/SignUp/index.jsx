@@ -84,7 +84,7 @@ const SignUp = () => {
             // 이미 있는 유저명일 경우:
             sweetAlert('warning', error.response.data.exUserName);
             // 비밀번호 조건 미준수:
-            if (error.response.data.errors.password) {
+            if (error.response.data.errors?.password) {
               sweetAlert('warning', '비밀번호 조건을 확인해주세요.');
             }
           });
