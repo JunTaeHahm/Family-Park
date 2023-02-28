@@ -43,12 +43,23 @@ export const PS = styled.span`
 `;
 
 export const TopPostTitle = styled.div`
+  position: relative;
   margin: ${(props) => (props.path ? '4rem 1rem 1rem' : '0rem 1rem 1rem')};
   border-radius: 0.5rem;
   background: var(--primary-black);
   cursor: pointer;
   span.button-top.top-post {
     background-color: var(--primary-white);
+  }
+  &::after {
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    display: block;
+    width: 100%;
+    font-size: 0.7rem;
+    content: '*최근 7일 기준 반영';
+    transform: translate(-50%, 0);
   }
   @media screen and (max-width: 767px) {
     & {
