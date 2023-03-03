@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 
 import PostList from '@components/PostList';
+import PullToRefresh from '@components/PulltoRefresh';
 import { useGetAllPosts, useGetUserPosts } from '@hooks/usePost';
 import { useGetClientUser } from '@hooks/userInfo';
 
@@ -33,11 +34,12 @@ const User = () => {
   const { userName } = useGetClientUser();
   const { userPosts, refetch } = useGetUserPosts(params.user);
 
+  const containerEl = useRef();
+
   const [isPostMenu, setIsPostMenu] = useState('myPost');
   const [loadUserName, setLoadUserName] = useState();
   const [loadUserTitle, setLoadUserTitle] = useState('');
   const [loadUserAvatar, setLoadUserAvatar] = useState('');
-
   const collectionPosts = allPosts
     ? [...allPosts].filter((post) => post.postLike.indexOf(params.user) !== -1)
     : [];
@@ -93,7 +95,8 @@ const User = () => {
 
     default:
       return (
-        <Container>
+        <Container ref={containerEl}>
+          <PullToRefresh el={containerEl} />
           <ProfileWrap>
             <UserInfo>
               <ProfileImage alt={loadUserName} src={loadUserAvatar.replace('http:', 'https:')} />
