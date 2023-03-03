@@ -59,7 +59,7 @@ const PullToRefresh = ({ el }) => {
   }, [refreshing, startY, allPostsRefetch, recentPostsRefetch, el]);
 
   return (
-    <Container id='container'>
+    <Container>
       <Loader>{refreshing ? <CircularProgress color='inherit' /> : ''}</Loader>
     </Container>
   );
