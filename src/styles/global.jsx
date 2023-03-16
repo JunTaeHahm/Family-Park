@@ -30,16 +30,12 @@ const GlobalStyle = () => (
       html,
       body,
       #root {
-        overflow: scroll;
         height: 100%;
         font-family: 'IBM Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
           Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         color: var(--primary-black);
         background-color: var(--background);
         touch-action: manipulation;
-        ::-webkit-scrollbar {
-          display: none;
-        }
       }
       #app {
         max-width: 1300px;
