@@ -118,12 +118,12 @@ const GlobalStyle = () => (
       }
       @media screen and (max-width: 1023px) {
         :root {
-          font-size: 0.9rem;
+          font-size: 14px;
         }
       }
       @media screen and (max-width: 767px) {
         :root {
-          font-size: 0.8rem;
+          font-size: 13px;
         }
       }
 
