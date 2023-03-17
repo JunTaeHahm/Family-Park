@@ -152,11 +152,14 @@ const Setting = () => {
       if (result.isConfirmed) {
         axios
           .delete(`/api/users/${userId}`)
-          .then(() => navigate('/')) // 삭제 성공 시 홈으로 navigate
+          .then(() => {
+            refetch(); // 삭제 후 클라이언트 리패치
+            navigate('/');
+          }) // 삭제 성공 시 홈으로 navigate
           .catch((error) => console.log(error));
       }
     });
-  }, [userId, navigate]);
+  }, [userId, navigate, refetch]);
 
   switch (isLoading) {
     case true:

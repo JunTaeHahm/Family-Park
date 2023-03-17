@@ -118,7 +118,6 @@ export const LoginButtonBack = styled.span`
 export const LoginButton = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  padding: 0.4rem 1.2rem;
   border: 2px solid var(--primary-black);
   border-radius: 0.5rem;
   font-weight: bold;
@@ -127,6 +126,9 @@ export const LoginButton = styled.button`
   cursor: pointer;
   transform: translate(0, -0.2rem);
   transition: transform 0.1s ease;
+  a {
+    padding: 0.4rem 1.2rem;
+  }
   input {
     display: none;
   }
