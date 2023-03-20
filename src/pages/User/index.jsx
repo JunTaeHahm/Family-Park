@@ -139,7 +139,6 @@ const User = () => {
                       postUser={post.postUser}
                       postContent={post.postContent}
                       postLike={post.postLike}
-                      comments={post.comments}
                       createdAt={post.createdAt}
                       updatedAt={post.updatedAt}
                     />
@@ -155,7 +154,6 @@ const User = () => {
                     postUser={post.postUser}
                     postContent={post.postContent}
                     postLike={post.postLike}
-                    comments={post.comments}
                     createdAt={post.createdAt}
                     updatedAt={post.updatedAt}
                   />

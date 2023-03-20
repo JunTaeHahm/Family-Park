@@ -36,7 +36,6 @@ const TopPosts = ({ slice }) => {
                   postUser={post.postUser}
                   postContent={post.postContent}
                   postLike={post.postLike}
-                  comments={post.comments}
                   createdAt={post.createdAt}
                   updatedAt={post.updatedAt}
                 />

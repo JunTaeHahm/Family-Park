@@ -33,7 +33,6 @@ export const useGetAllPosts = () => {
       postContent: data[key].postContent,
       postUser: data[key].postUser,
       postLike: data[key].postLike,
-      comments: data[key].comments,
       createdAt: data[key].createdAt,
       updatedAt: data[key].updatedAt,
     });
@@ -74,7 +73,6 @@ export const useGetRecentPosts = () => {
       postContent: data[key].postContent,
       postUser: data[key].postUser,
       postLike: data[key].postLike,
-      comments: data[key].comments,
       createdAt: data[key].createdAt,
       updatedAt: data[key].updatedAt,
     });
@@ -115,7 +113,6 @@ export const useGetUserPosts = (userName) => {
       postContent: data[key].postContent,
       postUser: data[key].postUser,
       postLike: data[key].postLike,
-      comments: data[key].comments,
       createdAt: data[key].createdAt,
       updatedAt: data[key].updatedAt,
     });
