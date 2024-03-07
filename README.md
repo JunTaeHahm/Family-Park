@@ -1,7 +1,7 @@
 
 ![](https://velog.velcdn.com/images/ahuuae/post/0b9aa86d-ba08-4b16-a090-511144100945/image.png)
 
-## 💬 누군가의 말 한마디에 
+## 💬 누군가의 말 한마디에
 용기가 생긴 적이 있나요?
 
 감동을 받은 적이 있나요?
@@ -9,7 +9,7 @@
 동기부여가 생긴 적이 있나요?
 
 ## 💬 이제는 여러분이 말해주세요!
-📝 [방문하기](https://www.sentenceu.co.kr) 
+📝 [방문하기](https://www.sentenceu.co.kr)
 
 ---
 
@@ -24,7 +24,10 @@
 
 ## 📆 개발기간
 - ver 1. (2023.01.05 ~ 2023.02.11)
-- ver 2. (2023.02.12 ~
+
+## 📝 작업 기록
+
+[SENTENCE U | Log](https://kyledev.tistory.com/category/Project/SENTENCE%20U)
 
 ## 📚 기술스택
 | 분야           | 사용 기술                       |
@@ -141,9 +144,3 @@
 - sweetalert2
 - web-push
 - workbox
-
----
-
-## 📝 작업 기록
-
-[SENTENCE U | Log](https://velog.io/@ahuuae/series/SENTENCE-U-Log)
